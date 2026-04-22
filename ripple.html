@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>放課後等デイサービス りぷる | スタッフ研修ポータル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* =====================
+   共通リセット・変数
+===================== */
+:root {
+  --teal: #2A7B7B;
+  --teal-l: #3FA8A8;
+  --teal-pale: #E8F5F5;
+  --teal-dark: #1A5050;
+  --warm: #F5A623;
+  --warm-pale: #FFF8EC;
+  --warm-light: #FFF3D4;
+  --dark: #1A3A3A;
+  --mid: #4A6E6E;
+  --bg: #F6FBFB;
+  --white: #FFFFFF;
+  --text: #2C3E3E;
+  --pink: #E8567A;
+  --orange: #E8821A;
+  --shadow-card: 0 2px 12px rgba(42,123,123,0.08);
+  --shadow-soft: 0 4px 24px rgba(42,123,123,0.12);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Noto Sans JP',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.85;
+  word-break:normal;
+  overflow-wrap:break-word;
+  -webkit-text-size-adjust:100%;
+}
+
+/* =====================
+   ページ切り替え
+===================== */
+.page { display:none; }
+.page.active { display:block; }
+
+/* =====================
+   共通ヘッダー
+===================== */
+.site-header {
+  background:var(--dark);
+  position:sticky;
+  top:0;
+  z-index:200;
+  box-shadow:0 2px 16px rgba(0,0,0,0.2);
+}
+.header-inner {
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 20px;
+}
+.logo-btn {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  text-decoration:none;
+}
+.logo-icon {
+  width:40px;
+  height:40px;
+  background:var(--teal);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.logo-icon::before,.logo-icon::after {
+  content:'';
+  position:absolute;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,0.4);
+}
+.logo-icon::before{width:26px;height:26px;}
+.logo-icon::after{width:16px;height:16px;}
+.logo-text .main-name {
+  font-family:'Noto Serif JP',serif;
+  font-size:20px;
+  font-weight:700;
+  color:#fff;
+  letter-spacing:0.06em;
+  display:block;
+}
+.logo-text .sub-name {
+  font-size:10px;
+  color:rgba(255,255,255,0.6);
+  display:block;
+  margin-top:1px;
+}
+.header-nav {
+  margin-left:auto;
+  display:flex;
+  gap:4px;
+}
+.header-nav button {
+  color:rgba(255,255,255,0.75);
+  background:none;
+  border:none;
+  font-size:12px;
+  font-family:'Noto Sans JP',sans-serif;
+  padding:6px 12px;
+  border-radius:16px;
+  cursor:pointer;
+  white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;
+  transition:all 0.2s;
+}
+.header-nav button:hover,
+.header-nav button:active { background:rgba(255,255,255,0.12); color:#fff; }
+.back-btn {
+  color:rgba(255,255,255,0.65);
+  background:none;
+  border:1px solid rgba(255,255,255,0.2);
+  font-size:12px;
+  font-family:'Noto Sans JP',sans-serif;
+  padding:6px 12px;
+  border-radius:20px;
+  cursor:pointer;
+  white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;
+  flex-shrink:0;
+}
+.back-btn:active { background:rgba(255,255,255,0.15); color:#fff; }
+.month-badge {
+  background:var(--teal);
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  padding:4px 12px;
+  border-radius:12px;
+  white-space:nowrap;
+  flex-shrink:0;
+  margin-left:auto;
+}
+
+/* =====================
+   HP ページ
+===================== */
+.hero {
+  background:linear-gradient(135deg,var(--dark) 0%,var(--teal) 60%,var(--teal-l) 100%);
+  color:#fff;
+  padding:52px 20px 48px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before {
+  content:'';position:absolute;
+  top:-60px;right:-60px;
+  width:260px;height:260px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.04);
+}
+.hero-badge {
+  display:inline-block;
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:20px;
+  padding:5px 16px;
+  font-size:11px;
+  letter-spacing:0.08em;
+  margin-bottom:18px;
+}
+.hero h1 {
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(22px,6vw,38px);
+  font-weight:700;
+  line-height:1.4;
+  margin-bottom:14px;
+}
+.hero p { font-size:14px; opacity:0.85; line-height:1.9; }
+
+.hp-section {
+  max-width:1100px;
+  margin:0 auto;
+  padding:40px 20px;
+}
+.section-label {
+  font-size:11px;
+  letter-spacing:0.14em;
+  color:var(--teal);
+  font-weight:700;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.section-title {
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(18px,4vw,26px);
+  color:var(--dark);
+  font-weight:700;
+  margin-bottom:8px;
+}
+.section-desc { color:var(--mid); font-size:13px; margin-bottom:28px; line-height:1.8; }
+
+.notice-bar {
+  background:var(--warm-light);
+  border-left:4px solid var(--warm);
+  border-radius:10px;
+  padding:14px 18px;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:28px;
+}
+.notice-icon {
+  width:34px;height:34px;
+  background:var(--warm);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:15px;
+  flex-shrink:0;margin-top:1px;
+}
+.notice-bar p { font-size:13px; color:#7A5500; line-height:1.75; }
+.notice-bar strong { color:#5A3A00; }
+
+.curriculum-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:14px;
+}
+.curriculum-card {
+  background:var(--white);
+  border-radius:14px;
+  padding:20px 18px;
+  box-shadow:var(--shadow-card);
+  border:1.5px solid transparent;
+  cursor:pointer;
+  text-align:left;
+  font-family:'Noto Sans JP',sans-serif;
+  transition:all 0.25s;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  -webkit-tap-highlight-color:transparent;
+}
+.curriculum-card::before {
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:var(--card-color,var(--teal));
+  opacity:0.55;
+  transition:opacity 0.25s;
+}
+.curriculum-card:hover,
+.curriculum-card:active {
+  border-color:var(--card-color,var(--teal));
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-soft);
+}
+.curriculum-card:hover::before,
+.curriculum-card:active::before { opacity:1; }
+.curriculum-card.current {
+  border-color:var(--teal);
+  background:var(--teal-pale);
+}
+.curriculum-card.current::before { opacity:1; }
+.curriculum-card.disabled { cursor:default; }
+.curriculum-card.disabled:hover { transform:none; box-shadow:var(--shadow-card); border-color:transparent; }
+.curriculum-card.disabled:hover::before { opacity:0.55; }
+
+.card-month { font-size:10px; font-weight:700; letter-spacing:0.1em; color:var(--mid); text-transform:uppercase; }
+.card-title  { font-family:'Noto Serif JP',serif; font-size:15px; font-weight:700; color:var(--dark); line-height:1.45; }
+.card-subtitle { font-size:12px; color:var(--mid); line-height:1.65; }
+.card-status {
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11px;font-weight:700;
+  padding:3px 10px;border-radius:10px;
+  width:fit-content;margin-top:4px;
+}
+.status-now    { background:var(--teal); color:#fff; }
+.status-soon   { background:var(--warm-light); color:#B8800A; border:1px solid var(--warm); }
+.status-future { background:#F0F0F0; color:#999; }
+
+.divider {
+  height:1px;
+  background:linear-gradient(to right,transparent,rgba(42,123,123,0.2),transparent);
+  margin:0 20px;
+}
+
+.about-box {
+  background:var(--white);
+  border-radius:18px;
+  padding:28px 24px;
+  box-shadow:var(--shadow-card);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+  align-items:center;
+}
+.about-visual {
+  background:var(--teal-pale);
+  border-radius:12px;
+  padding:28px 20px;
+  text-align:center;
+}
+.ripple-visual {
+  width:90px;height:90px;
+  background:var(--teal);
+  border-radius:50%;
+  margin:0 auto 20px;
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.ripple-visual::before,.ripple-visual::after {
+  content:'';position:absolute;
+  border-radius:50%;
+  border:2px solid var(--teal);
+  animation:rippleAnim 2s ease-out infinite;
+}
+.ripple-visual::before{width:118px;height:118px;animation-delay:0.5s;}
+.ripple-visual::after{width:146px;height:146px;}
+@keyframes rippleAnim {
+  0%{opacity:0.6;transform:scale(0.9);}
+  100%{opacity:0;transform:scale(1.3);}
+}
+.ripple-inner-text {
+  color:#fff;font-family:'Noto Serif JP',serif;
+  font-size:22px;font-weight:700;z-index:1;
+}
+.about-visual-caption { font-size:13px; color:var(--mid); line-height:1.8; margin-top:4px; }
+.about-text h3 { font-family:'Noto Serif JP',serif; font-size:18px; color:var(--dark); margin-bottom:12px; line-height:1.4; }
+.about-text p  { font-size:13px; color:var(--mid); line-height:1.95; margin-bottom:10px; }
+.about-text p:last-child { margin-bottom:0; }
+
+.hp-footer {
+  background:var(--dark);
+  color:rgba(255,255,255,0.55);
+  text-align:center;
+  padding:28px 20px;
+  font-size:12px;
+  line-height:1.9;
+  margin-top:20px;
+}
+.hp-footer strong { color:rgba(255,255,255,0.9); }
+
+@media(max-width:600px){
+  .header-nav { display:none; }
+  .about-box { grid-template-columns:1fr; gap:20px; }
+  .about-visual { order:-1; }
+  .curriculum-grid { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:400px){
+  .curriculum-grid { grid-template-columns:1fr; }
+}
+
+/* =====================
+   ASD ページ
+===================== */
+.asd-hero {
+  background:linear-gradient(135deg,var(--teal-dark) 0%,var(--teal) 55%,#5BBFBF 100%);
+  color:#fff;
+  padding:44px 24px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.asd-hero::before {
+  content:'ASD';
+  position:absolute;
+  font-family:'Noto Serif JP',serif;
+  font-size:140px;font-weight:700;
+  opacity:0.04;right:-10px;top:-10px;
+  letter-spacing:-4px;pointer-events:none;
+}
+.month-tag {
+  display:inline-block;
+  border:1px solid rgba(255,255,255,0.4);
+  border-radius:16px;
+  padding:5px 14px;font-size:11px;
+  letter-spacing:0.06em;margin-bottom:14px;
+}
+.asd-hero h1 {
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(22px,6vw,36px);
+  font-weight:700;line-height:1.45;margin-bottom:14px;
+}
+.asd-hero .lead { font-size:14px; opacity:0.9; line-height:2.0; }
+
+.toc-wrapper {
+  max-width:860px;margin:-22px auto 0;
+  padding:0 16px;position:relative;z-index:10;
+}
+.toc-box {
+  background:var(--white);border-radius:16px;
+  box-shadow:0 4px 24px rgba(42,123,123,0.14);
+  padding:20px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+}
+.toc-label {
+  font-size:11px;font-weight:700;color:var(--teal);
+  letter-spacing:0.1em;text-transform:uppercase;
+  width:100%;margin-bottom:4px;
+}
+.toc-item {
+  font-size:12px;color:var(--teal);
+  padding:7px 14px;border:1.5px solid var(--teal);
+  border-radius:20px;cursor:pointer;background:none;
+  font-family:'Noto Sans JP',sans-serif;
+  -webkit-tap-highlight-color:transparent;
+  min-height:38px;display:inline-flex;align-items:center;
+  transition:all 0.2s;white-space:nowrap;
+}
+.toc-item:active,.toc-item:hover { background:var(--teal); color:#fff; }
+
+.content-wrap { max-width:860px; margin:0 auto; padding:32px 16px 60px; }
+
+.content-section { margin-bottom:44px; scroll-margin-top:72px; }
+.section-eyebrow { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+.section-num {
+  width:34px;height:34px;background:var(--teal);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:14px;font-weight:700;flex-shrink:0;
+}
+.section-heading {
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(16px,4vw,20px);
+  color:var(--dark);font-weight:700;line-height:1.4;
+  background:rgba(255,255,255,0.92);
+  padding:4px 12px 4px 8px;border-radius:6px;
+}
+
+.content-card {
+  background:var(--white);border-radius:14px;
+  padding:22px 20px;
+  box-shadow:0 2px 12px rgba(42,123,123,0.07);
+  margin-bottom:16px;overflow:hidden;
+}
+.content-card p {
+  font-size:13px;line-height:2.0;color:var(--text);
+  margin-bottom:14px;overflow-wrap:break-word;word-break:break-word;
+}
+.content-card p:last-child { margin-bottom:0; }
+
+.highlight-box {
+  border-left:4px solid var(--teal);
+  background:var(--teal-pale);
+  border-radius:0 10px 10px 0;
+  padding:14px 16px;margin:14px 0;
+}
+.highlight-box p {
+  font-size:13px;color:var(--teal-dark);
+  line-height:2.0;margin:0;overflow-wrap:break-word;
+}
+
+.stat-row {
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:10px;margin:16px 0;
+}
+.stat-box {
+  background:var(--white);border-radius:12px;
+  padding:16px 10px;text-align:center;
+  box-shadow:0 2px 8px rgba(42,123,123,0.07);
+  border-top:3px solid var(--teal);
+}
+.stat-num {
+  font-family:'Noto Serif JP',serif;
+  font-size:24px;font-weight:700;color:var(--teal);
+  line-height:1;margin-bottom:6px;
+}
+.stat-label { font-size:11px;color:var(--mid);line-height:1.65; }
+
+/* ASD構成図 */
+.asd-structure {
+  background:var(--white);border-radius:14px;
+  padding:22px 20px;
+  box-shadow:0 2px 12px rgba(42,123,123,0.07);
+  margin-bottom:16px;
+}
+.asd-structure-title {
+  font-size:12px;font-weight:700;color:var(--mid);
+  letter-spacing:0.06em;margin-bottom:14px;text-align:center;
+}
+.asd-parent {
+  border:2.5px solid var(--teal);border-radius:14px;
+  padding:16px;position:relative;
+}
+.asd-parent-label {
+  position:absolute;top:-12px;left:16px;
+  background:var(--teal);color:#fff;
+  font-size:12px;font-weight:700;
+  padding:2px 12px;border-radius:10px;letter-spacing:0.04em;
+}
+.asd-children { display:flex;flex-direction:column;gap:10px;margin-top:8px; }
+.trait-box { border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.7; }
+.trait-box.comm  { background:#EBF7F7;border:1.5px solid #B2E0E0; }
+.trait-box.obs   { background:#FFF8EC;border:1.5px solid #FFD080; }
+.trait-box.sense { background:#F3EEFF;border:1.5px solid #C5A8FF; }
+.trait-title { font-weight:700;font-size:13px;color:var(--dark);margin-bottom:4px; }
+.trait-sub   { font-size:12px;color:var(--mid);line-height:1.7;overflow-wrap:break-word; }
+.sense-children {
+  margin-top:8px;padding:10px 12px;
+  background:rgba(255,255,255,0.7);border-radius:8px;
+  border-left:3px solid #7B5EA7;
+}
+.sense-child-row { display:flex;flex-wrap:wrap;gap:6px;margin-top:6px; }
+.sense-tag {
+  font-size:11px;padding:3px 10px;border-radius:10px;
+  background:#F3EEFF;color:#5A3A80;border:1px solid #C5A8FF;white-space:nowrap;
+}
+.sense-tag.hl { background:#7B5EA7;color:#fff;border-color:#7B5EA7; }
+
+/* スペクトラム */
+.spectrum-visual {
+  background:var(--white);border-radius:14px;
+  padding:22px 20px;
+  box-shadow:0 2px 12px rgba(42,123,123,0.07);
+  margin-bottom:16px;
+}
+.spectrum-bar {
+  height:20px;border-radius:10px;
+  background:linear-gradient(to right,#FFD1D1,#FFA07A,#FFD700,#90EE90,#87CEEB,#9370DB);
+  margin:18px 0 10px;
+}
+.spectrum-labels {
+  display:flex;justify-content:space-between;
+  font-size:11px;color:var(--mid);margin-bottom:16px;
+}
+.spectrum-dots { display:flex;justify-content:space-around;flex-wrap:wrap;gap:10px;margin-top:14px; }
+.sdot { text-align:center; }
+.sdot-circle {
+  width:46px;height:46px;border-radius:50%;
+  margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.sdot-label { font-size:11px;color:var(--mid);line-height:1.5;max-width:64px; }
+
+/* 3特性カード */
+.three-features { display:flex;flex-direction:column;gap:14px; }
+.feature-card { border-radius:14px;padding:20px 18px; }
+.fc-icon { font-size:26px;margin-bottom:10px;display:block; }
+.fc-title { font-family:'Noto Serif JP',serif;font-size:15px;font-weight:700;margin-bottom:8px;color:var(--dark);line-height:1.4; }
+.fc-desc  { font-size:13px;line-height:1.95;color:var(--mid);overflow-wrap:break-word;word-break:break-word; }
+.fc-example {
+  margin-top:10px;background:rgba(255,255,255,0.75);
+  border-radius:8px;padding:10px 14px;
+  font-size:12px;color:var(--dark);border-left:3px solid;line-height:1.85;
+}
+
+/* 誤解・正解 */
+.myth-fact-list { display:flex;flex-direction:column;gap:12px; }
+.myth-fact-pair { display:flex;flex-direction:column;gap:6px; }
+.myth-box { border-radius:12px;padding:14px 16px;background:#FFF0F3;border:1.5px solid #FFCDD7; }
+.fact-box  { border-radius:12px;padding:14px 16px;background:var(--teal-pale);border:1.5px solid #B2E0E0; }
+.mf-label  { font-size:11px;font-weight:700;letter-spacing:0.06em;margin-bottom:5px; }
+.myth-box .mf-label { color:var(--pink); }
+.fact-box  .mf-label { color:var(--teal); }
+.mf-text   { font-size:13px;line-height:1.85;overflow-wrap:break-word; }
+
+/* ヒントリスト */
+.tip-list  { list-style:none;display:flex;flex-direction:column;gap:10px; }
+.tip-list li {
+  display:flex;gap:12px;background:var(--white);
+  border-radius:12px;padding:16px;
+  box-shadow:0 2px 8px rgba(42,123,123,0.06);align-items:flex-start;
+}
+.tip-icon {
+  width:36px;height:36px;border-radius:50%;
+  background:var(--teal-pale);display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.tip-content { flex:1;min-width:0;overflow-wrap:break-word; }
+.tip-content strong { display:block;font-size:14px;color:var(--dark);margin-bottom:5px;line-height:1.4; }
+.tip-content p { font-size:13px;color:var(--mid);line-height:1.9; }
+
+/* callout */
+.callout-warm {
+  background:var(--warm-pale);border:1.5px solid #FFCD80;
+  border-radius:14px;padding:16px 18px;
+  display:flex;gap:12px;align-items:flex-start;margin-top:16px;
+}
+.callout-warm .ci { font-size:20px;flex-shrink:0;margin-top:3px; }
+.callout-warm p   { font-size:13px;color:#7A5500;line-height:1.9; }
+.callout-warm strong { color:#5A3A00; }
+
+/* 次月 */
+.next-month {
+  background:var(--dark);border-radius:16px;padding:24px 22px;color:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.nm-left .nm-sub   { font-size:11px;opacity:0.6;margin-bottom:5px; }
+.nm-left .nm-title { font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;line-height:1.4; }
+.nm-left .nm-desc  { font-size:12px;opacity:0.7;margin-top:5px;line-height:1.8; }
+.nm-tag {
+  background:var(--orange);border-radius:20px;
+  padding:8px 20px;font-size:13px;font-weight:700;color:#fff;
+  white-space:nowrap;flex-shrink:0;
+}
+.source-note { font-size:11px;color:#aaa;margin-top:12px;padding-top:10px;border-top:1px solid #eee;line-height:1.7; }
+
+.asd-footer {
+  background:#1A3A3A;color:rgba(255,255,255,0.5);
+  text-align:center;padding:24px 20px;
+  font-size:11px;letter-spacing:0.04em;line-height:1.9;margin-top:20px;
+}
+
+@media(max-width:380px){
+  .stat-row { grid-template-columns:1fr 1fr; }
+}
+
+/* =====================
+   進捗バー
+===================== */
+.progress-wrap {
+  background:var(--white);
+  border-radius:12px;
+  padding:16px 20px;
+  box-shadow:var(--shadow-card);
+  margin-bottom:28px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.progress-label {
+  font-size:12px;
+  color:var(--mid);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.progress-bar-bg {
+  flex:1;
+  height:10px;
+  background:#E8F5F5;
+  border-radius:10px;
+  overflow:hidden;
+}
+.progress-bar-fill {
+  height:100%;
+  width:8.33%; /* 1/12 */
+  background:linear-gradient(to right,var(--teal),var(--teal-l));
+  border-radius:10px;
+  transition:width 0.6s ease;
+}
+.progress-count {
+  font-size:13px;
+  font-weight:700;
+  color:var(--teal);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+
+/* =====================
+   クイズ
+===================== */
+.quiz-section {
+  margin-top:32px;
+  margin-bottom:8px;
+}
+.quiz-section .section-eyebrow { margin-bottom:16px; }
+
+.quiz-card {
+  background:var(--white);
+  border-radius:14px;
+  padding:22px 20px;
+  box-shadow:0 2px 12px rgba(42,123,123,0.07);
+  margin-bottom:14px;
+}
+.quiz-q {
+  font-size:14px;
+  font-weight:700;
+  color:var(--dark);
+  line-height:1.7;
+  margin-bottom:14px;
+}
+.quiz-q-num {
+  display:inline-block;
+  background:var(--teal);
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  padding:2px 8px;
+  border-radius:8px;
+  margin-right:6px;
+  vertical-align:middle;
+}
+.quiz-options {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.quiz-opt {
+  width:100%;
+  background:#F6FBFB;
+  border:1.5px solid #D0E8E8;
+  border-radius:10px;
+  padding:12px 16px;
+  font-size:13px;
+  font-family:'Noto Sans JP',sans-serif;
+  color:var(--text);
+  cursor:pointer;
+  text-align:left;
+  transition:all 0.2s;
+  line-height:1.6;
+  -webkit-tap-highlight-color:transparent;
+}
+.quiz-opt:active { transform:scale(0.98); }
+.quiz-opt.correct {
+  background:#E8F7EE;
+  border-color:#2EAA5E;
+  color:#1A6E3A;
+}
+.quiz-opt.wrong {
+  background:#FFF0F3;
+  border-color:#E8567A;
+  color:#A01040;
+}
+.quiz-opt.disabled { cursor:default; opacity:0.6; }
+.quiz-opt.correct.disabled { opacity:1; }
+
+.quiz-result {
+  display:none;
+  margin-top:12px;
+  padding:12px 16px;
+  border-radius:10px;
+  font-size:13px;
+  line-height:1.75;
+}
+.quiz-result.show { display:block; }
+.quiz-result.ok  { background:#E8F7EE; border:1.5px solid #2EAA5E; color:#1A6E3A; }
+.quiz-result.ng  { background:#FFF0F3; border:1.5px solid #E8567A; color:#A01040; }
+
+.quiz-score-box {
+  background:var(--teal-pale);
+  border:2px solid var(--teal);
+  border-radius:14px;
+  padding:20px;
+  text-align:center;
+  display:none;
+  margin-top:4px;
+}
+.quiz-score-box.show { display:block; }
+.quiz-score-num {
+  font-family:'Noto Serif JP',serif;
+  font-size:40px;
+  font-weight:700;
+  color:var(--teal);
+  line-height:1;
+  margin-bottom:6px;
+}
+.quiz-score-label { font-size:13px; color:var(--mid); line-height:1.7; }
+.quiz-retry-btn {
+  margin-top:14px;
+  background:var(--teal);
+  color:#fff;
+  border:none;
+  border-radius:20px;
+  padding:10px 28px;
+  font-size:13px;
+  font-family:'Noto Sans JP',sans-serif;
+  font-weight:700;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* =====================
+   印刷ボタン
+===================== */
+.print-btn-wrap {
+  text-align:center;
+  margin:24px 0 0;
+}
+.print-btn {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:none;
+  border:1.5px solid var(--teal);
+  color:var(--teal);
+  border-radius:20px;
+  padding:10px 24px;
+  font-size:13px;
+  font-family:'Noto Sans JP',sans-serif;
+  font-weight:700;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:all 0.2s;
+}
+.print-btn:active { background:var(--teal); color:#fff; }
+
+/* =====================
+   印刷用スタイル
+===================== */
+@media print {
+  .site-header,
+  .toc-wrapper,
+  .print-btn-wrap,
+  .quiz-section,
+  .next-month,
+  .asd-footer { display:none !important; }
+
+  body { background:#fff; font-size:12pt; line-height:1.8; }
+  .page { display:block !important; }
+  #page-hp { display:none !important; }
+
+  .asd-hero {
+    background:#1A5050 !important;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    padding:24px 20px;
+    margin-bottom:16px;
+    page-break-after:avoid;
+  }
+  .content-section { page-break-inside:avoid; margin-bottom:20px; }
+  .content-card, .asd-structure, .spectrum-visual, .feature-card,
+  .myth-fact-pair, .tip-list li {
+    box-shadow:none !important;
+    border:1px solid #ccc;
+    page-break-inside:avoid;
+  }
+  .stat-row { break-inside:avoid; }
+  .three-features { gap:8px; }
+  .highlight-box { border-left:4px solid #2A7B7B; }
+  .content-wrap { padding:0; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ========================================
+     共通ヘッダー（JS で中身を切り替える）
+======================================== -->
+<header class="site-header" id="site-header">
+  <!-- HPヘッダー -->
+  <div class="header-inner" id="hp-header">
+    <button class="logo-btn" onclick="showPage('hp')">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span class="main-name">りぷる</span>
+        <span class="sub-name">放課後等デイサービス｜スタッフ研修ポータル</span>
+      </div>
+    </button>
+    <div class="header-nav">
+      <button onclick="scrollToSection('curriculum')">カリキュラム</button>
+      <button onclick="scrollToSection('about')">りぷるとは</button>
+      <button onclick="showPage('asd')">今月</button>
+    </div>
+  </div>
+</header>
+
+<!-- ========================================
+     HP ページ
+======================================== -->
+<div class="page active" id="page-hp">
+
+  <div class="hero">
+    <div class="hero-badge">🌊 RIPPLE STAFF PORTAL 2026</div>
+    <h1>子どもを深く知る<br>12ヶ月の学びの場</h1>
+    <p>
+      放課後等デイサービス りぷる の<br>
+      スタッフ向け研修ポータルです。<br>
+      毎月10分の講義で、子どもたちへの<br>
+      理解を少しずつ広げていきましょう。
+    </p>
+  </div>
+
+  <div class="hp-section" id="curriculum">
+    <div class="progress-wrap">
+      <span class="progress-label">📚 2026年度の進捗</span>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill"></div>
+      </div>
+      <span class="progress-count">1 / 12 完了</span>
+    </div>
+
+    <div class="notice-bar">
+      <div class="notice-icon">📢</div>
+      <p>
+        <strong>今月（2026年4月）</strong>の研修テーマは<br>
+        「<strong>自閉症スペクトラム障害（ASD）とは？</strong>」です。<br>
+        下のカードをタップしてコンテンツを開いてください。
+      </p>
+    </div>
+
+    <div class="section-label">Monthly Curriculum</div>
+    <div class="section-title">12ヶ月 スタッフ研修カリキュラム</div>
+    <p class="section-desc">
+      月に一度、会議の10分間で学ぶ子ども理解の連続講座です。<br>
+      タップで各月のコンテンツに移動できます。
+    </p>
+
+    <div class="curriculum-grid">
+
+      <button class="curriculum-card current" style="--card-color:#2A7B7B;" onclick="showPage('asd')">
+        <span class="card-month">Month 01 · 4月</span>
+        <div class="card-title">自閉症スペクトラム障害（ASD）とは？</div>
+        <div class="card-subtitle">ASDの基礎・コミュニケーションの特性・こだわり・スペクトラムの概念を学ぶ</div>
+        <span class="card-status status-now">▶ 今月のテーマ</span>
+      </button>
+
+      <div class="curriculum-card disabled" style="--card-color:#E8821A;">
+        <span class="card-month">Month 02 · 5月</span>
+        <div class="card-title">聴覚過敏とは？</div>
+        <div class="card-subtitle">音に敏感な子どもへの理解と環境づくりのポイント</div>
+        <span class="card-status status-soon">Coming Soon</span>
+      </div>
+
+      <div class="curriculum-card disabled" style="--card-color:#9B59B6;">
+        <span class="card-month">Month 03 · 6月</span>
+        <div class="card-title">多動症（ADHD）とは？</div>
+        <div class="card-subtitle">注意欠如・多動症の特性と関わり方の基本</div>
+        <span class="card-status status-future">準備中</span>
+      </div>
+
+      <div class="curriculum-card disabled" style="--card-color:#27AE60;">
+        <span class="card-month">Month 04 · 7月</span>
+        <div class="card-title">感覚過敏・感覚鈍麻とは？</div>
+        <div class="card-subtitle">五感の過剰・過少反応、感覚統合の基礎知識</div>
+        <span class="card-status status-future">準備中</span>
+      </div>
+
+      <div class="curriculum-card disabled" style="--card-color:#E74C3C;">
+        <span class="card-month">Month 05 · 8月</span>
+        <div class="card-title">こだわり行動・パニックへの対応</div>
+        <div class="card-subtitle">ルーティンが崩れたときの支援と、落ち着きを取り戻す関わり方</div>
+        <span class="card-status status-future">準備中</span>
+      </div>
+
+      <div class="curriculum-card disabled" style="--card-color:#2980B9;">
+        <span class="card-month">Month 06 · 9月</span>
+        <div class="card-title">知的発達障害とは？</div>
+        <div class="card-subtitle">知的障害の概念・支援レベル別の関わり方</div>
+        <span class="card-status status-future">準備中</span>
+      </div>
+
+      <div class="curriculum-card disabled" style="--card-color:#F39C12;">
+        <span class="card-month">Month 07 · 10月</span>
+        <div class="card-title">学習障害（LD）とは？</div>
+        <div class="card-subtitle">読み書き・算数の困難さと学習支援のアプローチ</div>
+        <span class="card-status status-future">準備中</span>
+      </div>
+
+      <div class="curriculum-card disabled" style="--card-color:#1ABC9C;">
+        <span class="card-month">Month 08 · 11月</span>
+        <div class="card-title">言語・コミュニケーション支援</div>
+        <div class="card-subtitle">絵カード・構造化支援など実践的な手法を学ぶ</div>
+        <span class="card-status status-future">準備中</span>
+      </div>
+
+      <div class="curriculum-card disabled" style="--card-color:#8E44AD;">
+        <span class="card-month">Month 09 · 12月</span>
+        <div class="card-title">二次障害とは？</div>
+        <div class="card-subtitle">不登校・うつ・攻撃行動など、二次的な問題の予防と対応</div>
+        <span class="card-status status-future">準備中</span>
+      </div>
+
+      <div class="curriculum-card disabled" style="--card-color:#E67E22;">
+        <span class="card-month">Month 10 · 1月</span>
+        <div class="card-title">感情調整・自己制御の支援</div>
+        <div class="card-subtitle">怒りや不安のコントロール、ソーシャルスキルトレーニング</div>
+        <span class="card-status status-future">準備中</span>
+      </div>
+
+      <div class="curriculum-card disabled" style="--card-color:#16A085;">
+        <span class="card-month">Month 11 · 2月</span>
+        <div class="card-title">保護者との連携・信頼関係の築き方</div>
+        <div class="card-subtitle">日々の連絡帳・個別支援計画の共有とコミュニケーション</div>
+        <span class="card-status status-future">準備中</span>
+      </div>
+
+      <div class="curriculum-card disabled" style="--card-color:#2C3E50;">
+        <span class="card-month">Month 12 · 3月</span>
+        <div class="card-title">1年間の振り返りと個別支援の実践</div>
+        <div class="card-subtitle">学んだ知識を活かした支援記録・ケーススタディ</div>
+        <span class="card-status status-future">準備中</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="hp-section" id="about">
+    <div class="section-label">About Ripple</div>
+    <div class="section-title">りぷるについて</div>
+    <p class="section-desc">
+      「りぷる（ripple）」は小さな波紋。<br>
+      一人ひとりの理解が、子どもたちの未来に<br>
+      静かに広がっていきます。
+    </p>
+
+    <div class="about-box">
+      <div class="about-visual">
+        <div class="ripple-visual">
+          <span class="ripple-inner-text">り</span>
+        </div>
+        <p class="about-visual-caption">
+          波紋のように<br>理解と支援が<br>広がっていく場所
+        </p>
+      </div>
+      <div class="about-text">
+        <h3>スタッフ全員で<br>学ぶ文化を</h3>
+        <p>放課後等デイサービス りぷる では、支援の質を高めるため、スタッフ全員が発達障害や子どもの特性について学び続けることを大切にしています。</p>
+        <p>このポータルサイトは、毎月の会議で行う10分間の勉強会をサポートするために作られました。難しい専門用語をわかりやすく整理し、現場で使える知識をお届けします。</p>
+        <p>「もっと理解したい」という気持ちが、よりよい支援への第一歩です。</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="hp-footer">
+    <strong>放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
+    このページは社内スタッフ向けの研修コンテンツです。
+  </footer>
+
+</div><!-- /page-hp -->
+
+
+<!-- ========================================
+     ASD ページ
+======================================== -->
+<div class="page" id="page-asd">
+
+  <div class="asd-hero">
+    <div class="month-tag">🌊 Month 01 · 2026年4月の研修テーマ</div>
+    <h1>自閉症スペクトラム障害<br>（ASD）とは？</h1>
+    <p class="lead">
+      「自閉症」「アスペルガー」…<br>
+      言葉は知っていても、<br>実際どういう状態なの？<br>
+      基礎から一緒に理解しましょう。
+    </p>
+  </div>
+
+  <div class="toc-wrapper">
+    <div class="toc-box">
+      <span class="toc-label">目次 — タップでスクロール</span>
+      <button class="toc-item" onclick="tocScrollTo('s1')">ASDとは</button>
+      <button class="toc-item" onclick="tocScrollTo('s2')">特性の全体像</button>
+      <button class="toc-item" onclick="tocScrollTo('s3')">スペクトラムとは</button>
+      <button class="toc-item" onclick="tocScrollTo('s4')">よくある誤解</button>
+      <button class="toc-item" onclick="tocScrollTo('s5')">原因</button>
+      <button class="toc-item" onclick="tocScrollTo('s6')">関わり方のヒント</button>
+      <button class="toc-item" onclick="tocScrollTo('s7')">まとめ</button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- S1 -->
+    <div class="content-section" id="s1">
+      <div class="section-eyebrow">
+        <div class="section-num">1</div>
+        <h2 class="section-heading">ASDとは？</h2>
+      </div>
+      <div class="content-card">
+        <p>ASD（Autism Spectrum Disorder）とは、発達障害のひとつです。生まれつきの脳の働き方の違いによって生じます。</p>
+        <p>主な特徴は「コミュニケーションの難しさ」「強いこだわり」「感覚の過敏さや鈍感さ」の3つです。</p>
+        <p>大切なのは、<strong>育て方のせいでも、子どものせいでもない</strong>ということ。脳の個性として生まれついたものです。</p>
+        <div class="highlight-box">
+          <p>💡 以前は「自閉症」「アスペルガー症候群」「高機能自閉症」などと別々に呼ばれていましたが、現在はまとめて<strong>「自閉スペクトラム症（ASD）」</strong>と呼びます。</p>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">3.22<span style="font-size:13px">%</span></div>
+          <div class="stat-label">5歳児における<br>ASDの有病率<br><small>（弘前大学調査）</small></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">30〜50<span style="font-size:11px">人</span></div>
+          <div class="stat-label">に1人の割合で<br>見られる</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">2〜4<span style="font-size:11px">倍</span></div>
+          <div class="stat-label">男性が女性より<br>多く診断される</div>
+        </div>
+      </div>
+      <p class="source-note">参考：国立精神・神経医療研究センター / 弘前大学調査 / AIAI VISIT</p>
+    </div>
+
+    <!-- S2 -->
+    <div class="content-section" id="s2">
+      <div class="section-eyebrow">
+        <div class="section-num">2</div>
+        <h2 class="section-heading">ASDの特性の全体像</h2>
+      </div>
+      <div class="content-card">
+        <p>ASDには<strong>3つの主な特性</strong>があります。そのひとつが「感覚の過敏さ・鈍感さ」で、聴覚過敏はこの中に含まれます。</p>
+        <p>つまり、<strong>聴覚過敏はASDの特性のひとつ</strong>です。ただし、ASDの人が全員持つわけではなく、程度や現れ方も人によって大きく異なります。</p>
+      </div>
+      <div class="asd-structure">
+        <div class="asd-structure-title">ASDの3大特性と感覚過敏の関係</div>
+        <div class="asd-parent">
+          <span class="asd-parent-label">ASD（自閉症スペクトラム障害）</span>
+          <div class="asd-children">
+            <div class="trait-box comm">
+              <div class="trait-title">💬 ① コミュニケーションの難しさ</div>
+              <div class="trait-sub">言葉・表情・視線でのやりとりが苦手。発語がない子でも、行動や表情でサインを出している。</div>
+            </div>
+            <div class="trait-box obs">
+              <div class="trait-title">🔄 ② こだわり・反復行動</div>
+              <div class="trait-sub">決まったルーティンへの強いこだわり。急な変更がパニックや混乱につながる。</div>
+            </div>
+            <div class="trait-box sense">
+              <div class="trait-title">👂 ③ 感覚の過敏さ・鈍感さ</div>
+              <div class="trait-sub">五感のどれかが人より敏感、または鈍いことがある。<strong>聴覚過敏はこの中に含まれる特性のひとつ。</strong></div>
+              <div class="sense-children">
+                <div style="font-size:12px;font-weight:700;color:#5A3A80;margin-bottom:4px;">感覚過敏・鈍麻の種類</div>
+                <div class="sense-child-row">
+                  <span class="sense-tag hl">聴覚過敏（音）</span>
+                  <span class="sense-tag">視覚過敏（光・色）</span>
+                  <span class="sense-tag">触覚過敏（皮ふ感覚）</span>
+                  <span class="sense-tag">嗅覚過敏（におい）</span>
+                  <span class="sense-tag">味覚過敏（偏食）</span>
+                  <span class="sense-tag">感覚鈍麻（痛みに鈍い等）</span>
+                </div>
+                <div style="font-size:11px;color:#7B5EA7;margin-top:8px;line-height:1.7;">※ 聴覚過敏については来月（5月）にくわしく扱います</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S3 -->
+    <div class="content-section" id="s3">
+      <div class="section-eyebrow">
+        <div class="section-num">3</div>
+        <h2 class="section-heading">「スペクトラム」とはどういう意味？</h2>
+      </div>
+      <div class="content-card">
+        <p>「スペクトラム」は英語で<strong>「連続体・幅」</strong>という意味です。</p>
+        <p>虹のように色と色の間に境界線がないように、ASDも軽い傾向の人から強い特性を持つ人まで、ひとつながりのグラデーションとして考えます。</p>
+      </div>
+      <div class="spectrum-visual">
+        <p style="font-size:12px;color:#888;margin-bottom:2px;text-align:center;">特性の幅（スペクトラム）イメージ</p>
+        <div class="spectrum-bar"></div>
+        <div class="spectrum-labels"><span>特性が軽め</span><span>特性が強め</span></div>
+        <div class="spectrum-dots">
+          <div class="sdot"><div class="sdot-circle" style="background:#FDE8E8;">🗣️</div><div class="sdot-label">言葉でよく話せる</div></div>
+          <div class="sdot"><div class="sdot-circle" style="background:#FFF3CD;">🤝</div><div class="sdot-label">対人関係に困難がある</div></div>
+          <div class="sdot"><div class="sdot-circle" style="background:#E8F5E8;">🔁</div><div class="sdot-label">こだわりが強い</div></div>
+          <div class="sdot"><div class="sdot-circle" style="background:#E8F0FF;">🔇</div><div class="sdot-label">発語がほぼない</div></div>
+          <div class="sdot"><div class="sdot-circle" style="background:#F5E8FF;">♿</div><div class="sdot-label">身体障害もある</div></div>
+        </div>
+        <div class="highlight-box" style="margin-top:16px;">
+          <p>✨ <strong>同じ「ASD」でも、一人ひとり全く違います。</strong>話せる子・話せない子・こだわりの強さ・感覚の敏感さ、現れ方の幅はとても広いです。「ASDだからこうだ」という決めつけを避け、その子自身をよく観察することが大切です。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- S4 -->
+    <div class="content-section" id="s4">
+      <div class="section-eyebrow">
+        <div class="section-num">4</div>
+        <h2 class="section-heading">よくある誤解と正しい理解</h2>
+      </div>
+      <div class="myth-fact-list">
+        <div class="myth-fact-pair">
+          <div class="myth-box"><div class="mf-label">❌ 誤解</div><div class="mf-text">「育て方が悪かったから自閉症になった」</div></div>
+          <div class="fact-box"><div class="mf-label">✅ 正しい理解</div><div class="mf-text">ASDは<strong>生まれつきの脳の特性</strong>です。育て方や環境が原因ではありません。</div></div>
+        </div>
+        <div class="myth-fact-pair">
+          <div class="myth-box"><div class="mf-label">❌ 誤解</div><div class="mf-text">「話せないから、何も理解していない」</div></div>
+          <div class="fact-box"><div class="mf-label">✅ 正しい理解</div><div class="mf-text"><strong>言葉が出なくても、感じる・理解する力はあります。</strong>表現の手段が違うだけです。</div></div>
+        </div>
+        <div class="myth-fact-pair">
+          <div class="myth-box"><div class="mf-label">❌ 誤解</div><div class="mf-text">「パニックになるのはわがまま」</div></div>
+          <div class="fact-box"><div class="mf-label">✅ 正しい理解</div><div class="mf-text">パニックは<strong>本人が限界を超えたサイン</strong>です。助けを必要としている状態です。</div></div>
+        </div>
+        <div class="myth-fact-pair">
+          <div class="myth-box"><div class="mf-label">❌ 誤解</div><div class="mf-text">「自傷するのは自分を傷つけたいから」</div></div>
+          <div class="fact-box"><div class="mf-label">✅ 正しい理解</div><div class="mf-text">多くの場合、<strong>伝えられない苦痛や不安の表れ</strong>です。原因を一緒に探ることが大切です。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S5 -->
+    <div class="content-section" id="s5">
+      <div class="section-eyebrow">
+        <div class="section-num">5</div>
+        <h2 class="section-heading">ASDの原因は何？</h2>
+      </div>
+      <div class="content-card">
+        <p>原因は完全には解明されていませんが、<strong>遺伝的な要因と環境的な要因の組み合わせ</strong>が関係していると考えられています。</p>
+        <p>一卵性双生児の研究では、一方がASDの場合にもう一方も高い確率でASDになることが示されており、遺伝の影響が大きいとされています。親の高齢出産・低出生体重・妊娠中の感染なども関係する要因として挙げられています。</p>
+        <div class="highlight-box">
+          <p>🧠 ASDは「病気」ではなく、<strong>脳の個性・働き方の違い</strong>です。「治す」のではなく、特性を理解して「その子らしく安心して過ごせるよう支援する」という視点で関わりましょう。</p>
+        </div>
+        <p>また、ASDはADHD・知的障害・学習障害・身体障害などを<strong>70〜80%以上が一つ以上の困難を併せ持つ</strong>ことが多く、一人ひとりの特性の組み合わせを理解することが重要です。</p>
+      </div>
+    </div>
+
+    <!-- S6 -->
+    <div class="content-section" id="s6">
+      <div class="section-eyebrow">
+        <div class="section-num">6</div>
+        <h2 class="section-heading">現場での関わり方ヒント</h2>
+      </div>
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">👁️</div>
+          <div class="tip-content">
+            <strong>言葉より「見てわかる」で伝える</strong>
+            <p>絵カード・写真・実物を見せる方が伝わりやすいです。発語がない子にとっては特に重要です。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">📅</div>
+          <div class="tip-content">
+            <strong>「次に何があるか」を先に見せる</strong>
+            <p>見通しが持てると安心します。スケジュール表やタイムタイマーで、パニックを予防できます。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🔊</div>
+          <div class="tip-content">
+            <strong>感覚刺激に気を配る</strong>
+            <p>大きな声・突然の音・強い光など、本人が嫌がるサインを見逃さないことが大切です。イヤーマフなども有効です。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">💬</div>
+          <div class="tip-content">
+            <strong>「行動」をメッセージとして読む</strong>
+            <p>叫ぶ・逃げる・物を投げるのは「何かを伝えようとしているサイン」です。「何が嫌だったか」を一緒に考えましょう。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🌟</div>
+          <div class="tip-content">
+            <strong>小さな「できた」を積み重ねる</strong>
+            <p>できたことをしっかり認める。小さな成功の積み重ねが自己肯定感を育て、二次障害の予防にもなります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🤝</div>
+          <div class="tip-content">
+            <strong>「直そう」ではなく「知ろう」という姿勢で</strong>
+            <p>こだわりを矯正しようとするより、「なぜそうするのか」を理解しようとする姿勢が、子どもとの信頼関係をつくります。</p>
+          </div>
+        </li>
+      </ul>
+      <div class="callout-warm">
+        <span class="ci">⚠️</span>
+        <p><strong>二次障害に注意：</strong>ASDの特性が周囲に理解されないと、不安やストレスが積み重なり、自傷・他害・強度行動障害などの「二次障害」につながりやすくなります。日々の丁寧な関わりが、子どもたちの将来を守ることに直結しています。</p>
+      </div>
+    </div>
+
+    <!-- S7 -->
+    <div class="content-section" id="s7">
+      <div class="section-eyebrow">
+        <div class="section-num">7</div>
+        <h2 class="section-heading">今月のまとめ</h2>
+      </div>
+      <div class="content-card">
+        <p>🌊 ASDは生まれつきの脳の特性による発達障害です。主な特性は<strong>①コミュニケーションの困難・②こだわり・③感覚の過敏/鈍麻</strong>の3つ。聴覚過敏は③の中に含まれる特性のひとつです。</p>
+        <p>「スペクトラム」の名前の通り、<strong>一人ひとりの特性の現れ方は全く違います。</strong>同じ診断名でも、担当する子をよく観察し、その子に合った関わりを大切にしてください。</p>
+        <p>「話せない＝何もわからない」ではありません。行動・表情・体のサインを読み取ることが、支援者として大切なスキルのひとつです。</p>
+      </div>
+  
+    <!-- クイズ -->
+    <div class="quiz-section content-section" id="quiz">
+      <div class="section-eyebrow">
+        <div class="section-num">✓</div>
+        <h2 class="section-heading">今月の確認クイズ</h2>
+      </div>
+
+      <!-- Q1 -->
+      <div class="quiz-card" id="qcard1">
+        <div class="quiz-q"><span class="quiz-q-num">Q1</span>ASDの原因として、現在最も有力と考えられているものはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerQuiz(1, this, false)">親の育て方やしつけの問題</button>
+          <button class="quiz-opt" onclick="answerQuiz(1, this, true)">遺伝的な要因と環境的な要因の組み合わせ</button>
+          <button class="quiz-opt" onclick="answerQuiz(1, this, false)">幼少期のトラウマや愛情不足</button>
+        </div>
+        <div class="quiz-result" id="qres1"></div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="quiz-card" id="qcard2">
+        <div class="quiz-q"><span class="quiz-q-num">Q2</span>聴覚過敏は、ASDの特性のどのカテゴリに含まれますか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerQuiz(2, this, false)">コミュニケーションの難しさ</button>
+          <button class="quiz-opt" onclick="answerQuiz(2, this, false)">こだわり・反復行動</button>
+          <button class="quiz-opt" onclick="answerQuiz(2, this, true)">感覚の過敏さ・鈍感さ</button>
+        </div>
+        <div class="quiz-result" id="qres2"></div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="quiz-card" id="qcard3">
+        <div class="quiz-q"><span class="quiz-q-num">Q3</span>子どもが突然叫んだり物を投げたりしたとき、まず考えるべきことはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerQuiz(3, this, false)">わがままなのでその場で注意する</button>
+          <button class="quiz-opt" onclick="answerQuiz(3, this, false)">保護者のしつけの問題として伝える</button>
+          <button class="quiz-opt" onclick="answerQuiz(3, this, true)">「何かを伝えようとしているサイン」として原因を探る</button>
+        </div>
+        <div class="quiz-result" id="qres3"></div>
+      </div>
+
+      <!-- スコア -->
+      <div class="quiz-score-box" id="quiz-score">
+        <div class="quiz-score-num" id="score-num">0 / 3</div>
+        <div class="quiz-score-label" id="score-msg"></div>
+        <button class="quiz-retry-btn" onclick="retryQuiz()">🔄 もう一度チャレンジ</button>
+      </div>
+    </div>
+
+    <div class="next-month">
+        <div class="nm-left">
+          <p class="nm-sub">▶ NEXT MONTH · 2026年5月</p>
+          <p class="nm-title">聴覚過敏とは？</p>
+          <p class="nm-desc">ASDの特性のひとつである聴覚過敏。<br>音に敏感な子どもの世界を知り、<br>現場でできる環境づくりを学びます。</p>
+        </div>
+        <span class="nm-tag">Coming Soon →</span>
+      </div>
+    </div>
+
+  </div><!-- /content-wrap -->
+
+  <div class="print-btn-wrap">
+    <button class="print-btn" onclick="printASD()">🖨️ この資料を印刷する</button>
+  </div>
+
+  <footer class="asd-footer">
+    <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
+    スタッフ研修資料 Month 01 · 2026年4月<br>
+    参考：国立精神・神経医療研究センター / 大塚製薬 すまいるナビゲーター<br>
+    発達障害情報ポータルサイト / AIAI VISIT
+  </footer>
+
+</div><!-- /page-asd -->
+
+
+<script>
+// ページ切り替え
+function showPage(name) {
+  // 全ページ非表示
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('page-' + name).classList.add('active');
+
+  // ヘッダー切り替え
+  var inner = document.getElementById('hp-header');
+  if (name === 'asd') {
+    inner.innerHTML =
+      '<button class="back-btn" onclick="showPage(\'hp\')">← ホーム</button>' +
+      '<span class="header-title" style="color:rgba(255,255,255,0.75);font-size:12px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:8px;">りぷる スタッフ研修ポータル</span>' +
+      '<span class="month-badge">Month 01 · 4月</span>';
+  } else {
+    inner.innerHTML =
+      '<button class="logo-btn" onclick="showPage(\'hp\')">' +
+        '<div class="logo-icon"></div>' +
+        '<div class="logo-text">' +
+          '<span class="main-name">りぷる</span>' +
+          '<span class="sub-name">放課後等デイサービス｜スタッフ研修ポータル</span>' +
+        '</div>' +
+      '</button>' +
+      '<div class="header-nav">' +
+        '<button onclick="scrollToSection(\'curriculum\')">カリキュラム</button>' +
+        '<button onclick="scrollToSection(\'about\')">りぷるとは</button>' +
+        '<button onclick="showPage(\'asd\')">今月</button>' +
+      '</div>';
+  }
+
+  // ページトップへ
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// HP内セクションスクロール
+function scrollToSection(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var headerH = document.querySelector('.site-header').offsetHeight;
+  var top = el.getBoundingClientRect().top + window.pageYOffset - headerH - 8;
+  window.scrollTo({ top: top, behavior: 'smooth' });
+}
+
+// ASDページ内目次スクロール
+function tocScrollTo(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var headerH = document.querySelector('.site-header').offsetHeight;
+  var top = el.getBoundingClientRect().top + window.pageYOffset - headerH - 12;
+  window.scrollTo({ top: top, behavior: 'smooth' });
+}
+
+// ---- クイズ ----
+var quizAnswers = {1: false, 2: false, 3: false};
+var quizDone    = {1: false, 2: false, 3: false};
+var quizScore   = 0;
+
+var quizExplanations = {
+  1: { ok: '✅ 正解！ASDは生まれつきの脳の特性によるものです。育て方や環境が原因ではありません。', ng: '❌ 不正解。ASDは親の育て方とは無関係です。遺伝的・環境的な要因の組み合わせが関係しています。' },
+  2: { ok: '✅ 正解！聴覚過敏は「③感覚の過敏さ・鈍感さ」に含まれる特性のひとつです。', ng: '❌ 不正解。聴覚過敏は「③感覚の過敏さ・鈍感さ」に含まれます。来月の研修でくわしく学びます。' },
+  3: { ok: '✅ 正解！叫ぶ・物を投げるなどの行動は「伝えられない気持ちのサイン」です。まず原因を探りましょう。', ng: '❌ 不正解。そうした行動はわがままではなく、「何かを伝えようとしているサイン」です。原因を一緒に探ることが大切です。' }
+};
+
+function answerQuiz(num, btn, isCorrect) {
+  if (quizDone[num]) return;
+  quizDone[num] = true;
+  quizAnswers[num] = isCorrect;
+  if (isCorrect) quizScore++;
+
+  // ボタン全体を無効化
+  var opts = btn.closest('.quiz-card').querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){ o.classList.add('disabled'); });
+
+  // 正解/不正解を色で示す
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    // 正解のボタンを緑に
+    opts.forEach(function(o){
+      if (o.getAttribute('onclick').indexOf('true') !== -1) o.classList.add('correct');
+    });
+  }
+
+  // 解説表示
+  var res = document.getElementById('qres' + num);
+  res.textContent = quizExplanations[num][isCorrect ? 'ok' : 'ng'];
+  res.className = 'quiz-result show ' + (isCorrect ? 'ok' : 'ng');
+
+  // 全問終わったらスコア表示
+  if (quizDone[1] && quizDone[2] && quizDone[3]) {
+    setTimeout(function(){
+      var box = document.getElementById('quiz-score');
+      box.classList.add('show');
+      document.getElementById('score-num').textContent = quizScore + ' / 3';
+      var msgs = ['もう一度読み直してみましょう！', 'あと少し！復習してみてください。', 'あと一問！', '全問正解！完璧です🎉'];
+      document.getElementById('score-msg').textContent = msgs[quizScore];
+    }, 400);
+  }
+}
+
+function retryQuiz() {
+  quizAnswers = {1:false,2:false,3:false};
+  quizDone    = {1:false,2:false,3:false};
+  quizScore   = 0;
+  [1,2,3].forEach(function(n){
+    var card = document.getElementById('qcard'+n);
+    card.querySelectorAll('.quiz-opt').forEach(function(o){
+      o.className = 'quiz-opt';
+    });
+    var res = document.getElementById('qres'+n);
+    res.className = 'quiz-result';
+    res.textContent = '';
+  });
+  document.getElementById('quiz-score').classList.remove('show');
+  tocScrollTo('quiz');
+}
+
+// ---- 印刷 ----
+function printASD() {
+  // 印刷前にASDページをactiveに（既になっているはずだが念のため）
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('page-asd').classList.add('active');
+  window.print();
+}
+
+</script>
+
+</body>
+</html>

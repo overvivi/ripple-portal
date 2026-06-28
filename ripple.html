@@ -854,7 +854,7 @@ body {
     <div class="header-nav">
       <button onclick="scrollToSection('curriculum')">カリキュラム</button>
       <button onclick="scrollToSection('about')">りぷるとは</button>
-      <button onclick="showPage('asd')">今月</button>
+      <button onclick="showPage('adhd')">今月</button>
     </div>
   </div>
 </header>
@@ -879,16 +879,16 @@ body {
     <div class="progress-wrap">
       <span class="progress-label">📚 2026年度の進捗</span>
       <div class="progress-bar-bg">
-        <div class="progress-bar-fill" style="width:16.66%"></div>
+        <div class="progress-bar-fill" style="width:25%"></div>
       </div>
-      <span class="progress-count">2 / 12 完了</span>
+      <span class="progress-count">3 / 12 完了</span>
     </div>
 
     <div class="notice-bar">
       <div class="notice-icon">📢</div>
       <p>
-        <strong>今月（2026年5月）</strong>の研修テーマは<br>
-        「<strong>聴覚過敏とは？</strong>」です。<br>
+        <strong>今月（2026年6月）</strong>の研修テーマは<br>
+        「<strong>ADHD・多動とは？</strong>」です。<br>
         下のカードをタップしてコンテンツを開いてください。
       </p>
     </div>
@@ -909,14 +909,21 @@ body {
         <span class="card-status status-soon">✅ 先月の資料</span>
       </button>
 
-      <button class="curriculum-card current" style="--card-color:#E8821A;" onclick="showPage('hearing')">
+      <button class="curriculum-card" style="--card-color:#E8821A;" onclick="showPage('hearing')">
         <span class="card-month">Month 02 · 5月</span>
         <div class="card-title">聴覚過敏とは？</div>
         <div class="card-subtitle">音が「痛い」子どもたちの世界と、現場でできる環境づくり</div>
+        <span class="card-status status-soon">✅ 先月の資料</span>
+      </button>
+
+      <button class="curriculum-card current" style="--card-color:#9B59B6;" onclick="showPage('adhd')">
+        <span class="card-month">Month 03 · 6月</span>
+        <div class="card-title">ADHD・多動とは？</div>
+        <div class="card-subtitle">じっとできない・飛び出す・手が出る——その行動の理由と現場での関わり方</div>
         <span class="card-status status-now">▶ 今月のテーマ</span>
       </button>
 
-      <div class="curriculum-card disabled" style="--card-color:#27AE60;">
+            <div class="curriculum-card disabled" style="--card-color:#27AE60;">
         <span class="card-month">Month 04 · 7月</span>
         <div class="card-title" style="color:#bbb;">？？？</div>
         <div class="card-subtitle" style="color:#ccc;">スタッフからのリクエストや気になるテーマを募集中！</div>
@@ -1860,6 +1867,530 @@ body {
 
 </div><!-- /page-hearing -->
 
+<!-- ========================================
+     ADHD ページ（Month 03）
+======================================== -->
+<div class="page" id="page-adhd">
+
+  <div class="asd-hero" style="background:linear-gradient(135deg,#1A3A6E 0%,#2980B9 55%,#5DADE2 100%);">
+    <div class="month-tag">🌊 Month 03 · 2026年6月の研修テーマ</div>
+    <h1>ADHD・多動とは？</h1>
+    <p class="lead">
+      じっとできない・急に飛び出す・手が出る——<br>
+      「わざとやってる？」と思いたくなる行動の<br>
+      本当の理由を一緒に理解しましょう。
+    </p>
+  </div>
+
+  <div class="toc-wrapper">
+    <div class="toc-box">
+      <span class="toc-label">目次 — タップでスクロール</span>
+      <button class="toc-item" onclick="tocScrollTo('a1')">ADHDとは</button>
+      <button class="toc-item" onclick="tocScrollTo('a2')">脳で何が起きてる？</button>
+      <button class="toc-item" onclick="tocScrollTo('a3')">3つの主な特性</button>
+      <button class="toc-item" onclick="tocScrollTo('a4')">ASDとの違い・重なり</button>
+      <button class="toc-item" onclick="tocScrollTo('a_list')">行動リスト</button>
+      <button class="toc-item" onclick="tocScrollTo('a5')">現場での関わり方</button>
+      <button class="toc-item" onclick="tocScrollTo('a6')">NGな対応</button>
+      <button class="toc-item" onclick="tocScrollTo('aquiz')">チャレンジクイズ</button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- A1 -->
+    <div class="content-section" id="a1">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#2980B9;">1</div>
+        <h2 class="section-heading">ADHD（注意欠如多動症）とは？</h2>
+      </div>
+      <div class="content-card">
+        <p>ADHD（Attention-Deficit/Hyperactivity Disorder）は、発達障害のひとつです。生まれつきの<strong>脳の働き方の特性</strong>によって生じるもので、育て方や本人の努力不足が原因ではありません。</p>
+        <p>主な特性は<strong>「不注意」「多動性」「衝動性」</strong>の3つで、これらの現れ方は一人ひとり異なります。りぷるでも「じっとしていられない」「急に飛び出す」「手が先に出る」という場面は、現場でよく経験することではないでしょうか。</p>
+        <div class="highlight-box" style="border-left-color:#2980B9;background:#EBF5FB;">
+          <p style="color:#1A4A7A;">💡 以前は「注意欠陥多動性障害」と呼ばれていましたが、現在は<strong>「注意欠如多動症（ADHD）」</strong>という名称が使われています。「症」という字には、病気ではなく「状態・特性」というニュアンスが込められています。</p>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box" style="border-top-color:#2980B9;">
+          <div class="stat-num" style="color:#2980B9;">3〜7<span style="font-size:12px">%</span></div>
+          <div class="stat-label">学齢期の子どもに<br>見られる有病率</div>
+        </div>
+        <div class="stat-box" style="border-top-color:#2980B9;">
+          <div class="stat-num" style="color:#2980B9;">2〜3<span style="font-size:12px">倍</span></div>
+          <div class="stat-label">男の子に多く<br>見られる傾向</div>
+        </div>
+        <div class="stat-box" style="border-top-color:#2980B9;">
+          <div class="stat-num" style="color:#2980B9;">70〜80<span style="font-size:12px">%</span></div>
+          <div class="stat-label">遺伝的な要因が<br>関係するとされる割合</div>
+        </div>
+      </div>
+      <p class="source-note">参考：LITALICO発達ナビ / AIAI VISIT / 国立精神・神経医療研究センター</p>
+    </div>
+
+    <!-- A2 -->
+    <div class="content-section" id="a2">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#2980B9;">2</div>
+        <h2 class="section-heading">脳の中で何が起きてるの？</h2>
+      </div>
+      <div class="content-card">
+        <p>ADHDの脳では、<strong>前頭前野（ぜんとうぜんや）</strong>という部分の働きに偏りがあると考えられています。前頭前野は「思考・判断・注意・感情のコントロール」を担う、いわば<strong>脳の司令塔</strong>です。</p>
+        <p>そしてこの司令塔を動かす燃料が、神経伝達物質の<strong>ドーパミン</strong>と<strong>ノルアドレナリン</strong>。ADHDの脳ではこれらの量が不安定で、うまく分泌・伝達されないことがあります。</p>
+        <div class="highlight-box" style="border-left-color:#2980B9;background:#EBF5FB;">
+          <p style="color:#1A4A7A;">🧠 <strong>わかりやすく言うと——</strong><br>
+          脳に「アクセル（興奮系）」と「ブレーキ（抑制系）」があるとすると、ADHDの子はアクセルが強くブレーキが弱い状態です。「やめたくてもやめられない」「止まりたくても止まれない」のは、意志の問題ではなく<strong>脳のブレーキが効きにくい</strong>からです。</p>
+        </div>
+        <p>また、<strong>好きなことや興味のあることにはドーパミンが十分出て過集中になる</strong>一方、そうでないことにはドーパミンが出にくく集中できない、という特性もあります。「ゲームはずっとできるのに勉強は全然できない」のも、このためです。</p>
+      </div>
+    </div>
+
+    <!-- A3 -->
+    <div class="content-section" id="a3">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#2980B9;">3</div>
+        <h2 class="section-heading">ADHDの3つの主な特性</h2>
+      </div>
+
+      <div class="three-features">
+
+        <div class="feature-card" style="background:#EBF5FB;border:1.5px solid #AED6F1;">
+          <span class="fc-icon">🌀</span>
+          <div class="fc-title">① 不注意</div>
+          <p class="fc-desc">気が散りやすく、ひとつのことに集中し続けることが難しい。忘れ物・なくし物が多い。一方で、<strong>好きなことには過集中</strong>して声をかけても気づかないことも。</p>
+          <div class="fc-example" style="border-left-color:#2980B9;color:#1A4A7A;">
+            例：活動の途中でほかのものに気が移る／指示を聞いていても忘れる／呼んでも反応しない（集中しすぎ）
+          </div>
+        </div>
+
+        <div class="feature-card" style="background:#FEF9E7;border:1.5px solid #F9E79F;">
+          <span class="fc-icon">🏃</span>
+          <div class="fc-title">② 多動性</div>
+          <p class="fc-desc">じっとしているのが苦手で、常に体のどこかが動いている。エンジンに突き動かされるように動き続けていないと落ち着かない状態。<strong>悪意や反抗ではない。</strong></p>
+          <div class="fc-example" style="border-left-color:#E8821A;color:#7A4000;">
+            例：席についていられない・すぐ立ち上がる／走り回る・飛び出す／手足がいつもモゾモゾしている
+          </div>
+        </div>
+
+        <div class="feature-card" style="background:#FDEDEC;border:1.5px solid #F1948A;">
+          <span class="fc-icon">⚡</span>
+          <div class="fc-title">③ 衝動性</div>
+          <p class="fc-desc">考える前に行動してしまう。脳の中で「ちょっと待てよ」というブレーキが効きにくい状態。本人も「やってしまった」と後から気づくことが多い。</p>
+          <div class="fc-example" style="border-left-color:#E74C3C;color:#7A1A1A;">
+            例：気になったものに触ってしまう／他の子に急に手が出る／順番が待てない／飛び出す
+          </div>
+        </div>
+
+      </div>
+
+      <div class="highlight-box" style="border-left-color:#2980B9;background:#EBF5FB;margin-top:16px;">
+        <p style="color:#1A4A7A;">📋 <strong>3タイプに分かれる：</strong>不注意が強いタイプ・多動衝動性が強いタイプ・両方混在するタイプがあります。りぷるで「飛び出す・手が出る」が目立つ場合は多動・衝動性タイプ、「活動に入れない・ぼーっとしている」場合は不注意タイプの可能性があります。</p>
+      </div>
+    </div>
+
+    <!-- A4 -->
+    <div class="content-section" id="a4">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#2980B9;">4</div>
+        <h2 class="section-heading">ASDとADHD——違いと重なり</h2>
+      </div>
+
+      <div class="content-card">
+        <p>ASDとADHDは<strong>別々の発達障害</strong>ですが、特性が重なって見えることが多く、現場での見極めが難しいケースがよくあります。</p>
+        <p>「同じ行動なのに原因が違う」ということを知っておくと、支援の方向性が変わります。</p>
+      </div>
+
+      <!-- 同じ行動・違う理由 対比カード -->
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:14px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;text-align:center;">🔍 同じ「行動」でも、原因が全然違う</div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+
+          <!-- 飛び出す -->
+          <div style="border-radius:10px;overflow:hidden;border:1px solid #E0E0E0;">
+            <div style="background:#F5F5F5;padding:8px 14px;font-size:12px;font-weight:700;color:#555;">🏃 「急に飛び出した」</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+              <div style="padding:12px 14px;background:#EBF5FB;border-right:1px solid #E0E0E0;">
+                <div style="font-size:11px;font-weight:700;color:#2980B9;margin-bottom:4px;">ADHD の場合</div>
+                <div style="font-size:12px;color:var(--text);line-height:1.75;">気になるものが見えた瞬間、脳のブレーキが間に合わず体が動いた（<strong>衝動性</strong>）</div>
+              </div>
+              <div style="padding:12px 14px;background:#E8F5E8;">
+                <div style="font-size:11px;font-weight:700;color:#27AE60;margin-bottom:4px;">ASD の場合</div>
+                <div style="font-size:12px;color:var(--text);line-height:1.75;">「いつもの道」「決まった手順」へのこだわりが崩れて、それを取り戻そうとした（<strong>こだわり</strong>）</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 手が出る -->
+          <div style="border-radius:10px;overflow:hidden;border:1px solid #E0E0E0;">
+            <div style="background:#F5F5F5;padding:8px 14px;font-size:12px;font-weight:700;color:#555;">👊 「他の子を叩いた」</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+              <div style="padding:12px 14px;background:#EBF5FB;border-right:1px solid #E0E0E0;">
+                <div style="font-size:11px;font-weight:700;color:#2980B9;margin-bottom:4px;">ADHD の場合</div>
+                <div style="font-size:12px;color:var(--text);line-height:1.75;">怒りや興奮が瞬時に行動になった。「やってしまった」と後から気づく（<strong>衝動性</strong>）</div>
+              </div>
+              <div style="padding:12px 14px;background:#E8F5E8;">
+                <div style="font-size:11px;font-weight:700;color:#27AE60;margin-bottom:4px;">ASD の場合</div>
+                <div style="font-size:12px;color:var(--text);line-height:1.75;">感覚過敏でパニック中・言葉で伝えられない苦痛が行動になった（<strong>感覚過敏／コミュニケーション困難</strong>）</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 活動に入れない -->
+          <div style="border-radius:10px;overflow:hidden;border:1px solid #E0E0E0;">
+            <div style="background:#F5F5F5;padding:8px 14px;font-size:12px;font-weight:700;color:#555;">😶 「活動に入れない・ぼーっとしている」</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+              <div style="padding:12px 14px;background:#EBF5FB;border-right:1px solid #E0E0E0;">
+                <div style="font-size:11px;font-weight:700;color:#2980B9;margin-bottom:4px;">ADHD の場合</div>
+                <div style="font-size:12px;color:var(--text);line-height:1.75;">注意が別のものに向いていて、意識が活動に戻ってこない（<strong>不注意</strong>）</div>
+              </div>
+              <div style="padding:12px 14px;background:#E8F5E8;">
+                <div style="font-size:11px;font-weight:700;color:#27AE60;margin-bottom:4px;">ASD の場合</div>
+                <div style="font-size:12px;color:var(--text);line-height:1.75;">見通しが持てない・指示の意味がわからない・感覚刺激で処理がいっぱいになっている（<strong>認知の困難・感覚過負荷</strong>）</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 呼んでも反応しない -->
+          <div style="border-radius:10px;overflow:hidden;border:1px solid #E0E0E0;">
+            <div style="background:#F5F5F5;padding:8px 14px;font-size:12px;font-weight:700;color:#555;">📵 「呼んでも反応しない」</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+              <div style="padding:12px 14px;background:#EBF5FB;border-right:1px solid #E0E0E0;">
+                <div style="font-size:11px;font-weight:700;color:#2980B9;margin-bottom:4px;">ADHD の場合</div>
+                <div style="font-size:12px;color:var(--text);line-height:1.75;">好きなことへの過集中で、外からの刺激が脳に届いていない（<strong>過集中</strong>）</div>
+              </div>
+              <div style="padding:12px 14px;background:#E8F5E8;">
+                <div style="font-size:11px;font-weight:700;color:#27AE60;margin-bottom:4px;">ASD の場合</div>
+                <div style="font-size:12px;color:var(--text);line-height:1.75;">名前を呼ばれても「自分への呼びかけ」と認識しにくい・コミュニケーション自体の困難（<strong>社会的認知の困難</strong>）</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 特性の比較表 -->
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:14px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;text-align:center;">📊 特性の比較</div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead>
+              <tr>
+                <th style="padding:8px 10px;background:#F5F5F5;border:1px solid #E0E0E0;color:#555;font-weight:700;text-align:left;"></th>
+                <th style="padding:8px 10px;background:#EBF5FB;border:1px solid #E0E0E0;color:#2980B9;font-weight:700;text-align:center;">ADHD</th>
+                <th style="padding:8px 10px;background:#E8F5E8;border:1px solid #E0E0E0;color:#27AE60;font-weight:700;text-align:center;">ASD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#555;">主な困難</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">注意・多動・衝動</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">コミュニケーション・こだわり・感覚</td>
+              </tr>
+              <tr style="background:#FAFAFA;">
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#555;">好きなことへの集中</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">過集中になりやすい</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">こだわりとして現れやすい</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#555;">急な変更への反応</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">比較的対応しやすい</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">強い混乱・パニックになりやすい</td>
+              </tr>
+              <tr style="background:#FAFAFA;">
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#555;">対人関係</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">積極的だが衝動的なトラブルが多い</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">やりとり自体が苦手</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#555;">感覚の問題</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">比較的少ない</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">多くの人に感覚過敏・鈍麻がある</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="callout-warm">
+        <span class="ci">💡</span>
+        <p><strong>両方重なるケースも多い。</strong>ASDとADHDが重なった場合、感覚過敏でパニックになりながらも衝動的に動き回るなど複合した困難が生じやすくなります。どちらの特性から来ているかを見極めることが、より的確な支援につながります。</p>
+      </div>
+    </div>
+
+    <!-- ADHDあるある行動リスト -->
+    <div class="content-section" id="a_list">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#2980B9;">+</div>
+        <h2 class="section-heading">ADHDの行動リスト</h2>
+      </div>
+
+      <div class="content-card">
+        <p>「あれ、この子もしかして？」と気づくきっかけになるよう、現場でよく見られる行動を特性別にまとめました。<strong>複数当てはまる場合は特性として理解する視点</strong>が支援に活きます。</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px;">
+
+        <!-- 多動性 -->
+        <div style="background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow-card);">
+          <div style="font-weight:700;font-size:13px;color:#C0601A;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #FFD080;">🏃 多動性（じっとしていられない）</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E8821A;flex-shrink:0;">▸</span><span>席についていられず、すぐ立ち上がる・うろうろする</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E8821A;flex-shrink:0;">▸</span><span>走り回る・ジャンプし続ける</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E8821A;flex-shrink:0;">▸</span><span>手足がいつもモゾモゾ動いている</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E8821A;flex-shrink:0;">▸</span><span>椅子に座っていても体をくねらせたり揺らし続ける</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E8821A;flex-shrink:0;">▸</span><span>「ちょっと待って」が全く待てない</span></div>
+          </div>
+        </div>
+
+        <!-- 衝動性 -->
+        <div style="background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow-card);">
+          <div style="font-weight:700;font-size:13px;color:#B03A2E;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #F1948A;">⚡ 衝動性（考える前に動いてしまう）</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E74C3C;flex-shrink:0;">▸</span><span>気になるものが見えた瞬間に飛び出す</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E74C3C;flex-shrink:0;">▸</span><span>他の子への接触が急すぎて「叩いた・押した」になる</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E74C3C;flex-shrink:0;">▸</span><span>順番が待てずに割り込む</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E74C3C;flex-shrink:0;">▸</span><span>話を最後まで聞かずに動き出す</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E74C3C;flex-shrink:0;">▸</span><span>「やめて」と言っても止まれない（止まりたくても止まれない）</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E74C3C;flex-shrink:0;">▸</span><span>持っているものを急に投げる</span></div>
+          </div>
+        </div>
+
+        <!-- 不注意 -->
+        <div style="background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow-card);">
+          <div style="font-weight:700;font-size:13px;color:#1A5C8A;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #AED6F1;">🌀 不注意（集中が続かない・気が散る）</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#2980B9;flex-shrink:0;">▸</span><span>活動の途中で別のものに気が移ってそのまま</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#2980B9;flex-shrink:0;">▸</span><span>指示を聞いていても途中で忘れる</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#2980B9;flex-shrink:0;">▸</span><span>道具・持ち物をよくなくす・忘れる</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#2980B9;flex-shrink:0;">▸</span><span>話しかけても上の空・目が合わない</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#2980B9;flex-shrink:0;">▸</span><span>ぼーっとしていて活動に入れない</span></div>
+          </div>
+
+          <!-- 不注意タイプ深掘り -->
+          <div style="background:#EBF5FB;border-radius:8px;padding:12px 14px;border-left:3px solid #2980B9;">
+            <div style="font-size:12px;font-weight:700;color:#1A5C8A;margin-bottom:6px;">⚠️ 不注意タイプが見落とされやすい理由</div>
+            <p style="font-size:12px;color:var(--mid);line-height:1.85;margin-bottom:6px;">多動・衝動タイプは目立つ行動があるため気づかれやすいですが、<strong>不注意タイプは静かで目立たない</strong>ため支援が遅れがちです。特に女の子に多い傾向があります。</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.85;margin-bottom:6px;">「ぼーっとしているだけ」「やる気がない」と思われがちですが、本人は<strong>集中したくてもできない</strong>という苦しさを抱えています。</p>
+            <div style="background:#fff;border-radius:6px;padding:8px 12px;font-size:11px;color:#1A5C8A;line-height:1.8;">
+              📌 見分けのポイント：<strong>好きな活動では集中できているか？</strong> できているなら不注意タイプのADHDの可能性があります。
+            </div>
+          </div>
+        </div>
+
+        <!-- 過集中 -->
+        <div style="background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow-card);">
+          <div style="font-weight:700;font-size:13px;color:#6C3483;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #D2B4DE;">🔍 過集中（好きなことには止まれない）</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#8E44AD;flex-shrink:0;">▸</span><span>好きな遊びや動画を止めようとするとパニックになる</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#8E44AD;flex-shrink:0;">▸</span><span>呼んでも全く気づかない（集中しすぎ）</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#8E44AD;flex-shrink:0;">▸</span><span>トイレや食事を忘れるほどのめり込む</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#8E44AD;flex-shrink:0;">▸</span><span>切り替えを求めると激しく抵抗する</span></div>
+          </div>
+          <div style="background:#F4ECF7;border-radius:8px;padding:10px 14px;font-size:12px;color:var(--mid);line-height:1.85;">
+            「集中できないはずなのに…」と思われがちですが、<strong>強い興味のあることにはドーパミンが十分出て過剰なほど集中してしまう</strong>状態です。ASDのこだわりと似て見えるため、両者の見極めが重要です。
+          </div>
+        </div>
+
+      </div>
+
+      <div class="highlight-box" style="border-left-color:#2980B9;background:#EBF5FB;margin-top:16px;">
+        <p style="color:#1A4A7A;">💡 <strong>「わざとじゃない」を前提に。</strong>どの行動も本人が意図してやっているものではありません。「なんでこんなことするの？」と感じたとき、まず「どの特性から来ているか」を考えることが支援の第一歩です。</p>
+      </div>
+    </div>
+
+        <!-- A5 -->
+    <div class="content-section" id="a5">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#2980B9;">5</div>
+        <h2 class="section-heading">現場での関わり方ヒント</h2>
+      </div>
+
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon" style="background:#EBF5FB;">🚫→✅</div>
+          <div class="tip-content">
+            <strong>「ダメ」より「代わりの行動」を示す</strong>
+            <p>「走ったらダメ」より「廊下は歩こう」、「触ったらダメ」より「手はひざに置こう」。<strong>禁止より代替行動</strong>を伝える方が、脳にとって理解しやすく行動が変わりやすい。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon" style="background:#EBF5FB;">👁️</div>
+          <div class="tip-content">
+            <strong>視界の刺激を減らす</strong>
+            <p>気が散りやすい子には、視界に入るおもちゃ・掲示物を減らし、活動に集中しやすい環境を整える。<strong>「見えなければ気にならない」</strong>のが基本の発想。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon" style="background:#EBF5FB;">⏱️</div>
+          <div class="tip-content">
+            <strong>活動を短く区切る</strong>
+            <p>長い活動は集中が続かない。<strong>「3分やったら休憩」「これが終わったら次は好きなこと」</strong>と区切りと見通しを示すと、最後まで取り組みやすくなる。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon" style="background:#EBF5FB;">🏃</div>
+          <div class="tip-content">
+            <strong>「動ける保障」をつくる</strong>
+            <p>じっとしていられないなら、<strong>動けるタイミングを意図的につくる</strong>。「プリント配りをお願い」「ちょっと走ってきていいよ」など、エネルギーを発散できる場を設けると落ち着きやすい。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon" style="background:#EBF5FB;">🌟</div>
+          <div class="tip-content">
+            <strong>小さな「できた」を即座に褒める</strong>
+            <p>ADHDの子は叱られる経験が多く、自己肯定感が下がりやすい。<strong>「待てたね」「一回止まれたね」を見逃さず、すぐに言葉にして伝える</strong>ことが自信につながる。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon" style="background:#EBF5FB;">📋</div>
+          <div class="tip-content">
+            <strong>見えるルールをつくる</strong>
+            <p>口頭だけの指示は忘れやすい。絵や文字でルールを視覚化し、「見れば思い出せる」状態にしておく。先月学んだ<strong>視覚支援</strong>がADHDにも有効。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- A6 -->
+    <div class="content-section" id="a6">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#2980B9;">6</div>
+        <h2 class="section-heading">やってはいけないNG対応</h2>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="background:#FFF0F3;border:1.5px solid #FFCDD7;border-radius:12px;padding:16px 18px;">
+          <div style="font-size:12px;font-weight:700;color:var(--pink);margin-bottom:6px;">❌ NG</div>
+          <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;">「もっと落ち着きなさい」「なんでできないの」と繰り返す</div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.8;">本人は落ち着きたくて落ち着けない状態です。「なんでできないの」は本人を最も傷つける言葉のひとつ。ADHDの子は叱責経験が積み重なり自己肯定感が低下しやすく、二次障害につながります。</p>
+        </div>
+
+        <div style="background:#FFF0F3;border:1.5px solid #FFCDD7;border-radius:12px;padding:16px 18px;">
+          <div style="font-size:12px;font-weight:700;color:var(--pink);margin-bottom:6px;">❌ NG</div>
+          <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;">「わざとやってる」「反抗している」と決めつける</div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.8;">衝動的な行動は本人が意図してやっていることではありません。「やめたくてもやめられない」という苦しさを、本人が一番感じています。</p>
+        </div>
+
+        <div style="background:#FFF0F3;border:1.5px solid #FFCDD7;border-radius:12px;padding:16px 18px;">
+          <div style="font-size:12px;font-weight:700;color:var(--pink);margin-bottom:6px;">❌ NG</div>
+          <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;">長い説教・その場での長い注意</div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.8;">不注意の特性上、長い言葉は頭に入りません。注意は<strong>短く・具体的・一回で</strong>が原則。繰り返し同じことを言っても本人はほとんど聞けていないことが多いです。</p>
+        </div>
+
+        <div style="background:#FFF0F3;border:1.5px solid #FFCDD7;border-radius:12px;padding:16px 18px;">
+          <div style="font-size:12px;font-weight:700;color:var(--pink);margin-bottom:6px;">❌ NG</div>
+          <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;">無理やり座らせて「じっとしてろ」と抑え込む</div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.8;">身体的に抑制することは恐怖や怒りにつながり、パニックや自傷・他害を引き起こすことがあります。動けるタイミングをつくる・環境を整えるという発想の転換が大切です。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- まとめ -->
+    <div class="content-section" id="a7">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#2980B9;">7</div>
+        <h2 class="section-heading">今月のまとめ</h2>
+      </div>
+      <div class="content-card">
+        <p>🌊 ADHDは生まれつきの脳の特性で、<strong>①不注意・②多動性・③衝動性</strong>が主な特性です。「やめたくてもやめられない」「止まりたくても止まれない」のは、脳のブレーキが効きにくいからです。</p>
+        <p>ASDと重なるケースも多く、同じ「飛び出す」行動でも背景が違うことがあります。<strong>「どちらの特性から来ているか」を見極める視点</strong>を持つことが、より的確な支援につながります。</p>
+        <p>叱るより代替行動・環境調整・小さな成功を褒めること。<strong>「できないことを減らす」より「できることを増やす」</strong>という視点で関わりましょう。</p>
+      </div>
+
+      <!-- クイズ -->
+      <div class="quiz-section content-section" id="aquiz" style="margin-top:32px;">
+        <div class="section-eyebrow">
+          <div class="section-num" style="background:#2980B9;">✓</div>
+          <h2 class="section-heading">🔥 チャレンジクイズ</h2>
+        </div>
+        <div class="content-card" style="background:#EBF5FB;border:1.5px solid #AED6F1;margin-bottom:16px;">
+          <p style="color:#1A4A7A;font-size:13px;line-height:1.9;">講義の内容だけでは答えられない問題もあります。<strong>調べて挑戦してみてください！</strong>わからなくてOK——調べる過程が学びになります💪</p>
+        </div>
+
+        <div class="quiz-card" id="aqcard1">
+          <div class="quiz-q"><span class="quiz-q-num" style="background:#2980B9;">Q1</span>ADHDの子が「好きなゲームには何時間でも集中できる」のに「療育中の活動は全然集中できない」理由として正しいものはどれですか？</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" onclick="answerAQuiz(1,this,false)">ゲームは視覚・聴覚への刺激が多く、脳への入力量が多いため処理しやすい</button>
+            <button class="quiz-opt" onclick="answerAQuiz(1,this,true)">強い興味にはドーパミンが十分出て集中できるが、そうでないことには出にくい</button>
+            <button class="quiz-opt" onclick="answerAQuiz(1,this,false)">ゲームは短い達成サイクルがあるため、飽きずに取り組み続けやすい</button>
+          </div>
+          <div class="quiz-result" id="aqres1"></div>
+        </div>
+
+        <div class="quiz-card" id="aqcard2">
+          <div class="quiz-q"><span class="quiz-q-num" style="background:#2980B9;">Q2</span>ADHDのある子に「10数えてから行動しよう」という方法が効果的な理由として最も正確なものはどれですか？</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" onclick="answerAQuiz(2,this,false)">数を数えることで注意が数字に向き、衝動のきっかけとなる刺激から逸れる</button>
+            <button class="quiz-opt" onclick="answerAQuiz(2,this,false)">数唱という反復行動がドーパミンの過剰分泌を落ち着かせる</button>
+            <button class="quiz-opt" onclick="answerAQuiz(2,this,true)">行動までの間に前頭前野が「待つ」という判断を挟める猶予が生まれる</button>
+          </div>
+          <div class="quiz-result" id="aqres2"></div>
+        </div>
+
+        <div class="quiz-card" id="aqcard3">
+          <div class="quiz-q"><span class="quiz-q-num" style="background:#2980B9;">Q3</span>ASDとADHDが重なっている子が急に他の子を叩いた。まず確認すべきことはどれですか？</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" onclick="answerAQuiz(3,this,false)">ADHDの衝動性による行動として、代替行動を即座に示す</button>
+            <button class="quiz-opt" onclick="answerAQuiz(3,this,false)">ASDのコミュニケーション困難による表現として、言葉の練習を増やす</button>
+            <button class="quiz-opt" onclick="answerAQuiz(3,this,true)">直前の環境・感覚刺激・やりとりの流れを確認し、どちらの特性が主因かを見極める</button>
+          </div>
+          <div class="quiz-result" id="aqres3"></div>
+        </div>
+
+        <div class="quiz-card" id="aqcard4">
+          <div class="quiz-q"><span class="quiz-q-num" style="background:#2980B9;">Q4</span>ADHDの子に長い口頭説明が伝わりにくい主な理由はどれですか？</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" onclick="answerAQuiz(4,this,false)">聴覚処理のスピードが遅く、話のペースについていけないから</button>
+            <button class="quiz-opt" onclick="answerAQuiz(4,this,true)">ワーキングメモリーの容量が限られ、情報が増えると最初の内容が消えるから</button>
+            <button class="quiz-opt" onclick="answerAQuiz(4,this,false)">言語理解が苦手で、複数の単語を含む文章を処理しにくいから</button>
+          </div>
+          <div class="quiz-result" id="aqres4"></div>
+        </div>
+
+        <div class="quiz-card" id="aqcard5">
+          <div class="quiz-q"><span class="quiz-q-num" style="background:#2980B9;">Q5</span>「叱ることを減らして褒めることを増やす」支援がADHDの子に特に重要な理由はどれですか？</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" onclick="answerAQuiz(5,this,false)">叱られると萎縮して多動が強まり、支援者との信頼関係が壊れるから</button>
+            <button class="quiz-opt" onclick="answerAQuiz(5,this,false)">ADHDの子は反省する力が弱く、叱っても行動改善につながらないから</button>
+            <button class="quiz-opt" onclick="answerAQuiz(5,this,true)">叱責の積み重ねが自己肯定感を下げ、うつや反抗などの二次障害につながるから</button>
+          </div>
+          <div class="quiz-result" id="aqres5"></div>
+        </div>
+
+        <div class="quiz-score-box" id="aquiz-score">
+          <div class="quiz-score-num" id="ascore-num">0 / 5</div>
+          <div class="quiz-score-label" id="ascore-msg"></div>
+          <button class="quiz-retry-btn" style="background:#2980B9;" onclick="retryAQuiz()">🔄 もう一度チャレンジ</button>
+        </div>
+      </div>
+
+      <div class="next-month" style="background:#1A3A3A;margin-top:24px;">
+        <div class="nm-left">
+          <p class="nm-sub">▶ NEXT MONTH</p>
+          <p class="nm-title">Coming Soon 🔒</p>
+          <p class="nm-desc">来月のテーマは準備中です。<br>お楽しみに！</p>
+        </div>
+        <span class="nm-tag" style="background:#2980B9;">Coming Soon →</span>
+      </div>
+    </div>
+
+  </div><!-- /content-wrap -->
+
+  <div class="print-btn-wrap">
+    <button class="print-btn" style="color:#2980B9;border-color:#2980B9;" onclick="printPage('adhd')">🖨️ この資料を印刷する</button>
+  </div>
+
+  <footer class="asd-footer">
+    <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
+    スタッフ研修資料 Month 03 · 2026年6月<br>
+    参考：LITALICO発達ナビ / AIAI VISIT / 国立精神・神経医療研究センター<br>
+    夢門塾コラム / 武田薬品工業 / 発達支援ポータルヒトツナ
+  </footer>
+
+</div><!-- /page-adhd -->
+
+
 
 
 <script>
@@ -1871,8 +2402,8 @@ function showPage(name) {
 
   // ヘッダー切り替え
   var inner = document.getElementById('hp-header');
-  if (name === 'hearing' || name === 'asd') {
-    var monthLabel = name === 'hearing' ? 'Month 02 · 5月' : 'Month 01 · 4月';
+  if (name === 'hearing' || name === 'asd' || name === 'adhd') {
+    var monthLabel = name === 'adhd' ? 'Month 03 · 6月' : (name === 'hearing' ? 'Month 02 · 5月' : 'Month 01 · 4月');
     inner.innerHTML =
       '<button class="back-btn" onclick="showPage(\'hp\')">← ホーム</button>' +
       '<span class="header-title" style="color:rgba(255,255,255,0.75);font-size:12px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:8px;">りぷる スタッフ研修ポータル</span>' +
@@ -1889,7 +2420,7 @@ function showPage(name) {
       '<div class="header-nav">' +
         '<button onclick="scrollToSection(\'curriculum\')">カリキュラム</button>' +
         '<button onclick="scrollToSection(\'about\')">りぷるとは</button>' +
-        '<button onclick="showPage(\'asd\')">今月</button>' +
+        '<button onclick="showPage(\'adhd\')">今月</button>' +
       '</div>';
   }
 
@@ -2077,6 +2608,84 @@ function retryHQuiz() {
   }
   document.getElementById('hquiz-score').classList.remove('show');
   tocScrollTo('hquiz');
+}
+
+
+// ---- ADHDクイズ ----
+var aQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+var aQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+var aQuizScore   = 0;
+var A_QUIZ_TOTAL = 5;
+
+var aQuizExplanations = {
+  1: {
+    ok: '✅ 正解！ADHDの脳はドーパミンの分泌が不安定です。強い興味のあることには十分出て過集中になりますが、そうでないことには出にくく集中できません。「ゲームはできるのに怠けている」ではなく、脳の仕組みの問題です。',
+    ng: '❌ 不正解。視覚刺激の多さや達成サイクルより、興味の有無によるドーパミンの出方の違いが主な理由です。同じ刺激量の活動でも、本人の興味次第で集中力が全く変わります。'
+  },
+  2: {
+    ok: '✅ 正解！10数えることで衝動から行動までの間に短い猶予が生まれ、普段機能しにくい前頭前野が「待つ」という判断を挟めます。この数秒の猶予が衝動的な行動を減らす鍵です。',
+    ng: '❌ 不正解。注意の転換やドーパミン抑制ではなく、衝動から行動までの間に「前頭前野が判断を挟める短い猶予をつくる」ことが効果の理由です。'
+  },
+  3: {
+    ok: '✅ 正解！ASDとADHDが重なる場合、同じ行動でも原因が違います。衝動性か・感覚過敏のパニックか・コミュニケーション困難かを見極めるために、まず直前の状況を確認することが重要です。',
+    ng: '❌ 不正解。どちらの特性が主因かを確認する前に対応を決めると、見当違いの支援になります。ASD×ADHDが重なる子には、まず状況を丁寧に見ることが先です。'
+  },
+  4: {
+    ok: '✅ 正解！ワーキングメモリー（作業記憶）の容量が限られているため、情報が増えると最初に聞いた内容が消えてしまいます。短く・具体的・一度に一つが原則です。',
+    ng: '❌ 不正解。聴覚処理スピードや言語理解の問題ではなく、ワーキングメモリーの容量の問題です。情報量が増えるほど最初の内容が上書きされて消えていきます。'
+  },
+  5: {
+    ok: '✅ 正解！ADHDの特性上、叱られる場面が多くなりがちです。叱責の積み重ねが自己肯定感を低下させ、うつや反抗などの二次障害につながるリスクが高いため、褒める支援は二次障害の予防でもあります。',
+    ng: '❌ 不正解。萎縮や信頼関係の問題もありますが、より根本的な理由は叱責の積み重ねが自己肯定感の低下を招き、二次障害につながるリスクが高いことです。褒める支援は優しさではなく予防的支援です。'
+  }
+};
+
+function answerAQuiz(num, btn, isCorrect) {
+  if (aQuizDone[num]) return;
+  aQuizDone[num] = true;
+  aQuizAnswers[num] = isCorrect;
+  if (isCorrect) aQuizScore++;
+
+  var opts = btn.closest('.quiz-card').querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){ o.classList.add('disabled'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(function(o){
+      if (o.getAttribute('onclick').indexOf('true') !== -1) o.classList.add('correct');
+    });
+  }
+
+  var res = document.getElementById('aqres' + num);
+  res.textContent = aQuizExplanations[num][isCorrect ? 'ok' : 'ng'];
+  res.className = 'quiz-result show ' + (isCorrect ? 'ok' : 'ng');
+
+  var allDone = true;
+  for (var i = 1; i <= A_QUIZ_TOTAL; i++) { if (!aQuizDone[i]) { allDone = false; break; } }
+  if (allDone) {
+    setTimeout(function(){
+      var box = document.getElementById('aquiz-score');
+      box.classList.add('show');
+      document.getElementById('ascore-num').textContent = aQuizScore + ' / ' + A_QUIZ_TOTAL;
+      var msgs = ['全部読み直してみましょう💪','もう少し！復習してみて。','いい感じ！あと少し。','ほぼ完璧！惜しい〜','全問正解まであと一問！','全問正解！完璧です🎉'];
+      document.getElementById('ascore-msg').textContent = msgs[aQuizScore];
+    }, 400);
+  }
+}
+
+function retryAQuiz() {
+  aQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+  aQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+  aQuizScore   = 0;
+  for (var n = 1; n <= A_QUIZ_TOTAL; n++) {
+    var card = document.getElementById('aqcard'+n);
+    if (!card) continue;
+    card.querySelectorAll('.quiz-opt').forEach(function(o){ o.className = 'quiz-opt'; });
+    var res = document.getElementById('aqres'+n);
+    res.className = 'quiz-result';
+    res.textContent = '';
+  }
+  document.getElementById('aquiz-score').classList.remove('show');
+  tocScrollTo('aquiz');
 }
 
 // 印刷（ページ対応）

@@ -854,7 +854,7 @@ body {
     <div class="header-nav">
       <button onclick="scrollToSection('curriculum')">カリキュラム</button>
       <button onclick="scrollToSection('about')">りぷるとは</button>
-      <button onclick="showPage('adhd')">今月</button>
+      <button onclick="showPage('intel')">今月</button>
     </div>
   </div>
 </header>
@@ -879,16 +879,16 @@ body {
     <div class="progress-wrap">
       <span class="progress-label">📚 2026年度の進捗</span>
       <div class="progress-bar-bg">
-        <div class="progress-bar-fill" style="width:25%"></div>
+        <div class="progress-bar-fill" style="width:33.33%"></div>
       </div>
-      <span class="progress-count">3 / 12 完了</span>
+      <span class="progress-count">4 / 12 完了</span>
     </div>
 
     <div class="notice-bar">
       <div class="notice-icon">📢</div>
       <p>
-        <strong>今月（2026年6月）</strong>の研修テーマは<br>
-        「<strong>ADHD・多動とは？</strong>」です。<br>
+        <strong>今月（2026年7月）</strong>の研修テーマは<br>
+        「<strong>発達障害・知的障害とは？</strong>」です。<br>
         下のカードをタップしてコンテンツを開いてください。
       </p>
     </div>
@@ -916,19 +916,19 @@ body {
         <span class="card-status status-soon">✅ 先月の資料</span>
       </button>
 
-      <button class="curriculum-card current" style="--card-color:#9B59B6;" onclick="showPage('adhd')">
+      <button class="curriculum-card" style="--card-color:#9B59B6;" onclick="showPage('adhd')">
         <span class="card-month">Month 03 · 6月</span>
         <div class="card-title">ADHD・多動とは？</div>
         <div class="card-subtitle">じっとできない・飛び出す・手が出る——その行動の理由と現場での関わり方</div>
-        <span class="card-status status-now">▶ 今月のテーマ</span>
+        <span class="card-status status-soon">✅ 先月の資料</span>
       </button>
 
-            <div class="curriculum-card disabled" style="--card-color:#27AE60;">
+            <button class="curriculum-card current" style="--card-color:#27AE60;" onclick="showPage('intel')">
         <span class="card-month">Month 04 · 7月</span>
-        <div class="card-title" style="color:#bbb;">？？？</div>
-        <div class="card-subtitle" style="color:#ccc;">スタッフからのリクエストや気になるテーマを募集中！</div>
-        <span class="card-status status-future">準備中</span>
-      </div>
+        <div class="card-title">発達障害・知的障害とは？</div>
+        <div class="card-subtitle">そもそもの基礎から整理し、ダウン症・小頭症など様々な障害への理解と支援を学ぶ</div>
+        <span class="card-status status-now">▶ 今月のテーマ</span>
+      </button>
 
       <div class="curriculum-card disabled" style="--card-color:#E74C3C;">
         <span class="card-month">Month 05 · 8月</span>
@@ -2389,6 +2389,450 @@ body {
 
 </div><!-- /page-adhd -->
 
+<!-- ========================================
+     知的障害・発達障害 ページ（Month 04）
+======================================== -->
+<div class="page" id="page-intel">
+
+  <div class="asd-hero" style="background:linear-gradient(135deg,#1A4A1A 0%,#27AE60 55%,#58D68D 100%);">
+    <div class="month-tag">🌊 Month 04 · 2026年7月の研修テーマ</div>
+    <h1>発達障害・知的障害とは？</h1>
+    <p class="lead">
+      ASD・ADHD・知的障害・ダウン症・小頭症——<br>
+      言葉は知っていても「何が違うの？」<br>
+      そもそもの基礎から整理しましょう。
+    </p>
+  </div>
+
+  <div class="toc-wrapper">
+    <div class="toc-box">
+      <span class="toc-label">目次 — タップでスクロール</span>
+      <button class="toc-item" onclick="tocScrollTo('i1')">発達障害とは</button>
+      <button class="toc-item" onclick="tocScrollTo('i2')">知的障害とは</button>
+      <button class="toc-item" onclick="tocScrollTo('i3')">違いと重なり</button>
+      <button class="toc-item" onclick="tocScrollTo('i4')">ダウン症とは</button>
+      <button class="toc-item" onclick="tocScrollTo('i5')">小頭症とは</button>
+      <button class="toc-item" onclick="tocScrollTo('i6')">支援の基本姿勢</button>
+      <button class="toc-item" onclick="tocScrollTo('iquiz')">チャレンジクイズ</button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- I1 発達障害とは -->
+    <div class="content-section" id="i1">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#27AE60;">1</div>
+        <h2 class="section-heading">発達障害とは？</h2>
+      </div>
+      <div class="content-card">
+        <p>発達障害とは、生まれつきの脳の働き方の違いによって、コミュニケーション・注意・学習・行動などに困難が生じる状態の総称です。病気ではなく、脳の個性として生まれついたものです。</p>
+        <p>「1〜3回で学んできたASD・ADHD・感覚過敏」はすべて発達障害の中に含まれます。今月はその全体像を整理しながら、知的障害との違いも確認しましょう。</p>
+        <div class="highlight-box" style="border-left-color:#27AE60;background:#E8F8F0;">
+          <p style="color:#1A4A1A;">🌿 発達障害の主な種類<br>
+          ・<strong>ASD</strong>（自閉スペクトラム症）→ Month 01で学習済み<br>
+          ・<strong>ADHD</strong>（注意欠如多動症）→ Month 03で学習済み<br>
+          ・<strong>LD/SLD</strong>（学習障害）→ 読み書き・計算の困難<br>
+          ・<strong>DCD</strong>（発達性協調運動症）→ 不器用さ・運動の困難<br>
+          ・チック症、吃音なども含まれる</p>
+        </div>
+        <p>これらは「脳の情報処理・機能のアンバランスさ」から生じます。知的能力（IQ）に関係なく存在し、IQが高い人でも発達障害を持つことがあります。</p>
+      </div>
+
+      <!-- 発達障害の傘図 -->
+      <div style="background:#fff;border-radius:14px;padding:22px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;text-align:center;">🌂 発達障害の全体像</div>
+        <div style="border:2.5px solid #27AE60;border-radius:14px;padding:16px;position:relative;">
+          <span style="position:absolute;top:-12px;left:16px;background:#27AE60;color:#fff;font-size:12px;font-weight:700;padding:2px 12px;border-radius:10px;">発達障害（神経発達症群）</span>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="background:#E8F5F5;border:1.5px solid #2A7B7B;border-radius:8px;padding:6px 12px;font-size:12px;color:#1A5050;font-weight:700;">ASD（自閉スペクトラム症）</span>
+              <span style="background:#EBF5FB;border:1.5px solid #2980B9;border-radius:8px;padding:6px 12px;font-size:12px;color:#1A4A7A;font-weight:700;">ADHD（注意欠如多動症）</span>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="background:#FFF8EC;border:1.5px solid #E8821A;border-radius:8px;padding:6px 12px;font-size:12px;color:#7A4000;">LD/SLD（学習障害）</span>
+              <span style="background:#F3EEFF;border:1.5px solid #7B5EA7;border-radius:8px;padding:6px 12px;font-size:12px;color:#5A3A80;">DCD（発達性協調運動症）</span>
+              <span style="background:#F9F9F9;border:1.5px solid #999;border-radius:8px;padding:6px 12px;font-size:12px;color:#555;">チック症・吃音 など</span>
+            </div>
+            <div style="margin-top:4px;padding:10px 12px;background:#E8F8F0;border-radius:8px;border:1.5px dashed #27AE60;">
+              <span style="font-size:12px;color:#1A4A1A;font-weight:700;">＋ 知的障害（知的発達症）</span>
+              <span style="font-size:11px;color:#27AE60;margin-left:8px;">← 今月の主役</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- I2 知的障害とは -->
+    <div class="content-section" id="i2">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#27AE60;">2</div>
+        <h2 class="section-heading">知的障害とは？</h2>
+      </div>
+      <div class="content-card">
+        <p>知的障害（知的発達症）とは、発達期（おおむね18歳まで）に生じた知的機能の困難により、認知能力や適応能力の発達が全般的に遅れている状態です。</p>
+        <p>かつては「精神遅滞」と呼ばれていましたが、現在は<strong>「知的障害（知的発達症）」</strong>という名称が使われています。</p>
+        <div class="highlight-box" style="border-left-color:#27AE60;background:#E8F8F0;">
+          <p style="color:#1A4A1A;">📋 <strong>診断の3つの柱（DSM-5）：</strong><br>
+          ① 知的機能の困難（推理・問題解決・計画・学習など）<br>
+          ② 適応機能の困難（日常生活・社会生活での自立の困難）<br>
+          ③ 発達期（18歳以前）に生じたこと<br>
+          この3つをすべて満たしたときに診断されます。</p>
+        </div>
+        <p>大切なのは、<strong>IQの数値だけで判断するのではなく、日常生活での困難さを合わせて見る</strong>という点です。IQが低くても生活上の困難が少なければ診断されない場合もあります。</p>
+      </div>
+
+      <!-- 程度の違い -->
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;">📊 知的障害の程度（目安）</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#E8F8F0;border-radius:10px;border-left:4px solid #27AE60;">
+            <div style="font-size:12px;font-weight:700;color:#1A4A1A;min-width:44px;">軽度</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">日常会話はできる。読み書き・計算に困難。サポートがあれば社会生活を送れる場合が多い。</div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FFF8EC;border-radius:10px;border-left:4px solid #E8821A;">
+            <div style="font-size:12px;font-weight:700;color:#7A4000;min-width:44px;">中度</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">簡単な会話はできる。日常生活の多くに支援が必要。身辺自立（食事・排泄など）はある程度可能。</div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDEDEC;border-radius:10px;border-left:4px solid #E74C3C;">
+            <div style="font-size:12px;font-weight:700;color:#B03A2E;min-width:44px;">重度</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">言語理解・表現が限られる。ほぼすべての日常生活に継続的な支援が必要。</div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F5EEF8;border-radius:10px;border-left:4px solid #8E44AD;">
+            <div style="font-size:12px;font-weight:700;color:#5A1F8C;min-width:44px;">最重度</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">コミュニケーション手段が非常に限られる。運動機能にも障害を伴うことが多い。24時間の支援が必要。</div>
+          </div>
+
+        </div>
+        <div style="margin-top:12px;padding:10px 12px;background:#E8F8F0;border-radius:8px;font-size:11px;color:#1A4A1A;line-height:1.8;">
+          ⚠️ これらは目安であり、同じ「重度」でも一人ひとりの得意・苦手は全く異なります。程度のラベルで決めつけず、その子自身を観察することが大切です。
+        </div>
+      </div>
+    </div>
+
+    <!-- I3 発達障害と知的障害の違い・重なり -->
+    <div class="content-section" id="i3">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#27AE60;">3</div>
+        <h2 class="section-heading">発達障害と知的障害——違いと重なり</h2>
+      </div>
+      <div class="content-card">
+        <p>「発達障害」と「知的障害」は別のものですが、同じ人が両方を持つことはよくあります。ここが現場で最も混乱しやすいポイントです。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:14px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;text-align:center;">🔍 何が違う？</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="padding:12px 14px;background:#E8F8F0;border-radius:8px;">
+            <div style="font-size:12px;font-weight:700;color:#27AE60;margin-bottom:4px;">発達障害（ASD・ADHDなど）</div>
+            <div style="font-size:12px;color:var(--text);line-height:1.8;">脳の<strong>情報処理・機能のアンバランス</strong>が主な困難。知的能力（IQ）は平均以上の場合もある。「得意なことと苦手なことの差が大きい」のが特徴。</div>
+          </div>
+          <div style="padding:12px 14px;background:#EBF5FB;border-radius:8px;">
+            <div style="font-size:12px;font-weight:700;color:#2980B9;margin-bottom:4px;">知的障害</div>
+            <div style="font-size:12px;color:var(--text);line-height:1.8;">知的機能<strong>全般</strong>の発達の遅れ。推理・判断・学習・適応能力すべてに影響。得意・苦手の差より「全体的な発達の遅れ」が特徴。</div>
+          </div>
+          <div style="padding:12px 14px;background:#FFF8EC;border-radius:8px;border:1.5px dashed #E8821A;">
+            <div style="font-size:12px;font-weight:700;color:#E8821A;margin-bottom:4px;">⚡ 両方重なるケース</div>
+            <div style="font-size:12px;color:var(--text);line-height:1.8;">ASD＋知的障害、ADHD＋知的障害のように重なることが多い。どちらの特性も理解した上で、個別の支援が必要になる。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout-warm">
+        <span class="ci">💡</span>
+        <p><strong>「なぜ発語がないのか」を考える視点：</strong>発語がない子の場合、ASDの特性から来ているのか・知的障害の程度から来ているのか・両方なのかで、有効なアプローチが変わってきます。診断名より「その子の困りごとの背景」を探ることが支援の第一歩です。</p>
+      </div>
+    </div>
+
+    <!-- I4 ダウン症 -->
+    <div class="content-section" id="i4">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#27AE60;">4</div>
+        <h2 class="section-heading">ダウン症とは？</h2>
+      </div>
+      <div class="content-card">
+        <p>ダウン症（ダウン症候群）は、<strong>21番目の染色体が通常2本のところ3本存在する</strong>ことで起きる先天性疾患です。染色体の突然変異であり、親から遺伝するものではありません。</p>
+        <p>知的障害を伴うことが多く、軽度〜中度が多いですが、重度になる場合もあります。心臓疾患・難聴・眼科系の合併症を持つケースもあります。</p>
+
+      <!-- 染色体の深掘りコラム -->
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:14px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;">🧬 そもそも「染色体」って何？</div>
+
+        <!-- DNA→染色体→遺伝子の関係 -->
+        <div style="background:#F0FBF4;border-radius:10px;padding:14px 16px;margin-bottom:12px;">
+          <div style="font-size:12px;font-weight:700;color:#27AE60;margin-bottom:8px;">本に例えると——</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);line-height:1.8;">
+              <span style="background:#27AE60;color:#fff;border-radius:4px;padding:1px 7px;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;">DNA</span>
+              <span>本を作る「紙」の素材。設計図の情報が書き込まれた物質。1つの細胞に含まれるDNAをまっすぐ伸ばすと<strong>約2mの長さ</strong>になる。</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);line-height:1.8;">
+              <span style="background:#2980B9;color:#fff;border-radius:4px;padding:1px 7px;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;">遺伝子</span>
+              <span>本に書かれた「文章（情報）」。髪の色・身長・体の構造などを決める設計図。ヒトには約2万〜2.5万個の遺伝子がある。</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);line-height:1.8;">
+              <span style="background:#8E44AD;color:#fff;border-radius:4px;padding:1px 7px;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;">染色体</span>
+              <span>DNAを折りたたんでコンパクトにした「本の1冊」。ヒトは<strong>46本（23対）</strong>の染色体を持つ。父親から23本・母親から23本を受け継ぐ。</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 46本の内訳 -->
+        <div style="background:#F8F9FA;border-radius:10px;padding:14px 16px;margin-bottom:12px;">
+          <div style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:8px;">📚 46本の染色体の内訳</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);line-height:1.8;">
+              <span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span>
+              <span><strong>常染色体 44本（1〜22番の22対）</strong>——性別に関係なく共通。身体の様々な特徴を決める情報が含まれる</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);line-height:1.8;">
+              <span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span>
+              <span><strong>性染色体 2本（23対目）</strong>——女性はXX、男性はXY。性別を決める染色体</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 染色体の数が変わると... -->
+        <div style="background:#FFF8EC;border-radius:10px;padding:14px 16px;margin-bottom:12px;border:1.5px solid #FFD080;">
+          <div style="font-size:12px;font-weight:700;color:#C0601A;margin-bottom:8px;">⚡ 染色体の数がズレると何が起きる？</div>
+          <p style="font-size:12px;color:var(--mid);line-height:1.85;margin-bottom:8px;">染色体は細胞分裂のときにコピーされて次の細胞へ渡されます。このコピーの過程でエラーが起きると、染色体の数や構造に異常が生じ、様々な影響が出ることがあります。</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);line-height:1.8;">
+              <span style="background:#E8821A;color:#fff;border-radius:4px;padding:1px 7px;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;">トリソミー</span>
+              <span>ペアのはずの染色体が3本になる状態。<strong>21番トリソミー＝ダウン症</strong>がその代表例。</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);line-height:1.8;">
+              <span style="background:#E74C3C;color:#fff;border-radius:4px;padding:1px 7px;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;">モノソミー</span>
+              <span>ペアのはずの染色体が1本だけになる状態。X染色体のモノソミー＝ターナー症候群など。</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);line-height:1.8;">
+              <span style="background:#8E44AD;color:#fff;border-radius:4px;padding:1px 7px;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;">構造異常</span>
+              <span>染色体の一部が欠けたり、他の染色体にくっついたりする状態。様々な症候群の原因になる。</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ダウン症との繋ぎ -->
+        <div style="background:#E8F8F0;border-radius:8px;padding:10px 14px;font-size:12px;color:#1A4A1A;line-height:1.85;">
+          💡 <strong>なぜ21番染色体が1本多くなるの？</strong><br>
+          精子や卵子が作られるとき、染色体を23本ずつに分ける過程でエラーが起きることがあります。21番染色体が分かれずに両方同じ細胞に入ってしまうと、受精後に21番が3本になります。これは親から遺伝するものではなく、細胞分裂時の偶発的なエラーです。
+        </div>
+      </div>
+
+        <div class="highlight-box" style="border-left-color:#27AE60;background:#E8F8F0;">
+          <p style="color:#1A4A1A;">💚 <strong>ダウン症の子どもの特性（現場での視点）：</strong><br>
+          ・コミュニケーション意欲が高く、人懐っこい子が多い<br>
+          ・言語理解より言語表現（話す）の方が遅れやすい<br>
+          ・筋肉のトーン（張り）が低く、疲れやすい・姿勢が崩れやすい<br>
+          ・短期記憶の困難さ——指示は短く・繰り返し・ビジュアルで<br>
+          ・ルーティンの安心感を好む傾向がある</p>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:12px;">🤝 ダウン症の子への関わり方のポイント</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>指示は<strong>短く・ゆっくり・1つずつ</strong>。長い説明は入りにくい</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>できたことを<strong>すぐに・具体的に褒める</strong>。成功体験の積み重ねが大切</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>体が疲れやすいので、<strong>活動と休憩のメリハリ</strong>を意識する</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>人との関わりを好む子が多い。<strong>その意欲を活かした活動</strong>が効果的</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>合併症（心疾患・難聴など）がある場合は<strong>体調変化のサインを見逃さない</strong></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- I5 小頭症 -->
+    <div class="content-section" id="i5">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#27AE60;">5</div>
+        <h2 class="section-heading">小頭症とは？</h2>
+      </div>
+      <div class="content-card">
+        <p>小頭症とは、頭部（頭蓋骨と脳）の大きさが同年齢・同性別の平均より著しく小さい状態です。生まれつきの場合と、出生後に頭の成長が止まる場合があります。</p>
+        <p>原因は染色体異常・妊娠中の感染（ジカウイルスなど）・栄養不足など様々で、不明のことも多いです。<strong>根本的な治療法はなく</strong>、症状に合わせた支援が中心になります。</p>
+        <div class="highlight-box" style="border-left-color:#27AE60;background:#E8F8F0;">
+          <p style="color:#1A4A1A;">🧠 <strong>小頭症に伴いやすいこと：</strong><br>
+          ・知的障害（程度は様々）<br>
+          ・てんかん（発作）<br>
+          ・運動機能の困難（歩く・細かい動作など）<br>
+          ・言語発達の遅れ<br>
+          ・難聴・視覚障害を伴う場合もある<br><br>
+          ただし、頭が小さくても発達遅滞が見られないケースもあり、<strong>一人ひとりの症状は大きく異なります。</strong></p>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:12px;">🤝 小頭症の子への関わり方のポイント</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>てんかんがある子は<strong>発作のサイン・対応方法をチームで共有</strong>しておく</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>運動機能の困難に合わせて<strong>環境の安全確保</strong>（転倒・ぶつかりへの配慮）</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>言語が限られる場合は<strong>表情・行動のサインを丁寧に読む</strong></span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>難聴・視覚の困難がある場合は<strong>別の感覚チャンネル</strong>（触覚・振動）を活用する</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>「できないことの多い子」ではなく<strong>「その子なりのペースで成長している子」</strong>という視点で関わる</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- I6 支援の基本姿勢 -->
+    <div class="content-section" id="i6">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#27AE60;">6</div>
+        <h2 class="section-heading">すべての子に共通する支援の基本姿勢</h2>
+      </div>
+
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon" style="background:#E8F8F0;">🔍</div>
+          <div class="tip-content">
+            <strong>診断名より「その子」を見る</strong>
+            <p>「ASD」「知的障害」「ダウン症」という名前より、目の前のその子が今何を感じ、何に困っているかを見ることが支援の出発点です。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon" style="background:#E8F8F0;">👁️</div>
+          <div class="tip-content">
+            <strong>「見てわかる」情報で伝える</strong>
+            <p>知的障害・発達障害の程度にかかわらず、絵カード・写真・実物など視覚的な支援は効果的です。言葉だけの指示を減らしましょう。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon" style="background:#E8F8F0;">⏱️</div>
+          <div class="tip-content">
+            <strong>「待つ」ことを大切にする</strong>
+            <p>処理に時間がかかる子が多いです。指示を出してすぐに動けなくても、急かさず待つ。「ゆっくりでいいよ」という環境がその子の力を引き出します。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon" style="background:#E8F8F0;">🌟</div>
+          <div class="tip-content">
+            <strong>「できた」の基準を下げる</strong>
+            <p>どんなに小さな「できた」でも価値があります。「椅子に1分座れた」「スタッフと目が合った」——それがその子の成長です。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon" style="background:#E8F8F0;">🤝</div>
+          <div class="tip-content">
+            <strong>チームで情報を共有する</strong>
+            <p>「今日この子はこんな様子だった」「この方法が効いた」を記録・共有する文化が支援の質を上げます。一人のスタッフが抱え込まないことが大切です。</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="callout-warm" style="margin-top:16px;">
+        <span class="ci">🌊</span>
+        <p><strong>1〜4回を通して学んできたこと：</strong>ASD・聴覚過敏・ADHD・知的障害——すべてに共通するのは「生まれつきの脳の特性であり、本人のせいでも育て方のせいでもない」ということ。そしてどの障害でも「その子を知ろうとする姿勢」が最善の支援につながります。</p>
+      </div>
+    </div>
+
+    <!-- クイズ -->
+    <div class="quiz-section content-section" id="iquiz">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#27AE60;">✓</div>
+        <h2 class="section-heading">🔥 チャレンジクイズ</h2>
+      </div>
+      <div class="content-card" style="background:#E8F8F0;border:1.5px solid #A9DFBF;margin-bottom:16px;">
+        <p style="color:#1A4A1A;font-size:13px;line-height:1.9;">講義の内容だけでは答えにくい問題もあります。<strong>調べて挑戦してみてください！</strong>💪</p>
+      </div>
+
+      <div class="quiz-card" id="iqcard1">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q1</span>知的障害の診断において、DSM-5から「IQの数値だけで程度を決めない」とされた理由はどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerIQuiz(1,this,false)">IQ検査の精度が低く、数値の信頼性が証明されていないから</button>
+          <button class="quiz-opt" onclick="answerIQuiz(1,this,true)">同じIQでも日常生活の困難さは個人差が大きく、適応機能を合わせて評価する方が支援に直結するから</button>
+          <button class="quiz-opt" onclick="answerIQuiz(1,this,false)">IQは年齢によって変動するため、固定的な基準として使えないから</button>
+        </div>
+        <div class="quiz-result" id="iqres1"></div>
+      </div>
+
+      <div class="quiz-card" id="iqcard2">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q2</span>ダウン症の染色体の特徴として正しいものはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerIQuiz(2,this,false)">18番染色体が1本多い（トリソミー18）</button>
+          <button class="quiz-opt" onclick="answerIQuiz(2,this,true)">21番染色体が1本多い（トリソミー21）</button>
+          <button class="quiz-opt" onclick="answerIQuiz(2,this,false)">X染色体が1本少ない（モノソミーX）</button>
+        </div>
+        <div class="quiz-result" id="iqres2"></div>
+      </div>
+
+      <div class="quiz-card" id="iqcard3">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q3</span>「発達障害があるがIQは高い」という状態が起こりうる理由として最も正確なものはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerIQuiz(3,this,false)">IQ検査が発達障害の特性を考慮して設計されているから</button>
+          <button class="quiz-opt" onclick="answerIQuiz(3,this,false)">発達障害の特性が成長とともに改善され、知的能力が後天的に高まるから</button>
+          <button class="quiz-opt" onclick="answerIQuiz(3,this,true)">発達障害は脳の情報処理のアンバランスであり、知的機能全体の水準とは別の問題だから</button>
+        </div>
+        <div class="quiz-result" id="iqres3"></div>
+      </div>
+
+      <div class="quiz-card" id="iqcard4">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q4</span>ダウン症の子どもに言語指示が伝わりにくい場合、背景として最も考慮すべきことはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerIQuiz(4,this,false)">聴覚そのものに問題があり、音が聞こえていない可能性が高い</button>
+          <button class="quiz-opt" onclick="answerIQuiz(4,this,true)">短期記憶の困難さから、長い情報を保持して処理することが苦手な可能性がある</button>
+          <button class="quiz-opt" onclick="answerIQuiz(4,this,false)">指示を理解しているが、反抗や気分によって行動しないことが多い</button>
+        </div>
+        <div class="quiz-result" id="iqres4"></div>
+      </div>
+
+      <div class="quiz-card" id="iqcard5">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q5</span>小頭症がある子どもの支援で「てんかん」への対応が特に重要な理由はどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerIQuiz(5,this,false)">てんかんは感染するリスクがあるため、周囲の子への配慮が必要だから</button>
+          <button class="quiz-opt" onclick="answerIQuiz(5,this,false)">発作が起きた際に声をかけることで症状を和らげられるから</button>
+          <button class="quiz-opt" onclick="answerIQuiz(5,this,true)">小頭症に伴う脳の発達障害からてんかんが合併しやすく、発作時の対応を誤ると危険なため事前の準備が必要だから</button>
+        </div>
+        <div class="quiz-result" id="iqres5"></div>
+      </div>
+
+      <div class="quiz-score-box" id="iquiz-score">
+        <div class="quiz-score-num" id="iscore-num">0 / 5</div>
+        <div class="quiz-score-label" id="iscore-msg"></div>
+        <button class="quiz-retry-btn" style="background:#27AE60;" onclick="retryIQuiz()">🔄 もう一度チャレンジ</button>
+      </div>
+    </div>
+
+    <!-- まとめ -->
+    <div class="content-section" id="i7">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#27AE60;">7</div>
+        <h2 class="section-heading">今月のまとめ</h2>
+      </div>
+      <div class="content-card">
+        <p>🌊 発達障害は脳の情報処理のアンバランス、知的障害は知的機能全般の発達の遅れ——<strong>別々のものですが重なることが多い</strong>です。</p>
+        <p>ダウン症は21番染色体のトリソミーによる先天性疾患で知的障害を伴うことが多く、小頭症は脳の発育不全によりてんかん・運動困難・知的障害などが生じることがあります。<strong>どちらも一人ひとりの症状は大きく異なります。</strong></p>
+        <p>1〜4回を通して大切なのは「診断名で決めつけず、その子を知ろうとし続けること」。その姿勢が最善の支援につながります。</p>
+      </div>
+
+      <div class="next-month" style="background:#1A3A3A;">
+        <div class="nm-left">
+          <p class="nm-sub">▶ NEXT MONTH</p>
+          <p class="nm-title">Coming Soon 🔒</p>
+          <p class="nm-desc">来月のテーマは準備中です。お楽しみに！</p>
+        </div>
+        <span class="nm-tag" style="background:#27AE60;">Coming Soon →</span>
+      </div>
+    </div>
+
+  </div><!-- /content-wrap -->
+
+  <div class="print-btn-wrap">
+    <button class="print-btn" style="color:#27AE60;border-color:#27AE60;" onclick="printPage('intel')">🖨️ この資料を印刷する</button>
+  </div>
+
+  <footer class="asd-footer">
+    <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
+    スタッフ研修資料 Month 04 · 2026年7月<br>
+    参考：LITALICO発達ナビ / 小児心身医学会 / チャボナビ / MSDマニュアル<br>
+    ドットジュニア / メディカルノート / HugKum
+  </footer>
+
+</div><!-- /page-intel -->
+
+
 
 
 
@@ -2401,8 +2845,8 @@ function showPage(name) {
 
   // ヘッダー切り替え
   var inner = document.getElementById('hp-header');
-  if (name === 'hearing' || name === 'asd' || name === 'adhd') {
-    var monthLabel = name === 'adhd' ? 'Month 03 · 6月' : (name === 'hearing' ? 'Month 02 · 5月' : 'Month 01 · 4月');
+  if (name === 'hearing' || name === 'asd' || name === 'adhd' || name === 'intel') {
+    var monthLabel = name === 'intel' ? 'Month 04 · 7月' : (name === 'adhd' ? 'Month 03 · 6月' : (name === 'hearing' ? 'Month 02 · 5月' : 'Month 01 · 4月'));
     inner.innerHTML =
       '<button class="back-btn" onclick="showPage(\'hp\')">← ホーム</button>' +
       '<span class="header-title" style="color:rgba(255,255,255,0.75);font-size:12px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:8px;">りぷる スタッフ研修ポータル</span>' +
@@ -2419,7 +2863,7 @@ function showPage(name) {
       '<div class="header-nav">' +
         '<button onclick="scrollToSection(\'curriculum\')">カリキュラム</button>' +
         '<button onclick="scrollToSection(\'about\')">りぷるとは</button>' +
-        '<button onclick="showPage(\'adhd\')">今月</button>' +
+        '<button onclick="showPage(\'intel\')">今月</button>' +
       '</div>';
   }
 
@@ -2685,6 +3129,84 @@ function retryAQuiz() {
   }
   document.getElementById('aquiz-score').classList.remove('show');
   tocScrollTo('aquiz');
+}
+
+
+// ---- 知的障害クイズ ----
+var iQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+var iQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+var iQuizScore   = 0;
+var I_QUIZ_TOTAL = 5;
+
+var iQuizExplanations = {
+  1: {
+    ok: '✅ 正解！同じIQでも日常生活の自立度は大きく異なります。DSM-5では「適応機能（実際の生活での困難さ）」を重視する方向に変わり、支援に直結する評価ができるようになりました。',
+    ng: '❌ 不正解。IQ検査の精度や変動の問題ではなく、同じIQでも日常生活の困難さが全く異なるため、適応機能を合わせて評価することがより支援に役立つという理由からです。'
+  },
+  2: {
+    ok: '✅ 正解！ダウン症は21番染色体が3本存在する「トリソミー21」です。染色体の突然変異であり、親からの遺伝ではありません。',
+    ng: '❌ 不正解。ダウン症は21番染色体が3本あるトリソミー21です。18番トリソミーはエドワーズ症候群、モノソミーXはターナー症候群です。'
+  },
+  3: {
+    ok: '✅ 正解！発達障害は脳の情報処理のアンバランスであり、知的機能全体の水準（IQ）とは別の問題です。だからASDやADHDでもIQが高いケースがあり、逆に知的障害のない発達障害も存在します。',
+    ng: '❌ 不正解。発達障害は「脳の特定の機能のアンバランス」であり、知的機能全体の発達とは別の問題です。IQ検査の設計や後天的な改善ではなく、もともと別の次元の問題です。'
+  },
+  4: {
+    ok: '✅ 正解！ダウン症の子どもは短期記憶の困難さを持ちやすく、長い指示を保持して処理することが苦手な傾向があります。短く・ゆっくり・1つずつ伝えることが有効な理由がここにあります。',
+    ng: '❌ 不正解。難聴を合併している場合もありますが、言語指示が通りにくい主な背景は短期記憶の困難さです。反抗や気分の問題でないことも多く、伝え方の工夫が先決です。'
+  },
+  5: {
+    ok: '✅ 正解！小頭症では脳の発達不全からてんかんが合併しやすく、発作時の対応を誤ると窒息・転倒などの危険があります。事前にチームで対応方法を共有し、発作のサインを把握しておくことが重要です。',
+    ng: '❌ 不正解。てんかんは感染しません。また発作中に声をかけることは対応として不十分です。小頭症でてんかんが起きやすい理由は脳の発達不全にあり、発作時の安全確保と事前の準備が最も重要です。'
+  }
+};
+
+function answerIQuiz(num, btn, isCorrect) {
+  if (iQuizDone[num]) return;
+  iQuizDone[num] = true;
+  iQuizAnswers[num] = isCorrect;
+  if (isCorrect) iQuizScore++;
+
+  var opts = btn.closest('.quiz-card').querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){ o.classList.add('disabled'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(function(o){
+      if (o.getAttribute('onclick').indexOf('true') !== -1) o.classList.add('correct');
+    });
+  }
+
+  var res = document.getElementById('iqres' + num);
+  res.textContent = iQuizExplanations[num][isCorrect ? 'ok' : 'ng'];
+  res.className = 'quiz-result show ' + (isCorrect ? 'ok' : 'ng');
+
+  var allDone = true;
+  for (var i = 1; i <= I_QUIZ_TOTAL; i++) { if (!iQuizDone[i]) { allDone = false; break; } }
+  if (allDone) {
+    setTimeout(function(){
+      var box = document.getElementById('iquiz-score');
+      box.classList.add('show');
+      document.getElementById('iscore-num').textContent = iQuizScore + ' / ' + I_QUIZ_TOTAL;
+      var msgs = ['全部読み直してみましょう💪','もう少し！復習してみて。','いい感じ！あと少し。','ほぼ完璧！惜しい〜','全問正解まであと一問！','全問正解！完璧です🎉'];
+      document.getElementById('iscore-msg').textContent = msgs[iQuizScore];
+    }, 400);
+  }
+}
+
+function retryIQuiz() {
+  iQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+  iQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+  iQuizScore   = 0;
+  for (var n = 1; n <= I_QUIZ_TOTAL; n++) {
+    var card = document.getElementById('iqcard'+n);
+    if (!card) continue;
+    card.querySelectorAll('.quiz-opt').forEach(function(o){ o.className = 'quiz-opt'; });
+    var res = document.getElementById('iqres'+n);
+    res.className = 'quiz-result';
+    res.textContent = '';
+  }
+  document.getElementById('iquiz-score').classList.remove('show');
+  tocScrollTo('iquiz');
 }
 
 // 印刷（ページ対応）

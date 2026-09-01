@@ -799,6 +799,102 @@ body {
 .print-btn:active { background:var(--teal); color:#fff; }
 
 /* =====================
+   ルビ（ふりがな）
+===================== */
+ruby { ruby-position:over; }
+rt {
+  font-size:0.52em;
+  font-weight:400;
+  color:#8AA3A3;
+  letter-spacing:0;
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+/* =====================
+   もっと詳しく（開閉ボックス）
+===================== */
+.deep-box {
+  background:#fff;
+  border:1.5px solid #E8E8E8;
+  border-radius:12px;
+  box-shadow:var(--shadow-card);
+  margin-bottom:16px;
+  overflow:hidden;
+}
+.deep-box > summary {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 16px;
+  font-size:13px;
+  font-weight:700;
+  color:var(--dark);
+  cursor:pointer;
+  list-style:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.deep-box > summary::-webkit-details-marker { display:none; }
+.deep-box > summary::after {
+  content:'＋';
+  margin-left:auto;
+  font-size:15px;
+  font-weight:700;
+  color:var(--db-color,#D35400);
+  flex-shrink:0;
+}
+.deep-box[open] > summary::after { content:'−'; }
+.deep-box > summary:active { background:#FAFAFA; }
+.db-tag {
+  font-size:10px;
+  font-weight:700;
+  color:#fff;
+  background:var(--db-color,#D35400);
+  border-radius:6px;
+  padding:3px 8px;
+  letter-spacing:0.04em;
+  flex-shrink:0;
+}
+.db-body {
+  padding:14px 16px 16px;
+  border-top:1px solid #F0F0F0;
+  font-size:12.5px;
+  line-height:1.95;
+  color:var(--mid);
+}
+.db-body p { margin-bottom:10px; }
+.db-body p:last-child { margin-bottom:0; }
+.db-body strong { color:var(--dark); }
+.db-body ul { margin:0 0 10px; padding-left:1.2em; }
+.db-body li { margin-bottom:6px; }
+.db-row {
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  padding:9px 11px;
+  border-radius:8px;
+  background:#F8F8F8;
+  margin-bottom:6px;
+}
+.db-row-k { font-weight:700; color:var(--dark); min-width:92px; flex-shrink:0; }
+.db-row-v { line-height:1.8; }
+.db-note { font-size:11px; color:#999; line-height:1.75; margin-top:10px; }
+
+/* =====================
+   この資料について
+===================== */
+.about-doc {
+  background:#F7F9F9;
+  border:1px dashed #C5D5D5;
+  border-radius:12px;
+  padding:16px 18px;
+  margin-bottom:16px;
+}
+.about-doc-title { font-size:12px; font-weight:700; color:var(--dark); margin-bottom:8px; }
+.about-doc p { font-size:11.5px; color:var(--mid); line-height:1.9; margin-bottom:6px; }
+.about-doc p:last-child { margin-bottom:0; }
+
+/* =====================
    印刷用スタイル
 ===================== */
 @media print {
@@ -832,6 +928,10 @@ body {
   .three-features { gap:8px; }
   .highlight-box { border-left:4px solid #2A7B7B; }
   .content-wrap { padding:0; }
+  .deep-box { border:1px solid #ccc; box-shadow:none !important; page-break-inside:avoid; }
+  .deep-box > summary::after { content:'' !important; }
+  .db-body { display:block !important; }
+  .about-doc { page-break-inside:avoid; }
 }
 
 </style>
@@ -854,7 +954,7 @@ body {
     <div class="header-nav">
       <button onclick="scrollToSection('curriculum')">カリキュラム</button>
       <button onclick="scrollToSection('about')">りぷるとは</button>
-      <button onclick="showPage('intel')">今月</button>
+      <button onclick="showPage('techo')">今月</button>
     </div>
   </div>
 </header>
@@ -879,16 +979,16 @@ body {
     <div class="progress-wrap">
       <span class="progress-label">📚 2026年度の進捗</span>
       <div class="progress-bar-bg">
-        <div class="progress-bar-fill" style="width:33.33%"></div>
+        <div class="progress-bar-fill" style="width:41.67%"></div>
       </div>
-      <span class="progress-count">4 / 12 完了</span>
+      <span class="progress-count">5 / 12 完了</span>
     </div>
 
     <div class="notice-bar">
       <div class="notice-icon">📢</div>
       <p>
-        <strong>今月（2026年7月）</strong>の研修テーマは<br>
-        「<strong>発達障害・知的障害とは？</strong>」です。<br>
+        <strong>今月（2026年8月分・9月3日開催）</strong>の研修テーマは<br>
+        「<strong>療育手帳と受給者証——制度を正しく知る</strong>」です。<br>
         下のカードをタップしてコンテンツを開いてください。
       </p>
     </div>
@@ -909,33 +1009,33 @@ body {
         <span class="card-status status-soon">✅ 先月の資料</span>
       </button>
 
-      <button class="curriculum-card" style="--card-color:#E8821A;" onclick="showPage('hearing')">
+      <button class="curriculum-card" style="--card-color:#7B5EA7;" onclick="showPage('hearing')">
         <span class="card-month">Month 02 · 5月</span>
         <div class="card-title">聴覚過敏とは？</div>
         <div class="card-subtitle">音が「痛い」子どもたちの世界と、現場でできる環境づくり</div>
         <span class="card-status status-soon">✅ 先月の資料</span>
       </button>
 
-      <button class="curriculum-card" style="--card-color:#9B59B6;" onclick="showPage('adhd')">
+      <button class="curriculum-card" style="--card-color:#2980B9;" onclick="showPage('adhd')">
         <span class="card-month">Month 03 · 6月</span>
         <div class="card-title">ADHD・多動とは？</div>
         <div class="card-subtitle">じっとできない・飛び出す・手が出る——その行動の理由と現場での関わり方</div>
         <span class="card-status status-soon">✅ 先月の資料</span>
       </button>
 
-            <button class="curriculum-card current" style="--card-color:#27AE60;" onclick="showPage('intel')">
+      <button class="curriculum-card" style="--card-color:#27AE60;" onclick="showPage('intel')">
         <span class="card-month">Month 04 · 7月</span>
         <div class="card-title">発達障害・知的障害とは？</div>
         <div class="card-subtitle">そもそもの基礎から整理し、ダウン症・小頭症など様々な障害への理解と支援を学ぶ</div>
-        <span class="card-status status-now">▶ 今月のテーマ</span>
+        <span class="card-status status-soon">✅ 先月の資料</span>
       </button>
 
-      <div class="curriculum-card disabled" style="--card-color:#E74C3C;">
+      <button class="curriculum-card current" style="--card-color:#D35400;" onclick="showPage('techo')">
         <span class="card-month">Month 05 · 8月</span>
-        <div class="card-title" style="color:#bbb;">？？？</div>
-        <div class="card-subtitle" style="color:#ccc;">スタッフからのリクエストや気になるテーマを募集中！</div>
-        <span class="card-status status-future">準備中</span>
-      </div>
+        <div class="card-title">療育手帳と受給者証——制度を正しく知る</div>
+        <div class="card-subtitle">手帳の種類・区分・受給者証の違い。子どもたちが持っている「制度の道具」を正確に知る</div>
+        <span class="card-status status-now">▶ 今月のテーマ</span>
+      </button>
 
       <div class="curriculum-card disabled" style="--card-color:#2980B9;">
         <span class="card-month">Month 06 · 9月</span>
@@ -1031,7 +1131,7 @@ body {
 
   <div class="asd-hero">
     <div class="month-tag">🌊 Month 01 · 2026年4月の研修テーマ</div>
-    <h1>自閉症スペクトラム障害<br>（ASD）とは？</h1>
+    <h1><ruby>自閉症スペクトラム障害<rt>じへいしょうスペクトラムしょうがい</rt></ruby><br>（ASD）とは？</h1>
     <p class="lead">
       「自閉症」「アスペルガー」…<br>
       言葉は知っていても、<br>実際どういう状態なの？<br>
@@ -1061,8 +1161,8 @@ body {
         <h2 class="section-heading">ASDとは？</h2>
       </div>
       <div class="content-card">
-        <p>ASD（Autism Spectrum Disorder）とは、発達障害のひとつです。生まれつきの脳の働き方の違いによって生じます。</p>
-        <p>主な特徴は「コミュニケーションの難しさ」「強いこだわり」「感覚の過敏さや鈍感さ」の3つです。</p>
+        <p>ASD（Autism Spectrum Disorder）とは、<ruby>発達障害<rt>はったつしょうがい</rt></ruby>のひとつです。生まれつきの脳の働き方の違いによって生じます。</p>
+        <p>主な特徴は「コミュニケーションの難しさ」「強いこだわり」「感覚の<ruby>過敏<rt>かびん</rt></ruby>さや鈍感さ」の3つです。</p>
         <p>大切なのは、<strong>育て方のせいでも、子どものせいでもない</strong>ということ。脳の個性として生まれついたものです。</p>
         <div class="highlight-box">
           <p>💡 以前は「自閉症」「アスペルガー症候群」「高機能自閉症」などと別々に呼ばれていましたが、現在はまとめて<strong>「自閉スペクトラム症（ASD）」</strong>と呼びます。</p>
@@ -1071,7 +1171,7 @@ body {
       <div class="stat-row">
         <div class="stat-box">
           <div class="stat-num">3.22<span style="font-size:13px">%</span></div>
-          <div class="stat-label">5歳児における<br>ASDの有病率<br><small>（弘前大学調査）</small></div>
+          <div class="stat-label">5歳児における<br>ASDの<ruby>有病率<rt>ゆうびょうりつ</rt></ruby><br><small>（弘前大学調査）</small></div>
         </div>
         <div class="stat-box">
           <div class="stat-num">30〜50<span style="font-size:11px">人</span></div>
@@ -1092,13 +1192,13 @@ body {
         <h2 class="section-heading">ASDの特性の全体像</h2>
       </div>
       <div class="content-card">
-        <p>ASDには<strong>3つの主な特性</strong>があります。そのひとつが「感覚の過敏さ・鈍感さ」で、聴覚過敏はこの中に含まれます。</p>
+        <p>ASDには<strong>3つの主な特性</strong>があります。そのひとつが「感覚の<ruby>過敏<rt>かびん</rt></ruby>さ・鈍感さ」で、<ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>はこの中に含まれます。</p>
         <p>つまり、<strong>聴覚過敏はASDの特性のひとつ</strong>です。ただし、ASDの人が全員持つわけではなく、程度や現れ方も人によって大きく異なります。</p>
       </div>
       <div class="asd-structure">
-        <div class="asd-structure-title">ASDの3大特性と感覚過敏の関係</div>
+        <div class="asd-structure-title">ASDの3大特性と<ruby>感覚過敏<rt>かんかくかびん</rt></ruby>の関係</div>
         <div class="asd-parent">
-          <span class="asd-parent-label">ASD（自閉症スペクトラム障害）</span>
+          <span class="asd-parent-label">ASD（<ruby>自閉症スペクトラム障害<rt>じへいしょうスペクトラムしょうがい</rt></ruby>）</span>
           <div class="asd-children">
             <div class="trait-box comm">
               <div class="trait-title">💬 ① コミュニケーションの難しさ</div>
@@ -1112,14 +1212,14 @@ body {
               <div class="trait-title">👂 ③ 感覚の過敏さ・鈍感さ</div>
               <div class="trait-sub">五感のどれかが人より敏感、または鈍いことがある。<strong>聴覚過敏はこの中に含まれる特性のひとつ。</strong></div>
               <div class="sense-children">
-                <div style="font-size:12px;font-weight:700;color:#5A3A80;margin-bottom:4px;">感覚過敏・鈍麻の種類</div>
+                <div style="font-size:12px;font-weight:700;color:#5A3A80;margin-bottom:4px;">感覚過敏・<ruby>鈍麻<rt>どんま</rt></ruby>の種類</div>
                 <div class="sense-child-row">
                   <span class="sense-tag hl">聴覚過敏（音）</span>
-                  <span class="sense-tag">視覚過敏（光・色）</span>
-                  <span class="sense-tag">触覚過敏（皮ふ感覚）</span>
-                  <span class="sense-tag">嗅覚過敏（におい）</span>
-                  <span class="sense-tag">味覚過敏（偏食）</span>
-                  <span class="sense-tag">感覚鈍麻（痛みに鈍い等）</span>
+                  <span class="sense-tag"><ruby>視覚過敏<rt>しかくかびん</rt></ruby>（光・色）</span>
+                  <span class="sense-tag"><ruby>触覚過敏<rt>しょっかくかびん</rt></ruby>（皮ふ感覚）</span>
+                  <span class="sense-tag"><ruby>嗅覚過敏<rt>きゅうかくかびん</rt></ruby>（におい）</span>
+                  <span class="sense-tag"><ruby>味覚過敏<rt>みかくかびん</rt></ruby>（<ruby>偏食<rt>へんしょく</rt></ruby>）</span>
+                  <span class="sense-tag"><ruby>感覚鈍麻<rt>かんかくどんま</rt></ruby>（痛みに鈍い等）</span>
                 </div>
 
               </div>
@@ -1129,6 +1229,24 @@ body {
       </div>
     </div>
 
+        <details class="deep-box" style="--db-color:#2A7B7B;">
+      <summary><span class="db-tag">もっと詳しく</span><ruby>診断基準<rt>しんだんきじゅん</rt></ruby>では、特性は「3つ」ではなく「2つ」</summary>
+      <div class="db-body">
+        <p>この講義では現場で理解しやすいように<strong>3つの特性</strong>として整理していますが、実際の診断基準（DSM-5）は<strong>2つの柱</strong>で書かれています。</p>
+        <div class="db-row"><div class="db-row-k">① 社会的<br>コミュニケーション</div><div class="db-row-v">対人的なやりとり、非言語的コミュニケーション、関係を築き維持することの持続的な困難。</div></div>
+        <div class="db-row"><div class="db-row-k">② 限定された<br>反復的な行動</div><div class="db-row-v">同じ動作の繰り返し、変化への抵抗やこだわり、極めて限定された興味、<strong>そして感覚の過敏さ・鈍感さ</strong>。</div></div>
+        <p>つまり<strong>「感覚の過敏さ・鈍感さ」は②の中に含まれています。</strong>講義で3つに分けているのは、現場で感覚の問題が非常に大きいためです。どちらの整理も間違いではありません。</p>
+        <p><strong>名前が変わってきた歴史</strong></p>
+        <ul>
+          <li>かつては「自閉性障害」「アスペルガー障害」「広汎性<ruby>発達障害<rt>はったつしょうがい</rt></ruby>」などに分かれていた</li>
+          <li><strong>2013年のDSM-5でこれらが統合され「ASD」ひとつになった</strong></li>
+          <li>「自閉症スペクトラム障害」と「自閉スペクトラム症」は同じもの（訳し方の違い）</li>
+        </ul>
+        <p>保護者が古い<ruby>診断名<rt>しんだんめい</rt></ruby>で説明されている場合もあります。「アスペルガーと言われました」と聞いても、現在の枠組みではASDに含まれると理解してください。</p>
+        <p class="db-note">出典：DSM-5（精神<ruby>疾患<rt>しっかん</rt></ruby>の診断・統計マニュアル 第5版）/ 日本自閉症協会</p>
+      </div>
+    </details>
+
     <!-- S3 -->
     <div class="content-section" id="s3">
       <div class="section-eyebrow">
@@ -1137,7 +1255,7 @@ body {
       </div>
       <div class="content-card">
         <p>「スペクトラム」は英語で<strong>「連続体・グラデーション」</strong>という意味です。</p>
-        <p>虹のように色と色の間に境界線がないように、ASDも軽い傾向の人から強い特性を持つ人まで、ひとつながりのグラデーションとして考えます。</p>
+        <p>虹のように色と色の間に境界線がないように、ASDも軽い<ruby>傾向<rt>けいこう</rt></ruby>の人から強い特性を持つ人まで、ひとつながりのグラデーションとして考えます。</p>
       </div>
       <div class="spectrum-visual">
         <p style="font-size:12px;color:#888;margin-bottom:2px;text-align:center;">特性の幅（スペクトラム）イメージ</p>
@@ -1153,7 +1271,7 @@ body {
         <div class="highlight-box" style="margin-top:16px;">
           <p>✨ <strong>同じ「ASD」でも、一人ひとり全く違います。</strong>話せる子・話せない子・こだわりの強さ・感覚の敏感さ、現れ方の幅はとても広いです。</p>
           <p style="margin-top:10px;">それだけじゃなく、<strong>育ってきた環境・受けてきた支援・周りの関わり方</strong>によっても、特性の現れ方や得意・苦手は大きく変わってきます。</p>
-          <p style="margin-top:10px;">だからこそ、<strong>「この子にはどんな支援が合うか」を一生懸命模索して関わっていくこと</strong>が、支援者にとって一番大切な姿勢です。「ASDだからこうだ」という決めつけを避け、その子自身をよく観察し続けましょう。</p>
+          <p style="margin-top:10px;">だからこそ、<strong>「この子にはどんな支援が合うか」を一生懸命<ruby>模索<rt>もさく</rt></ruby>して関わっていくこと</strong>が、支援者にとって一番大切な姿勢です。「ASDだからこうだ」という決めつけを避け、その子自身をよく観察し続けましょう。</p>
         </div>
       </div>
     </div>
@@ -1178,7 +1296,7 @@ body {
           <div class="fact-box"><div class="mf-label">✅ 正しい理解</div><div class="mf-text">パニックは<strong>本人が限界を超えたサイン</strong>です。助けを必要としている状態です。</div></div>
         </div>
         <div class="myth-fact-pair">
-          <div class="myth-box"><div class="mf-label">❌ 誤解</div><div class="mf-text">「自傷するのは自分を傷つけたいから」</div></div>
+          <div class="myth-box"><div class="mf-label">❌ 誤解</div><div class="mf-text">「<ruby>自傷<rt>じしょう</rt></ruby>するのは自分を傷つけたいから」</div></div>
           <div class="fact-box"><div class="mf-label">✅ 正しい理解</div><div class="mf-text">多くの場合、<strong>伝えられない苦痛や不安の表れ</strong>です。原因を一緒に探ることが大切です。</div></div>
         </div>
       </div>
@@ -1191,14 +1309,31 @@ body {
         <h2 class="section-heading">ASDの原因は何？</h2>
       </div>
       <div class="content-card">
-        <p>原因は完全には解明されていませんが、<strong>遺伝的な要因と環境的な要因の組み合わせ</strong>が関係していると考えられています。</p>
-        <p>一卵性双生児の研究では、一方がASDの場合にもう一方も高い確率でASDになることが示されており、遺伝の影響が大きいとされています。親の高齢出産・低出生体重・妊娠中の感染なども関係する要因として挙げられています。</p>
+        <p>原因は完全には解明されていませんが、<strong><ruby>遺伝<rt>いでん</rt></ruby>的な要因と環境的な要因の組み合わせ</strong>が関係していると考えられています。</p>
+        <p><ruby>一卵性双生児<rt>いちらんせいそうせいじ</rt></ruby>の研究では、一方がASDの場合にもう一方も高い確率でASDになることが示されており、遺伝の影響が大きいとされています。親の<ruby>高齢出産<rt>こうれいしゅっさん</rt></ruby>・<ruby>低出生体重<rt>ていしゅっしょうたいじゅう</rt></ruby>・<ruby>妊娠<rt>にんしん</rt></ruby>中の<ruby>感染<rt>かんせん</rt></ruby>なども関係する要因として挙げられています。</p>
         <div class="highlight-box">
           <p>🧠 ASDは「病気」ではなく、<strong>脳の個性・働き方の違い</strong>です。「治す」のではなく、特性を理解して「その子らしく安心して過ごせるよう支援する」という視点で関わりましょう。</p>
         </div>
-        <p>また、ASDはADHD・知的障害・学習障害・身体障害などを<strong>70〜80%以上が一つ以上の困難を併せ持つ</strong>ことが多く、一人ひとりの特性の組み合わせを理解することが重要です。</p>
+        <p>また、ASDのある人は他の障害や<ruby>疾患<rt>しっかん</rt></ruby>を併せ持つことが多く、<strong>約70%以上が1つ以上、40%以上が2つ以上</strong>を併せ持つと報告されています。<ruby>知的発達症<rt>ちてきはったつしょう</rt></ruby>・ADHD・<ruby>不安症<rt>ふあんしょう</rt></ruby>・<ruby>睡眠障害<rt>すいみんしょうがい</rt></ruby>・てんかんなどが代表的です。一人ひとりの特性の組み合わせを理解することが重要です。</p>
       </div>
     </div>
+
+        <details class="deep-box" style="--db-color:#2A7B7B;">
+      <summary><span class="db-tag">もっと詳しく</span>他の障害が重なる——「<ruby>併存<rt>へいそん</rt></ruby>」のはなし</summary>
+      <div class="db-body">
+        <p>ASDは単独で存在することの方がむしろ少なく、<strong>約70%以上が1つ以上、40%以上が2つ以上</strong>の他の障害や疾患を併せ持つと報告されています。</p>
+        <p><strong>よく重なるもの</strong></p>
+        <ul>
+          <li><strong>知的発達症</strong>（<ruby>知的障害<rt>ちてきしょうがい</rt></ruby>）— ただし近年は知的障害を伴わないASDの割合が増えている</li>
+          <li><strong>ADHD</strong>（<ruby>注意欠如多動症<rt>ちゅういけつじょたどうしょう</rt></ruby>）</li>
+          <li><strong>DCD</strong>（<ruby>発達性協調運動症<rt>はったつせいきょうちょううんどうしょう</rt></ruby>）・<strong>SLD</strong>（<ruby>限局性学習症<rt>げんきょくせいがくしゅうしょう</rt></ruby>）</li>
+          <li>不安症、睡眠障害、<ruby>抑うつ<rt>よくうつ</rt></ruby>、<ruby>強迫症<rt>きょうはくしょう</rt></ruby>、てんかん</li>
+        </ul>
+        <p><strong>知っておきたい変更点。</strong>ひとつ前の<ruby>診断基準<rt>しんだんきじゅん</rt></ruby>（DSM-IV）では、ASDとADHDを<strong>同時に診断することができませんでした。</strong>2013年のDSM-5から<ruby>併記<rt>へいき</rt></ruby>できるようになり、両方の診断がつく子が増えています。「昔はASDと言われたのに、今回ADHDも言われた」という保護者の戸惑いの背景には、これがあります。</p>
+        <p><strong>現場での意味。</strong>「ASDの子」とひと括りにせず、<strong>この子には何が重なっているのか</strong>を見ること。睡眠が崩れている、不安が強い、体の使い方が苦手——それぞれ別の支援が要ります。</p>
+        <p class="db-note">出典：日本小児科学会「ASD - 自閉スペクトラム症」診療ガイドライン / 一般社団法人 小児心身医学会</p>
+      </div>
+    </details>
 
     <!-- S6 -->
     <div class="content-section" id="s6">
@@ -1239,14 +1374,14 @@ body {
           <div class="tip-icon">🌟</div>
           <div class="tip-content">
             <strong>小さな「できた」を積み重ねる</strong>
-            <p>できたことをしっかり認める。小さな成功の積み重ねが自己肯定感を育て、二次障害の予防にもなります。</p>
+            <p>できたことをしっかり認める。小さな成功の積み重ねが<ruby>自己肯定感<rt>じここうていかん</rt></ruby>を育て、<ruby>二次障害<rt>にじしょうがい</rt></ruby>の予防にもなります。</p>
           </div>
         </li>
         <li>
           <div class="tip-icon">🤝</div>
           <div class="tip-content">
             <strong>「直そう」ではなく「知ろう」という姿勢で</strong>
-            <p>こだわりを矯正しようとするより、「なぜそうするのか」を理解しようとする姿勢が、子どもとの信頼関係をつくります。</p>
+            <p>こだわりを<ruby>矯正<rt>きょうせい</rt></ruby>しようとするより、「なぜそうするのか」を理解しようとする姿勢が、子どもとの信頼関係をつくります。</p>
           </div>
         </li>
       </ul>
@@ -1270,13 +1405,13 @@ body {
           ✗ 正面から「○○くん、見て！」と呼びかける<br>
           ✓ 横に座って同じものを見ながら「これどう思う？」と声をかける<br>
           ✓ 並んで歩きながら話しかける<br>
-          <span style="font-size:11px;opacity:0.8;display:block;margin-top:6px;">※目を合わせることを強制するのは避けましょう。視線への過敏さは子どもによって異なります。</span>
+          <span style="font-size:11px;opacity:0.8;display:block;margin-top:6px;">※目を合わせることを強制するのは避けましょう。視線への<ruby>過敏<rt>かびん</rt></ruby>さは子どもによって異なります。</span>
         </div>
       </div>
 
       <div class="callout-warm">
         <span class="ci">⚠️</span>
-        <p><strong>二次障害に注意：</strong>ASDの特性が周囲に理解されないと、不安やストレスが積み重なり、自傷・他害・強度行動障害などの「二次障害」につながりやすくなります。日々の丁寧な関わりが、子どもたちの将来を守ることに直結しています。</p>
+        <p><strong>二次障害に注意：</strong>ASDの特性が周囲に理解されないと、不安やストレスが積み重なり、<ruby>自傷<rt>じしょう</rt></ruby>・<ruby>他害<rt>たがい</rt></ruby>・<ruby>強度行動障害<rt>きょうどこうどうしょうがい</rt></ruby>などの「二次障害」につながりやすくなります。日々の丁寧な関わりが、子どもたちの将来を守ることに直結しています。</p>
       </div>
     </div>
 
@@ -1287,8 +1422,8 @@ body {
         <h2 class="section-heading">今月のまとめ</h2>
       </div>
       <div class="content-card">
-        <p>🌊 ASDは生まれつきの脳の特性による発達障害です。主な特性は<strong>①コミュニケーションの困難・②こだわり・③感覚の過敏/鈍麻</strong>の3つ。聴覚過敏は③の中に含まれる特性のひとつです。</p>
-        <p>「スペクトラム（連続体）」の名前の通り、<strong>一人ひとりの特性の現れ方は全く違います。</strong>同じ診断名でも、担当する子をよく観察し、その子に合った関わりを大切にしてください。</p>
+        <p>🌊 ASDは生まれつきの脳の特性による<ruby>発達障害<rt>はったつしょうがい</rt></ruby>です。主な特性は<strong>①コミュニケーションの困難・②こだわり・③感覚の<ruby>過敏<rt>かびん</rt></ruby>/<ruby>鈍麻<rt>どんま</rt></ruby></strong>の3つ。<ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>は③の中に含まれる特性のひとつです。</p>
+        <p>「スペクトラム（連続体）」の名前の通り、<strong>一人ひとりの特性の現れ方は全く違います。</strong>同じ<ruby>診断名<rt>しんだんめい</rt></ruby>でも、担当する子をよく観察し、その子に合った関わりを大切にしてください。</p>
         <p>「話せない＝何もわからない」ではありません。行動・表情・体のサインを読み取ることが、支援者として大切なスキルのひとつです。</p>
       </div>
   
@@ -1347,7 +1482,7 @@ body {
       <div class="quiz-card" id="qcard5">
         <div class="quiz-q"><span class="quiz-q-num">Q5</span>ASDの子が突然パニックになったとき、まず支援者として意識すべきことはどれですか？</div>
         <div class="quiz-options">
-          <button class="quiz-opt" onclick="answerQuiz(5, this, false)">その場で落ち着くよう言葉で繰り返し説得する</button>
+          <button class="quiz-opt" onclick="answerQuiz(5, this, false)">その場で落ち着くよう言葉で繰り返し<ruby>説得<rt>せっとく</rt></ruby>する</button>
           <button class="quiz-opt" onclick="answerQuiz(5, this, false)">次回同じことが起きないようすぐに注意する</button>
           <button class="quiz-opt" onclick="answerQuiz(5, this, true)">パニックを「限界のサイン」として捉え、何がつらかったかを一緒に探る</button>
         </div>
@@ -1382,7 +1517,7 @@ body {
     <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
     スタッフ研修資料 Month 01 · 2026年4月<br>
     参考：国立精神・神経医療研究センター / 大塚製薬 すまいるナビゲーター<br>
-    発達障害情報ポータルサイト / AIAI VISIT
+    <ruby>発達障害<rt>はったつしょうがい</rt></ruby>情報ポータルサイト / AIAI VISIT
   </footer>
 
 </div><!-- /page-asd -->
@@ -1394,7 +1529,7 @@ body {
 
   <div class="asd-hero" style="background:linear-gradient(135deg,#4A2060 0%,#7B5EA7 55%,#A07BC8 100%);">
     <div class="month-tag">🌊 Month 02 · 2026年5月の研修テーマ</div>
-    <h1>聴覚過敏とは？</h1>
+    <h1><ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>とは？</h1>
     <p class="lead">
       なぜ急に耳をふさぐの？<br>
       なぜあの音だけダメなの？<br>
@@ -1424,14 +1559,14 @@ body {
     <div class="content-section" id="h1">
       <div class="section-eyebrow">
         <div class="section-num" style="background:#7B5EA7;">1</div>
-        <h2 class="section-heading">聴覚過敏とは？</h2>
+        <h2 class="section-heading"><ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>とは？</h2>
       </div>
       <div class="content-card">
-        <p>聴覚過敏とは、<strong>特定の音や一定の音量に対して過剰に反応し、苦痛や強い不快感を覚える状態</strong>のことです。先月学んだASDの「感覚の過敏さ・鈍感さ」の中のひとつです。</p>
+        <p>聴覚過敏とは、<strong>特定の音や一定の音量に対して過剰に反応し、苦痛や強い不快感を覚える状態</strong>のことです。先月学んだASDの「感覚の<ruby>過敏<rt>かびん</rt></ruby>さ・鈍感さ」の中のひとつです。</p>
         <p>「大きい音が苦手なだけでしょ？」と思いがちですが、実は違います。私たちが「ちょっとうるさいな」と感じる音が、聴覚過敏のある子には<strong>「痛み」や「恐怖」として処理されている</strong>ことがあります。</p>
-        <p>りぷるにも実際に聴覚過敏のある子が複数います。救急車・パトカーのサイレン、子どもの甲高い声や鳴き声がダメな子、そしてイヤーマフを使っている子も複数います。</p>
+        <p>放課後等デイサービスの現場にも、聴覚過敏のある子は少なくありません。救急車・パトカーのサイレン、子どもの<ruby>甲高い<rt>かんだかい</rt></ruby>声や鳴き声がダメな子、イヤーマフを使っている子もいます。</p>
         <div class="highlight-box" style="border-left-color:#7B5EA7;background:#F3EEFF;">
-          <p style="color:#3A2060;">💡 <strong>先月との繋がり：</strong>ASD（自閉症スペクトラム障害）のある人の約70〜80%に何らかの感覚過敏があると言われており、聴覚過敏はその中でも特に多く見られる特性のひとつです。</p>
+          <p style="color:#3A2060;">💡 <strong>先月との繋がり：</strong>ASD（<ruby>自閉症スペクトラム障害<rt>じへいしょうスペクトラムしょうがい</rt></ruby>）のある人の約70〜80%に何らかの<ruby>感覚過敏<rt>かんかくかびん</rt></ruby>があると言われており、聴覚過敏はその中でも特に多く見られる特性のひとつです。</p>
         </div>
       </div>
       <div class="stat-row">
@@ -1441,14 +1576,14 @@ body {
         </div>
         <div class="stat-box" style="border-top-color:#7B5EA7;">
           <div class="stat-num" style="color:#7B5EA7;">63<span style="font-size:12px">%</span></div>
-          <div class="stat-label">ASDのある人が<br>80dB以上の音に<br>耐えられない<br><small style="color:#999;">（80dB＝救急車のサイレン・走行中の電車内レベル）</small></div>
+          <div class="stat-label">ASDのある人が<br>80dB以上の音に<br>耐えられない<br><small style="color:#999;">（80dB＝走行中の電車内・地下鉄の車内レベル）</small></div>
         </div>
         <div class="stat-box" style="border-top-color:#7B5EA7;">
           <div class="stat-num" style="color:#7B5EA7;">個人<span style="font-size:12px">差</span></div>
           <div class="stat-label">苦手な音の種類は<br>一人ひとり<br>全く異なる</div>
         </div>
       </div>
-      <p class="source-note">参考：国立精神・神経医療研究センター / LITALICO発達ナビ / 北海道大学大学院研究</p>
+      <p class="source-note">参考：国立精神・神経医療研究センター / LITALICO発達ナビ / <ruby>発達障害<rt>はったつしょうがい</rt></ruby>の感覚過敏に関する研究報告</p>
     </div>
 
     <!-- H2 -->
@@ -1458,8 +1593,8 @@ body {
         <h2 class="section-heading">脳の中で何が起きてるの？</h2>
       </div>
       <div class="content-card">
-        <p>私たちの脳には、音を「重要なもの」と「そうでないもの」に自動で選別する<strong>フィルター機能</strong>があります。たとえば、カフェで友達と話しながらBGMを聞き流せるのはこのフィルターのおかげです。</p>
-        <p>聴覚過敏のある子はこの<strong>フィルター機能がうまく働きにくい状態</strong>にあります。周囲の音が選別されずに全部同じ大きさ・同じ優先度で脳に飛び込んでくるため、情報処理が追いつかなくなります。</p>
+        <p>私たちの脳には、音を「重要なもの」と「そうでないもの」に自動で<ruby>選別<rt>せんべつ</rt></ruby>する<strong>フィルター機能</strong>があります。たとえば、カフェで友達と話しながらBGMを聞き流せるのはこのフィルターのおかげです。</p>
+        <p><ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>のある子はこの<strong>フィルター機能がうまく働きにくい状態</strong>にあります。周囲の音が選別されずに全部同じ大きさ・同じ<ruby>優先度<rt>ゆうせんど</rt></ruby>で脳に飛び込んでくるため、情報処理が追いつかなくなります。</p>
         <div class="highlight-box" style="border-left-color:#7B5EA7;background:#F3EEFF;">
           <p style="color:#3A2060;">🧠 <strong>わかりやすく言うと——</strong><br>
           私たちが「音量3」で聞いている音を、<strong>「音量10」で全部同時に聞いている</strong>ようなイメージです。しかもミュートもフィルターも効かない状態で。それが毎日続いているのです。</p>
@@ -1483,13 +1618,13 @@ body {
       <div style="display:flex;flex-direction:column;gap:12px;">
 
         <div style="background:#fff;border-radius:12px;padding:18px;box-shadow:var(--shadow-card);border-left:4px solid #E74C3C;">
-          <div style="font-weight:700;font-size:14px;color:#C0392B;margin-bottom:6px;">🚨 突発的・予測できない大きな音</div>
+          <div style="font-weight:700;font-size:14px;color:#C0392B;margin-bottom:6px;">🚨 <ruby>突発的<rt>とっぱつてき</rt></ruby>・予測できない大きな音</div>
           <p style="font-size:13px;color:var(--mid);line-height:1.85;">救急車・パトカーのサイレン、雷、クラクション、ドアが急に閉まる音、アラーム音など。<strong>「突然」「予測できない」</strong>という要素が特にパニックを引き起こしやすい。</p>
         </div>
 
         <div style="background:#fff;border-radius:12px;padding:18px;box-shadow:var(--shadow-card);border-left:4px solid #E8821A;">
-          <div style="font-weight:700;font-size:14px;color:#C0601A;margin-bottom:6px;">🗣️ 甲高い声・特定の周波数</div>
-          <p style="font-size:13px;color:var(--mid);line-height:1.85;">子どもの甲高い泣き声・叫び声、赤ちゃんの鳴き声、特定の人の声のトーンなど。<strong>高い周波数の音</strong>が特に刺激になりやすい傾向がある。</p>
+          <div style="font-weight:700;font-size:14px;color:#C0601A;margin-bottom:6px;">🗣️ <ruby>甲高い<rt>かんだかい</rt></ruby>声・特定の<ruby>周波数<rt>しゅうはすう</rt></ruby></div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.85;">子どもの甲高い泣き声・叫び声、赤ちゃんの鳴き声、特定の人の声のトーンなど。<strong>高い周波数の音</strong>が特に刺激になりやすい<ruby>傾向<rt>けいこう</rt></ruby>がある。</p>
         </div>
 
         <div style="background:#fff;border-radius:12px;padding:18px;box-shadow:var(--shadow-card);border-left:4px solid #F39C12;">
@@ -1498,21 +1633,37 @@ body {
         </div>
 
         <div style="background:#fff;border-radius:12px;padding:18px;box-shadow:var(--shadow-card);border-left:4px solid #2980B9;">
-          <div style="font-weight:700;font-size:14px;color:#1A5C8A;margin-bottom:6px;">🌀 低く持続する音・振動</div>
-          <p style="font-size:13px;color:var(--mid);line-height:1.85;">掃除機・ドライヤー・エアコンのモーター音など。大きくなくても<strong>ずっと続く音</strong>が蓄積してダメになるケースも。</p>
+          <div style="font-weight:700;font-size:14px;color:#1A5C8A;margin-bottom:6px;">🌀 低く持続する音・<ruby>振動<rt>しんどう</rt></ruby></div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.85;">掃除機・ドライヤー・エアコンのモーター音など。大きくなくても<strong>ずっと続く音</strong>が<ruby>蓄積<rt>ちくせき</rt></ruby>してダメになるケースも。</p>
         </div>
 
       </div>
     </div>
 
+        <details class="deep-box" style="--db-color:#7B5EA7;">
+      <summary><span class="db-tag">もっと詳しく</span>「dB（デシベル）」を体感でつかむ</summary>
+      <div class="db-body">
+        <p>「80dB以上に耐えられない」と言われても実感がわきにくいので、身近な音と並べてみます。</p>
+        <div class="db-row"><div class="db-row-k">120dB</div><div class="db-row-v">飛行機のエンジンのすぐ近く／落雷</div></div>
+        <div class="db-row"><div class="db-row-k">90〜120dB</div><div class="db-row-v"><strong>救急車・消防車のサイレン。</strong>法令で「車両の前方20m・高さ1mの位置で90dB以上120dB以下」と決められています</div></div>
+        <div class="db-row"><div class="db-row-k">100dB</div><div class="db-row-v">電車が通るガード下。ほとんど会話ができない</div></div>
+        <div class="db-row"><div class="db-row-k">80dB</div><div class="db-row-v"><strong>走行中の電車内・地下鉄の車内</strong></div></div>
+        <div class="db-row"><div class="db-row-k">60dB</div><div class="db-row-v">普通の会話・チャイム</div></div>
+        <div class="db-row"><div class="db-row-k">40dB</div><div class="db-row-v">図書館・静かな住宅街</div></div>
+        <p><strong>ここが大事：dBは足し算ではありません。</strong>10dB上がると音のエネルギーは<strong>10倍</strong>、20dB上がると<strong>100倍</strong>になります。「80dBと90dB、たった10の差」ではなく、10倍の差があるということです。</p>
+        <p>つまり「80dB以上に耐えられない」とは、<strong>電車の中にいるくらいの音量がもう限界</strong>ということ。教室や活動室がざわついた状態は、この水準に近づくことがあります。</p>
+        <p class="db-note">出典：道路運送車両の保安基準（緊急自動車のサイレンの音量）/ 一般的な騒音レベルの目安</p>
+      </div>
+    </details>
+
     <!-- H4 -->
     <div class="content-section" id="h4">
       <div class="section-eyebrow">
         <div class="section-num" style="background:#7B5EA7;">4</div>
-        <h2 class="section-heading">聴覚過敏のサインを見つけよう</h2>
+        <h2 class="section-heading"><ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>のサインを見つけよう</h2>
       </div>
       <div class="content-card">
-        <p>言葉で「うるさい」と言えない子が多いりぷるでは、<strong>行動でサインを出している</strong>ことがほとんどです。こんな様子が見られたら聴覚過敏を疑ってみてください。</p>
+        <p>言葉で「うるさい」と言えない子が多い現場では、<strong>行動でサインを出している</strong>ことがほとんどです。こんな様子が見られたら聴覚過敏を疑ってみてください。</p>
       </div>
 
       <ul class="tip-list">
@@ -1527,21 +1678,21 @@ body {
           <div class="tip-icon" style="background:#F3EEFF;">😰</div>
           <div class="tip-content">
             <strong>特定の音に対して突然パニックになる</strong>
-            <p>さっきまで穏やかだったのに、救急車の音が聞こえた瞬間に泣き叫ぶ・自傷する・固まるなど。</p>
+            <p>さっきまで穏やかだったのに、救急車の音が聞こえた瞬間に泣き叫ぶ・<ruby>自傷<rt>じしょう</rt></ruby>する・固まるなど。</p>
           </div>
         </li>
         <li>
           <div class="tip-icon" style="background:#F3EEFF;">🏃</div>
           <div class="tip-content">
             <strong>特定の場所・時間帯を避けようとする</strong>
-            <p>「あの部屋に入りたがらない」「外出時に特定のルートを嫌がる」などの行動も、音の回避行動の可能性がある。</p>
+            <p>「あの部屋に入りたがらない」「外出時に特定のルートを嫌がる」などの行動も、音の<ruby>回避<rt>かいひ</rt></ruby>行動の可能性がある。</p>
           </div>
         </li>
         <li>
           <div class="tip-icon" style="background:#F3EEFF;">😤</div>
           <div class="tip-content">
             <strong>なんとなく落ち着かない・イライラが増す</strong>
-            <p>明確なパニックはなくても、ざわざわした環境が続くと徐々に疲弊していく。「今日荒れてるな」と思ったら環境の音を確認してみて。</p>
+            <p>明確なパニックはなくても、ざわざわした環境が続くと徐々に<ruby>疲弊<rt>ひへい</rt></ruby>していく。「今日荒れてるな」と思ったら環境の音を確認してみて。</p>
           </div>
         </li>
       </ul>
@@ -1564,14 +1715,14 @@ body {
           <div class="tip-icon" style="background:#F3EEFF;">🔉</div>
           <div class="tip-content">
             <strong>スタッフの声のトーン・音量を意識する</strong>
-            <p>大きな声で呼びかけるのではなく、<strong>低めの落ち着いたトーンでゆっくり</strong>話しかける。甲高い声や叫び声が刺激になることがあります。</p>
+            <p>大きな声で呼びかけるのではなく、<strong>低めの落ち着いたトーンでゆっくり</strong>話しかける。<ruby>甲高い<rt>かんだかい</rt></ruby>声や叫び声が刺激になることがあります。</p>
           </div>
         </li>
         <li>
           <div class="tip-icon" style="background:#F3EEFF;">📍</div>
           <div class="tip-content">
             <strong>静かに過ごせるスペースを確保する</strong>
-            <p>音の多い環境から離れられる「避難場所」を作っておく。限界を超える前に自分からそこへ行けるようになるのが理想。</p>
+            <p>音の多い環境から離れられる「<ruby>避難場所<rt>ひなんばしょ</rt></ruby>」を作っておく。限界を超える前に自分からそこへ行けるようになるのが理想。</p>
           </div>
         </li>
         <li>
@@ -1584,14 +1735,14 @@ body {
         <li>
           <div class="tip-icon" style="background:#F3EEFF;">👁️</div>
           <div class="tip-content">
-            <strong>視覚支援で見通しを持たせる</strong>
-            <p>「次は音楽活動があるよ」とスケジュールで伝えておくことで心の準備ができ、ストレスが下がる。ストレスが低いと聴覚過敏の症状も和らぐ。</p>
+            <strong><ruby>視覚支援<rt>しかくしえん</rt></ruby>で見通しを持たせる</strong>
+            <p>「次は音楽活動があるよ」とスケジュールで伝えておくことで心の準備ができ、ストレスが下がる。ストレスが低いと<ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>の症状も和らぐ。</p>
           </div>
         </li>
         <li>
           <div class="tip-icon" style="background:#F3EEFF;">🗺️</div>
           <div class="tip-content">
-            <strong>その子の「苦手な音マップ」を把握する</strong>
+            <strong>その子の「苦手な音マップ」を<ruby>把握<rt>はあく</rt></ruby>する</strong>
             <p>何の音で崩れるか、チームで共有しておく。「この子はサイレンより甲高い声の方がダメ」など、個別の情報を積み上げていくことが大切です。</p>
           </div>
         </li>
@@ -1606,8 +1757,8 @@ body {
       </div>
 
       <div class="content-card">
-        <p>りぷるでも使っている子がいるイヤーマフ。「なんでつけてるの？」という疑問に答えておきます。</p>
-        <p>イヤーマフは<strong>耳全体を覆う防音保護具</strong>で、周囲の音を一定量カットしてくれます。眼鏡をかける・補聴器をつけるのと同じように、<strong>感覚のバリアとして使う道具</strong>です。</p>
+        <p>実際に使っている子がいるイヤーマフ。「なんでつけてるの？」という疑問に答えておきます。</p>
+        <p>イヤーマフは<strong>耳全体を覆う<ruby>防音保護具<rt>ぼうおんほごぐ</rt></ruby></strong>で、周囲の音を一定量カットしてくれます。<ruby>眼鏡<rt>めがね</rt></ruby>をかける・<ruby>補聴器<rt>ほちょうき</rt></ruby>をつけるのと同じように、<strong>感覚のバリアとして使う道具</strong>です。</p>
         <div class="highlight-box" style="border-left-color:#7B5EA7;background:#F3EEFF;">
           <p style="color:#3A2060;">✅ イヤーマフをしているからといって、何も聞こえない・コミュニケーションできないわけではありません。音の量が「適切な量」に下がることで、<strong>むしろ落ち着いて活動に参加できる</strong>状態になります。</p>
         </div>
@@ -1636,14 +1787,14 @@ body {
 
         <div style="background:#FFF0F3;border:1.5px solid #FFCDD7;border-radius:12px;padding:16px 18px;">
           <div style="font-size:12px;font-weight:700;color:var(--pink);margin-bottom:6px;">❌ NG</div>
-          <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;">「これくらい我慢しなさい」と言う</div>
-          <p style="font-size:13px;color:var(--mid);line-height:1.8;">本人は既に限界まで我慢しています。「我慢できないのはわがまま」ではなく、脳の処理の問題です。我慢を強いることで二次障害につながります。</p>
+          <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;">「これくらい<ruby>我慢<rt>がまん</rt></ruby>しなさい」と言う</div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.8;">本人は既に限界まで我慢しています。「我慢できないのはわがまま」ではなく、脳の処理の問題です。我慢を強いることで<ruby>二次障害<rt>にじしょうがい</rt></ruby>につながります。</p>
         </div>
 
         <div style="background:#FFF0F3;border:1.5px solid #FFCDD7;border-radius:12px;padding:16px 18px;">
           <div style="font-size:12px;font-weight:700;color:var(--pink);margin-bottom:6px;">❌ NG</div>
           <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;">慣れさせようとして苦手な音に繰り返しさらす</div>
-          <p style="font-size:13px;color:var(--mid);line-height:1.8;">「慣れれば平気になる」は聴覚過敏には当てはまりません。繰り返しさらすことでパニックや自傷が増えたり、その場所・人への恐怖が強くなることがあります。</p>
+          <p style="font-size:13px;color:var(--mid);line-height:1.8;">「慣れれば平気になる」は<ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>には当てはまりません。繰り返しさらすことでパニックや<ruby>自傷<rt>じしょう</rt></ruby>が増えたり、その場所・人への恐怖が強くなることがあります。</p>
         </div>
 
         <div style="background:#FFF0F3;border:1.5px solid #FFCDD7;border-radius:12px;padding:16px 18px;">
@@ -1655,12 +1806,28 @@ body {
         <div style="background:#FFF0F3;border:1.5px solid #FFCDD7;border-radius:12px;padding:16px 18px;">
           <div style="font-size:12px;font-weight:700;color:var(--pink);margin-bottom:6px;">❌ NG</div>
           <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;">イヤーマフを「変なもの」として扱う</div>
-          <p style="font-size:13px;color:var(--mid);line-height:1.8;">眼鏡や補聴器と同じ道具です。周りの子どもも自然に受け入れられるよう、スタッフが「普通のこと」として接することが大切です。</p>
+          <p style="font-size:13px;color:var(--mid);line-height:1.8;"><ruby>眼鏡<rt>めがね</rt></ruby>や<ruby>補聴器<rt>ほちょうき</rt></ruby>と同じ道具です。周りの子どもも自然に受け入れられるよう、スタッフが「普通のこと」として接することが大切です。</p>
         </div>
 
       </div>
     </div>
 
+
+        <details class="deep-box" style="--db-color:#7B5EA7;">
+      <summary><span class="db-tag">もっと詳しく</span>感覚の問題は「<ruby>診断基準<rt>しんだんきじゅん</rt></ruby>」に入っている</summary>
+      <div class="db-body">
+        <p><ruby>感覚過敏<rt>かんかくかびん</rt></ruby>は「ASDの子にときどきある困りごと」ではありません。<strong>2013年のDSM-5から、正式にASDの診断基準の一部になりました。</strong></p>
+        <p>診断基準の中に、こう書かれています——<strong>「感覚刺激に対する<ruby>過敏<rt>かびん</rt></ruby>さまたは鈍感さ、あるいは環境の感覚的側面に対する並外れた興味」</strong>。ひとつ前の基準（DSM-IV）には、この項目はありませんでした。</p>
+        <p><strong>これが現場にとって意味すること。</strong>「音が苦手」を性格や気分やわがままの問題として扱わない、はっきりした根拠になります。感覚の問題はASDの中核的な特徴のひとつとして公式に位置づけられている、ということです。</p>
+        <p>また、この一文には<strong>「過敏さ」と「鈍感さ」と「並外れた興味」が同時に書かれています。</strong>だから——</p>
+        <ul>
+          <li>音には過敏なのに痛みには鈍い、という子がいる</li>
+          <li>苦手な感覚を避ける一方で、別の感覚は自ら強く求める（感覚探求）</li>
+        </ul>
+        <p>これらは矛盾ではなく、どれも<strong>同じ「感覚処理のアンバランス」</strong>として理解されます。この子は過敏なのか鈍いのかどっちなんだ、と悩む必要はありません。感覚ごとに違って当たり前です。</p>
+        <p class="db-note">出典：DSM-5（精神<ruby>疾患<rt>しっかん</rt></ruby>の診断・統計マニュアル 第5版）</p>
+      </div>
+    </details>
 
     <!-- 感覚まとめコラム -->
     <div class="content-section" id="h_sense">
@@ -1670,60 +1837,60 @@ body {
       </div>
 
       <div class="content-card">
-        <p>今月は聴覚過敏をメインに学びましたが、感覚の過敏さ・鈍感さは聴覚だけではありません。<strong>視覚・触覚・嗅覚・味覚・そして感覚鈍麻</strong>についても基礎知識として押さえておきましょう。</p>
+        <p>今月は<ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>をメインに学びましたが、感覚の<ruby>過敏<rt>かびん</rt></ruby>さ・鈍感さは聴覚だけではありません。<strong>視覚・触覚・嗅覚・味覚・そして<ruby>感覚鈍麻<rt>かんかくどんま</rt></ruby></strong>についても基礎知識として押さえておきましょう。</p>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:14px;">
 
         <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);border-left:4px solid #2980B9;">
-          <div style="font-weight:700;font-size:14px;color:#1A5C8A;margin-bottom:10px;">👁️ 視覚過敏</div>
-          <p style="font-size:13px;color:var(--mid);line-height:1.9;margin-bottom:10px;">光や視覚情報に強く反応する特性。蛍光灯や太陽光が「まぶしい」だけでなく<strong>「目が痛い・チクチクする」</strong>ほどの刺激になることがある。カラフルな模様・動くものが視界のノイズとなり混乱することも。先月学んだ「目が合わない」子の一因にもなっている。</p>
+          <div style="font-weight:700;font-size:14px;color:#1A5C8A;margin-bottom:10px;">👁️ <ruby>視覚過敏<rt>しかくかびん</rt></ruby></div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.9;margin-bottom:10px;">光や視覚情報に強く反応する特性。<ruby>蛍光灯<rt>けいこうとう</rt></ruby>や太陽光が「まぶしい」だけでなく<strong>「目が痛い・チクチクする」</strong>ほどの刺激になることがある。カラフルな模様・動くものが視界のノイズとなり混乱することも。先月学んだ「目が合わない」子の一因にもなっている。</p>
           <div style="background:#EBF4FF;border-radius:8px;padding:10px 14px;font-size:12px;color:#1A5C8A;line-height:1.85;">
-            <strong>現場のヒント：</strong>照明を間接光に変える・窓から離れた席にする・視覚情報が多すぎる掲示物を整理する
+            <strong>現場のヒント：</strong>照明を<ruby>間接光<rt>かんせつこう</rt></ruby>に変える・窓から離れた席にする・視覚情報が多すぎる<ruby>掲示物<rt>けいじぶつ</rt></ruby>を整理する
           </div>
         </div>
 
         <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);border-left:4px solid #27AE60;">
-          <div style="font-weight:700;font-size:14px;color:#1A6E3A;margin-bottom:10px;">🤚 触覚過敏</div>
-          <p style="font-size:13px;color:var(--mid);line-height:1.9;margin-bottom:10px;">皮膚への刺激に過剰に反応する特性。服のタグ・素材の感触・突然触れられることなどが<strong>強い不快感や痛みとして感じられる</strong>。偏食（特定の食感が耐えられない）も触覚過敏と関係していることが多い。</p>
+          <div style="font-weight:700;font-size:14px;color:#1A6E3A;margin-bottom:10px;">🤚 <ruby>触覚過敏<rt>しょっかくかびん</rt></ruby></div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.9;margin-bottom:10px;"><ruby>皮膚<rt>ひふ</rt></ruby>への刺激に過剰に反応する特性。服のタグ・素材の感触・突然触れられることなどが<strong>強い不快感や痛みとして感じられる</strong>。<ruby>偏食<rt>へんしょく</rt></ruby>（特定の食感が耐えられない）も触覚過敏と関係していることが多い。</p>
           <div style="background:#E8F7EE;border-radius:8px;padding:10px 14px;font-size:12px;color:#1A6E3A;line-height:1.85;">
             <strong>現場のヒント：</strong>突然触れない（声をかけてから）・素材の柔らかい衣類・食感への強制をしない
           </div>
         </div>
 
         <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);border-left:4px solid #E8821A;">
-          <div style="font-weight:700;font-size:14px;color:#C0601A;margin-bottom:10px;">👃 嗅覚過敏</div>
-          <p style="font-size:13px;color:var(--mid);line-height:1.9;margin-bottom:10px;">匂いを強く感じる特性。私たちには気にならない香水・食べ物・消毒液の匂いが<strong>気分が悪くなるほどの刺激</strong>になることがある。特定の場所を嫌がる・給食が食べられないといった行動の背景に嗅覚過敏があるケースも。</p>
+          <div style="font-weight:700;font-size:14px;color:#C0601A;margin-bottom:10px;">👃 <ruby>嗅覚過敏<rt>きゅうかくかびん</rt></ruby></div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.9;margin-bottom:10px;">匂いを強く感じる特性。私たちには気にならない香水・食べ物・<ruby>消毒液<rt>しょうどくえき</rt></ruby>の匂いが<strong>気分が悪くなるほどの刺激</strong>になることがある。特定の場所を嫌がる・給食が食べられないといった行動の背景に嗅覚過敏があるケースも。</p>
           <div style="background:#FFF3E0;border-radius:8px;padding:10px 14px;font-size:12px;color:#C0601A;line-height:1.85;">
-            <strong>現場のヒント：</strong>強い香りの香水・消臭剤を避ける・換気を意識する・苦手な匂いの食べ物を強制しない
+            <strong>現場のヒント：</strong>強い香りの香水・消臭剤を避ける・<ruby>換気<rt>かんき</rt></ruby>を意識する・苦手な匂いの食べ物を強制しない
           </div>
         </div>
 
         <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);border-left:4px solid #E8567A;">
-          <div style="font-weight:700;font-size:14px;color:#A01040;margin-bottom:10px;">👅 味覚過敏・偏食</div>
+          <div style="font-weight:700;font-size:14px;color:#A01040;margin-bottom:10px;">👅 <ruby>味覚過敏<rt>みかくかびん</rt></ruby>・偏食</div>
           <p style="font-size:13px;color:var(--mid);line-height:1.9;margin-bottom:10px;">特定の味・食感・温度に強く反応する特性。極端な偏食の背景には「わがまま」ではなく、<strong>その食べ物が本当に苦痛な刺激になっている</strong>ことが多い。触覚過敏（食感）と嗅覚過敏（匂い）が重なるケースも。</p>
           <div style="background:#FFF0F3;border-radius:8px;padding:10px 14px;font-size:12px;color:#A01040;line-height:1.85;">
-            <strong>現場のヒント：</strong>「食べない＝わがまま」と決めつけない・食べられるものを把握する・無理強いは絶対にしない
+            <strong>現場のヒント：</strong>「食べない＝わがまま」と決めつけない・食べられるものを<ruby>把握<rt>はあく</rt></ruby>する・無理強いは絶対にしない
           </div>
         </div>
 
         <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);border-left:4px solid #2C3E50;">
           <div style="font-weight:700;font-size:14px;color:#2C3E50;margin-bottom:10px;">⚡ 感覚鈍麻（感覚が鈍い）</div>
-          <p style="font-size:13px;color:var(--mid);line-height:1.9;margin-bottom:10px;">感覚過敏の逆で、刺激を感じにくい状態。<strong>怪我しても痛みに気づかない・暑さ寒さを感じにくい・呼んでも反応しない</strong>ことがある。感覚が足りないために強い刺激を自ら求める行動＝「感覚探求（センサリーシーキング）」につながることも。</p>
+          <p style="font-size:13px;color:var(--mid);line-height:1.9;margin-bottom:10px;"><ruby>感覚過敏<rt>かんかくかびん</rt></ruby>の逆で、刺激を感じにくい状態。<strong>怪我しても痛みに気づかない・暑さ寒さを感じにくい・呼んでも反応しない</strong>ことがある。感覚が足りないために強い刺激を自ら求める行動＝「感覚探求（センサリーシーキング）」につながることも。</p>
 
           <!-- センサリーシーキング一覧 -->
           <div style="background:#F8F9FA;border-radius:10px;padding:14px 16px;margin-bottom:12px;">
-            <div style="font-size:12px;font-weight:700;color:#2C3E50;margin-bottom:10px;">🔍 りぷるでもよく見られる センサリーシーキングの例</div>
+            <div style="font-size:12px;font-weight:700;color:#2C3E50;margin-bottom:10px;">🔍 現場でよく見られる センサリーシーキングの例</div>
 
             <div style="display:flex;flex-direction:column;gap:8px;">
 
               <div style="background:#fff;border-radius:8px;padding:10px 14px;border-left:3px solid #9B59B6;">
-                <div style="font-size:12px;font-weight:700;color:#7B5EA7;margin-bottom:4px;">🌀 前庭感覚（揺れ・バランス）</div>
+                <div style="font-size:12px;font-weight:700;color:#7B5EA7;margin-bottom:4px;">🌀 <ruby>前庭感覚<rt>ぜんていかんかく</rt></ruby>（揺れ・バランス）</div>
                 <p style="font-size:12px;color:var(--mid);line-height:1.75;">ぐるぐる回り続ける／ブランコを長時間こぎ続ける／頻繁にジャンプする／激しく揺れる</p>
               </div>
 
               <div style="background:#fff;border-radius:8px;padding:10px 14px;border-left:3px solid #2980B9;">
-                <div style="font-size:12px;font-weight:700;color:#1A5C8A;margin-bottom:4px;">💪 固有受容感覚（筋肉・関節）</div>
+                <div style="font-size:12px;font-weight:700;color:#1A5C8A;margin-bottom:4px;">💪 <ruby>固有受容感覚<rt>こゆうじゅようかんかく</rt></ruby>（筋肉・関節）</div>
                 <p style="font-size:12px;color:var(--mid);line-height:1.75;">わざと壁や人にぶつかる／床を強く踏み鳴らす／重いものを持ちたがる／きつい服を好む</p>
               </div>
 
@@ -1733,7 +1900,7 @@ body {
               </div>
 
               <div style="background:#fff;border-radius:8px;padding:10px 14px;border-left:3px solid #E8821A;">
-                <div style="font-size:12px;font-weight:700;color:#C0601A;margin-bottom:4px;">👄 口腔感覚（噛む・味わう）</div>
+                <div style="font-size:12px;font-weight:700;color:#C0601A;margin-bottom:4px;">👄 <ruby>口腔感覚<rt>こうくうかんかく</rt></ruby>（噛む・味わう）</div>
                 <p style="font-size:12px;color:var(--mid);line-height:1.75;">服の袖や鉛筆などを噛む／口の中に手を入れる／特定の硬いものを好んで食べる</p>
               </div>
 
@@ -1757,7 +1924,7 @@ body {
       </div>
 
       <div class="highlight-box" style="border-left-color:#7B5EA7;background:#F3EEFF;margin-top:16px;">
-        <p style="color:#3A2060;">⚠️ <strong>過敏と鈍麻は同じ子に混在することがある</strong><br>
+        <p style="color:#3A2060;">⚠️ <strong>過敏と<ruby>鈍麻<rt>どんま</rt></ruby>は同じ子に混在することがある</strong><br>
         「音には過敏なのに痛みには鈍い」というように、感覚の種類によって過敏・鈍麻が混在するケースは珍しくありません。一見矛盾しているように見えますが、どちらも同じ「感覚処理のアンバランス」として理解することが大切です。</p>
       </div>
     </div>
@@ -1777,7 +1944,7 @@ body {
         <div class="quiz-q"><span class="quiz-q-num" style="background:#7B5EA7;">Q1</span>同じ子でも「昨日は平気だったのに今日は崩れた」ことがある。この現象を最もよく説明しているものはどれですか？</div>
         <div class="quiz-options">
           <button class="quiz-opt" onclick="answerHQuiz(1,this,false)">日々の成長とともに脳が発達し、処理できる刺激の量が変動するから</button>
-          <button class="quiz-opt" onclick="answerHQuiz(1,this,false)">その日の活動量や睡眠不足が、筋肉や神経の疲労として蓄積されるから</button>
+          <button class="quiz-opt" onclick="answerHQuiz(1,this,false)">その日の活動量や睡眠不足が、筋肉や神経の疲労として<ruby>蓄積<rt>ちくせき</rt></ruby>されるから</button>
           <button class="quiz-opt" onclick="answerHQuiz(1,this,true)">その日の心理的な緊張や不安の高さが、脳の情報処理のゆとりを奪うから</button>
         </div>
         <div class="quiz-result" id="hqres1"></div>
@@ -1838,9 +2005,9 @@ body {
         <h2 class="section-heading">今月のまとめ</h2>
       </div>
       <div class="content-card">
-        <p>🌊 聴覚過敏は「うるさいのが嫌なだけ」ではなく、<strong>音が痛みや恐怖として処理される脳の特性</strong>です。先月学んだASDの「感覚の過敏さ」のひとつです。</p>
+        <p>🌊 <ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>は「うるさいのが嫌なだけ」ではなく、<strong>音が痛みや恐怖として処理される脳の特性</strong>です。先月学んだASDの「感覚の<ruby>過敏<rt>かびん</rt></ruby>さ」のひとつです。</p>
         <p>苦手な音は<strong>一人ひとり全く違います。</strong>「なんの音のときに崩れるか」を観察・記録してチームで共有することが、その子への最善の支援につながります。</p>
-        <p>やってはいけないのは「我慢させる」「慣れさせる」「パニック中に大きな声をかける」こと。まず音の刺激を減らして、<strong>安心できる環境を整える</strong>ことが基本です。</p>
+        <p>やってはいけないのは「<ruby>我慢<rt>がまん</rt></ruby>させる」「慣れさせる」「パニック中に大きな声をかける」こと。まず音の刺激を減らして、<strong>安心できる環境を整える</strong>ことが基本です。</p>
       </div>
 
       <div class="next-month" style="background:#1A3A3A;">
@@ -1862,7 +2029,7 @@ body {
   <footer class="asd-footer">
     <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
     スタッフ研修資料 Month 02 · 2026年5月<br>
-    参考：国立精神・神経医療研究センター / LITALICO発達ナビ / 北海道大学大学院 / コペルプラス
+    参考：国立精神・神経医療研究センター / LITALICO発達ナビ / コペルプラス
   </footer>
 
 </div><!-- /page-hearing -->
@@ -1903,27 +2070,27 @@ body {
     <div class="content-section" id="a1">
       <div class="section-eyebrow">
         <div class="section-num" style="background:#2980B9;">1</div>
-        <h2 class="section-heading">ADHD（注意欠如多動症）とは？</h2>
+        <h2 class="section-heading">ADHD（<ruby>注意欠如多動症<rt>ちゅういけつじょたどうしょう</rt></ruby>）とは？</h2>
       </div>
       <div class="content-card">
-        <p>ADHDは発達障害のひとつです。生まれつきの<strong>脳の働き方の特性</strong>によって生じるもので、育て方や本人の努力不足が原因ではありません。</p>
-        <p>主な特性は<strong>「不注意」「多動性」「衝動性」</strong>の3つで、現れ方は一人ひとり異なります。「じっとしていられない」「急に飛び出す」「手が先に出る」——現場でよく経験する場面ではないでしょうか。</p>
+        <p>ADHDは<ruby>発達障害<rt>はったつしょうがい</rt></ruby>のひとつです。生まれつきの<strong>脳の働き方の特性</strong>によって生じるもので、育て方や本人の努力不足が原因ではありません。</p>
+        <p>主な特性は<strong>「<ruby>不注意<rt>ふちゅうい</rt></ruby>」「<ruby>多動性<rt>たどうせい</rt></ruby>」「<ruby>衝動性<rt>しょうどうせい</rt></ruby>」</strong>の3つで、現れ方は一人ひとり異なります。「じっとしていられない」「急に飛び出す」「手が先に出る」——現場でよく経験する場面ではないでしょうか。</p>
         <div class="highlight-box" style="border-left-color:#2980B9;background:#EBF5FB;">
-          <p style="color:#1A4A7A;">💡 以前は「注意欠陥多動性障害」と呼ばれていましたが、現在は<strong>「注意欠如多動症」</strong>という名称が使われています。「症」という字には、病気ではなく「状態・特性」というニュアンスが込められています。</p>
+          <p style="color:#1A4A7A;">💡 以前は「<ruby>注意欠陥多動性障害<rt>ちゅういけっかんたどうせいしょうがい</rt></ruby>」と呼ばれていましたが、現在は<strong>「注意欠如多動症」</strong>という名称が使われています。「症」という字には、病気ではなく「状態・特性」というニュアンスが込められています。</p>
         </div>
       </div>
       <div class="stat-row">
         <div class="stat-box" style="border-top-color:#2980B9;">
           <div class="stat-num" style="color:#2980B9;">3〜7<span style="font-size:12px">%</span></div>
-          <div class="stat-label">学齢期の子どもに<br>見られる有病率</div>
+          <div class="stat-label">学齢期の子どもに<br>見られる<ruby>有病率<rt>ゆうびょうりつ</rt></ruby></div>
         </div>
         <div class="stat-box" style="border-top-color:#2980B9;">
           <div class="stat-num" style="color:#2980B9;">2〜3<span style="font-size:12px">倍</span></div>
-          <div class="stat-label">男の子に多く<br>見られる傾向</div>
+          <div class="stat-label">男の子に多く<br>見られる<ruby>傾向<rt>けいこう</rt></ruby></div>
         </div>
         <div class="stat-box" style="border-top-color:#2980B9;">
           <div class="stat-num" style="color:#2980B9;">70〜80<span style="font-size:12px">%</span></div>
-          <div class="stat-label">遺伝的な要因が<br>関係するとされる割合</div>
+          <div class="stat-label"><ruby>遺伝<rt>いでん</rt></ruby>的な要因が<br>関係するとされる割合</div>
         </div>
       </div>
       <p class="source-note">参考：LITALICO発達ナビ / AIAI VISIT / 国立精神・神経医療研究センター</p>
@@ -1937,11 +2104,11 @@ body {
       </div>
       <div class="content-card">
         <p>ADHDの脳では、<strong>前頭前野（ぜんとうぜんや）</strong>という部分の働きに偏りがあると考えられています。前頭前野は「思考・判断・注意・感情のコントロール」を担う、いわば<strong>脳の司令塔</strong>です。</p>
-        <p>この司令塔を動かす燃料が、神経伝達物質の<strong>ドーパミン</strong>と<strong>ノルアドレナリン</strong>です。ADHDの脳ではこれらの量が不安定で、うまく分泌・伝達されないことがあります。</p>
+        <p>この司令塔を動かす燃料が、<ruby>神経伝達物質<rt>しんけいでんたつぶっしつ</rt></ruby>の<strong>ドーパミン</strong>と<strong>ノルアドレナリン</strong>です。ADHDの脳ではこれらの量が不安定で、うまく分泌・伝達されないことがあります。</p>
         <div class="highlight-box" style="border-left-color:#2980B9;background:#EBF5FB;">
-          <p style="color:#1A4A7A;">🧠 <strong>わかりやすく言うと——</strong><br>脳に「アクセル（興奮系）」と「ブレーキ（抑制系）」があるとすると、ADHDの子はアクセルが強くブレーキが弱い状態です。「やめたくてもやめられない」「止まりたくても止まれない」のは、意志の問題ではなく<strong>脳のブレーキが効きにくい</strong>からです。</p>
+          <p style="color:#1A4A7A;">🧠 <strong>わかりやすく言うと——</strong><br>脳に「アクセル（<ruby>興奮系<rt>こうふんけい</rt></ruby>）」と「ブレーキ（<ruby>抑制系<rt>よくせいけい</rt></ruby>）」があるとすると、ADHDの子はアクセルが強くブレーキが弱い状態です。「やめたくてもやめられない」「止まりたくても止まれない」のは、意志の問題ではなく<strong>脳のブレーキが効きにくい</strong>からです。</p>
         </div>
-        <p>また、<strong>好きなことにはドーパミンが十分出て過集中になる</strong>一方、そうでないことには出にくく集中できない、という特性もあります。「ゲームはずっとできるのに活動は全然集中できない」のも、このためです。</p>
+        <p>また、<strong>好きなことにはドーパミンが十分出て<ruby>過集中<rt>かしゅうちゅう</rt></ruby>になる</strong>一方、そうでないことには出にくく集中できない、という特性もあります。「ゲームはずっとできるのに活動は全然集中できない」のも、このためです。</p>
       </div>
     </div>
 
@@ -1956,8 +2123,8 @@ body {
 
         <div class="feature-card" style="background:#EBF5FB;border:1.5px solid #AED6F1;">
           <span class="fc-icon">🌀</span>
-          <div class="fc-title">① 不注意</div>
-          <p class="fc-desc">気が散りやすく、ひとつのことに集中し続けることが難しい。忘れ物・なくし物が多い。一方で、<strong>好きなことには過集中</strong>して声をかけても気づかないことも。</p>
+          <div class="fc-title">① <ruby>不注意<rt>ふちゅうい</rt></ruby></div>
+          <p class="fc-desc">気が散りやすく、ひとつのことに集中し続けることが難しい。忘れ物・なくし物が多い。一方で、<strong>好きなことには<ruby>過集中<rt>かしゅうちゅう</rt></ruby></strong>して声をかけても気づかないことも。</p>
           <div class="fc-example" style="border-left-color:#2980B9;color:#1A4A7A;">
             例：活動の途中でほかのものに気が移る／指示を聞いていても忘れる／呼んでも反応しない（集中しすぎ）
           </div>
@@ -1965,7 +2132,7 @@ body {
 
         <div class="feature-card" style="background:#FEF9E7;border:1.5px solid #F9E79F;">
           <span class="fc-icon">🏃</span>
-          <div class="fc-title">② 多動性</div>
+          <div class="fc-title">② <ruby>多動性<rt>たどうせい</rt></ruby></div>
           <p class="fc-desc">じっとしているのが苦手で、常に体のどこかが動いている。エンジンに突き動かされるように動き続けていないと落ち着かない状態。<strong>悪意や反抗ではない。</strong></p>
           <div class="fc-example" style="border-left-color:#E8821A;color:#7A4000;">
             例：席についていられない・すぐ立ち上がる／走り回る・飛び出す／手足がいつもモゾモゾしている
@@ -1974,7 +2141,7 @@ body {
 
         <div class="feature-card" style="background:#FDEDEC;border:1.5px solid #F1948A;">
           <span class="fc-icon">⚡</span>
-          <div class="fc-title">③ 衝動性</div>
+          <div class="fc-title">③ <ruby>衝動性<rt>しょうどうせい</rt></ruby></div>
           <p class="fc-desc">考える前に行動してしまう。脳の中で「ちょっと待てよ」というブレーキが効きにくい状態。本人も「やってしまった」と後から気づくことが多い。</p>
           <div class="fc-example" style="border-left-color:#E74C3C;color:#7A1A1A;">
             例：気になったものに触ってしまう／他の子に急に手が出る／順番が待てない／飛び出す
@@ -1988,6 +2155,21 @@ body {
       </div>
     </div>
 
+        <details class="deep-box" style="--db-color:#2980B9;">
+      <summary><span class="db-tag">もっと詳しく</span><ruby>診断基準<rt>しんだんきじゅん</rt></ruby>を実際に見てみる（DSM-5）</summary>
+      <div class="db-body">
+        <p>ADHDの診断は「落ち着きがない」という印象では決まりません。DSM-5では次の条件をすべて満たすことが必要とされています。</p>
+        <div class="db-row"><div class="db-row-k">症状の数</div><div class="db-row-v">「不注意」9項目、「多動性・衝動性」9項目のうち、<strong>どちらかで6つ以上</strong>が6か月以上続いている（17歳以上は5つ以上）</div></div>
+        <div class="db-row"><div class="db-row-k">始まった<br>時期</div><div class="db-row-v"><strong>12歳になる前</strong>から、いくつかの症状があったこと</div></div>
+        <div class="db-row"><div class="db-row-k">場面</div><div class="db-row-v"><strong>2つ以上の場面</strong>（家庭・学校・事業所など）で見られること</div></div>
+        <div class="db-row"><div class="db-row-k">支障</div><div class="db-row-v">生活・学業・対人関係に明らかな支障が出ていること</div></div>
+        <div class="db-row"><div class="db-row-k"><ruby>除外<rt>じょがい</rt></ruby></div><div class="db-row-v">他の<ruby>疾患<rt>しっかん</rt></ruby>や状態では、うまく説明できないこと</div></div>
+        <p><strong>「2つ以上の場面」がポイントです。</strong>家では落ち着いているのに事業所では動き回る、あるいはその逆——という場合、それだけでADHDとは言えません。逆にいえば、<strong>私たちが事業所で見ている姿は診断にとって重要な情報</strong>です。</p>
+        <p>「今日は活動に入れなかった」「呼びかけ3回で気づいた」といった記録が、医療や保護者にとって手がかりになります。<strong>ただし診断するのは医師です。</strong>職員は見たままを正確に伝える役割に徹してください。</p>
+        <p class="db-note">出典：DSM-5（精神疾患の診断・統計マニュアル 第5版）/ DSM-5-TR</p>
+      </div>
+    </details>
+
     <!-- A4 -->
     <div class="content-section" id="a4">
       <div class="section-eyebrow">
@@ -1996,7 +2178,7 @@ body {
       </div>
 
       <div class="content-card">
-        <p>ASDとADHDは<strong>別々の発達障害</strong>ですが、特性が重なって見えることが多く、現場での見極めが難しいケースがよくあります。</p>
+        <p>ASDとADHDは<strong>別々の<ruby>発達障害<rt>はったつしょうがい</rt></ruby></strong>ですが、特性が重なって見えることが多く、現場での見極めが難しいケースがよくあります。</p>
         <p>「同じ行動なのに原因が違う」ということを知っておくと、支援の方向性が変わります。</p>
       </div>
 
@@ -2012,7 +2194,7 @@ body {
             <div style="display:flex;flex-direction:column;gap:6px;">
               <div style="padding:10px 14px;background:#EBF5FB;border-radius:6px;">
                 <div style="font-size:11px;font-weight:700;color:#2980B9;margin-bottom:3px;">🔵 ADHD の場合</div>
-                <div style="font-size:12px;color:var(--text);line-height:1.75;">気になるものが見えた瞬間、脳のブレーキが間に合わず体が動いた（<strong>衝動性</strong>）</div>
+                <div style="font-size:12px;color:var(--text);line-height:1.75;">気になるものが見えた瞬間、脳のブレーキが間に合わず体が動いた（<strong><ruby>衝動性<rt>しょうどうせい</rt></ruby></strong>）</div>
               </div>
               <div style="padding:10px 14px;background:#E8F5E8;border-radius:6px;">
                 <div style="font-size:11px;font-weight:700;color:#27AE60;margin-bottom:3px;">🟢 ASD の場合</div>
@@ -2031,7 +2213,7 @@ body {
               </div>
               <div style="padding:10px 14px;background:#E8F5E8;border-radius:6px;">
                 <div style="font-size:11px;font-weight:700;color:#27AE60;margin-bottom:3px;">🟢 ASD の場合</div>
-                <div style="font-size:12px;color:var(--text);line-height:1.75;">感覚過敏でパニック中・言葉で伝えられない苦痛が行動になった（<strong>感覚過敏／コミュニケーション困難</strong>）</div>
+                <div style="font-size:12px;color:var(--text);line-height:1.75;"><ruby>感覚過敏<rt>かんかくかびん</rt></ruby>でパニック中・言葉で伝えられない苦痛が行動になった（<strong>感覚過敏／コミュニケーション困難</strong>）</div>
               </div>
             </div>
           </div>
@@ -2042,7 +2224,7 @@ body {
             <div style="display:flex;flex-direction:column;gap:6px;">
               <div style="padding:10px 14px;background:#EBF5FB;border-radius:6px;">
                 <div style="font-size:11px;font-weight:700;color:#2980B9;margin-bottom:3px;">🔵 ADHD の場合</div>
-                <div style="font-size:12px;color:var(--text);line-height:1.75;">注意が別のものに向いていて、意識が活動に戻ってこない（<strong>不注意</strong>）</div>
+                <div style="font-size:12px;color:var(--text);line-height:1.75;">注意が別のものに向いていて、意識が活動に戻ってこない（<strong><ruby>不注意<rt>ふちゅうい</rt></ruby></strong>）</div>
               </div>
               <div style="padding:10px 14px;background:#E8F5E8;border-radius:6px;">
                 <div style="font-size:11px;font-weight:700;color:#27AE60;margin-bottom:3px;">🟢 ASD の場合</div>
@@ -2057,7 +2239,7 @@ body {
             <div style="display:flex;flex-direction:column;gap:6px;">
               <div style="padding:10px 14px;background:#EBF5FB;border-radius:6px;">
                 <div style="font-size:11px;font-weight:700;color:#2980B9;margin-bottom:3px;">🔵 ADHD の場合</div>
-                <div style="font-size:12px;color:var(--text);line-height:1.75;">好きなことへの過集中で、外からの刺激が脳に届いていない（<strong>過集中</strong>）</div>
+                <div style="font-size:12px;color:var(--text);line-height:1.75;">好きなことへの<ruby>過集中<rt>かしゅうちゅう</rt></ruby>で、外からの刺激が脳に届いていない（<strong>過集中</strong>）</div>
               </div>
               <div style="padding:10px 14px;background:#E8F5E8;border-radius:6px;">
                 <div style="font-size:11px;font-weight:700;color:#27AE60;margin-bottom:3px;">🟢 ASD の場合</div>
@@ -2105,7 +2287,7 @@ body {
               <tr>
                 <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#555;">感覚の問題</td>
                 <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">比較的少ない</td>
-                <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">多くの人に感覚過敏・鈍麻がある</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;text-align:center;color:var(--text);">多くの人に感覚過敏・<ruby>鈍麻<rt>どんま</rt></ruby>がある</td>
               </tr>
             </tbody>
           </table>
@@ -2127,7 +2309,7 @@ body {
       </div>
 
       <div class="content-card">
-        <p>「不注意・多動・衝動性」の3つの特性がどのように組み合わさるかで、ADHDは3つのタイプに分けられます。現場でよく聞く「A」「H」「C」という略称はDSM-IVという古い診断基準の時代から使われていたもので、現在のDSM-5でも同じ3区分が「発現型（Presentation）」として整理されています。</p>
+        <p>「<ruby>不注意<rt>ふちゅうい</rt></ruby>・多動・<ruby>衝動性<rt>しょうどうせい</rt></ruby>」の3つの特性がどのように組み合わさるかで、ADHDは3つのタイプに分けられます。現場でよく聞く「A」「H」「C」という言い方は<strong>正式な<ruby>診断名<rt>しんだんめい</rt></ruby>ではなく通称</strong>です。<ruby>診断基準<rt>しんだんきじゅん</rt></ruby>の上では、DSM-IVで「型（Type）」、現在のDSM-5では「発現型（Presentation）」として同じ3区分が整理されています。</p>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:12px;">
@@ -2138,7 +2320,7 @@ body {
             <div style="display:flex;flex-direction:column;gap:4px;">
               <div style="display:flex;gap:6px;align-items:center;">
                 <span style="background:#2980B9;color:#fff;font-size:13px;font-weight:700;padding:2px 10px;border-radius:6px;">ADHD-PI</span>
-                <span style="background:#EBF5FB;color:#1A5C8A;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;">旧：ADD / ADHD-A</span>
+                <span style="background:#EBF5FB;color:#1A5C8A;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;">通称：ADD ／ Aタイプ</span>
               </div>
               <div style="font-size:14px;font-weight:700;color:var(--dark);">不注意優勢型</div>
             </div>
@@ -2146,7 +2328,7 @@ body {
           <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">
             <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#2980B9;flex-shrink:0;">▸</span><span>ぼーっとしている・活動に入れない</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#2980B9;flex-shrink:0;">▸</span><span>指示を聞いていても途中で忘れる</span></div>
-            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#2980B9;flex-shrink:0;">▸</span><span>好きなことへの過集中は起きやすい</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#2980B9;flex-shrink:0;">▸</span><span>好きなことへの<ruby>過集中<rt>かしゅうちゅう</rt></ruby>は起きやすい</span></div>
           </div>
           <div style="background:#EBF5FB;border-radius:8px;padding:10px 14px;font-size:12px;color:#1A5C8A;line-height:1.85;">
             ⚠️ 静かで目立たないため見落とされやすい。特に女性・大人になってから診断されるケースが多い。
@@ -2158,8 +2340,8 @@ body {
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1.5px solid #F1948A;">
             <div style="display:flex;flex-direction:column;gap:4px;">
               <div style="display:flex;gap:6px;align-items:center;">
-                <span style="background:#E74C3C;color:#fff;font-size:13px;font-weight:700;padding:2px 10px;border-radius:6px;">ADHD-PH</span>
-                <span style="background:#FDEDEC;color:#B03A2E;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;">旧：ADHD-H</span>
+                <span style="background:#E74C3C;color:#fff;font-size:13px;font-weight:700;padding:2px 10px;border-radius:6px;">ADHD-HI</span>
+                <span style="background:#FDEDEC;color:#B03A2E;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;">通称：Hタイプ</span>
               </div>
               <div style="font-size:14px;font-weight:700;color:var(--dark);">多動・衝動性優勢型</div>
             </div>
@@ -2204,20 +2386,20 @@ body {
           <table style="width:100%;border-collapse:collapse;font-size:12px;">
             <thead>
               <tr>
-                <th style="padding:8px 10px;background:#F5F5F5;border:1px solid #E0E0E0;color:#555;text-align:left;">旧称（DSM-IV）</th>
+                <th style="padding:8px 10px;background:#F5F5F5;border:1px solid #E0E0E0;color:#555;text-align:left;">通称・旧称</th>
                 <th style="padding:8px 10px;background:#F5F5F5;border:1px solid #E0E0E0;color:#555;text-align:left;">現在（DSM-5）</th>
                 <th style="padding:8px 10px;background:#F5F5F5;border:1px solid #E0E0E0;color:#555;text-align:left;">特性</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#2980B9;">ADD / ADHD-A</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#2980B9;">ADD ／ Aタイプ</td>
                 <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#2980B9;">ADHD-PI</td>
                 <td style="padding:8px 10px;border:1px solid #E0E0E0;color:var(--mid);">不注意優勢</td>
               </tr>
               <tr style="background:#FAFAFA;">
-                <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#E74C3C;">ADHD-H</td>
-                <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#E74C3C;">ADHD-PH</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#E74C3C;">Hタイプ</td>
+                <td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;color:#E74C3C;">ADHD-HI</td>
                 <td style="padding:8px 10px;border:1px solid #E0E0E0;color:var(--mid);">多動・衝動性優勢</td>
               </tr>
               <tr>
@@ -2249,7 +2431,7 @@ body {
 
         <!-- 多動性 -->
         <div style="background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow-card);">
-          <div style="font-weight:700;font-size:13px;color:#C0601A;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #FFD080;">🏃 多動性（じっとしていられない）</div>
+          <div style="font-weight:700;font-size:13px;color:#C0601A;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #FFD080;">🏃 <ruby>多動性<rt>たどうせい</rt></ruby>（じっとしていられない）</div>
           <div style="display:flex;flex-direction:column;gap:6px;">
             <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E8821A;flex-shrink:0;">▸</span><span>席についていられず、すぐ立ち上がる・うろうろする</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E8821A;flex-shrink:0;">▸</span><span>走り回る・ジャンプし続ける</span></div>
@@ -2261,7 +2443,7 @@ body {
 
         <!-- 衝動性 -->
         <div style="background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow-card);">
-          <div style="font-weight:700;font-size:13px;color:#B03A2E;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #F1948A;">⚡ 衝動性（考える前に動いてしまう）</div>
+          <div style="font-weight:700;font-size:13px;color:#B03A2E;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #F1948A;">⚡ <ruby>衝動性<rt>しょうどうせい</rt></ruby>（考える前に動いてしまう）</div>
           <div style="display:flex;flex-direction:column;gap:6px;">
             <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E74C3C;flex-shrink:0;">▸</span><span>気になるものが見えた瞬間に飛び出す</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#E74C3C;flex-shrink:0;">▸</span><span>他の子への接触が急すぎて「叩いた・押した」になる</span></div>
@@ -2274,7 +2456,7 @@ body {
 
         <!-- 不注意 -->
         <div style="background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow-card);">
-          <div style="font-weight:700;font-size:13px;color:#1A5C8A;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #AED6F1;">🌀 不注意（集中が続かない・気が散る）</div>
+          <div style="font-weight:700;font-size:13px;color:#1A5C8A;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #AED6F1;">🌀 <ruby>不注意<rt>ふちゅうい</rt></ruby>（集中が続かない・気が散る）</div>
           <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">
             <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#2980B9;flex-shrink:0;">▸</span><span>活動の途中で別のものに気が移ってそのまま</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#2980B9;flex-shrink:0;">▸</span><span>指示を聞いていても途中で忘れる</span></div>
@@ -2286,7 +2468,7 @@ body {
           <!-- 不注意タイプ深掘り -->
           <div style="background:#EBF5FB;border-radius:8px;padding:12px 14px;border-left:3px solid #2980B9;">
             <div style="font-size:12px;font-weight:700;color:#1A5C8A;margin-bottom:6px;">⚠️ 不注意タイプが見落とされやすい理由</div>
-            <p style="font-size:12px;color:var(--mid);line-height:1.85;margin-bottom:6px;">多動・衝動タイプは目立つ行動があるため気づかれやすいですが、<strong>不注意タイプは静かで目立たない</strong>ため支援が遅れがちです。特に女の子に多い傾向があります。</p>
+            <p style="font-size:12px;color:var(--mid);line-height:1.85;margin-bottom:6px;">多動・衝動タイプは目立つ行動があるため気づかれやすいですが、<strong>不注意タイプは静かで目立たない</strong>ため支援が遅れがちです。特に女の子に多い<ruby>傾向<rt>けいこう</rt></ruby>があります。</p>
             <p style="font-size:12px;color:var(--mid);line-height:1.85;margin-bottom:6px;">「ぼーっとしているだけ」「やる気がない」と思われがちですが、本人は<strong>集中したくてもできない</strong>という苦しさを抱えています。</p>
             <div style="background:#fff;border-radius:6px;padding:8px 12px;font-size:11px;color:#1A5C8A;line-height:1.8;">
               📌 見分けのポイント：<strong>好きな活動では集中できているか？</strong> できているなら不注意タイプのADHDの可能性があります。
@@ -2296,7 +2478,7 @@ body {
 
         <!-- 過集中 -->
         <div style="background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow-card);">
-          <div style="font-weight:700;font-size:13px;color:#6C3483;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #D2B4DE;">🔍 過集中（好きなことには止まれない）</div>
+          <div style="font-weight:700;font-size:13px;color:#6C3483;margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid #D2B4DE;">🔍 <ruby>過集中<rt>かしゅうちゅう</rt></ruby>（好きなことには止まれない）</div>
           <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">
             <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#8E44AD;flex-shrink:0;">▸</span><span>好きな遊びや動画を止めようとするとパニックになる</span></div>
             <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.75;"><span style="color:#8E44AD;flex-shrink:0;">▸</span><span>呼んでも全く気づかない（集中しすぎ）</span></div>
@@ -2327,14 +2509,14 @@ body {
           <div class="tip-icon" style="background:#EBF5FB;">🚫→✅</div>
           <div class="tip-content">
             <strong>「ダメ」より「代わりの行動」を示す</strong>
-            <p>「走ったらダメ」より「廊下は歩こう」、「触ったらダメ」より「手はひざに置こう」。<strong>禁止より代替行動</strong>を伝える方が、脳にとって理解しやすく行動が変わりやすい。</p>
+            <p>「走ったらダメ」より「廊下は歩こう」、「触ったらダメ」より「手はひざに置こう」。<strong>禁止より<ruby>代替行動<rt>だいたいこうどう</rt></ruby></strong>を伝える方が、脳にとって理解しやすく行動が変わりやすい。</p>
           </div>
         </li>
         <li>
           <div class="tip-icon" style="background:#EBF5FB;">👁️</div>
           <div class="tip-content">
             <strong>視界の刺激を減らす</strong>
-            <p>気が散りやすい子には、視界に入るおもちゃ・掲示物を減らし、活動に集中しやすい環境を整える。<strong>「見えなければ気にならない」</strong>のが基本の発想。</p>
+            <p>気が散りやすい子には、視界に入るおもちゃ・<ruby>掲示物<rt>けいじぶつ</rt></ruby>を減らし、活動に集中しやすい環境を整える。<strong>「見えなければ気にならない」</strong>のが基本の発想。</p>
           </div>
         </li>
         <li>
@@ -2355,18 +2537,39 @@ body {
           <div class="tip-icon" style="background:#EBF5FB;">🌟</div>
           <div class="tip-content">
             <strong>小さな「できた」を即座に褒める</strong>
-            <p>ADHDの子は叱られる経験が多く、自己肯定感が下がりやすい。<strong>「待てたね」「一回止まれたね」を見逃さず、すぐに言葉にして伝える</strong>ことが自信につながる。</p>
+            <p>ADHDの子は叱られる経験が多く、<ruby>自己肯定感<rt>じここうていかん</rt></ruby>が下がりやすい。<strong>「待てたね」「一回止まれたね」を見逃さず、すぐに言葉にして伝える</strong>ことが自信につながる。</p>
           </div>
         </li>
         <li>
           <div class="tip-icon" style="background:#EBF5FB;">📋</div>
           <div class="tip-content">
             <strong>見えるルールをつくる</strong>
-            <p>口頭だけの指示は忘れやすい。絵や文字でルールを視覚化し、「見れば思い出せる」状態にしておく。先月学んだ<strong>視覚支援</strong>がADHDにも有効。</p>
+            <p>口頭だけの指示は忘れやすい。絵や文字でルールを視覚化し、「見れば思い出せる」状態にしておく。先月学んだ<strong><ruby>視覚支援<rt>しかくしえん</rt></ruby></strong>がADHDにも有効。</p>
           </div>
         </li>
       </ul>
     </div>
+
+        <details class="deep-box" style="--db-color:#2980B9;">
+      <summary><span class="db-tag">もっと詳しく</span>薬の話——保護者から聞かれたときのために</summary>
+      <div class="db-body">
+        <p>「薬を飲ませた方がいいんでしょうか」と聞かれることがあります。<strong>答えるのは私たちの仕事ではありません</strong>が、何が使われているかを知らないと会話が成り立ちません。</p>
+        <p>日本で子どもに使える主なADHD治療薬は4つです。</p>
+        <div class="db-row"><div class="db-row-k">コンサータ</div><div class="db-row-v">メチルフェニデート<ruby>徐放錠<rt>じょほうじょう</rt></ruby>。<strong><ruby>中枢神経刺激薬<rt>ちゅうすうしんけいしげきやく</rt></ruby></strong>。ドーパミンなどの働きを高める</div></div>
+        <div class="db-row"><div class="db-row-k">ビバンセ</div><div class="db-row-v">リスデキサンフェタミン。<strong>中枢神経刺激薬</strong>。体内で作用する成分に変わって効く</div></div>
+        <div class="db-row"><div class="db-row-k">ストラテラ</div><div class="db-row-v">アトモキセチン。<strong>非刺激薬</strong>。ノルアドレナリンの<ruby>再取り込み<rt>さいとりこみ</rt></ruby>を抑える</div></div>
+        <div class="db-row"><div class="db-row-k">インチュニブ</div><div class="db-row-v">グアンファシン徐放錠。<strong>非刺激薬</strong>。イライラや<ruby>過敏<rt>かびん</rt></ruby>さを穏やかにする働きもある</div></div>
+        <p><strong>薬は特性を消すものではありません。</strong>困りごとを減らして、関わりや学習が届きやすい状態をつくるためのものです。効き方も副作用も個人差が大きく、飲み始めや変更のタイミングで様子が変わることがあります。</p>
+        <p><strong>職員の役割はここです。</strong></p>
+        <ul>
+          <li>薬の要否や良し悪しを<strong>判断しない・勧めない・否定しない</strong></li>
+          <li>事業所での様子——<strong><ruby>食欲<rt>しょくよく</rt></ruby>・睡眠・活動量・<ruby>情緒<rt>じょうちょ</rt></ruby>・集中の変化</strong>——を記録する</li>
+          <li>その記録を保護者に返す。医療につながる大事な情報になります</li>
+        </ul>
+        <p>「最近ごはんを残すようになった」という気づきが、<ruby>服薬<rt>ふくやく</rt></ruby>量の調整につながることもあります。<strong>観察と共有が私たちの持ち場です。</strong></p>
+        <p class="db-note">出典：LITALICO発達ナビ（医師監修）/ 各薬剤の<ruby>添付文書<rt>てんぷぶんしょ</rt></ruby></p>
+      </div>
+    </details>
 
     <!-- A6 -->
     <div class="content-section" id="a6">
@@ -2379,7 +2582,7 @@ body {
         <div style="background:#FFF0F3;border:1.5px solid #FFCDD7;border-radius:12px;padding:16px 18px;">
           <div style="font-size:12px;font-weight:700;color:var(--pink);margin-bottom:6px;">❌ NG</div>
           <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;">「もっと落ち着きなさい」「なんでできないの」と繰り返す</div>
-          <p style="font-size:13px;color:var(--mid);line-height:1.8;">本人は落ち着きたくて落ち着けない状態です。「なんでできないの」は本人を最も傷つける言葉のひとつ。ADHDの子は叱責経験が積み重なると自己肯定感が低下しやすく、二次障害につながります。</p>
+          <p style="font-size:13px;color:var(--mid);line-height:1.8;">本人は落ち着きたくて落ち着けない状態です。「なんでできないの」は本人を最も傷つける言葉のひとつ。ADHDの子は<ruby>叱責<rt>しっせき</rt></ruby>経験が積み重なると<ruby>自己肯定感<rt>じここうていかん</rt></ruby>が低下しやすく、<ruby>二次障害<rt>にじしょうがい</rt></ruby>につながります。</p>
         </div>
 
         <div style="background:#FFF0F3;border:1.5px solid #FFCDD7;border-radius:12px;padding:16px 18px;">
@@ -2391,13 +2594,13 @@ body {
         <div style="background:#FFF0F3;border:1.5px solid #FFCDD7;border-radius:12px;padding:16px 18px;">
           <div style="font-size:12px;font-weight:700;color:var(--pink);margin-bottom:6px;">❌ NG</div>
           <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;">長い説教・その場での長い注意</div>
-          <p style="font-size:13px;color:var(--mid);line-height:1.8;">不注意の特性上、長い言葉は頭に入りません。注意は<strong>短く・具体的・一回で</strong>が原則。繰り返し同じことを言っても本人はほとんど聞けていないことが多いです。</p>
+          <p style="font-size:13px;color:var(--mid);line-height:1.8;"><ruby>不注意<rt>ふちゅうい</rt></ruby>の特性上、長い言葉は頭に入りません。注意は<strong>短く・具体的・一回で</strong>が原則。繰り返し同じことを言っても本人はほとんど聞けていないことが多いです。</p>
         </div>
 
         <div style="background:#FFF0F3;border:1.5px solid #FFCDD7;border-radius:12px;padding:16px 18px;">
           <div style="font-size:12px;font-weight:700;color:var(--pink);margin-bottom:6px;">❌ NG</div>
           <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;">無理やり座らせて「じっとしてろ」と抑え込む</div>
-          <p style="font-size:13px;color:var(--mid);line-height:1.8;">身体的に抑制することは恐怖や怒りにつながり、パニックや自傷・他害を引き起こすことがあります。動けるタイミングをつくる・環境を整えるという発想の転換が大切です。</p>
+          <p style="font-size:13px;color:var(--mid);line-height:1.8;">身体的に抑制することは恐怖や怒りにつながり、パニックや<ruby>自傷<rt>じしょう</rt></ruby>・<ruby>他害<rt>たがい</rt></ruby>を引き起こすことがあります。動けるタイミングをつくる・環境を整えるという発想の転換が大切です。</p>
         </div>
       </div>
     </div>
@@ -2409,9 +2612,9 @@ body {
         <h2 class="section-heading">今月のまとめ</h2>
       </div>
       <div class="content-card">
-        <p>🌊 ADHDは生まれつきの脳の特性です。主な特性は<strong>①不注意・②多動性・③衝動性</strong>の3つ。「やめたくてもやめられない」「止まりたくても止まれない」のは、脳のブレーキが効きにくいからです。</p>
+        <p>🌊 ADHDは生まれつきの脳の特性です。主な特性は<strong>①<ruby>不注意<rt>ふちゅうい</rt></ruby>・②<ruby>多動性<rt>たどうせい</rt></ruby>・③<ruby>衝動性<rt>しょうどうせい</rt></ruby></strong>の3つ。「やめたくてもやめられない」「止まりたくても止まれない」のは、脳のブレーキが効きにくいからです。</p>
         <p>ASDと重なるケースも多く、同じ「飛び出す」行動でも背景が違います。<strong>「どちらの特性から来ているか」を見極める視点</strong>を持つことが、より的確な支援につながります。</p>
-        <p>叱るより代替行動・環境調整・小さな成功を褒めること。<strong>「できないことを減らす」より「できることを増やす」</strong>という視点で関わりましょう。</p>
+        <p>叱るより<ruby>代替行動<rt>だいたいこうどう</rt></ruby>・環境調整・小さな成功を褒めること。<strong>「できないことを減らす」より「できることを増やす」</strong>という視点で関わりましょう。</p>
       </div>
 
       <!-- クイズ -->
@@ -2438,8 +2641,8 @@ body {
           <div class="quiz-q"><span class="quiz-q-num" style="background:#2980B9;">Q2</span>ADHDのある子に「10数えてから行動しよう」という方法が効果的な理由として最も正確なものはどれですか？</div>
           <div class="quiz-options">
             <button class="quiz-opt" onclick="answerAQuiz(2,this,false)">数を数えることで注意が数字に向き、衝動のきっかけとなる刺激から逸れる</button>
-            <button class="quiz-opt" onclick="answerAQuiz(2,this,false)">数唱という反復行動がドーパミンの過剰分泌を落ち着かせる</button>
-            <button class="quiz-opt" onclick="answerAQuiz(2,this,true)">行動までの間に前頭前野が「待つ」という判断を挟める猶予が生まれる</button>
+            <button class="quiz-opt" onclick="answerAQuiz(2,this,false)"><ruby>数唱<rt>すうしょう</rt></ruby>という反復行動がドーパミンの<ruby>過剰分泌<rt>かじょうぶんぴつ</rt></ruby>を落ち着かせる</button>
+            <button class="quiz-opt" onclick="answerAQuiz(2,this,true)">行動までの間に前頭前野が「待つ」という判断を挟める<ruby>猶予<rt>ゆうよ</rt></ruby>が生まれる</button>
           </div>
           <div class="quiz-result" id="aqres2"></div>
         </div>
@@ -2447,7 +2650,7 @@ body {
         <div class="quiz-card" id="aqcard3">
           <div class="quiz-q"><span class="quiz-q-num" style="background:#2980B9;">Q3</span>ASDとADHDが重なっている子が急に他の子を叩いた。まず確認すべきことはどれですか？</div>
           <div class="quiz-options">
-            <button class="quiz-opt" onclick="answerAQuiz(3,this,false)">ADHDの衝動性による行動として、代替行動を即座に示す</button>
+            <button class="quiz-opt" onclick="answerAQuiz(3,this,false)">ADHDの<ruby>衝動性<rt>しょうどうせい</rt></ruby>による行動として、<ruby>代替行動<rt>だいたいこうどう</rt></ruby>を即座に示す</button>
             <button class="quiz-opt" onclick="answerAQuiz(3,this,false)">ASDのコミュニケーション困難による表現として、言葉の練習を増やす</button>
             <button class="quiz-opt" onclick="answerAQuiz(3,this,true)">直前の環境・感覚刺激・やりとりの流れを確認し、どちらの特性が主因かを見極める</button>
           </div>
@@ -2467,9 +2670,9 @@ body {
         <div class="quiz-card" id="aqcard5">
           <div class="quiz-q"><span class="quiz-q-num" style="background:#2980B9;">Q5</span>「叱ることを減らして褒めることを増やす」支援がADHDの子に特に重要な理由はどれですか？</div>
           <div class="quiz-options">
-            <button class="quiz-opt" onclick="answerAQuiz(5,this,false)">叱られると萎縮して多動が強まり、支援者との信頼関係が壊れるから</button>
+            <button class="quiz-opt" onclick="answerAQuiz(5,this,false)">叱られると<ruby>萎縮<rt>いしゅく</rt></ruby>して多動が強まり、支援者との信頼関係が壊れるから</button>
             <button class="quiz-opt" onclick="answerAQuiz(5,this,false)">ADHDの子は反省する力が弱く、叱っても行動改善につながらないから</button>
-            <button class="quiz-opt" onclick="answerAQuiz(5,this,true)">叱責の積み重ねが自己肯定感を下げ、うつや反抗などの二次障害につながるから</button>
+            <button class="quiz-opt" onclick="answerAQuiz(5,this,true)"><ruby>叱責<rt>しっせき</rt></ruby>の積み重ねが<ruby>自己肯定感<rt>じここうていかん</rt></ruby>を下げ、うつや反抗などの<ruby>二次障害<rt>にじしょうがい</rt></ruby>につながるから</button>
           </div>
           <div class="quiz-result" id="aqres5"></div>
         </div>
@@ -2513,9 +2716,9 @@ body {
 
   <div class="asd-hero" style="background:linear-gradient(135deg,#1A4A1A 0%,#27AE60 55%,#58D68D 100%);">
     <div class="month-tag">🌊 Month 04 · 2026年7月の研修テーマ</div>
-    <h1>発達障害・知的障害とは？</h1>
+    <h1><ruby>発達障害<rt>はったつしょうがい</rt></ruby>・<ruby>知的障害<rt>ちてきしょうがい</rt></ruby>とは？</h1>
     <p class="lead">
-      ASD・ADHD・知的障害・ダウン症・小頭症——<br>
+      ASD・ADHD・知的障害・ダウン症・<ruby>小頭症<rt>しょうとうしょう</rt></ruby>——<br>
       言葉は知っていても「何が違うの？」<br>
       そもそもの基礎から整理しましょう。
     </p>
@@ -2540,17 +2743,17 @@ body {
     <div class="content-section" id="i1">
       <div class="section-eyebrow">
         <div class="section-num" style="background:#27AE60;">1</div>
-        <h2 class="section-heading">発達障害とは？</h2>
+        <h2 class="section-heading"><ruby>発達障害<rt>はったつしょうがい</rt></ruby>とは？</h2>
       </div>
       <div class="content-card">
         <p>発達障害とは、生まれつきの脳の働き方の違いによって、コミュニケーション・注意・学習・行動などに困難が生じる状態の総称です。病気ではなく、脳の個性として生まれついたものです。</p>
-        <p>「1〜3回で学んできたASD・ADHD・感覚過敏」はすべて発達障害の中に含まれます。今月はその全体像を整理しながら、知的障害との違いも確認しましょう。</p>
+        <p>「1〜3回で学んできたASD・ADHD・<ruby>感覚過敏<rt>かんかくかびん</rt></ruby>」はすべて発達障害の中に含まれます。今月はその全体像を整理しながら、<ruby>知的障害<rt>ちてきしょうがい</rt></ruby>との違いも確認しましょう。</p>
         <div class="highlight-box" style="border-left-color:#27AE60;background:#E8F8F0;">
           <p style="color:#1A4A1A;">🌿 発達障害の主な種類<br>
           ・<strong>ASD</strong>（自閉スペクトラム症）→ Month 01で学習済み<br>
-          ・<strong>ADHD</strong>（注意欠如多動症）→ Month 03で学習済み<br>
+          ・<strong>ADHD</strong>（<ruby>注意欠如多動症<rt>ちゅういけつじょたどうしょう</rt></ruby>）→ Month 03で学習済み<br>
           ・<strong>LD/SLD</strong>（学習障害）→ 読み書き・計算の困難<br>
-          ・<strong>DCD</strong>（発達性協調運動症）→ 不器用さ・運動の困難<br>
+          ・<strong>DCD</strong>（<ruby>発達性協調運動症<rt>はったつせいきょうちょううんどうしょう</rt></ruby>）→ 不器用さ・運動の困難<br>
           ・チック症、吃音なども含まれる</p>
         </div>
         <p>これらは「脳の情報処理・機能のアンバランスさ」から生じます。知的能力（IQ）に関係なく存在し、IQが高い人でも発達障害を持つことがあります。</p>
@@ -2572,7 +2775,7 @@ body {
               <span style="background:#F9F9F9;border:1.5px solid #999;border-radius:8px;padding:6px 12px;font-size:12px;color:#555;">チック症・吃音 など</span>
             </div>
             <div style="margin-top:4px;padding:10px 12px;background:#E8F8F0;border-radius:8px;border:1.5px dashed #27AE60;">
-              <span style="font-size:12px;color:#1A4A1A;font-weight:700;">＋ 知的障害（知的発達症）</span>
+              <span style="font-size:12px;color:#1A4A1A;font-weight:700;">＋ 知的障害（<ruby>知的発達症<rt>ちてきはったつしょう</rt></ruby>）</span>
               <span style="font-size:11px;color:#27AE60;margin-left:8px;">← 今月の主役</span>
             </div>
           </div>
@@ -2584,16 +2787,16 @@ body {
     <div class="content-section" id="i2">
       <div class="section-eyebrow">
         <div class="section-num" style="background:#27AE60;">2</div>
-        <h2 class="section-heading">知的障害とは？</h2>
+        <h2 class="section-heading"><ruby>知的障害<rt>ちてきしょうがい</rt></ruby>とは？</h2>
       </div>
       <div class="content-card">
-        <p>知的障害（知的発達症）とは、発達期（おおむね18歳まで）に生じた知的機能の困難により、認知能力や適応能力の発達が全般的に遅れている状態です。</p>
-        <p>かつては「精神遅滞」と呼ばれていましたが、現在は<strong>「知的障害（知的発達症）」</strong>という名称が使われています。</p>
+        <p>知的障害（<ruby>知的発達症<rt>ちてきはったつしょう</rt></ruby>）とは、発達期（おおむね18歳まで）に生じた知的機能の困難により、<ruby>認知能力<rt>にんちのうりょく</rt></ruby>や<ruby>適応能力<rt>てきおうのうりょく</rt></ruby>の発達が全般的に遅れている状態です。</p>
+        <p>かつては「<ruby>精神遅滞<rt>せいしんちたい</rt></ruby>」と呼ばれていましたが、現在は<strong>「知的障害（知的発達症）」</strong>という名称が使われています。</p>
         <div class="highlight-box" style="border-left-color:#27AE60;background:#E8F8F0;">
           <p style="color:#1A4A1A;">📋 <strong>診断の3つの柱（DSM-5）：</strong><br>
-          ① 知的機能の困難（推理・問題解決・計画・学習など）<br>
-          ② 適応機能の困難（日常生活・社会生活での自立の困難）<br>
-          ③ 発達期（18歳以前）に生じたこと<br>
+          ① 知的機能の困難（<ruby>推理<rt>すいり</rt></ruby>・問題解決・計画・学習など）<br>
+          ② <ruby>適応機能<rt>てきおうきのう</rt></ruby>の困難（日常生活・社会生活での自立の困難）<br>
+          ③ 発達期（子どものうち。日本ではおおむね18歳までとして運用）に生じたこと<br>
           この3つをすべて満たしたときに診断されます。</p>
         </div>
         <p>大切なのは、<strong>IQの数値だけで判断するのではなく、日常生活での困難さを合わせて見る</strong>という点です。IQが低くても生活上の困難が少なければ診断されない場合もあります。</p>
@@ -2611,7 +2814,7 @@ body {
 
           <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FFF8EC;border-radius:10px;border-left:4px solid #E8821A;">
             <div style="font-size:12px;font-weight:700;color:#7A4000;min-width:44px;">中度</div>
-            <div style="font-size:12px;color:var(--mid);line-height:1.8;">簡単な会話はできる。日常生活の多くに支援が必要。身辺自立（食事・排泄など）はある程度可能。</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">簡単な会話はできる。日常生活の多くに支援が必要。<ruby>身辺自立<rt>しんぺんじりつ</rt></ruby>（食事・<ruby>排泄<rt>はいせつ</rt></ruby>など）はある程度可能。</div>
           </div>
 
           <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDEDEC;border-radius:10px;border-left:4px solid #E74C3C;">
@@ -2631,11 +2834,26 @@ body {
       </div>
     </div>
 
+        <details class="deep-box" style="--db-color:#27AE60;">
+      <summary><span class="db-tag">もっと詳しく</span>「程度」はIQでは決まらない（DSM-5の考え方）</summary>
+      <div class="db-body">
+        <p>かつて（DSM-IVまで）は、知的障害の程度を<strong>IQの数値で区切って</strong>いました。しかしDSM-5では考え方が変わり、<strong>重症度は「適応機能」で判断する</strong>ようになっています。</p>
+        <p><strong>適応機能の3つの領域</strong></p>
+        <div class="db-row"><div class="db-row-k">概念的領域</div><div class="db-row-v">読み書き、数の概念、記憶、時間やお金の理解、問題解決</div></div>
+        <div class="db-row"><div class="db-row-k">社会的領域</div><div class="db-row-v">人とのやりとり、友人関係、共感、だまされやすさ、ルールを守ること</div></div>
+        <div class="db-row"><div class="db-row-k">実用的領域</div><div class="db-row-v">身の回りのこと、移動、健康管理、お金の扱い、安全の確保</div></div>
+        <p><strong>なぜ変わったのか。</strong>IQが同じ2人でも、生活の自立度がまったく違うことがあるからです。必要な支援の量はIQでは測れません。</p>
+        <p><strong>現場での意味。</strong>「軽度だから大丈夫」ではありません。概念的領域は強いのに社会的領域で大きくつまずいている子もいます。<strong>3つのうちどこに支援が要るのか</strong>という見方をしてください。</p>
+        <p>なお、療育手帳のA・B1・B2という区分はこれとはまた別の、<strong>自治体ごとの判定</strong>です（Month 05で扱っています）。診断上の「程度」と手帳の「区分」は別物だと覚えておいてください。</p>
+        <p class="db-note">出典：DSM-5（精神<ruby>疾患<rt>しっかん</rt></ruby>の診断・統計マニュアル 第5版）</p>
+      </div>
+    </details>
+
     <!-- I3 発達障害と知的障害の違い・重なり -->
     <div class="content-section" id="i3">
       <div class="section-eyebrow">
         <div class="section-num" style="background:#27AE60;">3</div>
-        <h2 class="section-heading">発達障害と知的障害——違いと重なり</h2>
+        <h2 class="section-heading"><ruby>発達障害<rt>はったつしょうがい</rt></ruby>と<ruby>知的障害<rt>ちてきしょうがい</rt></ruby>——違いと重なり</h2>
       </div>
       <div class="content-card">
         <p>「発達障害」と「知的障害」は別のものですが、同じ人が両方を持つことはよくあります。ここが現場で最も混乱しやすいポイントです。</p>
@@ -2650,7 +2868,7 @@ body {
           </div>
           <div style="padding:12px 14px;background:#EBF5FB;border-radius:8px;">
             <div style="font-size:12px;font-weight:700;color:#2980B9;margin-bottom:4px;">知的障害</div>
-            <div style="font-size:12px;color:var(--text);line-height:1.8;">知的機能<strong>全般</strong>の発達の遅れ。推理・判断・学習・適応能力すべてに影響。得意・苦手の差より「全体的な発達の遅れ」が特徴。</div>
+            <div style="font-size:12px;color:var(--text);line-height:1.8;">知的機能<strong>全般</strong>の発達の遅れ。<ruby>推理<rt>すいり</rt></ruby>・判断・学習・<ruby>適応能力<rt>てきおうのうりょく</rt></ruby>すべてに影響。得意・苦手の差より「全体的な発達の遅れ」が特徴。</div>
           </div>
           <div style="padding:12px 14px;background:#FFF8EC;border-radius:8px;border:1.5px dashed #E8821A;">
             <div style="font-size:12px;font-weight:700;color:#E8821A;margin-bottom:4px;">⚡ 両方重なるケース</div>
@@ -2661,7 +2879,7 @@ body {
 
       <div class="callout-warm">
         <span class="ci">💡</span>
-        <p><strong>「なぜ発語がないのか」を考える視点：</strong>発語がない子の場合、ASDの特性から来ているのか・知的障害の程度から来ているのか・両方なのかで、有効なアプローチが変わってきます。診断名より「その子の困りごとの背景」を探ることが支援の第一歩です。</p>
+        <p><strong>「なぜ発語がないのか」を考える視点：</strong>発語がない子の場合、ASDの特性から来ているのか・知的障害の程度から来ているのか・両方なのかで、有効なアプローチが変わってきます。<ruby>診断名<rt>しんだんめい</rt></ruby>より「その子の困りごとの背景」を探ることが支援の第一歩です。</p>
       </div>
     </div>
 
@@ -2672,8 +2890,8 @@ body {
         <h2 class="section-heading">ダウン症とは？</h2>
       </div>
       <div class="content-card">
-        <p>ダウン症（ダウン症候群）は、<strong>21番目の染色体が通常2本のところ3本存在する</strong>ことで起きる先天性疾患です。染色体の突然変異であり、親から遺伝するものではありません。</p>
-        <p>知的障害を伴うことが多く、軽度〜中度が多いですが、重度になる場合もあります。心臓疾患・難聴・眼科系の合併症を持つケースもあります。</p>
+        <p>ダウン症（ダウン症候群）は、<strong>21番目の<ruby>染色体<rt>せんしょくたい</rt></ruby>が通常2本のところ3本存在する</strong>ことで起きる<ruby>先天性疾患<rt>せんてんせいしっかん</rt></ruby>です。大多数は偶発的に起きるもので<ruby>遺伝<rt>いでん</rt></ruby>しませんが、一部のタイプ（<ruby>転座型<rt>てんざがた</rt></ruby>）では親から受け継がれている場合もあります。</p>
+        <p><ruby>知的障害<rt>ちてきしょうがい</rt></ruby>を伴うことが多く、軽度〜中度が多いですが、重度になる場合もあります。心臓<ruby>疾患<rt>しっかん</rt></ruby>・<ruby>難聴<rt>なんちょう</rt></ruby>・<ruby>眼科<rt>がんか</rt></ruby>系の<ruby>合併症<rt>がっぺいしょう</rt></ruby>を持つケースもあります。</p>
 
       <!-- 染色体の深掘りコラム -->
       <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:14px;">
@@ -2704,11 +2922,11 @@ body {
           <div style="display:flex;flex-direction:column;gap:6px;">
             <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);line-height:1.8;">
               <span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span>
-              <span><strong>常染色体 44本（1〜22番の22対）</strong>——性別に関係なく共通。身体の様々な特徴を決める情報が含まれる</span>
+              <span><strong><ruby>常染色体<rt>じょうせんしょくたい</rt></ruby> 44本（1〜22番の22対）</strong>——性別に関係なく共通。身体の様々な特徴を決める情報が含まれる</span>
             </div>
             <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);line-height:1.8;">
               <span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span>
-              <span><strong>性染色体 2本（23対目）</strong>——女性はXX、男性はXY。性別を決める染色体</span>
+              <span><strong><ruby>性染色体<rt>せいせんしょくたい</rt></ruby> 2本（23対目）</strong>——女性はXX、男性はXY。性別を決める染色体</span>
             </div>
           </div>
         </div>
@@ -2716,7 +2934,7 @@ body {
         <!-- 染色体の数が変わると... -->
         <div style="background:#FFF8EC;border-radius:10px;padding:14px 16px;margin-bottom:12px;border:1.5px solid #FFD080;">
           <div style="font-size:12px;font-weight:700;color:#C0601A;margin-bottom:8px;">⚡ 染色体の数がズレると何が起きる？</div>
-          <p style="font-size:12px;color:var(--mid);line-height:1.85;margin-bottom:8px;">染色体は細胞分裂のときにコピーされて次の細胞へ渡されます。このコピーの過程でエラーが起きると、染色体の数や構造に異常が生じ、様々な影響が出ることがあります。</p>
+          <p style="font-size:12px;color:var(--mid);line-height:1.85;margin-bottom:8px;">染色体は<ruby>細胞分裂<rt>さいぼうぶんれつ</rt></ruby>のときにコピーされて次の細胞へ渡されます。このコピーの過程でエラーが起きると、染色体の数や構造に異常が生じ、様々な影響が出ることがあります。</p>
           <div style="display:flex;flex-direction:column;gap:6px;">
             <div style="display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text);line-height:1.8;">
               <span style="background:#E8821A;color:#fff;border-radius:4px;padding:1px 7px;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;">トリソミー</span>
@@ -2736,7 +2954,7 @@ body {
         <!-- ダウン症との繋ぎ -->
         <div style="background:#E8F8F0;border-radius:8px;padding:10px 14px;font-size:12px;color:#1A4A1A;line-height:1.85;">
           💡 <strong>なぜ21番染色体が1本多くなるの？</strong><br>
-          精子や卵子が作られるとき、染色体を23本ずつに分ける過程でエラーが起きることがあります。21番染色体が分かれずに両方同じ細胞に入ってしまうと、受精後に21番が3本になります。これは親から遺伝するものではなく、細胞分裂時の偶発的なエラーです。
+          <ruby>精子<rt>せいし</rt></ruby>や<ruby>卵子<rt>らんし</rt></ruby>が作られるとき、染色体を23本ずつに分ける過程でエラーが起きることがあります。21番染色体が分かれずに両方同じ細胞に入ってしまうと、<ruby>受精<rt>じゅせい</rt></ruby>後に21番が3本になります。これが最も多い「標準型」で、親から遺伝するものではなく細胞分裂時の偶発的なエラーです。
         </div>
       </div>
 
@@ -2746,7 +2964,7 @@ body {
           ・言語理解より言語表現（話す）の方が遅れやすい<br>
           ・筋肉のトーン（張り）が低く、疲れやすい・姿勢が崩れやすい<br>
           ・短期記憶の困難さ——指示は短く・繰り返し・ビジュアルで<br>
-          ・ルーティンの安心感を好む傾向がある</p>
+          ・ルーティンの安心感を好む<ruby>傾向<rt>けいこう</rt></ruby>がある</p>
         </div>
       </div>
 
@@ -2757,28 +2975,41 @@ body {
           <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>できたことを<strong>すぐに・具体的に褒める</strong>。成功体験の積み重ねが大切</span></div>
           <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>体が疲れやすいので、<strong>活動と休憩のメリハリ</strong>を意識する</span></div>
           <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>人との関わりを好む子が多い。<strong>その意欲を活かした活動</strong>が効果的</span></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>合併症（心疾患・難聴など）がある場合は<strong>体調変化のサインを見逃さない</strong></span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>合併症（<ruby>心疾患<rt>しんしっかん</rt></ruby>・難聴など）がある場合は<strong>体調変化のサインを見逃さない</strong></span></div>
         </div>
       </div>
     </div>
+
+          <details class="deep-box" style="--db-color:#27AE60;">
+        <summary><span class="db-tag">もっと詳しく</span>ダウン症には3つのタイプがある</summary>
+        <div class="db-body">
+          <p>ひとくちにダウン症といっても、染色体の状態によって3つのタイプに分かれます。<strong>「遺伝するかどうか」がタイプによって違う</strong>ため、ここは正確に押さえておきたいところです。</p>
+          <div class="db-row"><div class="db-row-k">標準型<br>（約95%）</div><div class="db-row-v">すべての細胞で21番染色体が3本ある、最も多いタイプ。精子や卵子ができる過程での偶発的なエラーによるもので、<strong>遺伝しません。</strong></div></div>
+          <div class="db-row"><div class="db-row-k">転座型<br>（約5%）</div><div class="db-row-v">21番染色体が他の染色体にくっついている状態。<strong>このうち約半分は、親が「<ruby>均衡型<rt>きんこうがた</rt></ruby>転座」の<ruby>保因者<rt>ほいんしゃ</rt></ruby>で受け継がれた可能性があります。</strong>保因者の親自身に症状は出ません。</div></div>
+          <div class="db-row"><div class="db-row-k">モザイク型<br>（約1〜3%）</div><div class="db-row-v">受精後の細胞分裂の初期にエラーが起き、3本の細胞と2本の細胞が混ざっている状態。症状が比較的軽いことがあります。</div></div>
+          <p><strong>だから「ダウン症は絶対に遺伝しない」とは言い切れません。</strong>大多数は遺伝しませんが、転座型という例外があります。</p>
+          <p><strong>ここは特に注意してください。</strong>きょうだいのこと、次のお子さんのこと——保護者にとって非常にデリケートな話題です。<strong>職員がこの話を切り出したり、断定的に答えたりしてはいけません。</strong>聞かれたら「医療機関で相談できる内容です」と伝えて、専門機関につないでください。</p>
+          <p class="db-note">出典：MSDマニュアル プロフェッショナル版「ダウン症候群（21トリソミー）」/ LITALICO発達ナビ（医師監修）</p>
+        </div>
+      </details>
 
     <!-- I5 小頭症 -->
     <div class="content-section" id="i5">
       <div class="section-eyebrow">
         <div class="section-num" style="background:#27AE60;">5</div>
-        <h2 class="section-heading">小頭症とは？</h2>
+        <h2 class="section-heading"><ruby>小頭症<rt>しょうとうしょう</rt></ruby>とは？</h2>
       </div>
       <div class="content-card">
-        <p>小頭症とは、頭部（頭蓋骨と脳）の大きさが同年齢・同性別の平均より著しく小さい状態です。生まれつきの場合と、出生後に頭の成長が止まる場合があります。</p>
-        <p>原因は染色体異常・妊娠中の感染（ジカウイルスなど）・栄養不足など様々で、不明のことも多いです。<strong>根本的な治療法はなく</strong>、症状に合わせた支援が中心になります。</p>
+        <p>小頭症とは、頭部（<ruby>頭蓋骨<rt>ずがいこつ</rt></ruby>と脳）の大きさが同年齢・同性別の平均より著しく小さい状態です。生まれつきの場合と、出生後に頭の成長が止まる場合があります。</p>
+        <p>原因は<ruby>染色体<rt>せんしょくたい</rt></ruby>異常・<ruby>妊娠<rt>にんしん</rt></ruby>中の<ruby>感染<rt>かんせん</rt></ruby>（ジカウイルスなど）・<ruby>栄養不足<rt>えいようぶそく</rt></ruby>など様々で、不明のことも多いです。<strong>根本的な治療法はなく</strong>、症状に合わせた支援が中心になります。</p>
         <div class="highlight-box" style="border-left-color:#27AE60;background:#E8F8F0;">
           <p style="color:#1A4A1A;">🧠 <strong>小頭症に伴いやすいこと：</strong><br>
-          ・知的障害（程度は様々）<br>
-          ・てんかん（発作）<br>
+          ・<ruby>知的障害<rt>ちてきしょうがい</rt></ruby>（程度は様々）<br>
+          ・てんかん（<ruby>発作<rt>ほっさ</rt></ruby>）<br>
           ・運動機能の困難（歩く・細かい動作など）<br>
           ・言語発達の遅れ<br>
-          ・難聴・視覚障害を伴う場合もある<br><br>
-          ただし、頭が小さくても発達遅滞が見られないケースもあり、<strong>一人ひとりの症状は大きく異なります。</strong></p>
+          ・<ruby>難聴<rt>なんちょう</rt></ruby>・視覚障害を伴う場合もある<br><br>
+          ただし、頭が小さくても<ruby>発達遅滞<rt>はったつちたい</rt></ruby>が見られないケースもあり、<strong>一人ひとりの症状は大きく異なります。</strong></p>
         </div>
       </div>
 
@@ -2786,9 +3017,9 @@ body {
         <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:12px;">🤝 小頭症の子への関わり方のポイント</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>てんかんがある子は<strong>発作のサイン・対応方法をチームで共有</strong>しておく</span></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>運動機能の困難に合わせて<strong>環境の安全確保</strong>（転倒・ぶつかりへの配慮）</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>運動機能の困難に合わせて<strong>環境の安全確保</strong>（<ruby>転倒<rt>てんとう</rt></ruby>・ぶつかりへの配慮）</span></div>
           <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>言語が限られる場合は<strong>表情・行動のサインを丁寧に読む</strong></span></div>
-          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>難聴・視覚の困難がある場合は<strong>別の感覚チャンネル</strong>（触覚・振動）を活用する</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>難聴・視覚の困難がある場合は<strong>別の感覚チャンネル</strong>（触覚・<ruby>振動<rt>しんどう</rt></ruby>）を活用する</span></div>
           <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text);line-height:1.8;"><span style="color:#27AE60;flex-shrink:0;font-weight:700;">▸</span><span>「できないことの多い子」ではなく<strong>「その子なりのペースで成長している子」</strong>という視点で関わる</span></div>
         </div>
       </div>
@@ -2805,15 +3036,15 @@ body {
         <li>
           <div class="tip-icon" style="background:#E8F8F0;">🔍</div>
           <div class="tip-content">
-            <strong>診断名より「その子」を見る</strong>
-            <p>「ASD」「知的障害」「ダウン症」という名前より、目の前のその子が今何を感じ、何に困っているかを見ることが支援の出発点です。</p>
+            <strong><ruby>診断名<rt>しんだんめい</rt></ruby>より「その子」を見る</strong>
+            <p>「ASD」「<ruby>知的障害<rt>ちてきしょうがい</rt></ruby>」「ダウン症」という名前より、目の前のその子が今何を感じ、何に困っているかを見ることが支援の出発点です。</p>
           </div>
         </li>
         <li>
           <div class="tip-icon" style="background:#E8F8F0;">👁️</div>
           <div class="tip-content">
             <strong>「見てわかる」情報で伝える</strong>
-            <p>知的障害・発達障害の程度にかかわらず、絵カード・写真・実物など視覚的な支援は効果的です。言葉だけの指示を減らしましょう。</p>
+            <p>知的障害・<ruby>発達障害<rt>はったつしょうがい</rt></ruby>の程度にかかわらず、絵カード・写真・実物など視覚的な支援は効果的です。言葉だけの指示を減らしましょう。</p>
           </div>
         </li>
         <li>
@@ -2841,7 +3072,7 @@ body {
 
       <div class="callout-warm" style="margin-top:16px;">
         <span class="ci">🌊</span>
-        <p><strong>1〜4回を通して学んできたこと：</strong>ASD・聴覚過敏・ADHD・知的障害——すべてに共通するのは「生まれつきの脳の特性であり、本人のせいでも育て方のせいでもない」ということ。そしてどの障害でも「その子を知ろうとする姿勢」が最善の支援につながります。</p>
+        <p><strong>1〜4回を通して学んできたこと：</strong>ASD・<ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>・ADHD・知的障害——すべてに共通するのは「生まれつきの脳の特性であり、本人のせいでも育て方のせいでもない」ということ。そしてどの障害でも「その子を知ろうとする姿勢」が最善の支援につながります。</p>
       </div>
     </div>
 
@@ -2856,17 +3087,17 @@ body {
       </div>
 
       <div class="quiz-card" id="iqcard1">
-        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q1</span>知的障害の診断において、DSM-5から「IQの数値だけで程度を決めない」とされた理由はどれですか？</div>
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q1</span><ruby>知的障害<rt>ちてきしょうがい</rt></ruby>の診断において、DSM-5から「IQの数値だけで程度を決めない」とされた理由はどれですか？</div>
         <div class="quiz-options">
           <button class="quiz-opt" onclick="answerIQuiz(1,this,false)">IQ検査の精度が低く、数値の信頼性が証明されていないから</button>
-          <button class="quiz-opt" onclick="answerIQuiz(1,this,true)">同じIQでも日常生活の困難さは個人差が大きく、適応機能を合わせて評価する方が支援に直結するから</button>
+          <button class="quiz-opt" onclick="answerIQuiz(1,this,true)">同じIQでも日常生活の困難さは個人差が大きく、<ruby>適応機能<rt>てきおうきのう</rt></ruby>を合わせて評価する方が支援に直結するから</button>
           <button class="quiz-opt" onclick="answerIQuiz(1,this,false)">IQは年齢によって変動するため、固定的な基準として使えないから</button>
         </div>
         <div class="quiz-result" id="iqres1"></div>
       </div>
 
       <div class="quiz-card" id="iqcard2">
-        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q2</span>ダウン症の染色体の特徴として正しいものはどれですか？</div>
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q2</span>ダウン症の<ruby>染色体<rt>せんしょくたい</rt></ruby>の特徴として正しいものはどれですか？</div>
         <div class="quiz-options">
           <button class="quiz-opt" onclick="answerIQuiz(2,this,false)">18番染色体が1本多い（トリソミー18）</button>
           <button class="quiz-opt" onclick="answerIQuiz(2,this,true)">21番染色体が1本多い（トリソミー21）</button>
@@ -2876,7 +3107,7 @@ body {
       </div>
 
       <div class="quiz-card" id="iqcard3">
-        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q3</span>「発達障害があるがIQは高い」という状態が起こりうる理由として最も正確なものはどれですか？</div>
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q3</span>「<ruby>発達障害<rt>はったつしょうがい</rt></ruby>があるがIQは高い」という状態が起こりうる理由として最も正確なものはどれですか？</div>
         <div class="quiz-options">
           <button class="quiz-opt" onclick="answerIQuiz(3,this,false)">IQ検査が発達障害の特性を考慮して設計されているから</button>
           <button class="quiz-opt" onclick="answerIQuiz(3,this,false)">発達障害の特性が成長とともに改善され、知的能力が後天的に高まるから</button>
@@ -2896,10 +3127,10 @@ body {
       </div>
 
       <div class="quiz-card" id="iqcard5">
-        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q5</span>小頭症がある子どもの支援で「てんかん」への対応が特に重要な理由はどれですか？</div>
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#27AE60;">Q5</span><ruby>小頭症<rt>しょうとうしょう</rt></ruby>がある子どもの支援で「てんかん」への対応が特に重要な理由はどれですか？</div>
         <div class="quiz-options">
-          <button class="quiz-opt" onclick="answerIQuiz(5,this,false)">てんかんは感染するリスクがあるため、周囲の子への配慮が必要だから</button>
-          <button class="quiz-opt" onclick="answerIQuiz(5,this,false)">発作が起きた際に声をかけることで症状を和らげられるから</button>
+          <button class="quiz-opt" onclick="answerIQuiz(5,this,false)">てんかんは<ruby>感染<rt>かんせん</rt></ruby>するリスクがあるため、周囲の子への配慮が必要だから</button>
+          <button class="quiz-opt" onclick="answerIQuiz(5,this,false)"><ruby>発作<rt>ほっさ</rt></ruby>が起きた際に声をかけることで症状を和らげられるから</button>
           <button class="quiz-opt" onclick="answerIQuiz(5,this,true)">小頭症に伴う脳の発達障害からてんかんが合併しやすく、発作時の対応を誤ると危険なため事前の準備が必要だから</button>
         </div>
         <div class="quiz-result" id="iqres5"></div>
@@ -2919,18 +3150,18 @@ body {
         <h2 class="section-heading">今月のまとめ</h2>
       </div>
       <div class="content-card">
-        <p>🌊 発達障害は脳の情報処理のアンバランス、知的障害は知的機能全般の発達の遅れ——<strong>別々のものですが重なることが多い</strong>です。</p>
-        <p>ダウン症は21番染色体のトリソミーによる先天性疾患で知的障害を伴うことが多く、小頭症は脳の発育不全によりてんかん・運動困難・知的障害などが生じることがあります。<strong>どちらも一人ひとりの症状は大きく異なります。</strong></p>
-        <p>1〜4回を通して大切なのは「診断名で決めつけず、その子を知ろうとし続けること」。その姿勢が最善の支援につながります。</p>
+        <p>🌊 <ruby>発達障害<rt>はったつしょうがい</rt></ruby>は脳の情報処理のアンバランス、<ruby>知的障害<rt>ちてきしょうがい</rt></ruby>は知的機能全般の発達の遅れ——<strong>別々のものですが重なることが多い</strong>です。</p>
+        <p>ダウン症は21番<ruby>染色体<rt>せんしょくたい</rt></ruby>のトリソミーによる<ruby>先天性疾患<rt>せんてんせいしっかん</rt></ruby>で知的障害を伴うことが多く、<ruby>小頭症<rt>しょうとうしょう</rt></ruby>は脳の発育不全によりてんかん・運動困難・知的障害などが生じることがあります。<strong>どちらも一人ひとりの症状は大きく異なります。</strong></p>
+        <p>1〜4回を通して大切なのは「<ruby>診断名<rt>しんだんめい</rt></ruby>で決めつけず、その子を知ろうとし続けること」。その姿勢が最善の支援につながります。</p>
       </div>
 
       <div class="next-month" style="background:#1A3A3A;">
         <div class="nm-left">
           <p class="nm-sub">▶ NEXT MONTH</p>
-          <p class="nm-title">Coming Soon 🔒</p>
-          <p class="nm-desc">来月のテーマは準備中です。お楽しみに！</p>
+          <p class="nm-title">療育手帳と受給者証</p>
+          <p class="nm-desc">手帳の種類・区分・受給者証の違いを学びます。</p>
         </div>
-        <span class="nm-tag" style="background:#27AE60;">Coming Soon →</span>
+        <span class="nm-tag" style="background:#27AE60;cursor:pointer;" onclick="showPage('techo')">Month 05 を見る →</span>
       </div>
     </div>
 
@@ -2949,6 +3180,659 @@ body {
 
 </div><!-- /page-intel -->
 
+<!-- ========================================
+     Month 05 · 療育手帳と受給者証
+======================================== -->
+<div class="page" id="page-techo">
+
+  <div class="asd-hero" style="background:linear-gradient(135deg,#6E2C00 0%,#D35400 55%,#F0894D 100%);">
+    <div class="month-tag">🌊 Month 05 · 2026年8月の研修テーマ</div>
+    <h1><ruby>療育手帳<rt>りょういくてちょう</rt></ruby>と<ruby>受給者証<rt>じゅきゅうしゃしょう</rt></ruby><br>——制度を正しく知る</h1>
+    <p class="lead">
+      毎日書類で目にしているのに、<br>
+      いざ聞かれると説明できない。<br>
+      子どもたちが持っている「制度の道具」を、<br>
+      今月はしっかり整理しましょう。
+    </p>
+  </div>
+
+  <div class="toc-wrapper">
+    <div class="toc-box">
+      <span class="toc-label">目次 — タップでスクロール</span>
+      <button class="toc-item" onclick="tocScrollTo('t1')">なぜ制度を学ぶのか</button>
+      <button class="toc-item" onclick="tocScrollTo('t2')">障害者手帳は3種類</button>
+      <button class="toc-item" onclick="tocScrollTo('t3')">療育手帳を深掘り</button>
+      <button class="toc-item" onclick="tocScrollTo('t4')">なぜ自治体でバラバラ？</button>
+      <button class="toc-item" onclick="tocScrollTo('t5')">精神・身体の手帳</button>
+      <button class="toc-item" onclick="tocScrollTo('t6')">受給者証とは</button>
+      <button class="toc-item" onclick="tocScrollTo('t7')">お金の話</button>
+      <button class="toc-item" onclick="tocScrollTo('t8')">日常で触れるもの</button>
+      <button class="toc-item" onclick="tocScrollTo('t9')">関わり方とNG対応</button>
+      <button class="toc-item" onclick="tocScrollTo('tquiz')">チャレンジクイズ</button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- T1 -->
+    <div class="content-section" id="t1">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#D35400;">1</div>
+        <h2 class="section-heading">なぜ「制度」を学ぶのか</h2>
+      </div>
+      <div class="content-card">
+        <p>Month 01〜04では、ASD・聴覚過敏・ADHD・知的障害と、<strong>「子どもの中で何が起きているか」</strong>を学んできました。</p>
+        <p>今月はいったん視点を変えて、<strong>「その子が社会の中でどんな制度に支えられているか」</strong>を見ていきます。<ruby>療育手帳<rt>りょういくてちょう</rt></ruby>、<ruby>受給者証<rt>じゅきゅうしゃしょう</rt></ruby>、手当——私たちが毎日ファイルで目にしているものです。</p>
+        <div class="highlight-box" style="border-left-color:#D35400;background:#FDF0E6;">
+          <p style="color:#6E2C00;">💡 <strong>なぜ現場の職員が知っておくべきか</strong><br>
+          ・保護者から「これって何ですか？」と聞かれる立場にいる<br>
+          ・受給者証の<strong><ruby>支給量<rt>しきゅうりょう</rt></ruby>や<ruby>有効期限<rt>ゆうこうきげん</rt></ruby></strong>を<ruby>把握<rt>はあく</rt></ruby>していないと利用調整ができない<br>
+          ・手帳の区分を<strong>誤解したまま支援を決めてしまう</strong>ことを防げる<br>
+          ・制度を知っている職員は、家庭にとって心強い存在になる</p>
+        </div>
+        <p>逆に言えば、<strong>中途半端に知っていることが一番危ない</strong>分野でもあります。今日は「どこまでが自分の役割で、どこからが行政の役割か」も一緒に確認しましょう。</p>
+      </div>
+    </div>
+
+    <!-- T2 -->
+    <div class="content-section" id="t2">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#D35400;">2</div>
+        <h2 class="section-heading">障害者手帳は3種類ある</h2>
+      </div>
+      <div class="content-card">
+        <p>「障害者手帳」とひとことで言いますが、実際には<strong>まったく別の3つの制度</strong>です。対象も、根拠も、等級の付け方も、更新のルールも違います。</p>
+        <p>放課後等デイサービスに通う子が持っているのは、多くの場合<strong><ruby>療育手帳<rt>りょういくてちょう</rt></ruby></strong>です。ただし知的障害を伴わない発達障害の子は<strong><ruby>精神障害者保健福祉手帳<rt>せいしんしょうがいしゃほけんふくしてちょう</rt></ruby></strong>を持っていることがあります。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;text-align:center;">📔 3つの障害者手帳</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+
+          <div style="border:2px solid #D35400;border-radius:12px;padding:14px;background:#FDF0E6;">
+            <div style="font-size:13px;font-weight:700;color:#6E2C00;margin-bottom:8px;">🟠 療育手帳</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.9;">
+              <strong>対象：</strong>知的障害のある方<br>
+              <strong>根拠：</strong><span style="color:#C0392B;font-weight:700;">根拠となる法律がない</span>（国の通知＋各自治体の<ruby>要綱<rt>ようこう</rt></ruby>）<br>
+              <strong>区分：</strong>大阪府は A・B1・B2<br>
+              <strong>更新：</strong>手帳に書かれた「<ruby>判定年月<rt>はんていねんげつ</rt></ruby>」に<ruby>再判定<rt>さいはんてい</rt></ruby>
+            </div>
+          </div>
+
+          <div style="border:2px solid #7B5EA7;border-radius:12px;padding:14px;background:#F3EEFF;">
+            <div style="font-size:13px;font-weight:700;color:#5A3A80;margin-bottom:8px;">🟣 精神障害者保健福祉手帳</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.9;">
+              <strong>対象：</strong>精神障害のある方。<strong>発達障害もここに含まれます</strong><br>
+              <strong>根拠：</strong><ruby>精神保健福祉法<rt>せいしんほけんふくしほう</rt></ruby><br>
+              <strong>等級：</strong>1級・2級・3級<br>
+              <strong>更新：</strong><strong style="color:#5A3A80;">2年ごと</strong>（そのつど<ruby>診断書<rt>しんだんしょ</rt></ruby>が必要）
+            </div>
+          </div>
+
+          <div style="border:2px solid #2980B9;border-radius:12px;padding:14px;background:#EBF5FB;">
+            <div style="font-size:13px;font-weight:700;color:#1A4A7A;margin-bottom:8px;">🔵 <ruby>身体障害者手帳<rt>しんたいしょうがいしゃてちょう</rt></ruby></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.9;">
+              <strong>対象：</strong>視覚・聴覚・<ruby>肢体不自由<rt>したいふじゆう</rt></ruby>・<ruby>内部障害<rt>ないぶしょうがい</rt></ruby>など<br>
+              <strong>根拠：</strong><ruby>身体障害者福祉法<rt>しんたいしょうがいしゃふくしほう</rt></ruby><br>
+              <strong>等級：</strong>1級〜6級（7級は<strong>単独では<ruby>交付<rt>こうふ</rt></ruby>されない</strong>）<br>
+              <strong>更新：</strong>原則なし。状態により再認定あり
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>複数持っている子もいます。</strong>知的障害と身体障害でどちらも持っている、ASDで療育手帳と精神障害者保健福祉手帳の両方を持っている——こうしたケースは珍しくありません。「1人1冊」ではないということを覚えておいてください。</p>
+      </div>
+      <details class="deep-box">
+        <summary><span class="db-tag">もっと詳しく</span>身体障害者手帳の等級は何級まで？「7級」って？</summary>
+        <div class="db-body">
+          <p>身体障害者手帳の等級は<strong>障害の種類ごとに幅が決まっています。</strong>すべての種類に1級から6級まであるわけではありません。</p>
+          <div class="db-row"><div class="db-row-k">視覚障害</div><div class="db-row-v">1級〜6級</div></div>
+          <div class="db-row"><div class="db-row-k">聴覚障害</div><div class="db-row-v">2級〜6級（1級と5級はありません）</div></div>
+          <div class="db-row"><div class="db-row-k"><ruby>平衡機能<rt>へいこうきのう</rt></ruby>障害</div><div class="db-row-v">3級・5級のみ</div></div>
+          <div class="db-row"><div class="db-row-k">音声・言語・<br>そしゃく機能</div><div class="db-row-v">3級・4級のみ</div></div>
+          <div class="db-row"><div class="db-row-k">肢体不自由</div><div class="db-row-v">1級〜7級</div></div>
+          <div class="db-row"><div class="db-row-k">内部障害</div><div class="db-row-v"><ruby>心臓<rt>しんぞう</rt></ruby>・じん臓・<ruby>呼吸器<rt>こきゅうき</rt></ruby>・ぼうこう<ruby>直腸<rt>ちょくちょう</rt></ruby>・<ruby>小腸<rt>しょうちょう</rt></ruby>は1級・3級・4級。<ruby>免疫<rt>めんえき</rt></ruby>（HIV）と<ruby>肝臓<rt>かんぞう</rt></ruby>は1級〜4級</div></div>
+          <p><strong>状態のイメージ（例）</strong></p>
+          <ul>
+            <li><strong>1級</strong>…視力の良い方の目が0.01以下／両下肢の機能を<ruby>全廃<rt>ぜんぱい</rt></ruby>したもの</li>
+            <li><strong>6級</strong>…片方の足首から下の関節の機能に著しい障害があるもの</li>
+            <li><strong>7級</strong>…上肢に<ruby>不随意運動<rt>ふずいいうんどう</rt></ruby>や<ruby>失調<rt>しっちょう</rt></ruby>などがあるもの</li>
+          </ul>
+          <p><strong>なぜ7級だけ手帳が出ないのか。</strong>7級は「障害はあるが、単独では手帳の交付基準に届かない」段階と位置づけられているためです。ただし<strong>7級が2つ以上重なる場合や、7級と6級以上が<ruby>重複<rt>ちょうふく</rt></ruby>する場合は交付対象</strong>になります。書類に7級と書かれていても、手帳自体は6級で発行されていることがあるのはこのためです。</p>
+          <p class="db-note">出典：<ruby>身体障害者福祉法施行規則<rt>しんたいしょうがいしゃふくしほうしこうきそく</rt></ruby> 別表第五号（<ruby>身体障害者障害程度等級表<rt>しんたいしょうがいしゃしょうがいていどとうきゅうひょう</rt></ruby>）/ 志木市・佐賀県の等級表</p>
+        </div>
+      </details>
+      <p class="source-note">参考：身体障害者福祉法 / 精神保健福祉法 / <ruby>厚生労働省<rt>こうせいろうどうしょう</rt></ruby>「療育手帳制度について」（<ruby>昭和<rt>しょうわ</rt></ruby>48年<ruby>児発<rt>じはつ</rt></ruby>第725号）</p>
+    </div>
+
+    <!-- T3 -->
+    <div class="content-section" id="t3">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#D35400;">3</div>
+        <h2 class="section-heading"><ruby>療育手帳<rt>りょういくてちょう</rt></ruby>を深掘りする（大阪府・<ruby>寝屋川市<rt>ねやがわし</rt></ruby>）</h2>
+      </div>
+      <div class="content-card">
+        <p>ここが今月の本題です。<strong>大阪府の療育手帳は A（重度）・B1（中度）・B2（軽度）の3区分</strong>。手帳にはこの記号が<ruby>印字<rt>いんじ</rt></ruby>されています。</p>
+        <p>判定は知能検査の結果<strong>だけ</strong>で決まるのではなく、<strong>日常生活の状況もあわせた<ruby>総合判定<rt>そうごうはんてい</rt></ruby></strong>です。IQはあくまで目安として扱ってください。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;">📊 大阪府の区分（目安）</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDEDEC;border-radius:10px;border-left:4px solid #C0392B;">
+            <div style="font-size:13px;font-weight:700;color:#B03A2E;min-width:38px;">A</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>重度</strong>／IQおおむね35以下。<br>または<strong>IQおおむね36〜50でも、一定の身体障害を<ruby>併せ持つ<rt>あわせもつ</rt></ruby>場合</strong>はAになります。日常生活に多くの<ruby>介助<rt>かいじょ</rt></ruby>を必要とする状態。</div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDF0E6;border-radius:10px;border-left:4px solid #D35400;">
+            <div style="font-size:13px;font-weight:700;color:#6E2C00;min-width:38px;">B1</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>中度</strong>／IQおおむね36〜50。簡単な会話や身辺自立はある程度可能で、生活の多くの場面で支援が必要。</div>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FFF8EC;border-radius:10px;border-left:4px solid #E8821A;">
+            <div style="font-size:13px;font-weight:700;color:#7A4000;min-width:38px;">B2</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>軽度</strong>／IQおおむね51〜75。日常会話は成立することが多く、読み書き・計算や見通しを立てることに困難が出やすい。</div>
+          </div>
+
+        </div>
+        <p style="font-size:11px;color:#999;margin-top:12px;line-height:1.7;">※ IQの数値は目安です。実際は適応能力・生活状況を含めた総合判定で決まります。</p>
+      </div>
+
+      <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+        <p style="color:#B03A2E;">🚃 <strong>「第1種」「第2種」って何？</strong><br>
+        手帳に書かれているもうひとつの区分で、<strong>交通機関の割引の範囲</strong>を決めるものです。<br>
+        ・<strong>第1種</strong>＝A判定 → <strong>介護者も割引の対象</strong>になる<br>
+        ・<strong>第2種</strong>＝B1・B2判定 → 本人のみが対象<br>
+        「第1種の方が上」ではなく、<strong>付き添いの必要性に応じた区分</strong>だと理解してください。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;">📝 寝屋川市での申請の流れ</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <div style="background:#D35400;color:#fff;font-size:12px;font-weight:700;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>市の<ruby>障害福祉課<rt>しょうがいふくしか</rt></ruby>に申請</strong>（保健福祉センター2階）。顔写真（縦4cm×横3cm・1年以内に撮影）と本人確認書類が必要です。</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <div style="background:#D35400;color:#fff;font-size:12px;font-weight:700;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>判定を受ける。</strong>18歳未満は<strong>大阪府中央子ども家庭センター</strong>（<ruby>児童相談所<rt>じどうそうだんじょ</rt></ruby>）、18歳以上は<strong>大阪府障がい者<ruby>自立相談支援<rt>じりつそうだんしえん</rt></ruby>センター</strong>が担当します。</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <div style="background:#D35400;color:#fff;font-size:12px;font-weight:700;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong><ruby>交付<rt>こうふ</rt></ruby>。</strong>手帳には次の<strong>「<ruby>判定年月<rt>はんていねんげつ</rt></ruby>」</strong>が記載されます。子どもは発達の途中なので、数年ごとに<ruby>再判定<rt>さいはんてい</rt></ruby>があります。</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <div style="background:#D35400;color:#fff;font-size:12px;font-weight:700;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>再判定。</strong>更新の申請は判定年月の<strong>3か月前から</strong>可能。時間がかかることがあるため、市も早めの手続きを案内しています。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>子どもの区分は変わることがあります。</strong>再判定で B2 から B1 に変わることも、その逆もあります。「去年はB2だったのに」と保護者が<ruby>動揺<rt>どうよう</rt></ruby>される場面でもあります。数字の変化ではなく<strong>その子の今の困りごと</strong>に目を向ける声かけを心がけましょう。</p>
+      </div>
+      <details class="deep-box">
+        <summary><span class="db-tag">もっと詳しく</span>そのIQ、どうやって測っているの？</summary>
+        <div class="db-body">
+          <p>療育手帳の判定では、年齢や発達の状態に応じて<strong>複数の検査を使い分けています。</strong>「IQ」とひとことで言っても、どの検査で出した数値かによって意味が変わります。</p>
+          <div class="db-row"><div class="db-row-k">新版K式<br>発達検査</div><div class="db-row-v">0歳から使える発達検査。<ruby>乳幼児<rt>にゅうようじ</rt></ruby>期はこれが中心。運動・認知・言語社会の3<ruby>領域<rt>りょういき</rt></ruby>から発達の状態をみます。結果は「<ruby>発達指数<rt>はったつしすう</rt></ruby>（DQ）」で表されます。</div></div>
+          <div class="db-row"><div class="db-row-k">田中ビネー<br>知能検査V</div><div class="db-row-v">2歳から。手帳の判定でよく使われます。全体としての知的水準を1つの数値で出すのが特徴。<strong>他の検査よりIQが高めに出やすい</strong><ruby>傾向<rt>けいこう</rt></ruby>があると<ruby>指摘<rt>してき</rt></ruby>されています。</div></div>
+          <div class="db-row"><div class="db-row-k">WISC-V</div><div class="db-row-v">5歳〜16歳。学校での学習や活動に関わる力を、複数の領域に分けて測ります。得意・不得意の<ruby>凸凹<rt>でこぼこ</rt></ruby>が見えるのが強み。<strong>相対的にIQが低めに出やすい</strong>とされます。</div></div>
+          <p>さらに<ruby>判定機関<rt>はんていきかん</rt></ruby>では、知能検査だけでなく<strong>面接・<ruby>行動観察<rt>こうどうかんさつ</rt></ruby>・保護者からの聞き取り</strong>、そして日常生活の力をみる<strong><ruby>適応行動<rt>てきおうこうどう</rt></ruby>の検査</strong>（Vineland-II、S-M<ruby>社会生活能力<rt>しゃかいせいかつのうりょく</rt></ruby>検査など）を組み合わせて判断しています。</p>
+          <p><strong>現場で大事なこと。</strong>同じ子でも、受けた検査や年齢、その日の体調・<ruby>緊張<rt>きんちょう</rt></ruby>によって数値は動きます。「IQ◯◯の子」という捉え方をせず、<strong>そのとき何をどう測ったのかまで含めて数値を見る</strong>——これが正しい向き合い方です。</p>
+          <p class="db-note">出典：厚生労働科学研究「療育手帳の交付判定及び知的障害に関する専門的な支援等に関する研究」/ 各検査の実施要領</p>
+        </div>
+      </details>
+
+      <details class="deep-box">
+        <summary><span class="db-tag">もっと詳しく</span>区分はIQだけで決まらない</summary>
+        <div class="db-body">
+          <p>「IQ36〜50ならB1」と単純に決まるわけではありません。実際の判定では、次の3つを組み合わせて総合的に区分を決めています。</p>
+          <ul>
+            <li><strong>知能の程度</strong>（知能検査・発達検査の結果）</li>
+            <li><strong>社会生活能力の程度</strong>（身の回りのこと、人との関わり、集団への適応など）</li>
+            <li><strong>介助・介護の必要度</strong>（行動面・医療保健面を含めて、どれだけ支援が要るか）</li>
+          </ul>
+          <p>たとえば大阪市の<ruby>運用<rt>うんよう</rt></ruby>では、<strong><ruby>知能指数<rt>ちのうしすう</rt></ruby>が軽度の範囲（51〜75）でも、社会生活能力の障害が中度・重度で相応の介助を要する場合はB1（中度）になり得ます。</strong>逆に、知能指数が中度の範囲でも介助をあまり要しない場合はB1にとどまります。</p>
+          <p>つまり<strong>「数値が同じでもB1とB2が分かれる」</strong>ということが実際に起こります。手帳の記号だけを見て「この子はこれくらいできるはず」と考えるのが危ない理由が、ここにあります。</p>
+          <p class="db-note">出典：大阪市の療育手帳判定基準 / <ruby>厚生労働省<rt>こうせいろうどうしょう</rt></ruby>「療育手帳制度について」（<ruby>昭和<rt>しょうわ</rt></ruby>48年<ruby>児発<rt>じはつ</rt></ruby>第725号）</p>
+        </div>
+      </details>
+      <p class="source-note">参考：大阪府「療育手帳について」/ 寝屋川市 障害福祉課「療育手帳」/ 東大阪市「知的障害者(児)療育手帳」</p>
+    </div>
+
+    <!-- T4 -->
+    <div class="content-section" id="t4">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#D35400;">4</div>
+        <h2 class="section-heading">なぜ自治体でバラバラなのか</h2>
+      </div>
+      <div class="content-card">
+        <p>3つの手帳のうち、<strong><ruby>療育手帳<rt>りょういくてちょう</rt></ruby>だけが法律に基づいていません。</strong>1973年（<ruby>昭和<rt>しょうわ</rt></ruby>48年）に国が「こういう制度を作ってください」という通知を出し、あとの<ruby>運用<rt>うんよう</rt></ruby>は各自治体に任されました。</p>
+        <p>その結果、<strong>名前も区分も自治体ごとに違う</strong>という状態が50年以上続いています。</p>
+        <div class="highlight-box" style="border-left-color:#D35400;background:#FDF0E6;">
+          <p style="color:#6E2C00;">🗾 <strong>こんなに違います</strong><br>
+          ・<strong>大阪府</strong>：療育手帳／A・B1・B2<br>
+          ・<strong>東京都</strong>：「愛の手帳」／1度〜4度<br>
+          ・<strong>埼玉県</strong>：通称「みどりの手帳」／マルA・A・B・C<br>
+          ・<strong>青森県・名古屋市</strong>：「愛護手帳」<br>
+          ・<strong>千葉県</strong>：マルA・マルAの1・マルAの2・A1・A2・B1・B2（7区分）</p>
+        </div>
+        <p>つまり<strong>引っ越すと区分の表記が変わる</strong>ことがあります。「東京では2度だったのに、大阪ではB1と書かれている」——これは判定が変わったのではなく、そもそも<ruby>物差し<rt>ものさし</rt></ruby>が違うのです。</p>
+      </div>
+
+      <div class="myth-fact-list">
+        <div class="myth-fact-pair">
+          <div class="myth-box"><div class="mf-label">❌ 誤解</div><div class="mf-text">「療育手帳は国が等級を決めている」</div></div>
+          <div class="fact-box"><div class="mf-label">✅ 正しい理解</div><div class="mf-text">国の通知を参考に、<strong>各自治体が独自の<ruby>要綱<rt>ようこう</rt></ruby>で運用</strong>しています。だから名称も区分もバラバラです。</div></div>
+        </div>
+        <div class="myth-fact-pair">
+          <div class="myth-box"><div class="mf-label">❌ 誤解</div><div class="mf-text">「<ruby>転入<rt>てんにゅう</rt></ruby>してきた子の手帳の記号が違う＝間違い」</div></div>
+          <div class="fact-box"><div class="mf-label">✅ 正しい理解</div><div class="mf-text">前の自治体の表記です。<strong>転入後に大阪府の区分へ切り替える手続き</strong>が必要になります。慌てず市の窓口へ。</div></div>
+        </div>
+      </div>
+
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>いま、統一に向けて動いています。</strong>この地域差は「引っ越したらサービスが受けられなくなった」といった不利益を生むため、国が判定基準の統一化を進めています。2025年6月の<ruby>社会保障審議会障害者部会<rt>しゃかいほしょうしんぎかいしょうがいしゃぶかい</rt></ruby>で専門の検討会を設ける方針が了承され、2026年度からモデル自治体で試行される予定です。数年内に手帳の見え方が変わる可能性があることは、頭に入れておきましょう。</p>
+      </div>
+      <details class="deep-box">
+        <summary><span class="db-tag">もっと詳しく</span>全国統一はどこまで進んでいる？</summary>
+        <div class="db-body">
+          <p>いま実際にどれくらいバラついているかというと——<strong>判定区分の数が自治体によって2つから7つまで開きがあり</strong>、IQの上限値も、<ruby>再判定<rt>さいはんてい</rt></ruby>までの期間もそろっていません。大阪府が3区分（A・B1・B2）なのに対し、千葉県は7区分です。同じ状態の子が、住む場所によって違う区分になるということです。</p>
+          <p><strong>これまでの流れ</strong></p>
+          <ul>
+            <li><strong>2022〜2024年度</strong>…国の研究事業で、統一的な判定に使うツール（ABITI-CV）を開発</li>
+            <li><strong>2025年6月26日</strong>…社会保障審議会障害者部会で、統一化に向けた専門の検討会を設置する方針が了承される</li>
+            <li><strong>2026年度</strong>…モデル自治体で試行する予定</li>
+            <li><strong>その後</strong>…全国導入の可否や、法律への位置づけを検討</li>
+          </ul>
+          <p>統一化で議論されているのは判定基準だけでなく、<strong>手帳の名称や区分の表し方</strong>も含まれます。実現すれば「愛の手帳」「みどりの手帳」といった呼び名の違いや、引っ越しで区分が変わる問題は解消に向かいます。</p>
+          <p><strong>ただし、まだ決定ではありません。</strong>試行の結果を見て判断される段階なので、この資料を使うときは「そういう方向で動いている」という理解にとどめてください。</p>
+          <p class="db-note">※「みどりの手帳」は、埼玉県で平成27年9月まで交付されていた手帳が緑色だったことに由来する通称です（現在は紺色）。<br>出典：福祉新聞「療育手帳を全国統一 厚労省が検討会設置の方針」（2025年7月10日）/ こども家庭庁「療育手帳に係る判定基準統一化の検討進捗報告」（2024年9月）</p>
+        </div>
+      </details>
+      <p class="source-note">参考：こども家庭庁「療育手帳に係る判定基準統一化の検討進捗報告」（2024年9月）/ 福祉新聞「療育手帳を全国統一 厚労省が検討会設置の方針」（2025年7月10日）</p>
+    </div>
+
+    <!-- T5 -->
+    <div class="content-section" id="t5">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#D35400;">5</div>
+        <h2 class="section-heading"><ruby>精神障害者保健福祉手帳<rt>せいしんしょうがいしゃほけんふくしてちょう</rt></ruby>と<ruby>身体障害者手帳<rt>しんたいしょうがいしゃてちょう</rt></ruby></h2>
+      </div>
+      <div class="content-card">
+        <p>ここが意外と知られていないポイントです。<strong>ASD・ADHD・LDなどの発達障害は、精神障害者保健福祉手帳の対象</strong>です。</p>
+        <p>つまり、同じ事業所に通う子でも——</p>
+        <div class="highlight-box" style="border-left-color:#7B5EA7;background:#F3EEFF;">
+          <p style="color:#5A3A80;">🟣 <strong>どちらの手帳になるか</strong><br>
+          ・発達障害があり、<strong>知的障害も伴う</strong> → <ruby>療育手帳<rt>りょういくてちょう</rt></ruby>（両方持つ場合もあり）<br>
+          ・発達障害があるが、<strong>知的障害は伴わない</strong> → 精神障害者保健福祉手帳<br><br>
+          「精神」という言葉に保護者が抵抗を感じられることもあります。<strong>制度上の分類であって、心の病気という意味ではない</strong>と説明できるようにしておきましょう。</p>
+        </div>
+        <p>精神障害者保健福祉手帳は<strong>2年ごとの更新</strong>で、そのたびに医師の<ruby>診断書<rt>しんだんしょ</rt></ruby>が必要です。発達障害は<ruby>生涯<rt>しょうがい</rt></ruby>続く特性なのに更新が必要なのは、この手帳が他の精神疾患も広くカバーしているためです。<strong>更新を忘れると<ruby>失効<rt>しっこう</rt></ruby>します</strong>ので、期限が近い家庭には一声かけられると親切です。</p>
+        <p>身体障害者手帳は1級〜6級。<strong>7級は単独では手帳が<ruby>交付<rt>こうふ</rt></ruby>されず</strong>、7級が2つ以上重なる場合などに6級として交付されます。<ruby>重複<rt>ちょうふく</rt></ruby>障害のある子の書類を見るときに知っておくと役に立ちます。</p>
+      </div>
+      <details class="deep-box" style="--db-color:#7B5EA7;">
+        <summary><span class="db-tag">もっと詳しく</span>精神障害者保健福祉手帳の1級・2級・3級</summary>
+        <div class="db-body">
+          <p>等級は、次の4つの段階を順に確認して決められます。<strong>診断名だけで決まるのではなく、「生活にどれだけ制限が出ているか」で判断される</strong>のが特徴です。</p>
+          <ul>
+            <li>① 精神疾患があるかどうかの確認</li>
+            <li>② その疾患による機能障害の状態の確認</li>
+            <li>③ 能力障害（活動の制限）の状態の確認</li>
+            <li>④ ①〜③をふまえた<ruby>総合判定<rt>そうごうはんてい</rt></ruby></li>
+          </ul>
+          <div class="db-row"><div class="db-row-k">1級</div><div class="db-row-v">他の人の<ruby>援助<rt>えんじょ</rt></ruby>がなければ、食事・<ruby>入浴<rt>にゅうよく</rt></ruby>・着替えといった基本的な日常生活を送ることがほとんどできない状態。</div></div>
+          <div class="db-row"><div class="db-row-k">2級</div><div class="db-row-v">日常生活に著しい制限がある状態。一人暮らしはしていてもかなり無理をしている、働いても継続が不安定になりやすい、といったイメージ。</div></div>
+          <div class="db-row"><div class="db-row-k">3級</div><div class="db-row-v">日常生活や社会生活で必要なことはおおむね自分でできるが、<strong>ときどき他の人の助けや<ruby>助言<rt>じょげん</rt></ruby>が必要</strong>な状態。</div></div>
+          <p><strong>子どもの場合の注意。</strong>知的障害を伴わない発達障害の子は、日常の身の回りのことはできるため3級になることが多い一方、集団場面での困難は大きい、ということが起こります。<strong>等級が軽い＝困っていない、ではありません。</strong></p>
+          <p class="db-note">出典：<ruby>厚生労働省<rt>こうせいろうどうしょう</rt></ruby>「精神障害者保健福祉手帳の障害等級の判定基準について」（平成7年9月12日 健医発第1133号）</p>
+        </div>
+      </details>
+      <p class="source-note">参考：厚生労働省「精神障害者保健福祉手帳の障害等級の判定基準について」/ <ruby>身体障害者福祉法施行規則<rt>しんたいしょうがいしゃふくしほうしこうきそく</rt></ruby></p>
+    </div>
+
+    <!-- T6 -->
+    <div class="content-section" id="t6">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#D35400;">6</div>
+        <h2 class="section-heading"><ruby>受給者証<rt>じゅきゅうしゃしょう</rt></ruby>——手帳とはまったく別物</h2>
+      </div>
+      <div class="content-card">
+        <p>ここが<strong>現場で一番混同されるポイント</strong>です。放課後等デイサービスを利用するために必要なのは、手帳ではなく<strong>「障害児<ruby>通所受給者証<rt>つうしょじゅきゅうしゃしょう</rt></ruby>」</strong>です。</p>
+        <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+          <p style="color:#B03A2E;">⚠️ <strong>手帳がなくても、放デイは利用できます。</strong><br>
+          受給者証は市が<ruby>支給決定<rt>しきゅうけってい</rt></ruby>するもので、<strong>医師の<ruby>診断書<rt>しんだんしょ</rt></ruby>・<ruby>意見書<rt>いけんしょ</rt></ruby>などがあれば手帳がなくても取得可能</strong>です。「手帳を持っていない＝支援が必要ない」ではありません。</p>
+        </div>
+        <p>2つの違いを整理しましょう。</p>
+      </div>
+
+      <div class="myth-fact-list">
+        <div class="myth-fact-pair">
+          <div class="myth-box" style="background:#FDF0E6;border-color:#D35400;"><div class="mf-label" style="color:#6E2C00;">📔 手帳</div><div class="mf-text"><strong>「障害がある」ことを証明</strong>するもの。都道府県などが<ruby>交付<rt>こうふ</rt></ruby>。割引や手当の入口になる。</div></div>
+          <div class="fact-box"><div class="mf-label">🎫 受給者証</div><div class="mf-text"><strong>「福祉サービスを使える」ことを証明</strong>するもの。<strong>市が支給決定</strong>。事業所の利用に必要なのはこちら。</div></div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;">🎫 受給者証に書かれていること</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDF0E6;border-radius:10px;border-left:4px solid #D35400;">
+            <div style="font-size:12px;font-weight:700;color:#6E2C00;min-width:76px;">支援の種類</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><ruby>児童発達支援<rt>じどうはったつしえん</rt></ruby>・放課後等デイサービス・<ruby>保育所等訪問支援<rt>ほいくしょとうほうもんしえん</rt></ruby>など、使えるサービスの種類。</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDF0E6;border-radius:10px;border-left:4px solid #D35400;">
+            <div style="font-size:12px;font-weight:700;color:#6E2C00;min-width:76px;"><ruby>支給量<rt>しきゅうりょう</rt></ruby></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>1か月に何日使えるか。</strong>ここを超えると全額自己負担になります。利用調整の要になる情報です。</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDF0E6;border-radius:10px;border-left:4px solid #D35400;">
+            <div style="font-size:12px;font-weight:700;color:#6E2C00;min-width:76px;">決定期間</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong><ruby>有効期限<rt>ゆうこうきげん</rt></ruby>は原則1年。</strong>更新は終了の3か月前ごろから手続きします。切れると利用できません。</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDF0E6;border-radius:10px;border-left:4px solid #D35400;">
+            <div style="font-size:12px;font-weight:700;color:#6E2C00;min-width:76px;">負担上限<br>月額</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">その月に何日通っても、保護者の自己負担がこの額を超えないという上限。次のセクションで詳しく。</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDF0E6;border-radius:10px;border-left:4px solid #D35400;">
+            <div style="font-size:12px;font-weight:700;color:#6E2C00;min-width:76px;">上限額<br>管理事業所</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">複数の事業所を使う子は、1か所が全体の負担額を取りまとめます。<strong>自分の事業所がその役割を担うこともあります。</strong></div>
+          </div>
+        </div>
+      </div>
+      <details class="deep-box">
+        <summary><span class="db-tag">もっと詳しく</span>支給量（使える日数）はどうやって決まる？</summary>
+        <div class="db-body">
+          <p>支給量は事業所が決めるものでも、保護者の希望がそのまま通るものでもありません。<strong>「計画」を出して、市が決定する</strong>という流れになっています。</p>
+          <p><strong>計画の作り方は2通り</strong></p>
+          <div class="db-row"><div class="db-row-k">相談支援事業所<br>が作成</div><div class="db-row-v"><ruby>相談支援専門員<rt>そうだんしえんせんもんいん</rt></ruby>が自宅を訪問し、聞き取りや状況の<ruby>把握<rt>はあく</rt></ruby>（アセスメント）をしたうえで<strong><ruby>障害児支援利用計画<rt>しょうがいじしえんりようけいかく</rt></ruby></strong>を作ります。第三者の目が入るので<ruby>客観性<rt>きゃっかんせい</rt></ruby>が<ruby>担保<rt>たんぽ</rt></ruby>されます。<strong>費用は自治体負担で、保護者の負担はありません。</strong></div></div>
+          <div class="db-row"><div class="db-row-k">セルフプラン</div><div class="db-row-v">保護者自身が計画を作る方法。家庭の思いを反映させやすい一方、必要な支援が見落とされることもあります。事業所がサポートすることもあります。</div></div>
+          <p>どちらの方法で作っても、<strong>最終的に支給量を決めるのは市</strong>です。子どもの状態、家庭の状況、他に使っているサービスなどを<ruby>勘案<rt>かんあん</rt></ruby>して決定されます。</p>
+          <p><strong>現場で押さえること。</strong>「もっと通わせたい」という相談を受けたときの答えは「事業所では決められません」です。支給量の変更は市への申請が必要になるため、<strong>相談支援専門員か市の窓口につないでください。</strong></p>
+          <p class="db-note">出典：<ruby>児童福祉法<rt>じどうふくしほう</rt></ruby> / LITALICO発達ナビ「障害児支援利用計画」/ 各市の障害児支援利用計画の案内</p>
+        </div>
+      </details>
+      <p class="source-note">参考：<ruby>障害者総合支援法<rt>しょうがいしゃそうごうしえんほう</rt></ruby>・児童福祉法 / <ruby>寝屋川市<rt>ねやがわし</rt></ruby> <ruby>障害福祉課<rt>しょうがいふくしか</rt></ruby> / LITALICO発達ナビ / ファミケア</p>
+    </div>
+
+    <!-- T7 -->
+    <div class="content-section" id="t7">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#D35400;">7</div>
+        <h2 class="section-heading">お金の話——<ruby>負担上限月額<rt>ふたんじょうげんげつがく</rt></ruby>と手当</h2>
+      </div>
+      <div class="content-card">
+        <p>放課後等デイサービスの利用料は<strong>9割が公費、1割が自己負担</strong>です。さらに世帯の所得に応じて<strong>月額の上限</strong>が決まっており、何日通ってもそれ以上は請求されません。</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">0<span style="font-size:13px">円</span></div>
+          <div class="stat-label">生活保護世帯<br>市町村民税<br><ruby>非課税<rt>ひかぜい</rt></ruby>世帯</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">4,600<span style="font-size:11px">円</span></div>
+          <div class="stat-label"><ruby>課税世帯<rt>かぜいせたい</rt></ruby>で<br><ruby>所得割<rt>しょとくわり</rt></ruby>28万円未満<br><small>（年収おおむね890万円まで）</small></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">37,200<span style="font-size:11px">円</span></div>
+          <div class="stat-label">それ以上の<br>所得の世帯</div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <p>実際の請求額は<strong>「1割負担額」と「負担上限月額」の低い方</strong>です。たくさん通う子ほど上限に達しやすくなります。</p>
+        <p>また、家庭には手帳や診断に応じた<strong>手当</strong>もあります（いずれも所得制限あり・月額／令和8年度）。</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">58,450<span style="font-size:11px">円</span></div>
+          <div class="stat-label"><ruby>特別児童扶養手当<rt>とくべつじどうふようてあて</rt></ruby><br>1級</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">38,930<span style="font-size:11px">円</span></div>
+          <div class="stat-label">特別児童扶養手当<br>2級</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">16,560<span style="font-size:11px">円</span></div>
+          <div class="stat-label"><ruby>障害児福祉手当<rt>しょうがいじふくしてあて</rt></ruby><br><small>（重度・<ruby>常時介護<rt>じょうじかいご</rt></ruby>）</small></div>
+        </div>
+      </div>
+
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>金額の話は職員から切り出さないこと。</strong>手当の受給状況は極めてデリケートな情報です。ここで学ぶのは「そういう制度がある」という知識まで。個別の相談は必ず<strong>市の<ruby>障害福祉課<rt>しょうがいふくしか</rt></ruby>や<ruby>相談支援専門員<rt>そうだんしえんせんもんいん</rt></ruby></strong>につないでください。</p>
+      </div>
+      <details class="deep-box">
+        <summary><span class="db-tag">もっと詳しく</span><ruby>就学前<rt>しゅうがくまえ</rt></ruby>の子は無料になる？（<ruby>無償化<rt>むしょうか</rt></ruby>のしくみ）</summary>
+        <div class="db-body">
+          <p>2019年10月から、就学前の障害児の発達支援は<strong>利用者負担が無償化</strong>されています。ただし対象がはっきり決まっているので、間違えて案内しないよう注意が必要です。</p>
+          <div class="db-row"><div class="db-row-k">対象の期間</div><div class="db-row-v"><strong>満3歳になって初めての4月1日から3年間</strong>（小学校に就学するまで）</div></div>
+          <div class="db-row"><div class="db-row-k">対象の<br>サービス</div><div class="db-row-v"><ruby>児童発達支援<rt>じどうはったつしえん</rt></ruby>、<ruby>居宅訪問型児童発達支援<rt>きょたくほうもんがたじどうはったつしえん</rt></ruby>、<ruby>保育所等訪問支援<rt>ほいくしょとうほうもんしえん</rt></ruby></div></div>
+          <div class="db-row"><div class="db-row-k">対象外</div><div class="db-row-v"><strong>放課後等デイサービスは対象外です。</strong>小学生以上が使うサービスのため、無償化の枠に入りません。</div></div>
+          <p>無償化を受けるための<strong>新しい手続きは不要</strong>で、負担上限月額の区分や<ruby>多子軽減<rt>たしけいげん</rt></ruby>の有無にかかわらず適用されます。</p>
+          <p>ただし<strong>食費・おやつ代・行事費・交通費といった<ruby>実費<rt>じっぴ</rt></ruby>部分は無償化の対象外</strong>です。「無料と聞いたのに請求が来た」という行き違いは、たいていここで起きます。</p>
+          <p class="db-note">出典：こども家庭庁「就学前障害児の発達支援の無償化について」</p>
+        </div>
+      </details>
+      <p class="source-note">参考：<ruby>厚生労働省<rt>こうせいろうどうしょう</rt></ruby> / 岐阜県・東京都福祉局（手当額は令和8年4月分から）/ 高槻市「通所支援サービスの利用者負担」</p>
+    </div>
+
+    <!-- T8 -->
+    <div class="content-section" id="t8">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#D35400;">8</div>
+        <h2 class="section-heading">子どもたちが日常で触れるもの</h2>
+      </div>
+      <div class="content-card">
+        <p>手帳や<ruby>受給者証<rt>じゅきゅうしゃしょう</rt></ruby>以外にも、子どもや家族が日常的に使っているものがあります。知っておくと、外出支援やガイドヘルプの場面で役に立ちます。</p>
+      </div>
+
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">🔴</div>
+          <div class="tip-content">
+            <strong>ヘルプマーク</strong>
+            <p><ruby>援助<rt>えんじょ</rt></ruby>や配慮を必要としていることを周囲に知らせる赤いタグ。<strong>手帳がなくてももらえます</strong>し、持っていることが障害の証明にもなりません。外見からは分かりにくい特性のある子が付けていることがあります。見かけたら「困っているかも」と一歩気にかける——それがこのマークの目的です。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">📱</div>
+          <div class="tip-content">
+            <strong>ミライロID（障害者手帳アプリ）</strong>
+            <p>手帳の情報をスマホに表示できるアプリ。全国4,000以上の事業者で使え、鉄道・バス・映画館などで手帳の代わりに提示できます。保護者が紙の手帳を持ち歩かずに済むため、利用が広がっています。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">💳</div>
+          <div class="tip-content">
+            <strong>カード型の手帳</strong>
+            <p>2019年の制度改正で、<ruby>身体障害者手帳<rt>しんたいしょうがいしゃてちょう</rt></ruby>と<ruby>精神障害者保健福祉手帳<rt>せいしんしょうがいしゃほけんふくしてちょう</rt></ruby>はカード型での<ruby>交付<rt>こうふ</rt></ruby>が可能になりました。導入するかは自治体の判断で、大阪府内では<ruby>箕面市<rt>みのおし</rt></ruby>などが実施しています。<strong>見た目が違っても同じ手帳</strong>だと知っておきましょう。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🎟️</div>
+          <div class="tip-content">
+            <strong>各種割引</strong>
+            <p>鉄道・バス・タクシー、映画館、公共施設の入場料、NHK受信料の<ruby>減免<rt>げんめん</rt></ruby>など。<strong>第1種（A判定）なら介護者も割引対象</strong>になるため、ガイドヘルプでの外出時に関わってきます。事業者ごとにルールが違うので、事前確認が基本です。</p>
+          </div>
+        </li>
+      </ul>
+      <p class="source-note">参考：ミライロID公式 / 箕面市「カード型障害者手帳について」/ 大阪府の支援サービス一覧</p>
+    </div>
+
+    <!-- T9 -->
+    <div class="content-section" id="t9">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#D35400;">9</div>
+        <h2 class="section-heading">現場での関わり方とNG対応</h2>
+      </div>
+
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">👤</div>
+          <div class="tip-content">
+            <strong>区分はその子の一部でしかない</strong>
+            <p>「B2だから困っていない」ということはありません。軽度と判定される子ほど、周囲から理解されず苦しさを抱えていることもあります。記号ではなく目の前の様子を見てください。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">📅</div>
+          <div class="tip-content">
+            <strong><ruby>受給者証<rt>じゅきゅうしゃしょう</rt></ruby>の期限と<ruby>支給量<rt>しきゅうりょう</rt></ruby>を<ruby>把握<rt>はあく</rt></ruby>しておく</strong>
+            <p><ruby>有効期限<rt>ゆうこうきげん</rt></ruby>が切れると利用できません。支給量を超えると全額自己負担です。更新時期が近い家庭には「そろそろですね」と一声かけられると、家庭にとって大きな助けになります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🔗</div>
+          <div class="tip-content">
+            <strong>制度の相談は必ず窓口につなぐ</strong>
+            <p>私たちの役割は「そういう制度がありますよ」と伝えるところまで。判断は市の<ruby>障害福祉課<rt>しょうがいふくしか</rt></ruby>や<ruby>相談支援専門員<rt>そうだんしえんせんもんいん</rt></ruby>の仕事です。つなぐことも立派な支援です。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🔒</div>
+          <div class="tip-content">
+            <strong>書類の情報は最重要の個人情報として扱う</strong>
+            <p>手帳の区分、受給者証の内容、手当の受給状況——どれも本人と家族の極めてセンシティブな情報です。取り扱う場所と相手を常に意識してください。</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;margin-top:16px;">
+        <p style="color:#B03A2E;">🚫 <strong>やってはいけないNG対応</strong><br>
+        ・<ruby>送迎<rt>そうげい</rt></ruby>時など<strong>他の保護者や子どもがいる場で</strong>手帳や区分の話をする<br>
+        ・「A判定だから何も分からない」と<strong>区分で能力を決めつける</strong><br>
+        ・保護者の制度相談に<strong>自己判断で<ruby>断言<rt>だんげん</rt></ruby>して答える</strong>（「たぶん取れますよ」はNG）<br>
+        ・「手帳を取った方がいいですよ」と<strong>職員から取得を勧める</strong>（家庭が決めることです）<br>
+        ・受給者証やそのコピーを<strong>机の上に出したまま</strong>にする</p>
+      </div>
+    </div>
+
+    <!-- クイズ -->
+    <div class="quiz-section content-section" id="tquiz">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#D35400;">✓</div>
+        <h2 class="section-heading">🔥 チャレンジクイズ</h2>
+      </div>
+      <div class="content-card" style="background:#FDF0E6;border:1.5px solid #F0B27A;margin-bottom:16px;">
+        <p style="color:#6E2C00;font-size:13px;line-height:1.9;">今回は制度の回です。<strong>講義をしっかり読めば全問解けます。</strong>なんとなくで選ぶと間違えるので注意！💪</p>
+      </div>
+
+      <div class="quiz-card" id="tqcard1">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#D35400;">Q1</span><ruby>療育手帳<rt>りょういくてちょう</rt></ruby>が、<ruby>身体障害者手帳<rt>しんたいしょうがいしゃてちょう</rt></ruby>や<ruby>精神障害者保健福祉手帳<rt>せいしんしょうがいしゃほけんふくしてちょう</rt></ruby>と決定的に違う点はどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerTQuiz(1,this,false)">対象が18歳未満の子どもに限定されており、大人になると別の手帳へ切り替わるから</button>
+          <button class="quiz-opt" onclick="answerTQuiz(1,this,true)">根拠となる法律がなく、国の通知をもとに各自治体が独自の<ruby>要綱<rt>ようこう</rt></ruby>で運営しているから</button>
+          <button class="quiz-opt" onclick="answerTQuiz(1,this,false)">医師の<ruby>診断書<rt>しんだんしょ</rt></ruby>を必要とせず、検査の数値だけで<ruby>交付<rt>こうふ</rt></ruby>の可否が決まる仕組みだから</button>
+        </div>
+        <div class="quiz-result" id="tqres1"></div>
+      </div>
+
+      <div class="quiz-card" id="tqcard2">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#D35400;">Q2</span>大阪府で、IQがおおむね36〜50の子が「B1」ではなく「A」と判定されることがあるのはどんな場合ですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerTQuiz(2,this,false)">保護者が重度での判定を希望し、市の窓口に申し立てを行った場合</button>
+          <button class="quiz-opt" onclick="answerTQuiz(2,this,true)">一定以上の身体障害を<ruby>併せ持ち<rt>あわせもち</rt></ruby>、日常生活により多くの<ruby>介助<rt>かいじょ</rt></ruby>を必要とする場合</button>
+          <button class="quiz-opt" onclick="answerTQuiz(2,this,false)">就学先が支援学校となり、学校から重度相当の<ruby>意見書<rt>いけんしょ</rt></ruby>が提出された場合</button>
+        </div>
+        <div class="quiz-result" id="tqres2"></div>
+      </div>
+
+      <div class="quiz-card" id="tqcard3">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#D35400;">Q3</span>手帳を持っていない子が放課後等デイサービスを利用できることがあるのは、なぜですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerTQuiz(3,this,false)">手帳を申請中であれば、交付されるまでの間だけ例外的に利用が認められるから</button>
+          <button class="quiz-opt" onclick="answerTQuiz(3,this,false)">事業所が受け入れの可否を独自に判断でき、行政の決定を必要としない仕組みだから</button>
+          <button class="quiz-opt" onclick="answerTQuiz(3,this,true)">利用に必要なのは市が<ruby>支給決定<rt>しきゅうけってい</rt></ruby>する<ruby>受給者証<rt>じゅきゅうしゃしょう</rt></ruby>で、医師の意見書などでも取得できるから</button>
+        </div>
+        <div class="quiz-result" id="tqres3"></div>
+      </div>
+
+      <div class="quiz-card" id="tqcard4">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#D35400;">Q4</span>受給者証に書かれている「<ruby>負担上限月額<rt>ふたんじょうげんげつがく</rt></ruby>」の意味として正しいものはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerTQuiz(4,this,false)">事業所が1か月に市へ請求できる金額の上限を、事業所ごとに定めたもの</button>
+          <button class="quiz-opt" onclick="answerTQuiz(4,this,true)">その月に何日通っても、保護者の自己負担額がその金額を超えないという上限</button>
+          <button class="quiz-opt" onclick="answerTQuiz(4,this,false)">利用料が高額になったときに、あとから家庭に払い戻される金額の上限</button>
+        </div>
+        <div class="quiz-result" id="tqres4"></div>
+      </div>
+
+      <div class="quiz-card" id="tqcard5">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#D35400;">Q5</span>発達障害の診断がある子が、療育手帳ではなく精神障害者保健福祉手帳を持っている場合、そこから読み取れることはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerTQuiz(5,this,false)">障害の程度が比較的軽く、日常生活での支援がほとんど必要ない状態であること</button>
+          <button class="quiz-opt" onclick="answerTQuiz(5,this,false)">医療機関ではなく学校の判断によって、手帳の種類が決められたということ</button>
+          <button class="quiz-opt" onclick="answerTQuiz(5,this,true)">知的機能の面では療育手帳の交付基準に該当しなかった可能性が高いということ</button>
+        </div>
+        <div class="quiz-result" id="tqres5"></div>
+      </div>
+
+      <div class="quiz-score-box" id="tquiz-score">
+        <div class="quiz-score-num" id="tscore-num">0 / 5</div>
+        <div class="quiz-score-label" id="tscore-msg"></div>
+        <button class="quiz-retry-btn" style="background:#D35400;" onclick="retryTQuiz()">🔄 もう一度チャレンジ</button>
+      </div>
+    </div>
+
+    <!-- まとめ -->
+    <div class="content-section" id="t10">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#D35400;">10</div>
+        <h2 class="section-heading">今月のまとめ</h2>
+      </div>
+      <div class="content-card">
+        <p>🌊 障害者手帳は<strong>3種類</strong>。<ruby>療育手帳<rt>りょういくてちょう</rt></ruby>だけが法律に基づかず、自治体ごとに名称も区分も違います。大阪府は<strong>A・B1・B2</strong>、判定は18歳未満なら大阪府中央子ども家庭センターです。</p>
+        <p>🌊 <strong>手帳と<ruby>受給者証<rt>じゅきゅうしゃしょう</rt></ruby>はまったくの別物</strong>です。事業所の利用に必要なのは受給者証で、手帳がなくても取得できます。<ruby>支給量<rt>しきゅうりょう</rt></ruby>と<ruby>有効期限<rt>ゆうこうきげん</rt></ruby>は現場で必ず押さえておきたい情報です。</p>
+        <p>🌊 制度は「知っていると家庭を支えられる」武器になりますが、<strong>判断まで踏み込むのは私たちの役割ではありません</strong>。知っていること、つなぐこと、そして情報を守ること。この3つを大切にしましょう。</p>
+      </div>
+
+      <div class="callout-warm" style="margin-top:16px;">
+        <span class="ci">🌊</span>
+        <p><strong>Month 01〜04の学びと合わせて：</strong>診断名も、手帳の区分も、その子を説明するラベルのひとつにすぎません。制度を正しく知ることは、<strong>ラベルに頼らずに済むため</strong>の知識です。手帳に何と書かれていても、目の前の子をどう理解するかは私たちの仕事です。</p>
+      </div>
+
+      <div class="next-month" style="background:#1A3A3A;">
+        <div class="nm-left">
+          <p class="nm-sub">▶ NEXT MONTH</p>
+          <p class="nm-title">Coming Soon 🔒</p>
+          <p class="nm-desc">来月のテーマは準備中です。お楽しみに！</p>
+        </div>
+        <span class="nm-tag" style="background:#D35400;">Coming Soon →</span>
+      </div>
+    </div>
+
+    <div class="about-doc">
+      <div class="about-doc-title">📌 この資料について</div>
+      <p>本資料の制度・金額の内容は<strong>2026年9月時点</strong>の情報をもとにしています。手当額は令和8年度（2026年4月分から）の金額です。</p>
+      <p>療育手帳の区分・<ruby>判定機関<rt>はんていきかん</rt></ruby>・窓口は<strong>大阪府および<ruby>寝屋川市<rt>ねやがわし</rt></ruby>の<ruby>運用<rt>うんよう</rt></ruby></strong>にもとづいて記載しています。他の自治体では名称も区分も異なります。</p>
+      <p>制度・金額・運用は改正されます。実際の手続きや個別の判断については、<strong>必ず市区町村の障害福祉担当窓口や<ruby>相談支援専門員<rt>そうだんしえんせんもんいん</rt></ruby>に確認してください。</strong>この資料は職員が制度の全体像を理解するためのものであり、保護者への案内や判断の根拠として単独で用いるものではありません。</p>
+    </div>
+
+  </div><!-- /content-wrap -->
+
+  <div class="print-btn-wrap">
+    <button class="print-btn" style="color:#D35400;border-color:#D35400;" onclick="printPage('techo')">🖨️ この資料を印刷する</button>
+  </div>
+
+  <footer class="asd-footer">
+    <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
+    スタッフ研修資料 Month 05 · 2026年8月<br>
+    参考：大阪府 / 寝屋川市 <ruby>障害福祉課<rt>しょうがいふくしか</rt></ruby> / こども家庭庁 / <ruby>厚生労働省<rt>こうせいろうどうしょう</rt></ruby><br>
+    LITALICO発達ナビ / ファミケア / ミライロID / <ruby>箕面市<rt>みのおし</rt></ruby>
+  </footer>
+
+</div><!-- /page-techo -->
+
+
 
 
 
@@ -2962,8 +3846,8 @@ function showPage(name) {
 
   // ヘッダー切り替え
   var inner = document.getElementById('hp-header');
-  if (name === 'hearing' || name === 'asd' || name === 'adhd' || name === 'intel') {
-    var monthLabel = name === 'intel' ? 'Month 04 · 7月' : (name === 'adhd' ? 'Month 03 · 6月' : (name === 'hearing' ? 'Month 02 · 5月' : 'Month 01 · 4月'));
+  if (name === 'hearing' || name === 'asd' || name === 'adhd' || name === 'intel' || name === 'techo') {
+    var monthLabel = name === 'techo' ? 'Month 05 · 8月' : (name === 'intel' ? 'Month 04 · 7月' : (name === 'adhd' ? 'Month 03 · 6月' : (name === 'hearing' ? 'Month 02 · 5月' : 'Month 01 · 4月')));
     inner.innerHTML =
       '<button class="back-btn" onclick="showPage(\'hp\')">← ホーム</button>' +
       '<span class="header-title" style="color:rgba(255,255,255,0.75);font-size:12px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:8px;">りぷる スタッフ研修ポータル</span>' +
@@ -2980,7 +3864,7 @@ function showPage(name) {
       '<div class="header-nav">' +
         '<button onclick="scrollToSection(\'curriculum\')">カリキュラム</button>' +
         '<button onclick="scrollToSection(\'about\')">りぷるとは</button>' +
-        '<button onclick="showPage(\'intel\')">今月</button>' +
+        '<button onclick="showPage(\'techo\')">今月</button>' +
       '</div>';
   }
 
@@ -3261,7 +4145,7 @@ var iQuizExplanations = {
     ng: '❌ 不正解。IQ検査の精度や変動の問題ではなく、同じIQでも日常生活の困難さが全く異なるため、適応機能を合わせて評価することがより支援に役立つという理由からです。'
   },
   2: {
-    ok: '✅ 正解！ダウン症は21番染色体が3本存在する「トリソミー21」です。染色体の突然変異であり、親からの遺伝ではありません。',
+    ok: '✅ 正解！ダウン症は21番染色体が3本存在する「トリソミー21」です。大多数を占める標準型は細胞分裂時の偶発的なエラーで起こり遺伝しませんが、一部の転座型では親から受け継がれることもあります。',
     ng: '❌ 不正解。ダウン症は21番染色体が3本あるトリソミー21です。18番トリソミーはエドワーズ症候群、モノソミーXはターナー症候群です。'
   },
   3: {
@@ -3327,9 +4211,90 @@ function retryIQuiz() {
 }
 
 // 印刷（ページ対応）
+
+// ---- 療育手帳・受給者証クイズ ----
+var tQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+var tQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+var tQuizScore   = 0;
+var T_QUIZ_TOTAL = 5;
+
+var tQuizExplanations = {
+  1: {
+    ok: '✅ 正解！療育手帳だけは根拠となる法律がなく、昭和48年の国の通知をもとに各自治体が独自の要綱で運営しています。だから名称も区分も自治体ごとにバラバラで、引っ越すと表記が変わることがあります。身体・精神の手帳にはそれぞれ根拠法があります。',
+    ng: '❌ 不正解。療育手帳は18歳以上の方にも交付されますし、判定は検査の数値だけでなく日常生活の状況を含めた総合判定です。決定的な違いは「根拠となる法律がなく、各自治体が独自の要綱で運営している」という点です。'
+  },
+  2: {
+    ok: '✅ 正解！大阪府では、IQがおおむね35以下の場合に加えて、IQおおむね36〜50でも一定の身体障害を併せ持つ場合はA（重度）と判定されます。知的な数値だけでなく、実際にどれだけの介助を必要とするかで見ているわけです。',
+    ng: '❌ 不正解。判定は児童相談所などの判定機関が行うもので、保護者の希望や学校の意見書で区分が決まることはありません。IQおおむね36〜50でもAになるのは、一定以上の身体障害を併せ持ち、より多くの介助を必要とする場合です。'
+  },
+  3: {
+    ok: '✅ 正解！放課後等デイサービスの利用に必要なのは手帳ではなく、市が支給決定する「障害児通所受給者証」です。医師の診断書・意見書などがあれば手帳がなくても取得できます。「手帳を持っていない＝支援が必要ない」ではないことを覚えておいてください。',
+    ng: '❌ 不正解。申請中だから例外的に、でも事業所の独自判断でもありません。利用に必要なのは市が支給決定する受給者証であり、これは手帳がなくても医師の意見書などをもとに取得できます。手帳と受給者証はまったく別の制度です。'
+  },
+  4: {
+    ok: '✅ 正解！利用料は原則1割負担ですが、世帯の所得に応じた月額の上限が決まっており、その月に何日通ってもこの額を超えて請求されることはありません。実際の負担は「1割負担額」と「負担上限月額」の低い方になります。',
+    ng: '❌ 不正解。事業所への請求上限でも、あとから払い戻される金額でもありません。保護者の自己負担がその月にそれ以上増えないという上限額です。たくさん通う子ほど上限に達しやすくなります。'
+  },
+  5: {
+    ok: '✅ 正解！発達障害は精神障害者保健福祉手帳の対象です。知的障害を伴う場合は療育手帳になりますが、伴わない場合はこちらになります。つまり手帳の種類の違いは「支援の必要度が低い」という意味ではなく、知的機能の面で療育手帳の基準に該当したかどうかの違いです。',
+    ng: '❌ 不正解。手帳の種類は学校ではなく判定機関や診断に基づいて決まりますし、精神障害者保健福祉手帳だから支援が要らないということもありません。発達障害があっても知的障害を伴わない場合、療育手帳の交付基準には該当せず、精神障害者保健福祉手帳の対象になります。'
+  }
+};
+
+function answerTQuiz(num, btn, isCorrect) {
+  if (tQuizDone[num]) return;
+  tQuizDone[num] = true;
+  tQuizAnswers[num] = isCorrect;
+  if (isCorrect) tQuizScore++;
+
+  var opts = btn.closest('.quiz-card').querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){ o.classList.add('disabled'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(function(o){
+      if (o.getAttribute('onclick').indexOf('true') !== -1) o.classList.add('correct');
+    });
+  }
+
+  var res = document.getElementById('tqres' + num);
+  res.textContent = tQuizExplanations[num][isCorrect ? 'ok' : 'ng'];
+  res.className = 'quiz-result show ' + (isCorrect ? 'ok' : 'ng');
+
+  var allDone = true;
+  for (var i = 1; i <= T_QUIZ_TOTAL; i++) { if (!tQuizDone[i]) { allDone = false; break; } }
+  if (allDone) {
+    setTimeout(function(){
+      var box = document.getElementById('tquiz-score');
+      box.classList.add('show');
+      document.getElementById('tscore-num').textContent = tQuizScore + ' / ' + T_QUIZ_TOTAL;
+      var msgs = ['全部読み直してみましょう💪','もう少し！復習してみて。','いい感じ！あと少し。','ほぼ完璧！惜しい〜','全問正解まであと一問！','全問正解！完璧です🎉'];
+      document.getElementById('tscore-msg').textContent = msgs[tQuizScore];
+    }, 400);
+  }
+}
+
+function retryTQuiz() {
+  tQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+  tQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+  tQuizScore   = 0;
+  for (var n = 1; n <= T_QUIZ_TOTAL; n++) {
+    var card = document.getElementById('tqcard'+n);
+    if (!card) continue;
+    card.querySelectorAll('.quiz-opt').forEach(function(o){ o.className = 'quiz-opt'; });
+    var res = document.getElementById('tqres'+n);
+    res.className = 'quiz-result';
+    res.textContent = '';
+  }
+  document.getElementById('tquiz-score').classList.remove('show');
+  tocScrollTo('tquiz');
+}
+
+
 function printPage(name) {
   document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
   document.getElementById('page-' + name).classList.add('active');
+  // 「もっと詳しく」を全部開いてから印刷する
+  document.querySelectorAll('#page-' + name + ' details').forEach(function(d){ d.open = true; });
   window.print();
 }
 

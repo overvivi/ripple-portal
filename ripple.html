@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>放課後等デイサービス りぷる | スタッフ研修ポータル</title>
+<link rel="stylesheet" href="assets/mascot/mascot-v1.css">
+<script src="assets/mascot/mascot-v1.js" defer></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 /* =====================
@@ -189,6 +191,14 @@ body {
   margin-bottom:14px;
 }
 .hero p { font-size:14px; opacity:0.85; line-height:1.9; }
+.hero-description{display:flex;align-items:center;justify-content:center;gap:24px;max-width:620px;margin:0 auto;position:relative;z-index:1}
+.hero-description p{text-align:left;min-width:0;flex:1;max-width:310px}
+.hero-description .ripple-mascot{--ripple-size:220px}
+.about-visual .ripple-mascot{--ripple-size:156px;margin:0 auto}
+.lecture-companion{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 10px}
+.lecture-companion .ripple-mascot{--ripple-size:68px}
+@media(max-width:600px){.hero{padding:36px 20px 28px}.hero-description{gap:8px}.hero-description p{font-size:12px;line-height:1.9}.hero-description .ripple-mascot{--ripple-size:clamp(126px,39vw,180px)}}
+@media print{.ripple-mascot{display:none!important}}
 
 .hp-section {
   max-width:1100px;
@@ -967,12 +977,12 @@ rt {
   <div class="hero">
     <div class="hero-badge">🌊 RIPPLE STAFF PORTAL 2026</div>
     <h1>子どもを深く知る<br>12ヶ月の学びの場</h1>
-    <p>
-      放課後等デイサービス りぷる の<br>
-      スタッフ向け研修ポータルです。<br>
-      毎月10分の講義で、子どもたちへの<br>
+    <div class="hero-description"><p>
+      放課後等デイサービス りぷる の
+      スタッフ向け研修ポータルです。
+      毎月10分の講義で、子どもたちへの
       理解を少しずつ広げていきましょう。
-    </p>
+    </p><button type="button" class="ripple-mascot ripple-mascot--play" data-ripple-play aria-label="リプル"><img src="assets/mascot/ripple-idle.webp" width="1254" height="1254" alt="" draggable="false" fetchpriority="high"></button></div>
   </div>
 
   <div class="hp-section" id="curriculum">
@@ -1100,9 +1110,7 @@ rt {
 
     <div class="about-box">
       <div class="about-visual">
-        <div class="ripple-visual">
-          <span class="ripple-inner-text">り</span>
-        </div>
+        <span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-rest.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span>
         <p class="about-visual-caption">
           🌊 ripple
         </p>
@@ -1514,6 +1522,7 @@ rt {
   </div>
 
   <footer class="asd-footer">
+    <div class="lecture-companion"><span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-wave.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span><button class="back-btn" onclick="showPage('hp')">カリキュラムへ戻る</button></div>
     <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
     スタッフ研修資料 Month 01 · 2026年4月<br>
     参考：国立精神・神経医療研究センター / 大塚製薬 すまいるナビゲーター<br>
@@ -2027,6 +2036,7 @@ rt {
   </div>
 
   <footer class="asd-footer">
+    <div class="lecture-companion"><span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-wave.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span><button class="back-btn" onclick="showPage('hp')">カリキュラムへ戻る</button></div>
     <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
     スタッフ研修資料 Month 02 · 2026年5月<br>
     参考：国立精神・神経医療研究センター / LITALICO発達ナビ / コペルプラス
@@ -2701,6 +2711,7 @@ rt {
   </div>
 
   <footer class="asd-footer">
+    <div class="lecture-companion"><span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-wave.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span><button class="back-btn" onclick="showPage('hp')">カリキュラムへ戻る</button></div>
     <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
     スタッフ研修資料 Month 03 · 2026年6月<br>
     参考：LITALICO発達ナビ / AIAI VISIT / 国立精神・神経医療研究センター<br>
@@ -3172,6 +3183,7 @@ rt {
   </div>
 
   <footer class="asd-footer">
+    <div class="lecture-companion"><span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-wave.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span><button class="back-btn" onclick="showPage('hp')">カリキュラムへ戻る</button></div>
     <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
     スタッフ研修資料 Month 04 · 2026年7月<br>
     参考：LITALICO発達ナビ / 小児心身医学会 / チャボナビ / MSDマニュアル<br>
@@ -3824,6 +3836,7 @@ rt {
   </div>
 
   <footer class="asd-footer">
+    <div class="lecture-companion"><span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-wave.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span><button class="back-btn" onclick="showPage('hp')">カリキュラムへ戻る</button></div>
     <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
     スタッフ研修資料 Month 05 · 2026年8月<br>
     参考：大阪府 / 寝屋川市 <ruby>障害福祉課<rt>しょうがいふくしか</rt></ruby> / こども家庭庁 / <ruby>厚生労働省<rt>こうせいろうどうしょう</rt></ruby><br>

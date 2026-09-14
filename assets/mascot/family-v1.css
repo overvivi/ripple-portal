@@ -1,10 +1,7 @@
 /* A quiet, static introduction to the three service mascots. */
 .ripple-family{width:min(100%,330px);margin:0 auto 20px;color:inherit}
 .ripple-family>img{display:block;width:100%;height:auto;aspect-ratio:3/1;object-fit:contain}
-.ripple-family figcaption{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin:10px 0 0;padding:0 10%;text-align:center;font-size:11px;line-height:1.6;letter-spacing:0}
-.ripple-family figcaption span{white-space:nowrap}
 .login-bottom .ripple-family{width:min(100%,280px);margin-bottom:20px}
-.login-bottom .ripple-family figcaption{color:#e0e7ff;font-size:10px}
 .app-footer>.ripple-family{margin-top:24px;margin-bottom:2px}
 .hp-footer>.ripple-family{margin-bottom:24px}
 @media print{.ripple-family{display:none!important}}

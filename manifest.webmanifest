@@ -1,0 +1,29 @@
+{
+  "name": "放課後等デイサービス りぷる｜スタッフ研修ポータル",
+  "short_name": "りぷる研修",
+  "start_url": "./ripple.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F6FBFB",
+  "theme_color": "#2A7B7B",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

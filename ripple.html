@@ -972,7 +972,7 @@ rt {
     <div class="header-nav">
       <button onclick="scrollToSection('curriculum')">カリキュラム</button>
       <button onclick="scrollToSection('about')">りぷるとは</button>
-      <button onclick="showPage('techo')">今月</button>
+      <button onclick="showPage('niji')">今月</button>
     </div>
   </div>
 </header>
@@ -997,16 +997,16 @@ rt {
     <div class="progress-wrap">
       <span class="progress-label">📚 2026年度の進捗</span>
       <div class="progress-bar-bg">
-        <div class="progress-bar-fill" style="width:41.67%"></div>
+        <div class="progress-bar-fill" style="width:50%"></div>
       </div>
-      <span class="progress-count">5 / 12 完了</span>
+      <span class="progress-count">6 / 12 完了</span>
     </div>
 
     <div class="notice-bar">
       <div class="notice-icon">📢</div>
       <p>
-        <strong>今月（2026年8月分・9月3日開催）</strong>の研修テーマは<br>
-        「<strong>療育手帳と受給者証——制度を正しく知る</strong>」です。<br>
+        <strong>今月（2026年9月）</strong>の研修テーマは<br>
+        「<strong>二次障害と自己肯定感——叱責が積み重なる前に</strong>」です。<br>
         下のカードをタップしてコンテンツを開いてください。
       </p>
     </div>
@@ -1048,19 +1048,19 @@ rt {
         <span class="card-status status-soon">✅ 先月の資料</span>
       </button>
 
-      <button class="curriculum-card current" style="--card-color:#D35400;" onclick="showPage('techo')">
+      <button class="curriculum-card" style="--card-color:#D35400;" onclick="showPage('techo')">
         <span class="card-month">Month 05 · 8月</span>
         <div class="card-title">療育手帳と受給者証——制度を正しく知る</div>
         <div class="card-subtitle">手帳の種類・区分・受給者証の違い。子どもたちが持っている「制度の道具」を正確に知る</div>
-        <span class="card-status status-now">▶ 今月のテーマ</span>
+        <span class="card-status status-soon">✅ 先月の資料</span>
       </button>
 
-      <div class="curriculum-card disabled" style="--card-color:#2980B9;">
+      <button class="curriculum-card current" style="--card-color:#A23A6E;" onclick="showPage('niji')">
         <span class="card-month">Month 06 · 9月</span>
-        <div class="card-title" style="color:#bbb;">？？？</div>
-        <div class="card-subtitle" style="color:#ccc;">スタッフからのリクエストや気になるテーマを募集中！</div>
-        <span class="card-status status-future">準備中</span>
-      </div>
+        <div class="card-title">二次障害と自己肯定感——叱責が積み重なる前に</div>
+        <div class="card-subtitle">困った行動を叱って止める前に。行動の裏側を読み、自己肯定感を守る関わりを学ぶ</div>
+        <span class="card-status status-now">▶ 今月のテーマ</span>
+      </button>
 
       <div class="curriculum-card disabled" style="--card-color:#F39C12;">
         <span class="card-month">Month 07 · 10月</span>
@@ -3824,10 +3824,10 @@ rt {
       <div class="next-month" style="background:#1A3A3A;">
         <div class="nm-left">
           <p class="nm-sub">▶ NEXT MONTH</p>
-          <p class="nm-title">Coming Soon 🔒</p>
-          <p class="nm-desc">来月のテーマは準備中です。お楽しみに！</p>
+          <p class="nm-title">二次障害と自己肯定感</p>
+          <p class="nm-desc">叱責が積み重なる前に、できることがあります。</p>
         </div>
-        <span class="nm-tag" style="background:#D35400;">Coming Soon →</span>
+        <span class="nm-tag" style="background:#D35400;cursor:pointer;" onclick="showPage('niji')">Month 06 を見る →</span>
       </div>
     </div>
 
@@ -3854,6 +3854,598 @@ rt {
 
 </div><!-- /page-techo -->
 
+<!-- ========================================
+     Month 06 · 二次障害と自己肯定感
+======================================== -->
+<div class="page" id="page-niji">
+
+  <div class="asd-hero" style="background:linear-gradient(135deg,#4A1530 0%,#A23A6E 55%,#D97BA8 100%);">
+    <div class="month-tag">🌊 Month 06 · 2026年9月の研修テーマ</div>
+    <h1><ruby>二次障害<rt>にじしょうがい</rt></ruby>と<ruby>自己肯定感<rt>じここうていかん</rt></ruby><br>——<ruby>叱責<rt>しっせき</rt></ruby>が積み重なる前に</h1>
+    <p class="lead">
+      「何回言ったらわかるの」<br>
+      その一言が、何を残すのか。<br>
+      困った行動を止める前に、<br>
+      できることがあります。
+    </p>
+  </div>
+
+  <div class="toc-wrapper">
+    <div class="toc-box">
+      <span class="toc-label">目次 — タップでスクロール</span>
+      <button class="toc-item" onclick="tocScrollTo('n1')">なぜこの回をやるのか</button>
+      <button class="toc-item" onclick="tocScrollTo('n2')">二次障害とは何か</button>
+      <button class="toc-item" onclick="tocScrollTo('n3')">どうやって育つのか</button>
+      <button class="toc-item" onclick="tocScrollTo('n4')"><ruby>氷山<rt>ひょうざん</rt></ruby>モデル</button>
+      <button class="toc-item" onclick="tocScrollTo('n5')">行動を読む道具</button>
+      <button class="toc-item" onclick="tocScrollTo('n6')">分かれ道①パニック</button>
+      <button class="toc-item" onclick="tocScrollTo('n7')">分かれ道②切り替え</button>
+      <button class="toc-item" onclick="tocScrollTo('n8')">自己肯定感を戻す</button>
+      <button class="toc-item" onclick="tocScrollTo('n9')">NG対応</button>
+      <button class="toc-item" onclick="tocScrollTo('nquiz')">チャレンジクイズ</button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- N1 -->
+    <div class="content-section" id="n1">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#A23A6E;">1</div>
+        <h2 class="section-heading">なぜこの回をやるのか</h2>
+      </div>
+      <div class="content-card">
+        <p>Month 01〜05では<strong>「知ること」</strong>を積み重ねてきました。ASD、<ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>、ADHD、<ruby>知的障害<rt>ちてきしょうがい</rt></ruby>、そして手帳や<ruby>受給者証<rt>じゅきゅうしゃしょう</rt></ruby>という制度。</p>
+        <p>今回からは<strong>「関わること」</strong>に入ります。その一回目として、どうしてもこれを最初に置きたいと思いました。</p>
+        <div class="highlight-box" style="border-left-color:#A23A6E;background:#FBEEF4;">
+          <p style="color:#4A1530;">💭 <strong>今日いちばん持ち帰ってほしいこと</strong><br>
+          私たちの関わりは、その日その場で終わりません。<strong>子どもの中に積み重なって、何年も先の姿をつくります。</strong>いい方にも、悪い方にも。</p>
+        </div>
+        <p>今日の話は、新しく入ったスタッフにこそ聞いてほしい内容です。というのも、<strong>まじめな人ほどこの落とし穴にはまる</strong>からです。「ちゃんとさせなきゃ」「きちんと伝えなきゃ」——その気持ち自体は間違っていません。ただ、その向け方を一度立ち止まって考えてみましょう。</p>
+      </div>
+    </div>
+
+    <!-- N2 -->
+    <div class="content-section" id="n2">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#A23A6E;">2</div>
+        <h2 class="section-heading"><ruby>二次障害<rt>にじしょうがい</rt></ruby>とは何か</h2>
+      </div>
+      <div class="content-card">
+        <p><strong>二次障害</strong>とは、<ruby>発達障害<rt>はったつしょうがい</rt></ruby>そのものではなく、<strong>周囲の理解が得られないまま過ごすうちに、後から加わってくる困難</strong>のことです。</p>
+        <p>大事なのは、これが<strong>生まれつきのものではない</strong>という点です。つまり——<strong>防げます。</strong>そして、私たちの関わり方が防げるかどうかを左右します。</p>
+        <p>二次障害は大きく2つに分かれます。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;text-align:center;">🔀 二次障害の2つの向き</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+
+          <div style="border:2px solid #2980B9;border-radius:12px;padding:14px;background:#EBF5FB;">
+            <div style="font-size:13px;font-weight:700;color:#1A4A7A;margin-bottom:8px;">🌀 <ruby>内在化障害<rt>ないざいかしょうがい</rt></ruby> — 内へ向かう</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.9;">
+              不安、気分の落ち込み、<ruby>強迫症状<rt>きょうはくしょうじょう</rt></ruby>、<ruby>対人恐怖<rt>たいじんきょうふ</rt></ruby>、ひきこもり、<ruby>不登校<rt>ふとうこう</rt></ruby>、<ruby>心身症<rt>しんしんしょう</rt></ruby>など。<br>
+              <strong>苦しさが自分の内側に向かいます。</strong>
+            </div>
+          </div>
+
+          <div style="border:2px solid #C0392B;border-radius:12px;padding:14px;background:#FDEDEC;">
+            <div style="font-size:13px;font-weight:700;color:#B03A2E;margin-bottom:8px;">⚡ <ruby>外在化障害<rt>がいざいかしょうがい</rt></ruby> — 外へ向かう</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.9;">
+              極端な反抗、暴力、家出、<ruby>非行<rt>ひこう</rt></ruby>など。<br>
+              <strong>苦しさが行動として外に出ます。</strong>
+            </div>
+          </div>
+
+        </div>
+        <p style="font-size:11px;color:#999;margin-top:12px;line-height:1.7;">※ どちらも根っこは同じ「わかってもらえない苦しさ」です。出方が違うだけで、どちらが軽い・重いということはありません。</p>
+      </div>
+
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>小さい子にも、もう出ています。</strong>二次障害は<ruby>思春期<rt>ししゅんき</rt></ruby>に急に現れるものではありません。幼児期には<strong><ruby>爪<rt>つめ</rt></ruby>を噛む・髪を抜く・目をパチパチさせる・<ruby>登園<rt>とうえん</rt></ruby>をいやがる・眠れない・おもらしが増える</strong>といった形で出ます。「最近ちょっと気になるな」の段階が、いちばん止めやすい段階です。</p>
+      </div>
+      <p class="source-note">参考：国立特別支援教育総合研究所「二次障害の理解と対応」/ LITALICOジュニア</p>
+    </div>
+
+    <!-- N3 -->
+    <div class="content-section" id="n3">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#A23A6E;">3</div>
+        <h2 class="section-heading">どうやって育つのか</h2>
+      </div>
+      <div class="content-card">
+        <p><ruby>二次障害<rt>にじしょうがい</rt></ruby>は、ある日突然起きるものではありません。<strong>同じことが何百回も繰り返されて育ちます。</strong></p>
+        <p>その繰り返しは、だいたいこの形をしています。</p>
+      </div>
+
+      <!-- 連鎖の図 -->
+      <div style="background:#fff;border-radius:14px;padding:22px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:16px;text-align:center;">🔁 積み重なっていく輪</div>
+        <div style="display:flex;flex-direction:column;gap:0;">
+
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F7F7F7;border-radius:10px;border-left:4px solid #999;">
+            <div style="font-size:11px;font-weight:700;color:#666;min-width:52px;">① 行動</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">飛び出す・手が出る・動かない・かんしゃく</div>
+          </div>
+          <div style="text-align:center;color:#A23A6E;font-size:14px;line-height:1.4;padding:3px 0;">↓</div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDEDEC;border-radius:10px;border-left:4px solid #C0392B;">
+            <div style="font-size:11px;font-weight:700;color:#B03A2E;min-width:52px;">② <ruby>叱責<rt>しっせき</rt></ruby></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">理由がわからないまま、行動だけを止めようとする。「なんでそんなことするの」</div>
+          </div>
+          <div style="text-align:center;color:#A23A6E;font-size:14px;line-height:1.4;padding:3px 0;">↓</div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FBEEF4;border-radius:10px;border-left:4px solid #A23A6E;">
+            <div style="font-size:11px;font-weight:700;color:#4A1530;min-width:52px;">③ 自己像</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>「自分はダメな子だ」「どうせ怒られる」</strong>が育つ。理由は伝わっていないので、残るのは結論だけ。</div>
+          </div>
+          <div style="text-align:center;color:#A23A6E;font-size:14px;line-height:1.4;padding:3px 0;">↓</div>
+
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F7F7F7;border-radius:10px;border-left:4px solid #999;">
+            <div style="font-size:11px;font-weight:700;color:#666;min-width:52px;">④ 悪化</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">やけになる・試す・あきらめる。行動はさらに激しくなるか、こころを閉じる。</div>
+          </div>
+          <div style="text-align:center;color:#A23A6E;font-size:13px;line-height:1.4;padding:6px 0;font-weight:700;">↻ ①へ戻る（もっと強く）</div>
+
+        </div>
+        <p style="font-size:11.5px;color:#4A1530;margin-top:14px;line-height:1.8;background:#FBEEF4;padding:11px 13px;border-radius:9px;"><strong>この輪は、放っておくと勝手に回り続けます。</strong>止めるには誰かが意識して断ち切るしかありません。子どもには断ち切れません。大人の仕事です。</p>
+      </div>
+
+      <details class="deep-box" style="--db-color:#A23A6E;">
+        <summary><span class="db-tag">もっと詳しく</span>この輪の先に何があるか（DBDマーチ）</summary>
+        <div class="db-body">
+          <p>研究の世界では、この積み重なりが進んでいく道筋に名前がついています。<strong>DBDマーチ（<ruby>破壊的行動障害<rt>はかいてきこうどうしょうがい</rt></ruby>のマーチ）</strong>——障害が行進するように移っていく、という意味です。</p>
+          <div class="db-row"><div class="db-row-k">① ADHD</div><div class="db-row-v">生まれつきの特性。ここはその子のせいではありません。</div></div>
+          <div class="db-row"><div class="db-row-k">② <ruby>反抗挑戦症<rt>はんこうちょうせんしょう</rt></ruby><br>（ODD）</div><div class="db-row-v">大人への反抗・<ruby>挑発的<rt>ちょうはつてき</rt></ruby>な言動が続く状態。<strong>ADHDのある子の20〜50%に症状が見られる</strong>という報告があります。</div></div>
+          <div class="db-row"><div class="db-row-k">③ <ruby>素行症<rt>そこうしょう</rt></ruby><br>（CD）</div><div class="db-row-v">他者の権利を<ruby>侵害<rt>しんがい</rt></ruby>する行為が繰り返される状態。10歳前後から現れることが多いとされます。</div></div>
+          <div class="db-row"><div class="db-row-k">④ <ruby>反社会性<rt>はんしゃかいせい</rt></ruby><br>パーソナリティ症</div><div class="db-row-v">成人期。社会生活そのものが立ちゆかなくなります。</div></div>
+          <p><strong>ここで誤解しないでください。</strong>ADHDがあれば必ずこうなる、という話では<strong>まったくありません。</strong>むしろ逆です。<strong>②から先は、周囲の関わり次第で分かれる</strong>ということが分かっているから、この道筋に名前がついているのです。</p>
+          <p>②の入口は「叱られ続けた経験の積み重ね」「<ruby>自己肯定感<rt>じここうていかん</rt></ruby>の低下」「大人との関係づくりの失敗の繰り返し」だと指摘されています。<strong>つまり、私たちが毎日立っているのは、この分かれ道のところです。</strong></p>
+          <p>早期の支援が二次障害を軽くし、大人になってからの<ruby>精神疾患<rt>せいしんしっかん</rt></ruby>を減らすことも報告されています。今日の10分は、そこにつながっています。</p>
+          <p class="db-note">出典：渕上ら「破壊的行動障害のマーチと共感性及び虐待・放任との関連について」（日本臨床心理学会誌 2010）/ 国立障害者リハビリテーションセンター資料 / コペルプラス</p>
+        </div>
+      </details>
+      <p class="source-note">参考：国立障害者リハビリテーションセンター / 障害者ドットコム</p>
+    </div>
+
+    <!-- N4 -->
+    <div class="content-section" id="n4">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#A23A6E;">4</div>
+        <h2 class="section-heading">連鎖の入口——見えている部分だけで判断していないか</h2>
+      </div>
+      <div class="content-card">
+        <p>なぜ叱ってしまうのか。答えははっきりしています。<strong>理由が見えないからです。</strong></p>
+        <p>見えているのは「叩いた」「飛び出した」という行動だけ。理由が見えなければ、行動を止めるしかやることがありません。ここが連鎖の入口です。</p>
+        <p>この構造を説明する有名な絵があります。<strong><ruby>氷山<rt>ひょうざん</rt></ruby>モデル</strong>です。</p>
+      </div>
+
+      <!-- 氷山の図 -->
+      <div style="background:#fff;border-radius:14px;padding:22px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;text-align:center;">🧊 氷山モデル</div>
+
+        <div style="border:2px solid #A23A6E;border-radius:12px 12px 0 0;padding:14px;background:#FBEEF4;">
+          <div style="font-size:11px;font-weight:700;color:#A23A6E;letter-spacing:.06em;margin-bottom:6px;">水面の上 — 見えている部分</div>
+          <div style="font-size:13px;font-weight:700;color:#4A1530;line-height:1.8;">叩く／飛び出す／大きな声を出す／動かない／物を投げる</div>
+        </div>
+
+        <div style="height:0;border-top:2.5px dashed #2980B9;margin:0;"></div>
+
+        <div style="border:2px solid #2980B9;border-top:none;border-radius:0 0 12px 12px;padding:14px;background:#EBF5FB;">
+          <div style="font-size:11px;font-weight:700;color:#2980B9;letter-spacing:.06em;margin-bottom:10px;">水面の下 — 見えていない部分</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#fff;border-radius:9px;padding:10px 12px;border-left:3px solid #2980B9;">
+              <div style="font-size:12px;font-weight:700;color:#1A4A7A;">① 本人の特性</div>
+              <div style="font-size:12px;color:var(--mid);line-height:1.8;">感覚の<ruby>過敏<rt>かびん</rt></ruby>さ、見通しの持てなさ、言葉で伝えられないこと、切り替えの苦手さ</div>
+            </div>
+            <div style="background:#fff;border-radius:9px;padding:10px 12px;border-left:3px solid #2980B9;">
+              <div style="font-size:12px;font-weight:700;color:#1A4A7A;">② 環境・状況</div>
+              <div style="font-size:12px;color:var(--mid);line-height:1.8;">うるさい、人が多い、予定が変わった、急かされた、体調が悪い、眠れていない</div>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size:11.5px;color:var(--mid);margin-top:14px;line-height:1.8;">水面の上を押さえつけても、氷山は小さくなりません。<strong>水面の下が変わらない限り、同じ行動がまた出ます。</strong></p>
+      </div>
+
+      <div class="myth-fact-list">
+        <div class="myth-fact-pair">
+          <div class="myth-box"><div class="mf-label">❌ 行動だけを見ると</div><div class="mf-text">「また叩いた。何回言ってもわからない子だ」</div></div>
+          <div class="fact-box"><div class="mf-label">✅ 水面の下を見ると</div><div class="mf-text">「さっき予定が変わった。しかも部屋がざわついていた。<strong>限界を伝える手段が、手を出すことしかなかった</strong>のかもしれない」</div></div>
+        </div>
+      </div>
+
+      <details class="deep-box" style="--db-color:#A23A6E;">
+        <summary><span class="db-tag">もっと詳しく</span>氷山モデルはどこから来たのか</summary>
+        <div class="db-body">
+          <p>氷山モデルのもとになったのは、<strong>TEACCHプログラムの<ruby>創始者<rt>そうししゃ</rt></ruby>エリック・ショプラー</strong>が1995年に<ruby>著書<rt>ちょしょ</rt></ruby>『Parent Survival Manual』で示した考え方です。</p>
+          <p>TEACCHは米国ノースカロライナ州で始まった、<ruby>自閉症<rt>じへいしょう</rt></ruby>のある人への<ruby>包括的<rt>ほうかつてき</rt></ruby>な支援の仕組みです。日本にも40年以上前から伝えられ、いまの<ruby>療育<rt>りょういく</rt></ruby>の土台のひとつになっています。</p>
+          <p><strong>この絵が優れているのは、誰も責めていないところです。</strong>「子どもが悪い」でも「支援者が悪い」でもなく、<strong>見えている部分と見えていない部分がある</strong>という構造だけを示しています。だから使いやすく、40年たっても現場で生き残っています。</p>
+          <p>水面下を「①本人の特性」と「②環境・状況」の2つに分けているのもポイントです。<strong>①は変えられませんが、②は私たちが変えられます。</strong>支援の入口は、ほとんどの場合②の側にあります。</p>
+          <p class="db-note">出典：Eric Schopler『Parent Survival Manual』（1995）/ <ruby>発達障害<rt>はったつしょうがい</rt></ruby>研究 第45巻第3号（2023）/ 広島県「発達障害のある人の支援」資料</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- N5 -->
+    <div class="content-section" id="n5">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#A23A6E;">5</div>
+        <h2 class="section-heading">行動を読む道具——きっかけ・行動・結果</h2>
+      </div>
+      <div class="content-card">
+        <p><ruby>氷山<rt>ひょうざん</rt></ruby>の水面下を見るには、道具があると楽です。よく使われるのが<strong>ABC</strong>という見方です。</p>
+        <p>行動を単独で見るのではなく、<strong>その前後とセットで見る</strong>——ただそれだけのことです。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;">🔍 ABCで見る</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EBF5FB;border-radius:10px;border-left:4px solid #2980B9;">
+            <div style="font-size:13px;font-weight:700;color:#1A4A7A;min-width:80px;">A きっかけ</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">直前に何があったか。声をかけた、予定を変えた、他の子が近づいた、音が鳴った</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F7F7F7;border-radius:10px;border-left:4px solid #666;">
+            <div style="font-size:13px;font-weight:700;color:#444;min-width:80px;">B 行動</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">実際に起きたこと。評価を入れず、ビデオに映る通りに書く</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FBEEF4;border-radius:10px;border-left:4px solid #A23A6E;">
+            <div style="font-size:13px;font-weight:700;color:#4A1530;min-width:80px;">C 結果</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">直後に何が起きたか。<strong>ここがいちばん見落とされます</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="border-left-color:#A23A6E;background:#FBEEF4;">
+        <p style="color:#4A1530;">💡 <strong>覚えておくとずっと使える原則</strong><br>
+        行動の<strong>直後に本人にとって良いこと</strong>が起きると、その行動は<strong>増えます。</strong><br>
+        ここでいう「良いこと」には<strong>「注目してもらえた」も含まれます。</strong>叱ることも注目のひとつです。</p>
+      </div>
+
+      <div class="content-card">
+        <p>だから、こういうことが起こります。</p>
+        <p><strong>A</strong> 課題を出された → <strong>B</strong> 大声で歌いだす → <strong>C</strong> 先生に注意される（＝自分だけを見てもらえた）</p>
+        <p>結果として<strong>歌う行動は増えます。</strong>本人はわざと困らせているわけではありません。「これをやると見てもらえる」を学習しただけです。</p>
+        <p>この場合、いくら注意しても止まりません。<strong>止めるのではなく、別の方法で先に注目を返す</strong>——それが支援になります。</p>
+      </div>
+
+      <details class="deep-box" style="--db-color:#A23A6E;">
+        <summary><span class="db-tag">もっと詳しく</span>ABCの元になっている考え方</summary>
+        <div class="db-body">
+          <p>ABCは<strong>ABA（<ruby>応用行動分析学<rt>おうようこうどうぶんせきがく</rt></ruby>）</strong>という心理学の考え方から来ています。A＝Antecedent（<ruby>先行事象<rt>せんこうじしょう</rt></ruby>）、B＝Behavior（行動）、C＝Consequence（結果）の頭文字です。</p>
+          <p>根っこにあるのは<strong>「行動は、その人と環境とのやりとりの中で起きる」</strong>という見方です。性格や意志のせいにせず、前後の環境を見る。だから<strong>環境を変えれば行動も変わる</strong>という発想につながります。</p>
+          <p><strong>身近な例で考えてみましょう。</strong></p>
+          <div class="db-row"><div class="db-row-k">A</div><div class="db-row-v">お菓子売り場で「買わないよ」と言われた</div></div>
+          <div class="db-row"><div class="db-row-k">B</div><div class="db-row-v">泣いて、その場に寝転んだ</div></div>
+          <div class="db-row"><div class="db-row-k">C</div><div class="db-row-v"><strong>お菓子を買ってもらえた</strong></div></div>
+          <p>次も同じことが起きます。当たり前です。うまくいった方法なのですから。<strong>子どもが悪いのでも、親が甘いのでもなく、行動の法則どおりに起きているだけ</strong>です。</p>
+          <p><strong>現場での使いどころ。</strong>記録を書くときに「Aきっかけ」と「C直後どうなったか」を一行ずつ足してみてください。「今日は荒れていました」より、はるかに次につながる記録になります。チームで読んだときに、支援の手がかりが見えます。</p>
+          <p class="db-note">出典：LITALICO発達ナビ「ABA（応用行動分析）の基本」/ スタジオそら / 四谷学院<ruby>療育<rt>りょういく</rt></ruby>センター</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- N6 -->
+    <div class="content-section" id="n6">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#A23A6E;">6</div>
+        <h2 class="section-heading">分かれ道① パニックの場面</h2>
+      </div>
+      <div class="content-card">
+        <p>ここからは、<ruby>叱責<rt>しっせき</rt></ruby>が生まれやすい具体的な場面を2つ見ます。まずパニックです。</p>
+        <p>パニックは<strong>3つの時間帯</strong>に分けて考えると、やることがはっきりします。</p>
+      </div>
+
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">⏳</div>
+          <div class="tip-content">
+            <strong>前 — <ruby>前触れ<rt>まえぶれ</rt></ruby>に気づく</strong>
+            <p>いきなり爆発する子はほとんどいません。そわそわする、耳をふさぐ、同じ言葉を繰り返す、動きが止まる、表情が消える——<strong>その子なりのサインが必ずあります。</strong>ここで環境を変えられれば、パニックそのものが起きません。いちばん価値のある仕事はここです。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🔇</div>
+          <div class="tip-content">
+            <strong>最中 — 入力を減らす</strong>
+            <p>Month 02でやった通りです。<strong>声をかけることも<ruby>刺激<rt>しげき</rt></ruby></strong>。説得も指示も届きません。することは「音・光・人を減らす」「安全を<ruby>確保<rt>かくほ</rt></ruby>する」「静かに待つ」の3つだけ。何もしていないように見えますが、これが正しい対応です。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🌱</div>
+          <div class="tip-content">
+            <strong>後 — 責めない</strong>
+            <p>落ち着いた直後に「さっきはダメでしょ」と言いたくなります。<strong>ここが最大の分かれ道です。</strong>本人はもう疲れきっていて、自分でも「またやってしまった」と思っています。ここで責めると、<strong>パニックそのものが「叱られる出来事」として記憶され</strong>、次はもっと隠そうとして悪化します。</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>振り返りをするなら、時間を置いてから。</strong>そしてやるのは反省会ではなく<strong>作戦会議</strong>です。「何が嫌だったか」「次はどうしたら楽か」を一緒に考える。落ち着いているときに、短く、一緒に。これができると、子どもは「この人は自分の味方だ」と学びます。</p>
+      </div>
+
+      <details class="deep-box" style="--db-color:#A23A6E;">
+        <summary><span class="db-tag">もっと詳しく</span>「<ruby>強度行動障害<rt>きょうどこうどうしょうがい</rt></ruby>」は生まれつきではない</summary>
+        <div class="db-body">
+          <p>激しい<ruby>自傷<rt>じしょう</rt></ruby>や<ruby>他害<rt>たがい</rt></ruby>が、通常では考えられない頻度で起きる状態を<strong>強度行動障害</strong>といいます。福祉の制度上も定義があり、国の<ruby>判定基準<rt>はんていきじゅん</rt></ruby>で<strong>24点中10点以上</strong>になると、手厚い支援の対象になります。</p>
+          <p><strong>ここが今日の話とつながります。</strong>強度行動障害は<strong>生まれつきの障害ではありません。</strong>本人の特性と、周囲の環境や関わり方との<strong>ミスマッチが長く続いた結果として形づくられる</strong>ものだと理解されています。</p>
+          <p>つまり——<strong>今日話してきた輪が、何年も回り続けた先の姿</strong>のひとつです。<ruby>思春期<rt>ししゅんき</rt></ruby>以降に重くなることが多く、そうなってからでは本人も家族も事業所も、非常に苦しい状況に置かれます。</p>
+          <p><strong>だから、いま止めることに意味があります。</strong>目の前の「ちょっとした叱責」を一回減らすことが、何年も先の景色を変えます。大げさに聞こえるかもしれませんが、支援の世界ではよく知られた事実です。</p>
+          <p class="db-note">出典：国立障害者リハビリテーションセンター「強度行動障害の理解」/ 厚生労働省 強度行動障害支援者養成研修資料 / 静岡県</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- N7 -->
+    <div class="content-section" id="n7">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#A23A6E;">7</div>
+        <h2 class="section-heading">分かれ道② 切り替えの場面</h2>
+      </div>
+      <div class="content-card">
+        <p>もうひとつ、<ruby>叱責<rt>しっせき</rt></ruby>が生まれやすいのが<strong>切り替え</strong>です。「片付けて」「次いくよ」「もう終わり」——毎日何十回もある場面です。</p>
+        <p>動かない子を見ると、つい「わがまま」「言うことを聞かない」に見えます。でも水面の下はたいていこうです。</p>
+        <div class="highlight-box" style="border-left-color:#A23A6E;background:#FBEEF4;">
+          <p style="color:#4A1530;">🧊 <strong>切り替えられない理由</strong><br>
+          ・次に何があるか<strong>見通しが持てない</strong>から不安<br>
+          ・今やっていることが<strong>どこで終わりなのか分からない</strong><br>
+          ・楽しいことから引き離される<strong>心の準備ができていない</strong><br>
+          ・そもそも<strong>声だけの指示が届いていない</strong></p>
+        </div>
+        <p>どれも「わがまま」ではありません。<strong>情報が足りていないだけ</strong>です。</p>
+      </div>
+
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">📢</div>
+          <div class="tip-content">
+            <strong>先に予告する</strong>
+            <p>「あと3回やったら終わりね」「長い針が6にきたらお片付け」。<strong>急に終わらせない</strong>だけで、<ruby>抵抗<rt>ていこう</rt></ruby>はぐっと減ります。心の準備の時間を渡すということです。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">👁️</div>
+          <div class="tip-content">
+            <strong>終わりを見える形にする</strong>
+            <p>タイマー、残りの数、絵カード、写真。Month 01からずっと出てくる<strong><ruby>視覚支援<rt>しかくしえん</rt></ruby></strong>がここでも効きます。声は消えますが、目に見えるものは残ります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🔀</div>
+          <div class="tip-content">
+            <strong>次を楽しみにできる形で伝える</strong>
+            <p>「おしまい」だけだと失うだけの話になります。「これが終わったら〇〇だよ」と<strong>次に向かう形</strong>にすると、切り替えが「奪われること」ではなくなります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">✌️</div>
+          <div class="tip-content">
+            <strong>小さく選ばせる</strong>
+            <p>「今やる？あと1回やってからにする？」。<strong>自分で決めた</strong>という感覚があるだけで、受け入れやすさが変わります。どちらを選んでも結果は同じでかまいません。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- N8 -->
+    <div class="content-section" id="n8">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#A23A6E;">8</div>
+        <h2 class="section-heading"><ruby>自己肯定感<rt>じここうていかん</rt></ruby>を戻す関わり</h2>
+      </div>
+      <div class="content-card">
+        <p>ここまでは「削らない」話でした。最後は<strong>「戻す」</strong>話をします。</p>
+        <p>まず、日本の子ども全体の状況を見てください。<ruby>発達障害<rt>はったつしょうがい</rt></ruby>のあるなしに関係のない、全体の数字です。</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">53.4<span style="font-size:13px">%</span></div>
+          <div class="stat-label">「今の自分が好きだ」と<br>答えた日本のこども・若者<br><small>（7か国中で最も低い）</small></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">7<span style="font-size:11px">割超</span></div>
+          <div class="stat-label">同じ質問での<br>他国の水準<br><small>（日本以外はすべて）</small></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">17.5<span style="font-size:11px">%</span></div>
+          <div class="stat-label">はっきり<br>「そう思う」と<br>答えた割合</div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <p>日本の子どもは、もともと自分を肯定しにくい環境にいます。<strong>そこに毎日の<ruby>叱責<rt>しっせき</rt></ruby>が加わるとどうなるか</strong>——想像がつくと思います。</p>
+        <p>だからこそ、意識して返していく必要があります。</p>
+      </div>
+
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">📏</div>
+          <div class="tip-content">
+            <strong>「できた」の基準をうんと下げる</strong>
+            <p>「椅子に1分座れた」「自分から手を洗いに行った」「泣いたけど叩かなかった」。<strong>他の子と比べない。昨日のその子と比べる。</strong>基準を下げるのは甘やかしではなく、その子に合わせるということです。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">⚡</div>
+          <div class="tip-content">
+            <strong>その場ですぐ、具体的に</strong>
+            <p>あとでまとめて褒めても届きません。<strong>行動の直後</strong>に返すのが原則です（ABCの「C」を自分で作るということです）。「すごいね」より<strong>「自分で切り替えられたね」</strong>のほうが、何が良かったか本人に伝わります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🎯</div>
+          <div class="tip-content">
+            <strong>結果ではなく過程を見る</strong>
+            <p>できあがったものより、<strong>取り組んだこと・我慢したこと・自分から動いたこと</strong>を言葉にします。結果だけを褒めると、できなかった日は何も残りません。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🤝</div>
+          <div class="tip-content">
+            <strong>役割を渡す</strong>
+            <p>日本のこども・若者は<strong>「誰かの役に立っているか」が自己肯定感に強く結びつく</strong>という調査結果があります。プリントを配る、下の子を手伝う、片付けを任せる。<strong>「ありがとう」と言われる場面</strong>を意図的につくってください。褒め言葉より効くことがあります。</p>
+          </div>
+        </li>
+      </ul>
+
+      <details class="deep-box" style="--db-color:#A23A6E;">
+        <summary><span class="db-tag">もっと詳しく</span>この数字はどこから来たのか</summary>
+        <div class="db-body">
+          <p>こども家庭庁が行った<strong>「<ruby>我が国と諸外国<rt>わがくにとしょがいこく</rt></ruby>のこどもと若者の意識に関する調査」（令和5年度）</strong>の結果です。日本・アメリカ・ドイツ・フランス・スウェーデンなど7か国を比べたものです。</p>
+          <div class="db-row"><div class="db-row-k">今の自分が<br>好きだ</div><div class="db-row-v">日本は肯定回答が<strong>53.4%</strong>で最下位。他の国はすべて7割を超えています。「そう思う」とはっきり答えた人に限ると<strong>17.5%</strong>まで下がります。</div></div>
+          <div class="db-row"><div class="db-row-k">何が<br>関係するか</div><div class="db-row-v">「長所があること」「自分の意見を言えること」「挑戦する気持ち」が高いほど自己肯定感も高い傾向。<strong>日本ではさらに「他者の役に立っているか」が強く関係する</strong>のが特徴でした。</div></div>
+          <p><strong>ここから読み取れること。</strong>自己肯定感は性格ではなく、<strong>経験の積み重ねでできている</strong>ということです。積み重ねでできるなら、積み直すこともできます。</p>
+          <p>そして日本の子には<strong>「役に立てた」という経験がよく効く</strong>。これは現場ですぐ使える知見です。褒めるのが苦手な人でも、役割を渡して「ありがとう」を言うことはできます。</p>
+          <p class="db-note">出典：こども家庭庁「我が国と諸外国のこどもと若者の意識に関する調査」（令和5年度・2024年6月公表）</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- N9 -->
+    <div class="content-section" id="n9">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#A23A6E;">9</div>
+        <h2 class="section-heading">やってはいけないNG対応</h2>
+      </div>
+
+      <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+        <p style="color:#B03A2E;">🚫 <strong>この5つは、輪を回す方向に働きます</strong><br>
+        ・<strong>人前で叱る</strong>／他の子がいる場で名前を出して注意する<br>
+        ・<strong>過去を持ち出す</strong>「この前も」「いつもそう」<br>
+        ・<strong>他の子と比べる</strong>「〇〇くんはできてるよ」<br>
+        ・<strong>長い説教</strong>／<ruby>不注意<rt>ふちゅうい</rt></ruby>の特性がある子には特に届きません<br>
+        ・<strong>「わざとやってる」と決めつける</strong>／ここが崩れると支援が全部ずれます</p>
+      </div>
+
+      <div class="content-card">
+        <p>もうひとつ、新人のうちに知っておいてほしいことがあります。</p>
+        <p><strong>叱ってしまった日があってもいいということです。</strong>人間なので、<ruby>余裕<rt>よゆう</rt></ruby>がない日もあります。大事なのは<strong>そのあとどうするか</strong>。</p>
+        <p>気づいたら戻ればいい。「さっきは強く言いすぎた、ごめん」と言える大人を見ることは、子どもにとってそれ自体が学びになります。<strong><ruby>完璧<rt>かんぺき</rt></ruby>な支援者である必要はなく、気づいて戻れる支援者であればいい</strong>——ここは肩の力を抜いてください。</p>
+        <p>そして<strong>一人で抱えないこと。</strong>「今日この子にきつく当たってしまった」とチームで言える事業所は、それだけで子どもを守れています。</p>
+      </div>
+    </div>
+
+    <!-- クイズ -->
+    <div class="quiz-section content-section" id="nquiz">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#A23A6E;">✓</div>
+        <h2 class="section-heading">🔥 チャレンジクイズ</h2>
+      </div>
+      <div class="content-card" style="background:#FBEEF4;border:1.5px solid #E6B8CE;margin-bottom:16px;">
+        <p style="color:#4A1530;font-size:13px;line-height:1.9;">今日の内容をちゃんと読めば全問解けます。<strong>なんとなくで選ぶと間違えます。</strong>💪</p>
+      </div>
+
+      <div class="quiz-card" id="nqcard1">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#A23A6E;">Q1</span><ruby>二次障害<rt>にじしょうがい</rt></ruby>が「防げるもの」だと言えるのは、なぜですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerNQuiz(1,this,false)">症状が軽いうちに薬を使えば、発症そのものを止められるから</button>
+          <button class="quiz-opt" onclick="answerNQuiz(1,this,true)">生まれつきのものではなく、周囲の理解が得られない経験の積み重ねで生じるから</button>
+          <button class="quiz-opt" onclick="answerNQuiz(1,this,false)">成長とともに自然に落ち着くため、一定の年齢を過ぎれば起きなくなるから</button>
+        </div>
+        <div class="quiz-result" id="nqres1"></div>
+      </div>
+
+      <div class="quiz-card" id="nqcard2">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#A23A6E;">Q2</span><ruby>氷山<rt>ひょうざん</rt></ruby>モデルで「水面の下」を見ることが支援につながるのは、なぜですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerNQuiz(2,this,false)">背景を知ることで、子どもの行動を大目に見てあげられるようになるから</button>
+          <button class="quiz-opt" onclick="answerNQuiz(2,this,false)">本人の特性を正確に把握すれば、行動そのものを直接変えられるから</button>
+          <button class="quiz-opt" onclick="answerNQuiz(2,this,true)">水面下には環境という変えられる要素があり、そこが支援の入口になるから</button>
+        </div>
+        <div class="quiz-result" id="nqres2"></div>
+      </div>
+
+      <div class="quiz-card" id="nqcard3">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#A23A6E;">Q3</span>注意しているのに、その行動がかえって増えてしまうことがあるのはなぜですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerNQuiz(3,this,true)">注意も「注目してもらえた」という結果になり、その行動を強めてしまうから</button>
+          <button class="quiz-opt" onclick="answerNQuiz(3,this,false)">注意の言葉が長すぎて、何を直せばよいのか本人に伝わっていないから</button>
+          <button class="quiz-opt" onclick="answerNQuiz(3,this,false)">同じ注意を繰り返されると慣れてしまい、次第に反応しなくなるから</button>
+        </div>
+        <div class="quiz-result" id="nqres3"></div>
+      </div>
+
+      <div class="quiz-card" id="nqcard4">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#A23A6E;">Q4</span>パニックが落ち着いた直後に「さっきはダメでしょ」と言うのが避けられるのは、なぜですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerNQuiz(4,this,false)">落ち着いた直後は疲れていて、話の内容を記憶に残せない状態にあるから</button>
+          <button class="quiz-opt" onclick="answerNQuiz(4,this,true)">パニックそのものが叱られる出来事として記憶され、次から隠そうとするから</button>
+          <button class="quiz-opt" onclick="answerNQuiz(4,this,false)">本人に自覚がないため、何を注意されているのか理解できないことが多いから</button>
+        </div>
+        <div class="quiz-result" id="nqres4"></div>
+      </div>
+
+      <div class="quiz-card" id="nqcard5">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#A23A6E;">Q5</span>日本のこどもに「役割を渡して感謝を伝える」ことが特に効きやすいのは、なぜですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerNQuiz(5,this,false)">言葉で褒められるより、行動で示されたほうが理解しやすい傾向があるから</button>
+          <button class="quiz-opt" onclick="answerNQuiz(5,this,false)">集団の中での役割があると、他の子との比較を意識しにくくなるから</button>
+          <button class="quiz-opt" onclick="answerNQuiz(5,this,true)">他者の役に立てているかどうかが、<ruby>自己肯定感<rt>じここうていかん</rt></ruby>に強く結びついているから</button>
+        </div>
+        <div class="quiz-result" id="nqres5"></div>
+      </div>
+
+      <div class="quiz-score-box" id="nquiz-score">
+        <div class="quiz-score-num" id="nscore-num">0 / 5</div>
+        <div class="quiz-score-label" id="nscore-msg"></div>
+        <button class="quiz-retry-btn" style="background:#A23A6E;" onclick="retryNQuiz()">🔄 もう一度チャレンジ</button>
+      </div>
+    </div>
+
+    <!-- まとめ -->
+    <div class="content-section" id="n10">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#A23A6E;">10</div>
+        <h2 class="section-heading">今月のまとめ</h2>
+      </div>
+      <div class="content-card">
+        <p>🌊 <strong><ruby>二次障害<rt>にじしょうがい</rt></ruby>は、関わりの積み重ねでつくられます。</strong>生まれつきではないので、防げます。そしてそれができるのは、毎日そばにいる私たちです。</p>
+        <p>🌊 <strong>叱ってしまう原因は、理由が見えないことにあります。</strong>水面の下には「本人の特性」と「環境」があり、<strong>環境は変えられます。</strong>行動を止める前に、直前に何があったかを見てください。</p>
+        <p>🌊 <strong>削らないことと、戻すこと。</strong><ruby>叱責<rt>しっせき</rt></ruby>を一回減らすのと、「ありがとう」を一回増やすのは、同じくらい大事です。基準は他の子ではなく、昨日のその子に置いてください。</p>
+      </div>
+
+      <div class="callout-warm" style="margin-top:16px;">
+        <span class="ci">🌊</span>
+        <p><strong>Month 01〜05とつながります。</strong>ASDのこだわり、<ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>、ADHDの<ruby>衝動性<rt>しょうどうせい</rt></ruby>、<ruby>知的障害<rt>ちてきしょうがい</rt></ruby>——ここまで学んできたことは全部、<strong><ruby>氷山<rt>ひょうざん</rt></ruby>の水面下にある「本人の特性」</strong>です。知識があるから背景が読める。背景が読めるから叱らずに済む。今日の話は、これまでの5回を現場で使うための回でした。</p>
+      </div>
+
+      <div class="next-month" style="background:#1A3A3A;">
+        <div class="nm-left">
+          <p class="nm-sub">▶ NEXT MONTH</p>
+          <p class="nm-title">Coming Soon 🔒</p>
+          <p class="nm-desc">来月のテーマは準備中です。お楽しみに！</p>
+        </div>
+        <span class="nm-tag" style="background:#A23A6E;">Coming Soon →</span>
+      </div>
+    </div>
+
+    <div class="about-doc">
+      <div class="about-doc-title">📌 この資料について</div>
+      <p>本資料の内容は<strong>2026年9月時点</strong>の情報をもとにしています。<ruby>自己肯定感<rt>じここうていかん</rt></ruby>の数値はこども家庭庁「<ruby>我が国と諸外国<rt>わがくにとしょがいこく</rt></ruby>のこどもと若者の意識に関する調査」（令和5年度）によります。</p>
+      <p>DBDマーチは<strong>「そうなる」という決まった道筋ではなく、周囲の関わりによって分かれることが分かっている<ruby>経路<rt>けいろ</rt></ruby></strong>です。特定の子どもの将来を<ruby>予測<rt>よそく</rt></ruby>するものとして使わないでください。</p>
+      <p>診断や医療的な判断が関わる内容については、<strong>必ず医療機関や<ruby>相談支援専門員<rt>そうだんしえんせんもんいん</rt></ruby>に確認してください。</strong>この資料は職員が支援の視点を共有するためのものです。</p>
+    </div>
+
+  </div><!-- /content-wrap -->
+
+  <div class="print-btn-wrap">
+    <button class="print-btn" style="color:#A23A6E;border-color:#A23A6E;" onclick="printPage('niji')">🖨️ この資料を印刷する</button>
+  </div>
+
+  <footer class="asd-footer">
+    <div class="lecture-companion"><span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-wave.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span><button class="back-btn" onclick="showPage('hp')">カリキュラムへ戻る</button></div>
+    <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
+    スタッフ研修資料 Month 06 · 2026年9月<br>
+    参考：こども家庭庁 / 国立障害者リハビリテーションセンター / 国立特別支援教育総合研究所<br>
+    LITALICO発達ナビ / 日本臨床心理学会誌 / <ruby>発達障害<rt>はったつしょうがい</rt></ruby>研究
+  </footer>
+
+</div><!-- /page-niji -->
+
+
 
 
 
@@ -3868,8 +4460,8 @@ function showPage(name) {
 
   // ヘッダー切り替え
   var inner = document.getElementById('hp-header');
-  if (name === 'hearing' || name === 'asd' || name === 'adhd' || name === 'intel' || name === 'techo') {
-    var monthLabel = name === 'techo' ? 'Month 05 · 8月' : (name === 'intel' ? 'Month 04 · 7月' : (name === 'adhd' ? 'Month 03 · 6月' : (name === 'hearing' ? 'Month 02 · 5月' : 'Month 01 · 4月')));
+  if (name === 'hearing' || name === 'asd' || name === 'adhd' || name === 'intel' || name === 'techo' || name === 'niji') {
+    var monthLabel = name === 'niji' ? 'Month 06 · 9月' : (name === 'techo' ? 'Month 05 · 8月' : (name === 'intel' ? 'Month 04 · 7月' : (name === 'adhd' ? 'Month 03 · 6月' : (name === 'hearing' ? 'Month 02 · 5月' : 'Month 01 · 4月'))));
     inner.innerHTML =
       '<button class="back-btn" onclick="showPage(\'hp\')">← ホーム</button>' +
       '<span class="header-title" style="color:rgba(255,255,255,0.75);font-size:12px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:8px;">りぷる スタッフ研修ポータル</span>' +
@@ -3886,7 +4478,7 @@ function showPage(name) {
       '<div class="header-nav">' +
         '<button onclick="scrollToSection(\'curriculum\')">カリキュラム</button>' +
         '<button onclick="scrollToSection(\'about\')">りぷるとは</button>' +
-        '<button onclick="showPage(\'techo\')">今月</button>' +
+        '<button onclick="showPage(\'niji\')">今月</button>' +
       '</div>';
   }
 
@@ -4309,6 +4901,85 @@ function retryTQuiz() {
   }
   document.getElementById('tquiz-score').classList.remove('show');
   tocScrollTo('tquiz');
+}
+
+
+
+// ---- 二次障害・自己肯定感クイズ ----
+var nQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+var nQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+var nQuizScore   = 0;
+var N_QUIZ_TOTAL = 5;
+
+var nQuizExplanations = {
+  1: {
+    ok: '✅ 正解！二次障害は発達障害そのものではなく、周囲の理解が得られないまま過ごした経験の積み重ねによって後から加わる困難です。生まれつきではないからこそ、関わり方によって防げます。そこが今日いちばん大事な点です。',
+    ng: '❌ 不正解。薬で発症そのものを止められるわけでも、年齢とともに自然に消えるわけでもありません。二次障害は「わかってもらえない経験の積み重ね」で育つものなので、周囲の関わりを変えれば防げる——ここが要点です。'
+  },
+  2: {
+    ok: '✅ 正解！水面下は「本人の特性」と「環境・状況」の2つに分かれます。特性は変えられませんが、環境は私たちが変えられます。支援の入口はほとんどの場合そちら側にあります。だから背景を見ることが実際の手立てにつながります。',
+    ng: '❌ 不正解。大目に見るための理解でも、行動を直接変えるためのものでもありません。水面下には環境という「変えられる要素」があり、そこに手を入れられるからこそ支援につながります。見えている行動だけを押さえても氷山は小さくなりません。'
+  },
+  3: {
+    ok: '✅ 正解！行動の直後に本人にとって良いことが起きると、その行動は増えます。そして「注目してもらえた」も本人にとっては良いことです。叱ることも注目のひとつなので、注意するほど増えるという逆転が起こります。止めるより、別の形で先に注目を返すのが支援になります。',
+    ng: '❌ 不正解。言葉の長さや慣れの問題ではありません。注意もまた「自分だけを見てもらえた」という結果になり、その行動を強めてしまうことがあります。いくら注意しても止まらないときは、この仕組みを疑ってみてください。'
+  },
+  4: {
+    ok: '✅ 正解！ここで責めると、パニックそのものが「叱られる出来事」として記憶されます。すると次からは隠そうとしたり、我慢して限界まで溜め込んだりして、かえって悪化します。振り返るなら時間を置いてから、反省会ではなく作戦会議として行ってください。',
+    ng: '❌ 不正解。記憶に残らないわけでも、自覚がないわけでもありません。むしろ本人は「またやってしまった」と感じています。そこで責めるとパニック自体が叱られる出来事として刻まれ、次は隠そうとするため悪化します。'
+  },
+  5: {
+    ok: '✅ 正解！こども家庭庁の調査では、日本のこども・若者は「他者の役に立っているかどうか」が自己肯定感に強く結びつくという特徴が示されました。だから役割を渡して「ありがとう」と伝えることが、褒め言葉以上に効くことがあります。',
+    ng: '❌ 不正解。理解しやすさや、比較を意識しにくくなることが理由ではありません。日本のこども・若者は「他者の役に立てているか」が自己肯定感に強く関係するという調査結果があり、役割と感謝がそこに直接働きかけるためです。'
+  }
+};
+
+function answerNQuiz(num, btn, isCorrect) {
+  if (nQuizDone[num]) return;
+  nQuizDone[num] = true;
+  nQuizAnswers[num] = isCorrect;
+  if (isCorrect) nQuizScore++;
+
+  var opts = btn.closest('.quiz-card').querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){ o.classList.add('disabled'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(function(o){
+      if (o.getAttribute('onclick').indexOf('true') !== -1) o.classList.add('correct');
+    });
+  }
+
+  var res = document.getElementById('nqres' + num);
+  res.textContent = nQuizExplanations[num][isCorrect ? 'ok' : 'ng'];
+  res.className = 'quiz-result show ' + (isCorrect ? 'ok' : 'ng');
+
+  var allDone = true;
+  for (var i = 1; i <= N_QUIZ_TOTAL; i++) { if (!nQuizDone[i]) { allDone = false; break; } }
+  if (allDone) {
+    setTimeout(function(){
+      var box = document.getElementById('nquiz-score');
+      box.classList.add('show');
+      document.getElementById('nscore-num').textContent = nQuizScore + ' / ' + N_QUIZ_TOTAL;
+      var msgs = ['全部読み直してみましょう💪','もう少し！復習してみて。','いい感じ！あと少し。','ほぼ完璧！惜しい〜','全問正解まであと一問！','全問正解！完璧です🎉'];
+      document.getElementById('nscore-msg').textContent = msgs[nQuizScore];
+    }, 400);
+  }
+}
+
+function retryNQuiz() {
+  nQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+  nQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+  nQuizScore   = 0;
+  for (var n = 1; n <= N_QUIZ_TOTAL; n++) {
+    var card = document.getElementById('nqcard'+n);
+    if (!card) continue;
+    card.querySelectorAll('.quiz-opt').forEach(function(o){ o.className = 'quiz-opt'; });
+    var res = document.getElementById('nqres'+n);
+    res.className = 'quiz-result';
+    res.textContent = '';
+  }
+  document.getElementById('nquiz-score').classList.remove('show');
+  tocScrollTo('nquiz');
 }
 
 

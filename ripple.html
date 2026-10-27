@@ -296,7 +296,9 @@ body {
   background:var(--teal-pale);
 }
 .curriculum-card.current::before { opacity:1; }
-.curriculum-card.disabled { cursor:default; }
+.curriculum-card.disabled { cursor:default; opacity:.7; }
+.curriculum-card.disabled .card-title { color:#8A9A9A; }
+.curriculum-card.disabled .card-subtitle { color:#A5B2B2; }
 .curriculum-card.disabled:hover { transform:none; box-shadow:var(--shadow-card); border-color:transparent; }
 .curriculum-card.disabled:hover::before { opacity:0.55; }
 
@@ -396,7 +398,7 @@ body {
   position:relative;
   overflow:hidden;
 }
-.asd-hero::before {
+#page-asd .asd-hero::before {
   content:'ASD';
   position:absolute;
   font-family:'Noto Serif JP',serif;
@@ -1033,7 +1035,7 @@ rt {
     <div class="header-nav">
       <button onclick="scrollToSection('curriculum')">カリキュラム</button>
       <button onclick="scrollToSection('about')">りぷるとは</button>
-      <button onclick="showPage('visual')">今月</button>
+      <button onclick="showPage(currentLectureId())">今月</button>
     </div>
   </div>
 </header>
@@ -1066,8 +1068,8 @@ rt {
     <div class="notice-bar">
       <div class="notice-icon">📢</div>
       <p>
-        <strong>今月（2026年10月）</strong>の研修テーマは<br>
-        「<strong>伝わる環境をつくる——見てわかる・伝えられる</strong>」です。<br>
+        <strong id="notice-month">今月（2026年10月）</strong>の研修テーマは<br>
+        「<strong id="notice-title">伝わる環境をつくる——見てわかる・伝えられる</strong>」です。<br>
         下のカードをタップしてコンテンツを開いてください。
       </p>
     </div>
@@ -1081,89 +1083,89 @@ rt {
 
     <div class="curriculum-grid">
 
-      <button class="curriculum-card" style="--card-color:#2A7B7B;" onclick="showPage('asd')">
+      <button class="curriculum-card" data-n="1" style="--card-color:#2A7B7B;" onclick="showPage('asd')">
         <span class="card-month">Month 01 · 4月</span>
         <div class="card-title">自閉症スペクトラム障害（ASD）とは？</div>
         <div class="card-subtitle">ASDの基礎・コミュニケーションの特性・こだわり・スペクトラムの概念を学ぶ</div>
-        <span class="card-status status-soon">✅ 先月の資料</span>
+        <span class="card-status status-soon">✅ 公開済み</span>
       </button>
 
-      <button class="curriculum-card" style="--card-color:#7B5EA7;" onclick="showPage('hearing')">
+      <button class="curriculum-card" data-n="2" style="--card-color:#7B5EA7;" onclick="showPage('hearing')">
         <span class="card-month">Month 02 · 5月</span>
         <div class="card-title">聴覚過敏とは？</div>
         <div class="card-subtitle">音が「痛い」子どもたちの世界と、現場でできる環境づくり</div>
-        <span class="card-status status-soon">✅ 先月の資料</span>
+        <span class="card-status status-soon">✅ 公開済み</span>
       </button>
 
-      <button class="curriculum-card" style="--card-color:#2980B9;" onclick="showPage('adhd')">
+      <button class="curriculum-card" data-n="3" style="--card-color:#2980B9;" onclick="showPage('adhd')">
         <span class="card-month">Month 03 · 6月</span>
         <div class="card-title">ADHD・多動とは？</div>
         <div class="card-subtitle">じっとできない・飛び出す・手が出る——その行動の理由と現場での関わり方</div>
-        <span class="card-status status-soon">✅ 先月の資料</span>
+        <span class="card-status status-soon">✅ 公開済み</span>
       </button>
 
-      <button class="curriculum-card" style="--card-color:#27AE60;" onclick="showPage('intel')">
+      <button class="curriculum-card" data-n="4" style="--card-color:#27AE60;" onclick="showPage('intel')">
         <span class="card-month">Month 04 · 7月</span>
         <div class="card-title">発達障害・知的障害とは？</div>
         <div class="card-subtitle">そもそもの基礎から整理し、ダウン症・小頭症など様々な障害への理解と支援を学ぶ</div>
-        <span class="card-status status-soon">✅ 先月の資料</span>
+        <span class="card-status status-soon">✅ 公開済み</span>
       </button>
 
-      <button class="curriculum-card" style="--card-color:#D35400;" onclick="showPage('techo')">
+      <button class="curriculum-card" data-n="5" style="--card-color:#D35400;" onclick="showPage('techo')">
         <span class="card-month">Month 05 · 8月</span>
         <div class="card-title">療育手帳と受給者証——制度を正しく知る</div>
         <div class="card-subtitle">手帳の種類・区分・受給者証の違い。子どもたちが持っている「制度の道具」を正確に知る</div>
-        <span class="card-status status-soon">✅ 先月の資料</span>
+        <span class="card-status status-soon">✅ 公開済み</span>
       </button>
 
-      <button class="curriculum-card" style="--card-color:#A23A6E;" onclick="showPage('niji')">
+      <button class="curriculum-card" data-n="6" style="--card-color:#A23A6E;" onclick="showPage('niji')">
         <span class="card-month">Month 06 · 9月</span>
         <div class="card-title">二次障害と自己肯定感——叱責が積み重なる前に</div>
         <div class="card-subtitle">困った行動を叱って止める前に。行動の裏側を読み、自己肯定感を守る関わりを学ぶ</div>
-        <span class="card-status status-soon">✅ 先月の資料</span>
+        <span class="card-status status-soon">✅ 公開済み</span>
       </button>
 
-      <button class="curriculum-card current" style="--card-color:#3949AB;" onclick="showPage('visual')">
+      <button class="curriculum-card current" data-n="7" style="--card-color:#3949AB;" onclick="showPage('visual')">
         <span class="card-month">Month 07 · 10月</span>
         <div class="card-title">伝わる環境をつくる——見てわかる・伝えられる</div>
         <div class="card-subtitle">視覚支援・構造化・絵カードやサイン。わかる手がかりと、伝える手段を子どもに渡す</div>
         <span class="card-status status-now">▶ 今月のテーマ</span>
       </button>
 
-      <div class="curriculum-card disabled" style="--card-color:#1ABC9C;">
+      <button class="curriculum-card disabled" data-n="8" style="--card-color:#5E7D1E;" onclick="showPage('teach')" disabled>
         <span class="card-month">Month 08 · 11月</span>
-        <div class="card-title" style="color:#bbb;">？？？</div>
-        <div class="card-subtitle" style="color:#ccc;">スタッフからのリクエストや気になるテーマを募集中！</div>
-        <span class="card-status status-future">準備中</span>
-      </div>
+        <div class="card-title">教え方の基本——できるように教える</div>
+        <div class="card-subtitle">手洗いや着替えを例に、手順の分け方・手助けの出し方と減らし方・ほめ方を学ぶ</div>
+        <span class="card-status status-future">🔒 11月に公開</span>
+      </button>
 
-      <div class="curriculum-card disabled" style="--card-color:#8E44AD;">
+      <button class="curriculum-card disabled" data-n="9" style="--card-color:#546E7A;" onclick="showPage('safety')" disabled>
         <span class="card-month">Month 09 · 12月</span>
-        <div class="card-title" style="color:#bbb;">？？？</div>
-        <div class="card-subtitle" style="color:#ccc;">スタッフからのリクエストや気になるテーマを募集中！</div>
-        <span class="card-status status-future">準備中</span>
-      </div>
+        <div class="card-title">命と安全を守る</div>
+        <div class="card-subtitle">てんかん発作・誤嚥や窒息・飛び出し・送迎・服薬。重大な事故につながる場面への備え</div>
+        <span class="card-status status-future">🔒 12月に公開</span>
+      </button>
 
-      <div class="curriculum-card disabled" style="--card-color:#E67E22;">
+      <button class="curriculum-card disabled" data-n="10" style="--card-color:#6D4C41;" onclick="showPage('dignity')" disabled>
         <span class="card-month">Month 10 · 1月</span>
-        <div class="card-title" style="color:#bbb;">？？？</div>
-        <div class="card-subtitle" style="color:#ccc;">スタッフからのリクエストや気になるテーマを募集中！</div>
-        <span class="card-status status-future">準備中</span>
-      </div>
+        <div class="card-title">虐待防止と身体拘束——尊厳を守る</div>
+        <div class="card-subtitle">不適切な支援のグレーゾーンと、行動が激しいときにしてよいこと・いけないこと</div>
+        <span class="card-status status-future">🔒 1月に公開</span>
+      </button>
 
-      <div class="curriculum-card disabled" style="--card-color:#16A085;">
+      <button class="curriculum-card disabled" data-n="11" style="--card-color:#8E24AA;" onclick="showPage('puberty')" disabled>
         <span class="card-month">Month 11 · 2月</span>
-        <div class="card-title" style="color:#bbb;">？？？</div>
-        <div class="card-subtitle" style="color:#ccc;">スタッフからのリクエストや気になるテーマを募集中！</div>
-        <span class="card-status status-future">準備中</span>
-      </div>
+        <div class="card-title">思春期と性の支援</div>
+        <div class="card-subtitle">体の変化、プライベートとパブリック、性被害・加害を防ぐための関わり</div>
+        <span class="card-status status-future">🔒 2月に公開</span>
+      </button>
 
-      <div class="curriculum-card disabled" style="--card-color:#2C3E50;">
+      <button class="curriculum-card disabled" data-n="12" style="--card-color:#9C6F0A;" onclick="showPage('review')" disabled>
         <span class="card-month">Month 12 · 3月</span>
-        <div class="card-title" style="color:#bbb;">？？？</div>
-        <div class="card-subtitle" style="color:#ccc;">スタッフからのリクエストや気になるテーマを募集中！</div>
-        <span class="card-status status-future">準備中</span>
-      </div>
+        <div class="card-title">1年の振り返り——一人の子を見る力へ</div>
+        <div class="card-subtitle">12回の学びを総動員して、一人の子どもを一緒に考える</div>
+        <span class="card-status status-future">🔒 3月に公開</span>
+      </button>
 
     </div>
   </div>
@@ -5163,6 +5165,2143 @@ rt {
 
 </div><!-- /page-visual -->
 
+<!-- ========================================
+     Month 08 · 教え方の基本
+======================================== -->
+<div class="page" id="page-teach">
+
+  <div class="asd-hero" style="background:linear-gradient(135deg,#2E3D0E 0%,#5E7D1E 55%,#9DB86A 100%);">
+    <div class="month-tag">🌊 Month 08 · 2026年11月の研修テーマ</div>
+    <h1>教え方の基本<br>——できるように教える</h1>
+    <p class="lead">
+      「やりなさい」と言うのは、教えることではありません。<br>
+      手順を分けて、手を貸して、少しずつ手を離す。<br>
+      できた瞬間を、ちゃんと返す。<br>
+      それが「教える」です。
+    </p>
+  </div>
+
+  <div class="toc-wrapper">
+    <div class="toc-box">
+      <span class="toc-label">目次 — タップでスクロール</span>
+      <button class="toc-item" onclick="tocScrollTo('k1')">やらせると教えるの違い</button>
+      <button class="toc-item" onclick="tocScrollTo('k2')">手順を分ける</button>
+      <button class="toc-item" onclick="tocScrollTo('k3')">手助けの種類</button>
+      <button class="toc-item" onclick="tocScrollTo('k4')">手助けを減らす</button>
+      <button class="toc-item" onclick="tocScrollTo('k5')">最後から教える</button>
+      <button class="toc-item" onclick="tocScrollTo('k6')">ほめ方</button>
+      <button class="toc-item" onclick="tocScrollTo('k7')">どこでもできるように</button>
+      <button class="toc-item" onclick="tocScrollTo('k8')">NG対応</button>
+      <button class="toc-item" onclick="tocScrollTo('kquiz')">チャレンジクイズ</button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- 講師用メモ -->
+    <details class="presenter-note">
+      <summary><span class="pn-tag">講師用メモ</span>この回を担当する人へ（読む前に開いてください）</summary>
+      <div class="pn-body">
+        <h4>この回のねらい</h4>
+        <p>「やりなさい」と言うことと「できるように教える」ことは違う、と気づいてもらうこと。<strong>手順を分ける・手を貸す・少しずつ手を離す・できたらすぐ返す</strong>——この4つが持ち帰ってもらえれば成功です。</p>
+
+        <h4>準備しておくもの</h4>
+        <ul>
+          <li>事業所でよくある身辺の場面を一つ決めておく（手洗い、靴をはく、カバンを片付ける など）。セクション2で、その場面を一緒に分けてみると盛り上がります</li>
+          <li>できれば、紙とペン。手順を書き出すのに使います</li>
+        </ul>
+
+        <h4>時間配分（目安 約14分）</h4>
+        <table class="pn-time"><tbody>
+          <tr><td>1分</td><td>1. やらせると教えるの違い — 先月の「伝わる環境」の上に「教える」が乗る、とつなぐ</td></tr>
+          <tr><td>2分</td><td>2. 手順を分ける — 手洗いの例を読んだあと、問いかけ①</td></tr>
+          <tr><td>2分</td><td>3. 手助けの種類 — 表を上から順に。「軽いものから」を強調</td></tr>
+          <tr><td>1分半</td><td>4. 手助けを減らす — 「手伝いすぎも、手伝わなさすぎもよくない」</td></tr>
+          <tr><td>1分半</td><td>5. 最後から教える — ズボンの例はそのまま読む</td></tr>
+          <tr><td>2分</td><td>6. ほめ方 — 問いかけ②</td></tr>
+          <tr><td>1分</td><td>7. どこでもできるように — 読み上げる</td></tr>
+          <tr><td>1分</td><td>8. NG対応 — 読み上げる</td></tr>
+          <tr><td>1分半</td><td>クイズ — 全員で考えるのは Q3 と Q5。残りは各自で</td></tr>
+          <tr><td>30秒</td><td>まとめ — 最後の3行を読む</td></tr>
+        </tbody></table>
+        <p>時間が押したら、<strong>セクション7は「事業所でできても、家でできるとは限らない」の一言だけで</strong>次に進んでかまいません。「もっと詳しく」は質問が出たときに開いてください。</p>
+
+        <h4>問いかけの例</h4>
+        <div class="pn-q">① セクション2のあと：「（準備した場面）を手順に分けると、いくつになる？ この子はどこでつまずいている？」</div>
+        <div class="pn-q">② セクション6のあと：「〇〇くん（〇〇さん）が一番うれしそうにするのは、何をしたとき？」——子どもによって答えが違うことに気づいてもらうのが目的です</div>
+
+        <h4>よくある質問と答え方</h4>
+        <div class="pn-q"><strong>Q. 手伝ったら、いつまでも自分でやらなくなりませんか？</strong><br>A. だから「減らしていく」がセットです（セクション4）。逆に、手伝わずに失敗を続けさせるほうが、やる気をなくします。</div>
+        <div class="pn-q"><strong>Q. お菓子などのごほうびで釣るのはよくないのでは？</strong><br>A. ごほうびは「その子にとってうれしいこと」なら何でもよく、好きな遊びやハイタッチでも構いません。できるようになったら少しずつ減らしていきます。</div>
+        <div class="pn-q"><strong>Q. 職員によってやり方が違って、子どもが混乱しています。</strong><br>A. 手順を紙に書いて、どこまで手伝うかを決めて共有しましょう。セクション7とNG対応につながる話です。</div>
+
+        <h4>気をつけること</h4>
+        <p>着替えや<ruby>排泄<rt>はいせつ</rt></ruby>の話は、具体的な子どもの名前を出すと本人の<ruby>尊厳<rt>そんげん</rt></ruby>に関わります。<strong>例として話すときは、名前を出さずに</strong>進めてください。</p>
+      </div>
+    </details>
+
+    <!-- K1 -->
+    <div class="content-section" id="k1">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#5E7D1E;">1</div>
+        <h2 class="section-heading">「やらせる」と「教える」の違い</h2>
+      </div>
+      <div class="content-card">
+        <p>先月は、伝わる環境をつくる方法を学びました。今月は、その上で<strong>新しいことを身につけてもらう方法</strong>です。</p>
+        <p>「手を洗いなさい」「靴をはいて」——言えば伝わる子もいます。でも、言われてもできない子にとって、それは<strong>「やらせる」</strong>であって、<strong>「教える」</strong>ではありません。</p>
+        <div class="highlight-box" style="border-left-color:#5E7D1E;background:#F1F5E8;">
+          <p style="color:#2E3D0E;">🌱 <strong>教えるとは、この4つ</strong><br>
+          ① 手順を小さく分ける<br>
+          ② 必要なだけ手を貸す<br>
+          ③ 少しずつ手を離していく<br>
+          ④ できた瞬間を、ちゃんと返す</p>
+        </div>
+        <p>この4つは、Month 06で学んだABC（きっかけ・行動・結果）の使い方そのものです。今日は、それを具体的な技術として身につけます。</p>
+      </div>
+    </div>
+
+    <!-- K2 -->
+    <div class="content-section" id="k2">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#5E7D1E;">2</div>
+        <h2 class="section-heading">手順を小さく分ける</h2>
+      </div>
+      <div class="content-card">
+        <p>大人が何気なくやっていることも、細かく分けると驚くほど多くの手順でできています。手洗いを分けてみましょう。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:12px;">🧼 手洗いを分けると</div>
+        <ol style="margin:0;padding-left:1.6em;font-size:13px;line-height:2;color:var(--text);">
+          <li><ruby>蛇口<rt>じゃぐち</rt></ruby>をひねる</li>
+          <li>手をぬらす</li>
+          <li>石けんをつける</li>
+          <li>手のひらをこする</li>
+          <li><ruby>手の甲<rt>てのこう</rt></ruby>をこする</li>
+          <li>指の間をこする</li>
+          <li>水で流す</li>
+          <li>蛇口を閉める</li>
+          <li>タオルで<ruby>拭く<rt>ふく</rt></ruby></li>
+        </ol>
+        <p style="font-size:11.5px;color:var(--mid);margin-top:12px;line-height:1.8;">「手を洗えない」のではなく、<strong>9つのうちどこでつまずいているか</strong>を見ます。石けんだけが難しいのかもしれないし、蛇口を閉めるのを忘れるだけかもしれません。</p>
+      </div>
+
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>分けると、できていることが見えてきます。</strong>「手洗いができない子」が、実は9つのうち7つはできている——それが分かるだけで、教えることがぐっと絞れます。できている部分は、ちゃんと認めてあげてください。</p>
+      </div>
+    </div>
+
+    <!-- K3 -->
+    <div class="content-section" id="k3">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#5E7D1E;">3</div>
+        <h2 class="section-heading">手助けの種類</h2>
+      </div>
+      <div class="content-card">
+        <p>つまずいているところには、手を貸します。手の貸し方にはいくつか種類があり、<strong>軽いものから重いものまで</strong>あります。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F6F9F0;border-radius:10px;border-left:4px solid #9DB86A;">
+            <div style="font-size:12px;font-weight:700;color:#2E3D0E;min-width:84px;">見える<br>手がかり</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">手順の絵や写真を貼っておく。<strong>人がいなくても残る</strong>のが強み（先月の内容です）</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F6F9F0;border-radius:10px;border-left:4px solid #8AA752;">
+            <div style="font-size:12px;font-weight:700;color:#2E3D0E;min-width:84px;">言葉</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">「次は石けん」と声をかける。言葉が届く子に</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F6F9F0;border-radius:10px;border-left:4px solid #77963E;">
+            <div style="font-size:12px;font-weight:700;color:#2E3D0E;min-width:84px;">指さし・<br>身ぶり</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">石けんを指さす。言葉が届きにくい子にも伝わります</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F6F9F0;border-radius:10px;border-left:4px solid #63852E;">
+            <div style="font-size:12px;font-weight:700;color:#2E3D0E;min-width:84px;">やって<br>見せる</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">隣で同じ動きをして見せる</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F6F9F0;border-radius:10px;border-left:4px solid #5E7D1E;">
+            <div style="font-size:12px;font-weight:700;color:#2E3D0E;min-width:84px;">体に触れて<br>手伝う</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">手を添えて一緒に動かす。いちばん重い手助けです。<strong>必ず本人が受け入れる触れ方で</strong></div>
+          </div>
+        </div>
+        <p style="font-size:11.5px;color:var(--mid);margin-top:14px;line-height:1.8;">どの手助けが届くかは子どもによって違います。言葉が届きにくい子には、指さしや見本、手を添える手助けが中心になります。<strong>大切なのは、その子にとって必要な分だけ使うこと</strong>です。</p>
+      </div>
+
+      <details class="deep-box" style="--db-color:#5E7D1E;">
+        <summary><span class="db-tag">もっと詳しく</span>軽い手助けから始めるか、重い手助けから始めるか</summary>
+        <div class="db-body">
+          <p>手助けの出し方には、大きく2つの考え方があります。</p>
+          <div class="db-row"><div class="db-row-k">軽いものから</div><div class="db-row-v">まず言葉や指さしで様子を見て、それで動けなければ少しずつ重い手助けに上げていく。<strong>必要以上に手を出さずに済む</strong>のが利点</div></div>
+          <div class="db-row"><div class="db-row-k">重いものから</div><div class="db-row-v">最初は手を添えて確実に成功させ、少しずつ軽い手助けに下げていく。<strong>失敗させずに覚えられる</strong>のが利点。初めて覚えることや、失敗が続くとかんしゃくにつながる子に向いています</div></div>
+          <p>どちらが正しいということはなく、<strong>その子とその手順に合わせて選びます。</strong>迷ったら、その子の担当や<ruby>相談支援専門員<rt>そうだんしえんせんもんいん</rt></ruby>と相談して、職員全員で同じ方針にそろえてください。</p>
+          <p class="db-note">出典：東京学芸大学 特別支援科学講座 小笠原研究室「行動連鎖と<ruby>順行連鎖<rt>じゅんこうれんさ</rt></ruby>化・<ruby>逆行連鎖<rt>ぎゃっこうれんさ</rt></ruby>化」/ <ruby>応用行動分析学<rt>おうようこうどうぶんせきがく</rt></ruby>の指導技法に関する各種解説</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- K4 -->
+    <div class="content-section" id="k4">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#5E7D1E;">4</div>
+        <h2 class="section-heading">手助けを、少しずつ減らす</h2>
+      </div>
+      <div class="content-card">
+        <p>手を貸すのはゴールではありません。<strong>最後は、手助けなしでできること</strong>がゴールです。だから、できるようになってきたら手助けを少しずつ減らしていきます。</p>
+        <p>たとえば、手を添えて一緒に動かしていたのを → 手首に軽く触れるだけにする → 指さしだけにする → 何もしない、というように。</p>
+      </div>
+      <div class="myth-fact-list">
+        <div class="myth-fact-pair">
+          <div class="myth-box"><div class="mf-label">❌ 手伝いすぎ</div><div class="mf-text">ずっと同じ手助けを続けると、<strong>手助けがないと動けなくなる</strong>。「声をかけられるまで待つ」が身についてしまいます。</div></div>
+          <div class="fact-box"><div class="mf-label">✅ 減らしていく</div><div class="mf-text">できたら一段軽くする。うまくいかなければ一段戻す。<strong>行ったり来たりしながら</strong>、少しずつ手を離します。</div></div>
+        </div>
+        <div class="myth-fact-pair">
+          <div class="myth-box"><div class="mf-label">❌ 手伝わなさすぎ</div><div class="mf-text">「自分でやらせないと」と失敗を続けさせると、<strong>やる気そのものがなくなります</strong>。</div></div>
+          <div class="fact-box"><div class="mf-label">✅ 成功させて終わる</div><div class="mf-text">手を貸してでも、<strong>最後は「できた」で終わる</strong>。その積み重ねが、次への<ruby>意欲<rt>いよく</rt></ruby>になります。</div></div>
+        </div>
+      </div>
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>声かけは、意外といちばん減らしにくい手助けです。</strong>言葉の手助けに慣れると「言われたらやる」になりやすいので、見える手がかりに置きかえていくと、自分で動ける場面が増えます。</p>
+      </div>
+    </div>
+
+    <!-- K5 -->
+    <div class="content-section" id="k5">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#5E7D1E;">5</div>
+        <h2 class="section-heading">最後から教えるという方法</h2>
+      </div>
+      <div class="content-card">
+        <p>手順を教えるとき、最初から順に教えるのが普通だと思いがちです。でも、<strong>最後のステップから教える</strong>という方法もあります。</p>
+        <p>ズボンをはく練習なら、<ruby>膝<rt>ひざ</rt></ruby>まで大人が上げておいて、<strong>最後の「腰まで引き上げる」だけを本人にやってもらう</strong>。それができたら、次は太ももから、その次は足首から——と、本人がやる部分を前へ広げていきます。</p>
+        <div class="highlight-box" style="border-left-color:#5E7D1E;background:#F1F5E8;">
+          <p style="color:#2E3D0E;">💡 <strong>なぜ最後からなのか</strong><br>
+          どの段階でも、<strong>「最後までやりきった」のは本人</strong>になるからです。毎回「できた！」で終われるので、<ruby>達成感<rt>たっせいかん</rt></ruby>が積み重なります。最初から教える方法だと、途中で大人が引き継ぐことになり、「自分でできた」が残りにくくなります。</p>
+        </div>
+      </div>
+
+      <details class="deep-box" style="--db-color:#5E7D1E;">
+        <summary><span class="db-tag">もっと詳しく</span>最初から教える方法との使い分け</summary>
+        <div class="db-body">
+          <p>専門的には、最初から教える方法を<strong><ruby>順行連鎖<rt>じゅんこうれんさ</rt></ruby></strong>、最後から教える方法を<strong><ruby>逆行連鎖<rt>ぎゃっこうれんさ</rt></ruby></strong>と呼びます。</p>
+          <div class="db-row"><div class="db-row-k">最初から<br>（順行）</div><div class="db-row-v">1つめの手順を本人、残りを大人。できたら2つめまで本人が、と広げていく。<strong>手順の最初でつまずいている子</strong>や、最初の一歩が大事な手順に向いています</div></div>
+          <div class="db-row"><div class="db-row-k">最後から<br>（逆行）</div><div class="db-row-v">最後の手順だけを本人、それ以外は大人。毎回本人がやりきって終われる。<strong>着替え、片付け、手洗いなど身の回りのこと</strong>でよく使われます</div></div>
+          <p>どちらを使うかは、<strong>その子が取り組みやすいほう</strong>を選びます。決めたら、職員全員で同じやり方にそろえることが何より大切です。</p>
+          <p class="db-note">出典：東京学芸大学 特別支援科学講座 小笠原研究室「行動連鎖と順行連鎖化・逆行連鎖化」/ 広島県立特別支援学校 自立活動実践事例集</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- K6 -->
+    <div class="content-section" id="k6">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#5E7D1E;">6</div>
+        <h2 class="section-heading">ほめ方——できた瞬間を返す</h2>
+      </div>
+      <div class="content-card">
+        <p>Month 06で、行動の直後に良いことが起きると、その行動は増えると学びました。<strong>ほめるのは、その「良いこと」を意図してつくること</strong>です。</p>
+      </div>
+
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">⚡</div>
+          <div class="tip-content">
+            <strong>すぐに</strong>
+            <p>できた<strong>その瞬間</strong>に返します。数分たってからでは、何をほめられたのか結びつきません。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🎯</div>
+          <div class="tip-content">
+            <strong>何がよかったかが分かるように</strong>
+            <p>言葉が届く子には「すごいね」より<strong>「石けんつけられたね」</strong>。何がよかったのかが伝わります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🎁</div>
+          <div class="tip-content">
+            <strong>その子にとって、うれしいもので</strong>
+            <p>言葉でほめられてうれしい子もいれば、言葉より<strong>好きな遊び・好きな感触・ハイタッチ</strong>がうれしい子もいます。何がうれしいかは子どもによって違います。<strong>こちらが返したいものではなく、その子が受け取りたいものを。</strong></p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">📉</div>
+          <div class="tip-content">
+            <strong>できるようになったら、少しずつ間を空ける</strong>
+            <p>覚えはじめは毎回、慣れてきたらときどき。最後は、できたこと自体がうれしい状態を目指します。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- K7 -->
+    <div class="content-section" id="k7">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#5E7D1E;">7</div>
+        <h2 class="section-heading">どこでも、誰とでもできるように</h2>
+      </div>
+      <div class="content-card">
+        <p>事業所の洗面所で手が洗えるようになっても、<strong>家の洗面所でできるとは限りません。</strong><ruby>蛇口<rt>じゃぐち</rt></ruby>の形が違う、石けんの置き場所が違う、そばにいる人が違う——それだけで、別のことに感じる子は少なくありません。</p>
+        <p>だから、できるようになったら次は<strong>場所・人・道具を少しずつ変えて</strong>も、できるかどうかを確かめていきます。</p>
+        <div class="highlight-box" style="border-left-color:#5E7D1E;background:#F1F5E8;">
+          <p style="color:#2E3D0E;">🤝 <strong>まずは事業所の中でそろえる</strong><br>
+          ・<strong>手順の分け方</strong>を、紙に書いて職員で共有する<br>
+          ・<strong>どこまで手を貸すか</strong>を決めておく<br>
+          ・<strong>何で返すか</strong>（ほめ方）をそろえる<br>
+          職員によってやり方が違うと、子どもは毎回覚え直すことになります。家庭とも共有できると、なお効果的です。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- K8 -->
+    <div class="content-section" id="k8">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#5E7D1E;">8</div>
+        <h2 class="section-heading">やってはいけないNG対応</h2>
+      </div>
+      <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+        <p style="color:#B03A2E;">🚫 <strong>覚える力を奪ってしまう対応</strong><br>
+        ・<strong>時間がないからと、全部大人がやってしまう</strong>／毎日の積み重ねがいちばんの練習の機会です<br>
+        ・<strong>同じことを何度も言い続ける</strong>／言葉の手助けに頼る状態を自分で作ってしまいます<br>
+        ・<strong>失敗したところだけを指摘する</strong>／できているところを認めずに終わると、やる気が残りません<br>
+        ・<strong>本人が嫌がる触れ方で手を添える</strong>／体に触れる手助けは、本人が受け入れる形でなければ逆効果です<br>
+        ・<strong>職員ごとに教え方がばらばら</strong>／手順も手助けもほめ方も、そろえて初めて身につきます</p>
+      </div>
+    </div>
+
+    <!-- クイズ -->
+    <div class="quiz-section content-section" id="kquiz">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#5E7D1E;">✓</div>
+        <h2 class="section-heading">🔥 チャレンジクイズ</h2>
+      </div>
+      <div class="content-card" style="background:#F1F5E8;border:1.5px solid #CADBA8;margin-bottom:16px;">
+        <p style="color:#2E3D0E;font-size:13px;line-height:1.9;">今日の内容をちゃんと読めば全問解けます。<strong>なんとなくで選ぶと間違えます。</strong>💪</p>
+      </div>
+
+      <div class="quiz-card" id="kqcard1">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#5E7D1E;">Q1</span>手順を小さく分けて見ることの、いちばんの利点はどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerKQuiz(1,this,false)">全部の手順を一度に教えられるので、短い期間で身につけられること</button>
+          <button class="quiz-opt" onclick="answerKQuiz(1,this,true)">どこでつまずいていて、どこはもうできているのかが見えてくること</button>
+          <button class="quiz-opt" onclick="answerKQuiz(1,this,false)">手順の数が分かるので、その子の理解力の高さを正確に測れること</button>
+        </div>
+        <div class="quiz-result" id="kqres1"></div>
+      </div>
+
+      <div class="quiz-card" id="kqcard2">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#5E7D1E;">Q2</span>ずっと同じ手助けを続けていると、どんなことが起きやすいですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerKQuiz(2,this,false)">手助けに慣れて安心するので、ほかの手順も早く覚えられるようになる</button>
+          <button class="quiz-opt" onclick="answerKQuiz(2,this,false)">手助けをする職員との関係が深まり、指示が通りやすくなっていく</button>
+          <button class="quiz-opt" onclick="answerKQuiz(2,this,true)">手助けがないと動けなくなり、声をかけられるまで待つようになる</button>
+        </div>
+        <div class="quiz-result" id="kqres2"></div>
+      </div>
+
+      <div class="quiz-card" id="kqcard3">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#5E7D1E;">Q3</span>ズボンをはく練習で、最後の「腰まで引き上げる」から教えるのはなぜですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerKQuiz(3,this,true)">どの段階でも最後までやりきるのが本人になり、毎回<ruby>達成感<rt>たっせいかん</rt></ruby>で終われるから</button>
+          <button class="quiz-opt" onclick="answerKQuiz(3,this,false)">最後の手順がいちばん簡単なので、失敗せずに早く覚えられるから</button>
+          <button class="quiz-opt" onclick="answerKQuiz(3,this,false)">最初の手順は大人がやったほうが早く、全体の時間を短くできるから</button>
+        </div>
+        <div class="quiz-result" id="kqres3"></div>
+      </div>
+
+      <div class="quiz-card" id="kqcard4">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#5E7D1E;">Q4</span>言葉でほめられてもあまり反応がない子への返し方として、最も適切なのはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerKQuiz(4,this,false)">伝わるまで、もっと大きな声と言葉でしっかりほめるようにする</button>
+          <button class="quiz-opt" onclick="answerKQuiz(4,this,true)">好きな遊びや感触など、その子にとってうれしいものですぐに返す</button>
+          <button class="quiz-opt" onclick="answerKQuiz(4,this,false)">ほめても伝わらないので、できたときは特に何もせず見守る</button>
+        </div>
+        <div class="quiz-result" id="kqres4"></div>
+      </div>
+
+      <div class="quiz-card" id="kqcard5">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#5E7D1E;">Q5</span>事業所でできるようになったことが、家ではできないのはなぜですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerKQuiz(5,this,false)">家では甘えが出て、本人がやる気をなくしてしまうことが多いから</button>
+          <button class="quiz-opt" onclick="answerKQuiz(5,this,false)">事業所での練習時間が足りず、まだ十分に身についていないから</button>
+          <button class="quiz-opt" onclick="answerKQuiz(5,this,true)">場所や道具、そばにいる人が違うだけで、別のことに感じる子がいるから</button>
+        </div>
+        <div class="quiz-result" id="kqres5"></div>
+      </div>
+
+      <div class="quiz-score-box" id="kquiz-score">
+        <div class="quiz-score-num" id="kscore-num">0 / 5</div>
+        <div class="quiz-score-label" id="kscore-msg"></div>
+        <button class="quiz-retry-btn" style="background:#5E7D1E;" onclick="retryKQuiz()">🔄 もう一度チャレンジ</button>
+      </div>
+    </div>
+
+    <!-- まとめ -->
+    <div class="content-section" id="k9">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#5E7D1E;">9</div>
+        <h2 class="section-heading">今月のまとめ</h2>
+      </div>
+      <div class="content-card">
+        <p>🌊 <strong>手順を小さく分けると</strong>、どこでつまずいていて、どこはもうできているのかが見えます。教えることは、そのつまずきに絞れます。</p>
+        <p>🌊 <strong>手助けは軽いものから重いものまで</strong>。その子に必要な分だけ使い、できてきたら少しずつ減らします。手伝いすぎも、手伝わなさすぎもよくありません。</p>
+        <p>🌊 <strong>できた瞬間を、その子にとってうれしいもので返す。</strong>そして手順・手助け・ほめ方を職員でそろえる。それが「できるように教える」です。</p>
+      </div>
+
+      <div class="callout-warm" style="margin-top:16px;">
+        <span class="ci">🌊</span>
+        <p><strong>来月は「命と安全を守る」です。</strong>ここまでで、行動を読み、伝わる環境をつくり、教える方法を学びました。来月からは「守る」に入ります。</p>
+      </div>
+
+      <div class="next-month" style="background:#1A3A3A;">
+        <div class="nm-left">
+          <p class="nm-sub">▶ NEXT MONTH</p>
+          <p class="nm-title">命と安全を守る</p>
+          <p class="nm-desc">12月に公開されます。</p>
+        </div>
+        <span class="nm-tag" style="background:#5E7D1E;">12月公開</span>
+      </div>
+    </div>
+
+    <div class="about-doc">
+      <div class="about-doc-title">📌 この資料について</div>
+      <p>本資料の内容は<strong>2026年10月時点</strong>の情報をもとにしています。</p>
+      <p>手順の分け方や手助けの出し方は、子どもによって合うものが違います。<strong>個別の子どもへの具体的な方法は、<ruby>個別支援計画<rt>こべつしえんけいかく</rt></ruby>や担当者・<ruby>相談支援専門員<rt>そうだんしえんせんもんいん</rt></ruby>と相談して決めてください。</strong></p>
+    </div>
+
+  </div><!-- /content-wrap -->
+
+  <div class="print-btn-wrap">
+    <button class="print-btn" style="color:#5E7D1E;border-color:#5E7D1E;" onclick="printPage('teach')">🖨️ この資料を印刷する</button>
+  </div>
+
+  <footer class="asd-footer">
+    <div class="lecture-companion"><span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-wave.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span><button class="back-btn" onclick="showPage('hp')">カリキュラムへ戻る</button></div>
+    <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
+    スタッフ研修資料 Month 08 · 2026年11月<br>
+    参考：東京学芸大学 特別支援科学講座 小笠原研究室 / 広島県立特別支援学校 自立活動実践事例集<br>
+    <ruby>応用行動分析学<rt>おうようこうどうぶんせきがく</rt></ruby>（ABA）の指導技法に関する各種解説
+  </footer>
+
+</div><!-- /page-teach -->
+
+<!-- ========================================
+     Month 09 · 命と安全を守る
+======================================== -->
+<div class="page" id="page-safety">
+
+  <div class="asd-hero" style="background:linear-gradient(135deg,#263238 0%,#546E7A 55%,#90A4AE 100%);">
+    <div class="month-tag">🌊 Month 09 · 2026年12月の研修テーマ</div>
+    <h1>命と安全を守る</h1>
+    <p class="lead">
+      ほとんどの日は、何も起きません。<br>
+      だからこそ、起きた日に体が動くように。<br>
+      重い事故につながる場面を知り、<br>
+      その瞬間にすることを決めておきましょう。
+    </p>
+  </div>
+
+  <div class="toc-wrapper">
+    <div class="toc-box">
+      <span class="toc-label">目次 — タップでスクロール</span>
+      <button class="toc-item" onclick="tocScrollTo('y1')">重い事故の3つ</button>
+      <button class="toc-item" onclick="tocScrollTo('y2')">てんかん発作</button>
+      <button class="toc-item" onclick="tocScrollTo('y3')"><ruby>窒息<rt>ちっそく</rt></ruby>・<ruby>誤飲<rt>ごいん</rt></ruby></button>
+      <button class="toc-item" onclick="tocScrollTo('y4')">見失い・飛び出し</button>
+      <button class="toc-item" onclick="tocScrollTo('y5')">送迎</button>
+      <button class="toc-item" onclick="tocScrollTo('y6')">薬</button>
+      <button class="toc-item" onclick="tocScrollTo('y7')">ヒヤリハット</button>
+      <button class="toc-item" onclick="tocScrollTo('y8')">NG対応</button>
+      <button class="toc-item" onclick="tocScrollTo('yquiz')">チャレンジクイズ</button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- 講師用メモ -->
+    <details class="presenter-note">
+      <summary><span class="pn-tag">講師用メモ</span>この回を担当する人へ（読む前に開いてください）</summary>
+      <div class="pn-body">
+        <h4>この回のねらい</h4>
+        <p>12回の中で、<strong>いちばん「知らなかった」では済まない回</strong>です。発作・窒息・見失いが起きたその瞬間に、何をするかを全員が言える状態にすること。それがこの回のゴールです。</p>
+
+        <h4>準備しておくもの（大切）</h4>
+        <ul>
+          <li><strong>事業所の事故対応マニュアル</strong>と<strong>緊急連絡先の一覧</strong>。どこに置いてあるかを全員に見せてください</li>
+          <li>てんかんのある子がいる場合は、<strong>医師の指示書や発作時の対応メモの保管場所</strong>を確認しておく（子どもの名前は外部の人がいない場で）</li>
+          <li><strong>AEDの場所</strong>（事業所内になければ、いちばん近い設置場所）</li>
+          <li>送迎の降車確認の記録用紙（あれば）</li>
+        </ul>
+
+        <h4>時間配分（目安 約15分）</h4>
+        <table class="pn-time"><tbody>
+          <tr><td>1分</td><td>1. 重い事故の3つ — 「ほとんどの日は何も起きない、だから備える」</td></tr>
+          <tr><td>2分半</td><td>2. てんかん発作 — 「時間を計る」「口に物を入れない」「5分で119番」を必ず読む</td></tr>
+          <tr><td>2分半</td><td>3. 窒息・誤飲 — 「咳ができるうちは咳」「声が出ないなら119番」を強調</td></tr>
+          <tr><td>2分</td><td>4. 見失い・飛び出し — 問いかけ①</td></tr>
+          <tr><td>1分半</td><td>5. 送迎 — 事業所の降車確認のやり方を実物で見せる</td></tr>
+          <tr><td>1分</td><td>6. 薬 — 「迷ったら飲ませない」</td></tr>
+          <tr><td>1分</td><td>7. ヒヤリハット — 問いかけ②</td></tr>
+          <tr><td>1分</td><td>8. NG対応 — 読み上げる</td></tr>
+          <tr><td>1分半</td><td>クイズ — 全員で考えるのは Q1 と Q2。この2問は全員が正解できるまで確認</td></tr>
+          <tr><td>30秒</td><td>まとめ — 最後の3行を読む</td></tr>
+        </tbody></table>
+        <p>この回は少し長めです。時間が押しても<strong>セクション2と3は削らないでください。</strong>押したら、セクション6と7を一言ずつにしてかまいません。</p>
+
+        <h4>問いかけの例</h4>
+        <div class="pn-q">① セクション4のあと：「この事業所で、子どもから目が離れやすいのはどんな瞬間？」——連絡帳を書くとき、送迎の準備、帰りの声かけなど、具体的な場面が出るまで待つ</div>
+        <div class="pn-q">② セクション7のあと：「最近、ヒヤッとしたことはあった？」——責める場ではないことを最初に伝えてから聞く</div>
+
+        <h4>よくある質問と答え方</h4>
+        <div class="pn-q"><strong>Q. 救急車を呼ぶか迷ったら？</strong><br>A. 迷ったら呼んでください。呼ばずに後悔するより、呼んで「大丈夫でした」のほうがずっといい。判断に迷う時間そのものが危険です。</div>
+        <div class="pn-q"><strong>Q. 背中を叩くやり方や腹部の突き上げは、やったことがないと不安です。</strong><br>A. その不安は正しい感覚です。日本赤十字社や消防署の講習で一度体験しておくと、いざというときに体が動きます。事業所として受講を検討してください。</div>
+        <div class="pn-q"><strong>Q. 発作時の薬（口の中に入れる薬）を職員が使っていいの？</strong><br>A. 条件を満たせば使えます。医師の書面の指示と保護者の依頼などが前提です。セクション2の「もっと詳しく」を一緒に読んでください。</div>
+
+        <h4>気をつけること</h4>
+        <p>実際にあった事故の話をするときは、<strong>誰かを責める話し方にならないように</strong>。「誰が悪かったか」ではなく「どうすれば防げたか」に話を向けてください。この回の内容は、事業所のマニュアルと合っているかも確認してください。違いがあれば、事業所のマニュアルを優先し、あとで管理者に伝えてください。</p>
+      </div>
+    </details>
+
+    <!-- Y1 -->
+    <div class="content-section" id="y1">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#546E7A;">1</div>
+        <h2 class="section-heading"><ruby>放課後等デイサービス<rt>ほうかごとうデイサービス</rt></ruby>で起きる重い事故</h2>
+      </div>
+      <div class="content-card">
+        <p>こども家庭庁は、放課後等デイサービスで起きる重い事故として、次のような場面を挙げています。</p>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#ECEFF1;border-radius:10px;border-left:4px solid #546E7A;">
+            <div style="font-size:13px;font-weight:700;color:#263238;min-width:72px;">見失い</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">目を離したすきに外へ出て、交通事故や水の事故につながる</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#ECEFF1;border-radius:10px;border-left:4px solid #546E7A;">
+            <div style="font-size:13px;font-weight:700;color:#263238;min-width:72px;"><ruby>窒息<rt>ちっそく</rt></ruby></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">食事やおやつの最中に、食べ物がのどに詰まる</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#ECEFF1;border-radius:10px;border-left:4px solid #546E7A;">
+            <div style="font-size:13px;font-weight:700;color:#263238;min-width:72px;"><ruby>転落<rt>てんらく</rt></ruby></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">遊具や窓から落ちる</div>
+          </div>
+        </div>
+      </div>
+      <div class="content-card">
+        <p>これに加えて、<strong>てんかんのある子の発作</strong>も、対応を知っているかどうかで結果が変わる場面です。</p>
+        <p>どれも、ほとんどの日は起きません。<strong>だからこそ、起きた日に体が動くよう、することを先に決めておきます。</strong>自分の体調や痛みを言葉で伝えにくい子ほど、私たちが気づく役目を担っています。</p>
+      </div>
+      <p class="source-note">参考：こども家庭庁 支援局長通知（令和6年7月4日 こ支障第169号）</p>
+    </div>
+
+    <!-- Y2 -->
+    <div class="content-section" id="y2">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#546E7A;">2</div>
+        <h2 class="section-heading">てんかん発作が起きたら</h2>
+      </div>
+      <div class="content-card">
+        <p>発作が起きたら、まず<strong>自分が落ち着く</strong>ことです。多くの発作は数分以内に自然におさまります。すぐに救急車を呼ばなければならない、というわけではありません。</p>
+      </div>
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">⏱️</div>
+          <div class="tip-content">
+            <strong>時間を計る</strong>
+            <p>始まった時刻を確認します。<strong>何分続いたか</strong>が、救急車を呼ぶかどうかの判断と、あとで医師に伝える大切な情報になります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🛡️</div>
+          <div class="tip-content">
+            <strong>周りの危ない物をどける</strong>
+            <p>机や椅子、硬い物を遠ざけ、頭の下にやわらかい物を。体を押さえつけて止めようとしないでください。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🚫</div>
+          <div class="tip-content">
+            <strong>口に物を入れない</strong>
+            <p>舌をかまないようにと、指やタオル、箸を口に入れるのは<strong>絶対にしない</strong>でください。<ruby>窒息<rt>ちっそく</rt></ruby>や、歯・口の中のけがにつながります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">↪️</div>
+          <div class="tip-content">
+            <strong>おさまったら横向きに</strong>
+            <p>体の力が抜けたら、顔を横に向けて寝かせます。口の中のものが出やすく、息がしやすい姿勢です。</p>
+          </div>
+        </li>
+      </ul>
+      <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+        <p style="color:#B03A2E;">🚑 <strong>すぐに119番する目安</strong><br>
+        ・発作が<strong>5分以上</strong>続く<br>
+        ・意識が戻らないまま、次の発作が起きる<br>
+        ・呼吸が苦しそう、顔色が悪い<br>
+        ・けがをして出血がひどい<br>
+        ・<strong>初めての発作</strong><br>
+        その子に医師の指示書がある場合は、その指示が優先です。</p>
+      </div>
+
+      <details class="deep-box" style="--db-color:#546E7A;">
+        <summary><span class="db-tag">もっと詳しく</span>発作時に口の中に入れる薬を、職員が使うとき</summary>
+        <div class="db-body">
+          <p>てんかん発作を止めるための薬に、<strong>頬と歯ぐきの間に入れる液体の薬</strong>（ブコラム）があります。</p>
+          <p>本来、医療行為は医師などの資格がなければ行えません。しかし<strong>2023年3月31日の厚生労働省の通知</strong>で、児童発達支援や<ruby>放課後等デイサービス<rt>ほうかごとうデイサービス</rt></ruby>の職員が、発作を起こした子どもに代わってこの薬を使っても、一定の条件を満たせば医師法違反にはならないことが示されました。</p>
+          <p>条件の柱は、<strong>本人と保護者があらかじめ医師から書面で指示を受けていること</strong>、そして事業所がその内容を確認していることです。使う職員は、その子が使用を認められた子であることを確かめ、書面に書かれた注意点を守ります。</p>
+          <p><strong>事業所として準備しておくこと：</strong>指示書と薬の保管場所、使うときの手順、使ったあとの119番と保護者への連絡。いざというときに探さなくて済むよう、職員全員が知っておくことが大切です。</p>
+          <p class="db-note">出典：厚生労働省「児童発達支援又は放課後等デイサービスにおけるてんかん発作時の口腔用液（「ブコラム®」）の投与に係る医師法第17条の解釈について」（令和5年3月31日）/ 日本てんかん協会「発作の介助と観察」</p>
+        </div>
+      </details>
+      <p class="source-note">参考：日本てんかん協会「発作の介助と観察」「学校での対応」</p>
+    </div>
+
+    <!-- Y3 -->
+    <div class="content-section" id="y3">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#546E7A;">3</div>
+        <h2 class="section-heading"><ruby>窒息<rt>ちっそく</rt></ruby>と<ruby>誤飲<rt>ごいん</rt></ruby></h2>
+      </div>
+      <div class="content-card">
+        <p>食べ物がのどに詰まったとき、最初に見るのは<strong>咳ができているかどうか</strong>です。</p>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#ECEFF1;border-radius:10px;border-left:4px solid #546E7A;">
+            <div style="font-size:12px;font-weight:700;color:#263238;min-width:96px;">咳ができる</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>咳を続けさせる。</strong>自分の咳がいちばん強い力です。そばで見守ります</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDEDEC;border-radius:10px;border-left:4px solid #C0392B;">
+            <div style="font-size:12px;font-weight:700;color:#B03A2E;min-width:96px;">声が出ない<br>強い咳ができない</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>すぐに119番</strong>（ほかの職員に頼む）。そのうえで、背中を強く叩く方法と、お腹を突き上げる方法で<ruby>異物<rt>いぶつ</rt></ruby>を出します</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDEDEC;border-radius:10px;border-left:4px solid #C0392B;">
+            <div style="font-size:12px;font-weight:700;color:#B03A2E;min-width:96px;">反応がなくなった</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong><ruby>心肺蘇生<rt>しんぱいそせい</rt></ruby>を始め、AEDを持ってきてもらう。</strong>救急隊と交代するまで続けます</div>
+          </div>
+        </div>
+      </div>
+      <div class="content-card">
+        <p>言葉で「苦しい」と言えない子もいます。<strong>のどを押さえる、急に静かになる、顔色が悪くなる</strong>——食事中のこうした変化を見逃さないことが、何より大切です。</p>
+        <p><strong>防ぐためにできること：</strong>一口の量を小さく、よく噛んでから次を、背すじを起こした姿勢で、食べている間は目を離さない。食べ物の形（大きさ・硬さ・とろみ）は、その子に合わせて保護者と決めておきます。</p>
+        <p><strong>口に入れてはいけない物を口に入れる子</strong>には、手の届く範囲に小さな物を置かないことが基本です。特に<strong>ボタン電池と強い磁石</strong>は、飲み込むと短い時間で体の中に深い傷をつくることがあります。飲んだかもしれないときは、すぐに<ruby>受診<rt>じゅしん</rt></ruby>してください。</p>
+      </div>
+
+      <details class="deep-box" style="--db-color:#546E7A;">
+        <summary><span class="db-tag">もっと詳しく</span>のどに詰まったときの手当ての流れ</summary>
+        <div class="db-body">
+          <p>1歳以上の子どもの場合の、一般的な流れです。</p>
+          <div class="db-row"><div class="db-row-k">背中を叩く</div><div class="db-row-v">子どもの体を前に傾け、<ruby>肩甲骨<rt>けんこうこつ</rt></ruby>の間を手のひらの付け根で何度か強く叩く</div></div>
+          <div class="db-row"><div class="db-row-k">お腹を突き上げる</div><div class="db-row-v">後ろから抱えるように腕を回し、へそとみぞおちの間を手前上方に何度か突き上げる</div></div>
+          <div class="db-row"><div class="db-row-k">くり返す</div><div class="db-row-v">異物が出るか、反応がなくなるまで交互に続ける。反応がなくなったら心肺蘇生へ</div></div>
+          <p><strong>お腹を突き上げた場合は、異物が取れても必ず医師の診察を受けてください。</strong>お腹の中を傷つけている可能性があるためです。また、1歳未満の赤ちゃんにはお腹を突き上げる方法は行いません。</p>
+          <p>文字で読んでも、実際に手が動くとは限りません。<strong>日本赤十字社や消防署の講習で、一度は体験しておくこと</strong>を強くおすすめします。</p>
+          <p class="db-note">出典：日本赤十字社 / 日本医師会「救急蘇生法 気道異物除去の手順」</p>
+        </div>
+      </details>
+      <p class="source-note">参考：日本赤十字社 / 日本医師会「救急蘇生法」/ 消費者庁（子どもの誤飲事故に関する注意喚起）</p>
+    </div>
+
+    <!-- Y4 -->
+    <div class="content-section" id="y4">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#546E7A;">4</div>
+        <h2 class="section-heading">見失い・飛び出し</h2>
+      </div>
+      <div class="content-card">
+        <p>見失いは、特別な場面では起きません。<strong>いつもの流れの中の、ほんの一瞬</strong>に起きます。実際の事故の報告では、こんな場面がくり返し出てきます。</p>
+      </div>
+      <div class="highlight-box" style="border-left-color:#546E7A;background:#ECEFF1;">
+        <p style="color:#263238;">👀 <strong>目が離れやすい瞬間</strong><br>
+        ・連絡帳や記録を書いているとき<br>
+        ・送迎や活動の準備をしているとき<br>
+        ・公園などで「帰るよ」と声をかけた直後（走り出してしまう）<br>
+        ・職員が交代するとき、「見ていると思っていた」とき</p>
+      </div>
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">🙋</div>
+          <div class="tip-content">
+            <strong>「見ている人」を声に出して決める</strong>
+            <p>「今から〇〇さん見ててください」「見ます」。<strong>言葉で受け渡す</strong>ことで、「誰かが見ていると思っていた」を防ぎます。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🔢</div>
+          <div class="tip-content">
+            <strong>場面が変わるたびに人数を数える</strong>
+            <p>部屋を移るとき、外出の前後、送迎の前後。数えて、声に出して確かめます。</p>
+          </div>
+        </li>
+      </ul>
+      <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+        <p style="color:#B03A2E;">🔎 <strong>いないと気づいたら</strong><br>
+        ① すぐに周りの職員に知らせ、手分けして探す（ひとりで探さない）<br>
+        ② その日の服装の色・特徴をすぐ共有する<br>
+        ③ 近くを探して見つからなければ、<strong>ためらわずに110番</strong>と保護者への連絡<br>
+        「もう少し探してから」が、いちばん危険です。</p>
+      </div>
+      <p class="source-note">参考：こども家庭庁 支援局長通知（令和6年7月4日）/ 大阪府「令和5年度の重大事故・置き去り事案等について（障がい児通所支援事業所）」</p>
+    </div>
+
+    <!-- Y5 -->
+    <div class="content-section" id="y5">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#546E7A;">5</div>
+        <h2 class="section-heading">送迎と<ruby>所在確認<rt>しょざいかくにん</rt></ruby></h2>
+      </div>
+      <div class="content-card">
+        <p>送迎車の中に子どもが取り残された事故を受けて、<strong>2023年4月から、<ruby>放課後等デイサービス<rt>ほうかごとうデイサービス</rt></ruby>では送迎のときの所在確認が義務</strong>になりました。</p>
+        <p>車に乗るとき、降りるときに、<strong><ruby>点呼<rt>てんこ</rt></ruby>などで一人ひとりを確かめます。</strong>送迎だけでなく、外出活動での車の移動も対象です。</p>
+        <p>さらに、座席が3列以上の車には、<strong>車内に子どもが残っていないかを確かめるための装置</strong>（降りたあとに車内を見て回るよう知らせるブザーなど）をつけることも義務になっています。</p>
+      </div>
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>装置は、確認の代わりではありません。</strong>ブザーが鳴るから大丈夫、ではなく、降りたあとに<strong>必ず最後列まで目で見て</strong>確かめる。眠ってしまった子、座席の下に入り込んだ子は、外からは見えないことがあります。</p>
+      </div>
+      <details class="deep-box" style="--db-color:#546E7A;">
+        <summary><span class="db-tag">もっと詳しく</span>送迎の決まりの中身</summary>
+        <div class="db-body">
+          <div class="db-row"><div class="db-row-k">いつから</div><div class="db-row-v">2023年4月1日から。安全装置は2024年3月31日までの<ruby>経過措置<rt>けいかそち</rt></ruby>がありましたが、現在は装備が必須です</div></div>
+          <div class="db-row"><div class="db-row-k">対象</div><div class="db-row-v">児童発達支援・放課後等デイサービスなどの事業所</div></div>
+          <div class="db-row"><div class="db-row-k">所在確認</div><div class="db-row-v">乗るときと降りるときに、点呼などで子どもの所在を確認する。送迎のほか、外出活動などで車を使う場合も</div></div>
+          <div class="db-row"><div class="db-row-k">安全装置</div><div class="db-row-v">座席が3列以上の車が対象。降りたあとに車内の確認をうながす仕組み</div></div>
+          <p>細かな運用は自治体によって異なることがあります。事業所の送迎マニュアルと、記録のつけ方を確認しておいてください。</p>
+          <p class="db-note">出典：児童福祉法に基づく指定通所支援の基準の改正（令和5年4月1日施行）/ 神戸市「児童発達支援・放課後等デイサービス 基準省令の改正について（送迎自動車）」/ 大阪市「送迎車両への安全装置の装備、安全計画について」</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Y6 -->
+    <div class="content-section" id="y6">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#546E7A;">6</div>
+        <h2 class="section-heading">薬を飲むのを手伝うとき</h2>
+      </div>
+      <div class="content-card">
+        <p>医師から処方された薬を、子どもが飲むのを手伝うことがあります。1回分ずつ袋にまとめられた薬（<ruby>一包化<rt>いっぽうか</rt></ruby>された薬）の<ruby>内服<rt>ないふく</rt></ruby>を手伝うことは、<strong>子どもの状態が安定しているなどの条件のもとで</strong>、医療行為にはあたらないとされています。</p>
+        <p>そのうえで、間違いを防ぐために、飲ませる前に必ずこの3つを確かめます。</p>
+        <div class="highlight-box" style="border-left-color:#546E7A;background:#ECEFF1;">
+          <p style="color:#263238;">💊 <strong>飲ませる前に確かめる3つ</strong><br>
+          ① <strong>本人</strong> — その子の薬か（袋の名前と本人を照らし合わせる）<br>
+          ② <strong>時間</strong> — 飲む時間の薬か（昼の薬を夕方に飲ませていないか）<br>
+          ③ <strong>量</strong> — 1回分か<br>
+          できれば<strong>2人で確かめる</strong>。そして<strong>迷ったら飲ませない</strong>で、保護者に確認します。</p>
+        </div>
+        <p>飲ませたあとに様子がいつもと違うとき、飲み忘れや吐き出しに気づいたときは、自分で判断せず保護者に連絡してください。</p>
+      </div>
+      <p class="source-note">参考：厚生労働省「医師法第17条、歯科医師法第17条及び保健師助産師看護師法第31条の解釈について（その2）」（令和4年12月1日）</p>
+    </div>
+
+    <!-- Y7 -->
+    <div class="content-section" id="y7">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#546E7A;">7</div>
+        <h2 class="section-heading">ヒヤリハットを話せる事業所に</h2>
+      </div>
+      <div class="content-card">
+        <p>1つの重い事故の裏には、<strong>29の軽い事故と、300の「ヒヤッとした」「ハッとした」出来事</strong>がある——よく知られた考え方です。</p>
+        <p>大きな事故は、ある日突然起きるように見えて、実はその前にたくさんの小さなサインが出ています。<strong>その300のうちに気づいて手を打てば、1つの重い事故は防げる</strong>かもしれません。</p>
+        <p>だからヒヤリハットの報告は、<strong>誰かを責めるためのものではなく、全員で防ぐためのもの</strong>です。「報告したら怒られる」と感じる事業所では、報告が出なくなり、防げたはずの事故が起きます。</p>
+      </div>
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>報告してくれた人に、まず「ありがとう」を。</strong>ヒヤッとしたことを話してくれる人がいることが、事業所のいちばんの安全装置です。</p>
+      </div>
+    </div>
+
+    <!-- Y8 -->
+    <div class="content-section" id="y8">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#546E7A;">8</div>
+        <h2 class="section-heading">やってはいけないNG対応</h2>
+      </div>
+      <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+        <p style="color:#B03A2E;">🚫 <strong>命にかかわる場面での誤り</strong><br>
+        ・発作中の子の<strong>口に指やタオルを入れる</strong>／<ruby>窒息<rt>ちっそく</rt></ruby>やけがにつながります<br>
+        ・発作中に<strong>体を押さえつけて止めようとする</strong>／けがのもとになります<br>
+        ・咳をしている子の<strong>背中をすぐに叩く</strong>／咳ができるうちは、咳がいちばんです<br>
+        ・子どもがいないと気づいて<strong>ひとりで探し続ける</strong>／すぐに周りに知らせて手分けを<br>
+        ・<strong>迷っている薬を飲ませる</strong>／迷ったら飲ませず、保護者に確認を<br>
+        ・<strong>ヒヤリハットを黙っておく</strong>／次に同じことが起きたとき、事故になります</p>
+      </div>
+    </div>
+
+    <!-- クイズ -->
+    <div class="quiz-section content-section" id="yquiz">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#546E7A;">✓</div>
+        <h2 class="section-heading">🔥 チャレンジクイズ</h2>
+      </div>
+      <div class="content-card" style="background:#ECEFF1;border:1.5px solid #CFD8DC;margin-bottom:16px;">
+        <p style="color:#263238;font-size:13px;line-height:1.9;">命にかかわる内容です。<strong>全問正解できるまで、くり返し確かめてください。</strong></p>
+      </div>
+
+      <div class="quiz-card" id="yqcard1">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#546E7A;">Q1</span>てんかん発作が起きたとき、最初にすることとして正しいのはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerYQuiz(1,this,false)">舌をかまないよう、タオルを丸めて口に入れて歯の間にかませる</button>
+          <button class="quiz-opt" onclick="answerYQuiz(1,this,true)">始まった時刻を確かめ、周りの危ない物をどけて様子を見守る</button>
+          <button class="quiz-opt" onclick="answerYQuiz(1,this,false)">けいれんを早く止めるために、手足をしっかりと押さえつける</button>
+        </div>
+        <div class="quiz-result" id="yqres1"></div>
+      </div>
+
+      <div class="quiz-card" id="yqcard2">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#546E7A;">Q2</span>おやつの最中に子どもが急に咳きこみ始めました。強い咳が出ています。最初の対応はどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerYQuiz(2,this,true)">咳を続けさせ、そばで見守りながら様子の変化に注意する</button>
+          <button class="quiz-opt" onclick="answerYQuiz(2,this,false)">すぐに後ろに回り、お腹を突き上げて詰まった物を出す</button>
+          <button class="quiz-opt" onclick="answerYQuiz(2,this,false)">水を飲ませて、のどに詰まった物を流し込むようにする</button>
+        </div>
+        <div class="quiz-result" id="yqres2"></div>
+      </div>
+
+      <div class="quiz-card" id="yqcard3">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#546E7A;">Q3</span>公園から帰るとき、子どもが一人いないことに気づきました。最初にすることはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerYQuiz(3,this,false)">騒ぎにならないよう、まずは自分ひとりで近くを静かに探す</button>
+          <button class="quiz-opt" onclick="answerYQuiz(3,this,false)">戻ってくるかもしれないので、しばらくその場で待ってみる</button>
+          <button class="quiz-opt" onclick="answerYQuiz(3,this,true)">すぐに周りの職員に知らせ、服装を共有して手分けして探す</button>
+        </div>
+        <div class="quiz-result" id="yqres3"></div>
+      </div>
+
+      <div class="quiz-card" id="yqcard4">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#546E7A;">Q4</span>送迎車に置き去り防止の装置がついていても、降りたあとに最後列まで目で確かめるのはなぜですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerYQuiz(4,this,true)">眠った子や座席の下に入り込んだ子は、外からは見えないことがあるから</button>
+          <button class="quiz-opt" onclick="answerYQuiz(4,this,false)">装置は故障しやすく、正しく動いているかを毎回確かめる必要があるから</button>
+          <button class="quiz-opt" onclick="answerYQuiz(4,this,false)">目で確かめた記録を残さないと、装置の点検として認められないから</button>
+        </div>
+        <div class="quiz-result" id="yqres4"></div>
+      </div>
+
+      <div class="quiz-card" id="yqcard5">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#546E7A;">Q5</span>ヒヤリハットの報告を集めるいちばんの目的はどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerYQuiz(5,this,false)">誰がどんな失敗をしたかを記録し、評価や指導に役立てるため</button>
+          <button class="quiz-opt" onclick="answerYQuiz(5,this,true)">小さな出来事のうちに手を打ち、重い事故を全員で防ぐため</button>
+          <button class="quiz-opt" onclick="answerYQuiz(5,this,false)">保護者に説明が必要になったときに、証拠として示すため</button>
+        </div>
+        <div class="quiz-result" id="yqres5"></div>
+      </div>
+
+      <div class="quiz-score-box" id="yquiz-score">
+        <div class="quiz-score-num" id="yscore-num">0 / 5</div>
+        <div class="quiz-score-label" id="yscore-msg"></div>
+        <button class="quiz-retry-btn" style="background:#546E7A;" onclick="retryYQuiz()">🔄 もう一度チャレンジ</button>
+      </div>
+    </div>
+
+    <!-- まとめ -->
+    <div class="content-section" id="y9">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#546E7A;">9</div>
+        <h2 class="section-heading">今月のまとめ</h2>
+      </div>
+      <div class="content-card">
+        <p>🌊 <strong>発作は、時間を計り、危ない物をどけ、口に物を入れない。</strong>5分以上続く、初めての発作などは119番。<strong><ruby>窒息<rt>ちっそく</rt></ruby>は、咳ができるうちは咳。</strong>声が出ない・強い咳ができないなら119番と<ruby>異物<rt>いぶつ</rt></ruby>の除去。</p>
+        <p>🌊 <strong>見失いは、いつもの流れの一瞬に起きます。</strong>見る人を言葉で受け渡し、場面が変わるたびに数える。いないと気づいたら、ひとりで探さず、ためらわず110番。</p>
+        <p>🌊 <strong>送迎は最後列まで目で確かめる。薬は迷ったら飲ませない。</strong>そしてヒヤッとしたことを話せる事業所に。それがいちばんの安全装置です。</p>
+      </div>
+
+      <div class="callout-warm" style="margin-top:16px;">
+        <span class="ci">🌊</span>
+        <p><strong>来月は「虐待防止と身体拘束」です。</strong>今月は子どもの命を守る話でした。来月は、子どもの尊厳を守る話です。</p>
+      </div>
+
+      <div class="next-month" style="background:#1A3A3A;">
+        <div class="nm-left">
+          <p class="nm-sub">▶ NEXT MONTH</p>
+          <p class="nm-title">虐待防止と身体拘束</p>
+          <p class="nm-desc">1月に公開されます。</p>
+        </div>
+        <span class="nm-tag" style="background:#546E7A;">1月公開</span>
+      </div>
+    </div>
+
+    <div class="about-doc">
+      <div class="about-doc-title">📌 この資料について</div>
+      <p>本資料の内容は<strong>2026年10月時点</strong>の情報をもとにしています。</p>
+      <p>応急手当の方法は、ガイドラインの改訂で変わることがあります。<strong>実際の<ruby>手技<rt>しゅぎ</rt></ruby>は、日本赤十字社や消防署などの講習で身につけてください。</strong>個別の子どもの発作時の対応や食事の形は、<strong>医師の指示と保護者との取り決めが最優先</strong>です。事業所の事故対応マニュアルとあわせて確認してください。</p>
+    </div>
+
+  </div><!-- /content-wrap -->
+
+  <div class="print-btn-wrap">
+    <button class="print-btn" style="color:#546E7A;border-color:#546E7A;" onclick="printPage('safety')">🖨️ この資料を印刷する</button>
+  </div>
+
+  <footer class="asd-footer">
+    <div class="lecture-companion"><span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-wave.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span><button class="back-btn" onclick="showPage('hp')">カリキュラムへ戻る</button></div>
+    <strong style="color:rgba(255,255,255,0.85);"><ruby>放課後等デイサービス<rt>ほうかごとうデイサービス</rt></ruby> りぷる｜株式会社イノベーション</strong><br>
+    スタッフ研修資料 Month 09 · 2026年12月<br>
+    参考：こども家庭庁 / 厚生労働省 / 日本てんかん協会 / 日本赤十字社 / 日本医師会<br>
+    消費者庁 / 大阪府 / 神戸市 / 大阪市
+  </footer>
+
+</div><!-- /page-safety -->
+
+<!-- ========================================
+     Month 10 · 虐待防止と身体拘束
+======================================== -->
+<div class="page" id="page-dignity">
+
+  <div class="asd-hero" style="background:linear-gradient(135deg,#3E2723 0%,#6D4C41 55%,#A1887F 100%);">
+    <div class="month-tag">🌊 Month 10 · 2027年1月の研修テーマ</div>
+    <h1><ruby>虐待<rt>ぎゃくたい</rt></ruby>防止と<ruby>身体拘束<rt>しんたいこうそく</rt></ruby><br>——<ruby>尊厳<rt>そんげん</rt></ruby>を守る</h1>
+    <p class="lead">
+      虐待は、特別な誰かが起こすものではありません。<br>
+      疲れ、忙しさ、慣れ——<br>
+      「これくらい」の積み重ねの先にあります。<br>
+      だからこそ、全員で防げます。
+    </p>
+  </div>
+
+  <div class="toc-wrapper">
+    <div class="toc-box">
+      <span class="toc-label">目次 — タップでスクロール</span>
+      <button class="toc-item" onclick="tocScrollTo('d1')">なぜ尊厳なのか</button>
+      <button class="toc-item" onclick="tocScrollTo('d2')">虐待の5つの種類</button>
+      <button class="toc-item" onclick="tocScrollTo('d3')">「これくらい」の危うさ</button>
+      <button class="toc-item" onclick="tocScrollTo('d4')">行動が激しいとき</button>
+      <button class="toc-item" onclick="tocScrollTo('d5')">身体拘束と3つの条件</button>
+      <button class="toc-item" onclick="tocScrollTo('d6')">気づいたら</button>
+      <button class="toc-item" onclick="tocScrollTo('d7')">一人で抱えない</button>
+      <button class="toc-item" onclick="tocScrollTo('d8')">NG対応</button>
+      <button class="toc-item" onclick="tocScrollTo('dquiz')">チャレンジクイズ</button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- 講師用メモ -->
+    <details class="presenter-note">
+      <summary><span class="pn-tag">講師用メモ</span>この回を担当する人へ（読む前に開いてください）</summary>
+      <div class="pn-body">
+        <h4>この回のねらい</h4>
+        <p>虐待は「ひどい人がすること」ではなく、<strong>誰の中にも芽がある</strong>と気づいてもらうこと。そして、気づいたら一人で抱えずに言える事業所をつくること。<strong>責める回ではなく、守る回</strong>です。</p>
+
+        <h4>この回は「義務の研修」の記録に使えます</h4>
+        <p>事業所には、虐待防止のための研修を<strong>年1回以上</strong>行うことが義務づけられています。この回をその一部として扱う場合は、<strong>日時・出席者・内容の記録</strong>を残してください（出席簿に署名をもらう、など）。研修として十分かどうかは、管理者や虐待防止の担当者に確認してください。身体拘束の適正化についての研修も、あわせて求められています。</p>
+
+        <h4>準備しておくもの</h4>
+        <ul>
+          <li><strong>事業所の虐待防止の指針・マニュアル</strong>と、<strong>虐待防止の担当者が誰か</strong></li>
+          <li>市町村の<ruby>通報<rt>つうほう</rt></ruby>先（障害者虐待防止センターなど）の連絡先</li>
+          <li>出席の記録用紙</li>
+        </ul>
+
+        <h4>時間配分（目安 約14分）</h4>
+        <table class="pn-time"><tbody>
+          <tr><td>1分</td><td>1. なぜ尊厳なのか — 「責める回ではない」と最初に伝える</td></tr>
+          <tr><td>2分</td><td>2. 虐待の5つの種類 — 表を読む</td></tr>
+          <tr><td>2分</td><td>3. 「これくらい」の危うさ — 問いかけ①。いちばん大切なセクション</td></tr>
+          <tr><td>2分</td><td>4. 行動が激しいとき — 読み上げる</td></tr>
+          <tr><td>1分半</td><td>5. 身体拘束と3つの条件 — 3つの条件は全員が言えるように</td></tr>
+          <tr><td>1分半</td><td>6. 気づいたら — 「確証がなくても」を強調</td></tr>
+          <tr><td>1分</td><td>7. 一人で抱えない — 問いかけ②</td></tr>
+          <tr><td>1分</td><td>8. NG対応 — 読み上げる</td></tr>
+          <tr><td>1分半</td><td>クイズ — 全員で考えるのは Q2 と Q4</td></tr>
+          <tr><td>30秒</td><td>まとめ — 最後の3行を読む</td></tr>
+        </tbody></table>
+
+        <h4>問いかけの例</h4>
+        <div class="pn-q">① セクション3のあと：「忙しいとき、つい言ってしまう言葉はある？」——<strong>まず講師が自分の例を一つ話してから</strong>聞いてください。誰かの言動を名指しする場にはしないこと</div>
+        <div class="pn-q">② セクション7のあと：「余裕がなくなったとき、誰に言えば交代してもらえる？」——その場で答えを決めておくと、実際に使えます</div>
+
+        <h4>よくある質問と答え方</h4>
+        <div class="pn-q"><strong>Q. 叩かれそうになって手を押さえたら、それも虐待ですか？</strong><br>A. 本人や周りの人に危険が迫っていて、ほかに方法がなく、ほんの短い間なら、身を守るための対応です。そのうえで必ず記録と報告をします。押さえ続けたり、<ruby>罰<rt>ばつ</rt></ruby>として押さえたりすれば虐待にあたります。</div>
+        <div class="pn-q"><strong>Q. 通報したら、事業所や同僚に迷惑がかかりませんか？</strong><br>A. 通報は義務であり、通報した人は不利益な扱いを受けないことが法律で守られています。早く気づけば、子どもも、その職員も、事業所も守れます。</div>
+        <div class="pn-q"><strong>Q. 同僚の言い方がきつくて気になっています。</strong><br>A. 一人で抱えず、虐待防止の担当者か管理者に相談してください。個人を責める話ではなく、チームの課題として扱います。</div>
+
+        <h4>気をつけること</h4>
+        <p>参加者の中には、過去の自分の対応を思い出してつらくなる人もいます。<strong>「知らなかったことは、今日から変えればいい」</strong>と伝えてください。実際の事例を話すときは、事業所や人が特定できないように。</p>
+      </div>
+    </details>
+
+    <!-- D1 -->
+    <div class="content-section" id="d1">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#6D4C41;">1</div>
+        <h2 class="section-heading">なぜ「<ruby>尊厳<rt>そんげん</rt></ruby>を守る」なのか</h2>
+      </div>
+      <div class="content-card">
+        <p>先月は、子どもの<strong>命</strong>を守る話でした。今月は、子どもの<strong>尊厳</strong>——一人の人として大切にされること——を守る話です。</p>
+        <p><ruby>虐待<rt>ぎゃくたい</rt></ruby>というと、ひどい暴力をふるう特別な人を思い浮かべるかもしれません。でも実際には、<strong>疲れていた、忙しかった、慣れていた</strong>——そんな日常の中で、少しずつ起きていきます。</p>
+        <div class="highlight-box" style="border-left-color:#6D4C41;background:#EFEBE9;">
+          <p style="color:#3E2723;">🤎 <strong>今日の前提</strong><br>
+          この回は、誰かを責めるためのものではありません。<strong>誰の中にも芽があることを知り、全員で防ぐ</strong>ための回です。知らなかったことは、今日から変えればいい。</p>
+        </div>
+        <p>そして、言葉で訴えることが難しい子ほど、<strong>されたことを誰にも伝えられません。</strong>だからこそ、周りの大人が気づき、止める必要があります。</p>
+      </div>
+    </div>
+
+    <!-- D2 -->
+    <div class="content-section" id="d2">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#6D4C41;">2</div>
+        <h2 class="section-heading"><ruby>虐待<rt>ぎゃくたい</rt></ruby>の5つの種類</h2>
+      </div>
+      <div class="content-card">
+        <p><ruby>障害者虐待防止法<rt>しょうがいしゃぎゃくたいぼうしほう</rt></ruby>では、虐待を5つに分けています。<ruby>放課後等デイサービス<rt>ほうかごとうデイサービス</rt></ruby>の職員も、この法律の対象です。</p>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EFEBE9;border-radius:10px;border-left:4px solid #6D4C41;">
+            <div style="font-size:12px;font-weight:700;color:#3E2723;min-width:76px;"><ruby>身体的<rt>しんたいてき</rt></ruby></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">たたく、つねる、強く引っぱる。<strong>正当な理由なく体を拘束する</strong>ことも含まれます</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EFEBE9;border-radius:10px;border-left:4px solid #6D4C41;">
+            <div style="font-size:12px;font-weight:700;color:#3E2723;min-width:76px;">性的</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">理由なく体に触る、裸の写真を撮る、性的な言葉をかける</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EFEBE9;border-radius:10px;border-left:4px solid #6D4C41;">
+            <div style="font-size:12px;font-weight:700;color:#3E2723;min-width:76px;">心理的</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">怒鳴る、<ruby>脅す<rt>おどす</rt></ruby>、ばかにする、わざと恥をかかせる</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EFEBE9;border-radius:10px;border-left:4px solid #6D4C41;">
+            <div style="font-size:12px;font-weight:700;color:#3E2723;min-width:76px;"><ruby>放棄<rt>ほうき</rt></ruby>・<ruby>放置<rt>ほうち</rt></ruby></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">わざと無視する、必要な世話をしない、放っておく</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EFEBE9;border-radius:10px;border-left:4px solid #6D4C41;">
+            <div style="font-size:12px;font-weight:700;color:#3E2723;min-width:76px;">経済的</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">本人のお金や物を勝手に使う、渡さない</div>
+          </div>
+        </div>
+      </div>
+      <details class="deep-box" style="--db-color:#6D4C41;">
+        <summary><span class="db-tag">もっと詳しく</span>法律と、事業所に求められていること</summary>
+        <div class="db-body">
+          <div class="db-row"><div class="db-row-k">法律</div><div class="db-row-v">障害者虐待防止法（2012年10月<ruby>施行<rt>しこう</rt></ruby>）。放課後等デイサービスなどの職員は、法律でいう<strong>「<ruby>障害者福祉施設従事者等<rt>しょうがいしゃふくししせつじゅうじしゃとう</rt></ruby>」</strong>に含まれます。勤務時間の外や、事業所の外での行為も対象です</div></div>
+          <div class="db-row"><div class="db-row-k">ガイドライン</div><div class="db-row-v">放課後等デイサービスガイドラインは、<strong><ruby>児童虐待防止法<rt>じどうぎゃくたいぼうしほう</rt></ruby>と障害者虐待防止法の両方を理解して</strong>虐待防止に取り組むよう求めています</div></div>
+          <div class="db-row"><div class="db-row-k">事業所の義務</div><div class="db-row-v">2022年4月から、すべての事業所で<strong>虐待防止のための委員会、年1回以上の研修、担当者の配置</strong>が義務になりました。2024年度からは、実施していない場合に報酬が減らされる仕組みもできています</div></div>
+          <p>つまり虐待防止は、個人の心がけだけでなく、<strong>事業所の仕組みとして取り組むこと</strong>が求められています。</p>
+          <p class="db-note">出典：障害者虐待の防止、障害者の養護者に対する支援等に関する法律 / 厚生労働省「障害者福祉施設等における障害者虐待の防止と対応の手引き」（令和6年7月）/ 厚生労働省「放課後等デイサービスガイドライン」</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- D3 -->
+    <div class="content-section" id="d3">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#6D4C41;">3</div>
+        <h2 class="section-heading">「これくらい」の危うさ</h2>
+      </div>
+      <div class="content-card">
+        <p>表にあるような行為を、自分がするとは思わないでしょう。でも、<ruby>虐待<rt>ぎゃくたい</rt></ruby>はいきなりそこから始まるわけではありません。<strong>小さな不適切さが積み重なり、感覚がまひしていった先</strong>にあります。</p>
+        <p>現場でつい出てしまいがちな、こんな対応はないでしょうか。</p>
+      </div>
+      <div class="highlight-box" style="border-left-color:#6D4C41;background:#EFEBE9;">
+        <p style="color:#3E2723;">⚠️ <strong>「これくらい」になりがちなこと</strong><br>
+        ・呼び捨て、あだ名、<strong>年齢にそぐわない子ども扱い</strong>の言葉（高校生に幼児言葉で話す）<br>
+        ・「早く！」と急かす、ため息まじりの声、<ruby>威圧<rt>いあつ</rt></ruby>するような声の大きさ<br>
+        ・「ちょっと待って」「座ってて」で<strong>動きを言葉で封じ続ける</strong><br>
+        ・要求を後回しにし続ける、話しかけられても反応しない<br>
+        ・<strong><ruby>罰<rt>ばつ</rt></ruby>として</strong>好きな活動やおやつを取り上げる<br>
+        ・着替えやトイレの介助で、<strong>周りから見える状態のまま</strong>にする<br>
+        ・本人の前で、本人の失敗や家庭のことを話題にする</p>
+      </div>
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>自分の家族が同じことをされたら、どう感じるか。</strong>迷ったら、この問いに戻ってください。そして、子どもは言葉で抗議できなくても、<strong>扱われ方はすべて感じ取っています。</strong>Month 06で学んだとおりです。</p>
+      </div>
+    </div>
+
+    <!-- D4 -->
+    <div class="content-section" id="d4">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#6D4C41;">4</div>
+        <h2 class="section-heading">行動が激しいとき、してよいこと・いけないこと</h2>
+      </div>
+      <div class="content-card">
+        <p>自分を叩く、人に向かっていく、物を投げる——こうした場面は、<ruby>虐待<rt>ぎゃくたい</rt></ruby>に踏みこみやすい場面でもあります。こちらも怖く、焦っているからです。<strong>先に、することを決めておきます。</strong></p>
+      </div>
+      <div class="myth-fact-list">
+        <div class="myth-fact-pair">
+          <div class="myth-box"><div class="mf-label">❌ してはいけない</div><div class="mf-text">大声で叱る、力で押さえつけ続ける、部屋に閉じ込める、<ruby>罰<rt>ばつ</rt></ruby>を与える、あとで仕返しのように厳しく当たる</div></div>
+          <div class="fact-box"><div class="mf-label">✅ まずすること</div><div class="mf-text"><strong>周りの子を離す</strong>、危ない物をどける、距離をとる、<strong>音や人を減らす</strong>、ほかの職員を呼ぶ</div></div>
+        </div>
+      </div>
+      <div class="content-card">
+        <p>行動が激しいときこそ、Month 02とMonth 06で学んだことが生きます。<strong>入力を減らし、落ち着くのを待つ。</strong>落ち着いたあとは責めずに、<ruby>氷山<rt>ひょうざん</rt></ruby>の水面下——何がきっかけだったのか——をチームで考えます。</p>
+        <p>そして、本人や周りの人に<strong>本当に危険が迫っている</strong>ときに、やむを得ず体に触れて止めることがあります。そのときに必要なのが、次の「3つの条件」です。</p>
+      </div>
+    </div>
+
+    <!-- D5 -->
+    <div class="content-section" id="d5">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#6D4C41;">5</div>
+        <h2 class="section-heading"><ruby>身体拘束<rt>しんたいこうそく</rt></ruby>と3つの条件</h2>
+      </div>
+      <div class="content-card">
+        <p>体を縛る、押さえ続ける、部屋に閉じ込めるといった、本人の動きを制限することを<strong>身体拘束</strong>といいます。<strong>正当な理由なく行えば、<ruby>身体的<rt>しんたいてき</rt></ruby><ruby>虐待<rt>ぎゃくたい</rt></ruby>にあたります。</strong></p>
+        <p>例外として認められるのは、次の<strong>3つの条件をすべて満たすとき</strong>だけです。</p>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDEDEC;border-radius:10px;border-left:4px solid #C0392B;">
+            <div style="font-size:13px;font-weight:700;color:#B03A2E;min-width:76px;"><ruby>切迫性<rt>せっぱくせい</rt></ruby></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">本人やほかの人の<strong>命や体が危険にさらされる可能性が非常に高い</strong></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDEDEC;border-radius:10px;border-left:4px solid #C0392B;">
+            <div style="font-size:13px;font-weight:700;color:#B03A2E;min-width:76px;"><ruby>非代替性<rt>ひだいたいせい</rt></ruby></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">それ以外に<strong>方法がない</strong></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FDEDEC;border-radius:10px;border-left:4px solid #C0392B;">
+            <div style="font-size:13px;font-weight:700;color:#B03A2E;min-width:76px;"><ruby>一時性<rt>いちじせい</rt></ruby></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>ほんの一時的</strong>である</div>
+          </div>
+        </div>
+        <p style="font-size:11.5px;color:var(--mid);margin-top:14px;line-height:1.8;">ひとつでも欠けたら認められません。「落ち着かないから」「人手が足りないから」は、どれにも当たりません。</p>
+      </div>
+      <details class="deep-box" style="--db-color:#6D4C41;">
+        <summary><span class="db-tag">もっと詳しく</span>身体拘束にあたる行為と、やむを得ず行うときの手続き</summary>
+        <div class="db-body">
+          <p><strong>身体拘束にあたる行為の例</strong></p>
+          <ul>
+            <li>椅子やベッドなどに体を縛りつける</li>
+            <li>手足を押さえ続ける、抱えこんで動けなくする</li>
+            <li>鍵をかけた部屋に閉じ込める</li>
+            <li>自分で脱げない服（つなぎ服など）や、手袋状の道具で手の動きを制限する</li>
+            <li>医療の必要がないのに、薬で動きを抑える</li>
+          </ul>
+          <p><strong>やむを得ず行う場合に必要なこと</strong></p>
+          <div class="db-row"><div class="db-row-k">組織で判断</div><div class="db-row-v">個人の判断で決めない。3つの条件を満たすかを複数の職員で確かめ、事業所として判断する</div></div>
+          <div class="db-row"><div class="db-row-k">計画と説明</div><div class="db-row-v">あらかじめ予想される場合は、<ruby>個別支援計画<rt>こべつしえんけいかく</rt></ruby>に書き、本人と保護者に説明して理解を得る</div></div>
+          <div class="db-row"><div class="db-row-k">記録</div><div class="db-row-v">日時、方法、理由、そのときの様子、解いた時間を記録する</div></div>
+          <div class="db-row"><div class="db-row-k">ふり返り</div><div class="db-row-v">「次は拘束しなくて済むにはどうするか」をチームで考える。ゴールは、拘束をなくすこと</div></div>
+          <p class="db-note">出典：神奈川県「障害者支援施設の身体拘束ゼロに向けて」/ 厚生労働省「障害者福祉施設等における障害者虐待の防止と対応の手引き」（令和6年7月）</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- D6 -->
+    <div class="content-section" id="d6">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#6D4C41;">6</div>
+        <h2 class="section-heading">気づいたら——<ruby>通報<rt>つうほう</rt></ruby>の義務</h2>
+      </div>
+      <div class="content-card">
+        <p>事業所の職員による<ruby>虐待<rt>ぎゃくたい</rt></ruby>を<strong>受けたと思われる</strong>子どもを見つけた人は、<strong>すみやかに市町村に通報しなければなりません。</strong>これは法律で定められた義務です。</p>
+        <div class="highlight-box" style="border-left-color:#6D4C41;background:#EFEBE9;">
+          <p style="color:#3E2723;">📞 <strong>押さえておくこと</strong><br>
+          ・<strong>確証がなくても</strong>通報する。「虐待かどうか」を判断するのは市町村です<br>
+          ・通報したことを理由に、<strong>不利益な扱いを受けることはありません</strong>（法律で守られています）<br>
+          ・まずは事業所の<strong>虐待防止の担当者や管理者</strong>に相談してかまいません。ただし、相談したことで通報が止まってしまってはいけません</p>
+        </div>
+        <p>早く気づくことは、子どもを守るだけでなく、<strong>その職員がそれ以上進まないように止める</strong>ことでもあります。</p>
+      </div>
+    </div>
+
+    <!-- D7 -->
+    <div class="content-section" id="d7">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#6D4C41;">7</div>
+        <h2 class="section-heading">一人で抱えない事業所に</h2>
+      </div>
+      <div class="content-card">
+        <p><ruby>虐待<rt>ぎゃくたい</rt></ruby>が起きやすいのは、<strong>職員が一人で抱えこんでいるとき</strong>です。疲れている、余裕がない、同じ子の対応がずっと続いている——そんなとき、人は普段なら言わない言葉を口にします。</p>
+      </div>
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">🔄</div>
+          <div class="tip-content">
+            <strong>「交代して」と言える</strong>
+            <p>余裕がなくなったと感じたら、交代してもらう。それは弱さではなく、子どもを守る判断です。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">💬</div>
+          <div class="tip-content">
+            <strong>気になることを話せる</strong>
+            <p>「さっきの言い方、きつかったかも」と自分から言える。同僚の対応が気になったら、責めずに声をかける。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🧊</div>
+          <div class="tip-content">
+            <strong>難しい行動は、チームの課題にする</strong>
+            <p>その子の行動を「誰かの対応が悪いから」にしない。<ruby>氷山<rt>ひょうざん</rt></ruby>の水面下をチームで考えます。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- D8 -->
+    <div class="content-section" id="d8">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#6D4C41;">8</div>
+        <h2 class="section-heading">やってはいけないNG対応</h2>
+      </div>
+      <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+        <p style="color:#B03A2E;">🚫 <strong><ruby>尊厳<rt>そんげん</rt></ruby>を傷つける対応</strong><br>
+        ・<strong>「言っても分からないから」</strong>と、本人の前で雑に扱う<br>
+        ・<strong><ruby>罰<rt>ばつ</rt></ruby>として</strong>楽しみを取り上げる、閉じ込める、無視する<br>
+        ・<strong>人手が足りないから</strong>と、動きを制限する<br>
+        ・3つの条件を満たさないまま、<strong>押さえ続ける</strong><br>
+        ・同僚の気になる対応を<strong>見て見ぬふりをする</strong><br>
+        ・<ruby>虐待<rt>ぎゃくたい</rt></ruby>かもしれないと思いながら、<strong>確証がないからと黙っている</strong></p>
+      </div>
+    </div>
+
+    <!-- クイズ -->
+    <div class="quiz-section content-section" id="dquiz">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#6D4C41;">✓</div>
+        <h2 class="section-heading">🔥 チャレンジクイズ</h2>
+      </div>
+      <div class="content-card" style="background:#EFEBE9;border:1.5px solid #D7CCC8;margin-bottom:16px;">
+        <p style="color:#3E2723;font-size:13px;line-height:1.9;">今日の内容をちゃんと読めば全問解けます。<strong>なんとなくで選ぶと間違えます。</strong>💪</p>
+      </div>
+
+      <div class="quiz-card" id="dqcard1">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#6D4C41;">Q1</span>正当な理由なく子どもの体を拘束することは、<ruby>虐待<rt>ぎゃくたい</rt></ruby>の5つの種類のうちどれにあたりますか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerDQuiz(1,this,false)"><ruby>放棄<rt>ほうき</rt></ruby>・<ruby>放置<rt>ほうち</rt></ruby>にあたり、必要な世話をしなかったことになる</button>
+          <button class="quiz-opt" onclick="answerDQuiz(1,this,true)"><ruby>身体的<rt>しんたいてき</rt></ruby>虐待にあたり、暴行と同じ種類として扱われる</button>
+          <button class="quiz-opt" onclick="answerDQuiz(1,this,false)">心理的虐待にあたり、恐怖を与えたことが問題になる</button>
+        </div>
+        <div class="quiz-result" id="dqres1"></div>
+      </div>
+
+      <div class="quiz-card" id="dqcard2">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#6D4C41;">Q2</span><ruby>身体拘束<rt>しんたいこうそく</rt></ruby>が例外として認められる「3つの条件」の組み合わせとして正しいのはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerDQuiz(2,this,false)">保護者の同意があること、人手が足りないこと、短い時間であること</button>
+          <button class="quiz-opt" onclick="answerDQuiz(2,this,false)">本人が落ち着かないこと、職員が危ないこと、記録を残すこと</button>
+          <button class="quiz-opt" onclick="answerDQuiz(2,this,true)">命や体の危険が非常に高いこと、ほかに方法がないこと、一時的であること</button>
+        </div>
+        <div class="quiz-result" id="dqres2"></div>
+      </div>
+
+      <div class="quiz-card" id="dqcard3">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#6D4C41;">Q3</span>子どもが激しく自分を叩き始めました。最初にすることとして最も適切なのはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerDQuiz(3,this,true)">周りの子を離して危ない物をどけ、音や人を減らしてほかの職員を呼ぶ</button>
+          <button class="quiz-opt" onclick="answerDQuiz(3,this,false)">けがをさせないよう、すぐに両手をしっかり押さえて動きを止める</button>
+          <button class="quiz-opt" onclick="answerDQuiz(3,this,false)">やめるまで大きな声ではっきりと、何度も「やめなさい」と伝える</button>
+        </div>
+        <div class="quiz-result" id="dqres3"></div>
+      </div>
+
+      <div class="quiz-card" id="dqcard4">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#6D4C41;">Q4</span>同僚の対応が虐待かもしれないと感じたものの、確証はありません。正しい考え方はどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerDQuiz(4,this,false)">確証がないまま<ruby>通報<rt>つうほう</rt></ruby>すると同僚を傷つけるので、はっきりするまで様子を見る</button>
+          <button class="quiz-opt" onclick="answerDQuiz(4,this,true)">虐待を受けたと思われる段階で通報の義務があり、判断するのは市町村である</button>
+          <button class="quiz-opt" onclick="answerDQuiz(4,this,false)">事業所内で話し合って解決できれば、外部への通報までは必要ない</button>
+        </div>
+        <div class="quiz-result" id="dqres4"></div>
+      </div>
+
+      <div class="quiz-card" id="dqcard5">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#6D4C41;">Q5</span>虐待を防ぐ事業所づくりとして、最も大切な考え方はどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerDQuiz(5,this,false)">問題のある職員を早く見つけて、その人に個別の指導を重ねていく</button>
+          <button class="quiz-opt" onclick="answerDQuiz(5,this,false)">一人ひとりが強い気持ちを持ち、どんなときも感情を表に出さない</button>
+          <button class="quiz-opt" onclick="answerDQuiz(5,this,true)">一人で抱えこまず、交代や相談ができ、難しい行動をチームで考える</button>
+        </div>
+        <div class="quiz-result" id="dqres5"></div>
+      </div>
+
+      <div class="quiz-score-box" id="dquiz-score">
+        <div class="quiz-score-num" id="dscore-num">0 / 5</div>
+        <div class="quiz-score-label" id="dscore-msg"></div>
+        <button class="quiz-retry-btn" style="background:#6D4C41;" onclick="retryDQuiz()">🔄 もう一度チャレンジ</button>
+      </div>
+    </div>
+
+    <!-- まとめ -->
+    <div class="content-section" id="d9">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#6D4C41;">9</div>
+        <h2 class="section-heading">今月のまとめ</h2>
+      </div>
+      <div class="content-card">
+        <p>🌊 <strong><ruby>虐待<rt>ぎゃくたい</rt></ruby>は、特別な人が起こすものではありません。</strong>「これくらい」の積み重ねの先にあります。言葉で訴えられない子ほど、扱われ方をすべて感じ取っています。</p>
+        <p>🌊 <strong>行動が激しいときは、まず周りの安全と、入力を減らすこと。</strong><ruby>身体拘束<rt>しんたいこうそく</rt></ruby>は正当な理由がなければ虐待です。認められるのは、<ruby>切迫性<rt>せっぱくせい</rt></ruby>・<ruby>非代替性<rt>ひだいたいせい</rt></ruby>・<ruby>一時性<rt>いちじせい</rt></ruby>の3つをすべて満たすときだけ。</p>
+        <p>🌊 <strong>確証がなくても<ruby>通報<rt>つうほう</rt></ruby>する義務があり、通報した人は守られます。</strong>そして一人で抱えこまず、交代や相談ができる事業所に。それがいちばんの虐待防止です。</p>
+      </div>
+
+      <div class="callout-warm" style="margin-top:16px;">
+        <span class="ci">🌊</span>
+        <p><strong>来月は「思春期と性の支援」です。</strong>体と心が大きく変わる時期に、子どもの<ruby>尊厳<rt>そんげん</rt></ruby>を守りながらどう関わるかを学びます。</p>
+      </div>
+
+      <div class="next-month" style="background:#1A3A3A;">
+        <div class="nm-left">
+          <p class="nm-sub">▶ NEXT MONTH</p>
+          <p class="nm-title">思春期と性の支援</p>
+          <p class="nm-desc">2月に公開されます。</p>
+        </div>
+        <span class="nm-tag" style="background:#6D4C41;">2月公開</span>
+      </div>
+    </div>
+
+    <div class="about-doc">
+      <div class="about-doc-title">📌 この資料について</div>
+      <p>本資料の内容は<strong>2026年10月時点</strong>の情報をもとにしています。</p>
+      <p>虐待防止と身体拘束の適正化は、法令と事業所の指針にもとづいて行います。<strong>具体的な判断や手続きは、事業所の虐待防止の担当者・管理者、市町村の窓口に確認してください。</strong>この回を事業所の研修として扱う場合は、日時・出席者・内容の記録を残してください。</p>
+    </div>
+
+  </div><!-- /content-wrap -->
+
+  <div class="print-btn-wrap">
+    <button class="print-btn" style="color:#6D4C41;border-color:#6D4C41;" onclick="printPage('dignity')">🖨️ この資料を印刷する</button>
+  </div>
+
+  <footer class="asd-footer">
+    <div class="lecture-companion"><span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-wave.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span><button class="back-btn" onclick="showPage('hp')">カリキュラムへ戻る</button></div>
+    <strong style="color:rgba(255,255,255,0.85);"><ruby>放課後等デイサービス<rt>ほうかごとうデイサービス</rt></ruby> りぷる｜株式会社イノベーション</strong><br>
+    スタッフ研修資料 Month 10 · 2027年1月<br>
+    参考：<ruby>障害者虐待防止法<rt>しょうがいしゃぎゃくたいぼうしほう</rt></ruby> / 厚生労働省「障害者福祉施設等における障害者虐待の防止と対応の手引き」<br>
+    厚生労働省「放課後等デイサービスガイドライン」/ 神奈川県
+  </footer>
+
+</div><!-- /page-dignity -->
+
+<!-- ========================================
+     Month 11 · 思春期と性の支援
+======================================== -->
+<div class="page" id="page-puberty">
+
+  <div class="asd-hero" style="background:linear-gradient(135deg,#4A148C 0%,#8E24AA 55%,#CE93D8 100%);">
+    <div class="month-tag">🌊 Month 11 · 2027年2月の研修テーマ</div>
+    <h1>思春期と性の支援</h1>
+    <p class="lead">
+      体は大人になっていくのに、<br>
+      理解はその子のペースで進みます。<br>
+      笑わず、叱らず、先回りして伝える。<br>
+      それが、子どもを守ることにつながります。
+    </p>
+  </div>
+
+  <div class="toc-wrapper">
+    <div class="toc-box">
+      <span class="toc-label">目次 — タップでスクロール</span>
+      <button class="toc-item" onclick="tocScrollTo('p1')">なぜ性を扱うのか</button>
+      <button class="toc-item" onclick="tocScrollTo('p2')">体の変化</button>
+      <button class="toc-item" onclick="tocScrollTo('p3')">自分の体は自分のもの</button>
+      <button class="toc-item" onclick="tocScrollTo('p4')">プライベートとパブリック</button>
+      <button class="toc-item" onclick="tocScrollTo('p5')">自慰への対応</button>
+      <button class="toc-item" onclick="tocScrollTo('p6')"><ruby>月経<rt>げっけい</rt></ruby>の支援</button>
+      <button class="toc-item" onclick="tocScrollTo('p7')">被害と<ruby>加害<rt>かがい</rt></ruby>を防ぐ</button>
+      <button class="toc-item" onclick="tocScrollTo('p8')">職員の約束とNG</button>
+      <button class="toc-item" onclick="tocScrollTo('pquiz')">チャレンジクイズ</button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- 講師用メモ -->
+    <details class="presenter-note">
+      <summary><span class="pn-tag">講師用メモ</span>この回を担当する人へ（読む前に開いてください）</summary>
+      <div class="pn-body">
+        <h4>この回のねらい</h4>
+        <p>性の話を「恥ずかしいこと」「触れないこと」ではなく、<strong>子どもの体と<ruby>尊厳<rt>そんげん</rt></ruby>を守るための支援</strong>として扱えるようになること。そして職員自身が、<strong>子どもを守る側であり続けるための約束</strong>を確認することです。</p>
+
+        <h4>始める前に、参加者に伝えること</h4>
+        <ul>
+          <li><strong>笑わない・茶化さない</strong>。照れ笑いも含めて、子どもの前で同じことが起きないように</li>
+          <li>子どもの名前は出さない</li>
+          <li>話しにくい人がいて当然。無理に発言しなくていい</li>
+        </ul>
+
+        <h4>準備しておくもの</h4>
+        <ul>
+          <li><strong>事業所の<ruby>同性介助<rt>どうせいかいじょ</rt></ruby>のルール</strong>（着替え・トイレ・送迎）と、異性の職員しかいないときの決まりごと</li>
+          <li>保護者と性に関する方針を共有している子がいれば、その内容（名前は出さずに）</li>
+        </ul>
+
+        <h4>時間配分（目安 約14分）</h4>
+        <table class="pn-time"><tbody>
+          <tr><td>1分</td><td>1. なぜ性を扱うのか — 最初にグラウンドルールを伝えてから</td></tr>
+          <tr><td>1分半</td><td>2. 体の変化 — 「先回りして伝える」を強調</td></tr>
+          <tr><td>1分半</td><td>3. 自分の体は自分のもの — 読み上げる</td></tr>
+          <tr><td>2分</td><td>4. プライベートとパブリック — 問いかけ①</td></tr>
+          <tr><td>1分半</td><td>5. 自慰への対応 — 「叱らず、場所を教える」</td></tr>
+          <tr><td>1分半</td><td>6. 月経の支援 — 読み上げる</td></tr>
+          <tr><td>2分</td><td>7. 被害と加害を防ぐ — 数字は淡々と読む</td></tr>
+          <tr><td>1分半</td><td>8. 職員の約束とNG — 問いかけ②</td></tr>
+          <tr><td>1分</td><td>クイズ — 全員で考えるのは Q2 と Q5</td></tr>
+          <tr><td>30秒</td><td>まとめ — 最後の3行を読む</td></tr>
+        </tbody></table>
+
+        <h4>問いかけの例</h4>
+        <div class="pn-q">① セクション4のあと：「事業所の中で、プライベートな場所はどこ？ 子どもに分かる形で示せている？」</div>
+        <div class="pn-q">② セクション8のあと：「異性の職員しかいない時間に着替えが必要になったら、どうする決まりになっている？」——決まっていなければ、管理者に持ち帰る課題にしてください</div>
+
+        <h4>よくある質問と答え方</h4>
+        <div class="pn-q"><strong>Q. 人前で自分の体を触り始めたら？</strong><br>A. 叱らず、大きな声も出さず、静かに声をかけて場所を移します。「ここではしない。〇〇でならいい」と、していい場所を伝えます。本人に恥をかかせないことが大切です。</div>
+        <div class="pn-q"><strong>Q. 抱きついてくる子には、どう対応すれば？</strong><br>A. 叱らずに体を離し、代わりの挨拶（ハイタッチ、手を振るなど）を教えます。職員全員が同じ対応をすることが大切です。小さいうちに許していたことも、体が大きくなると周りの受け止め方が変わります。</div>
+        <div class="pn-q"><strong>Q. 性のことを教えると、かえって興味を持たせてしまいませんか？</strong><br>A. 年齢と理解に合った性教育が、性的な行動を早めることはないとされています。教えないことで守られるわけではありません（セクション1の「もっと詳しく」）。</div>
+
+        <h4>気をつけること</h4>
+        <p>性に関する支援は、<strong>保護者と方針をそろえることが前提</strong>です。この回の内容で、個別の子どもへの対応を職員の判断だけで始めないでください。参加者の中に、つらい経験を思い出す人がいるかもしれません。途中で退席してもいいことを、最初に伝えてください。</p>
+      </div>
+    </details>
+
+    <!-- P1 -->
+    <div class="content-section" id="p1">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#8E24AA;">1</div>
+        <h2 class="section-heading">なぜ思春期と性を扱うのか</h2>
+      </div>
+      <div class="content-card">
+        <p><ruby>放課後等デイサービス<rt>ほうかごとうデイサービス</rt></ruby>には、小学生から高校生までの子どもが通います。その間に、<strong>体は子どもから大人へと大きく変わります。</strong></p>
+        <p>一方で、変化の意味を理解したり、人との距離のルールを身につけたりするペースは、子どもによって違います。<strong>体の変化に、理解が追いつかない</strong>——そこで本人がいちばん困ります。</p>
+        <div class="highlight-box" style="border-left-color:#8E24AA;background:#F3E5F5;">
+          <p style="color:#4A148C;">💜 <strong>この回で大切にすること</strong><br>
+          ・性の話は、恥ずかしいことではなく<strong>体と<ruby>尊厳<rt>そんげん</rt></ruby>を守る支援</strong><br>
+          ・<strong>笑わない、叱らない、先回りして伝える</strong><br>
+          ・個別の対応は、必ず<strong>保護者と方針をそろえてから</strong></p>
+        </div>
+      </div>
+      <details class="deep-box" style="--db-color:#8E24AA;">
+        <summary><span class="db-tag">もっと詳しく</span>教えると、かえって興味を持たせてしまう？</summary>
+        <div class="db-body">
+          <p>「寝た子を起こすな」という言葉があるように、性のことは教えないほうがいいと考えられてきました。でも、国際的な研究のまとめでは、<strong>年齢や理解に合った性教育が性的な行動を早めることはない</strong>とされています。</p>
+          <p>むしろ、教えられていない子は、<strong>されていることが被害だと気づけない</strong>、<strong>人前でしてはいけないことが分からず叱られる</strong>、といった形で困ります。</p>
+          <p>文部科学省は、子どもを<ruby>性暴力<rt>せいぼうりょく</rt></ruby>の<ruby>加害<rt>かがい</rt></ruby>者にも、被害者にも、<ruby>傍観者<rt>ぼうかんしゃ</rt></ruby>にもしないための<strong>「生命（いのち）の安全教育」</strong>を進めていて、その指導の手引きには<strong>特別支援教育向けの章</strong>もあります。</p>
+          <p class="db-note">出典：ユネスコ「国際セクシュアリティ教育ガイダンス」/ 文部科学省「生命（いのち）の安全教育 指導の手引き（改訂版）」</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- P2 -->
+    <div class="content-section" id="p2">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#8E24AA;">2</div>
+        <h2 class="section-heading">体の変化は、先回りして伝える</h2>
+      </div>
+      <div class="content-card">
+        <p>体の変化が始まるのは、<strong>女の子は10歳頃、男の子は12歳頃</strong>が目安です。ただし個人差が大きく、もっと早い子も遅い子もいます。</p>
+        <p>胸がふくらむ、毛が生える、声が変わる、<ruby>月経<rt>げっけい</rt></ruby>が始まる、<ruby>精通<rt>せいつう</rt></ruby>がある——こうした変化は、<strong>理由が分からないと強い不安や混乱</strong>につながります。けがや病気だと思ってしまう子もいます。</p>
+        <p>だから、<strong>変化が来る前に、見通しを伝えておく</strong>ことが大切です。Month 07で学んだとおり、絵や写真を使うと伝わりやすくなります。「大人になるとこうなる。みんなに起きる。心配しなくていい」——その安心を先に渡します。</p>
+      </div>
+      <p class="source-note">参考：日本内分泌学会「思春期早発症」（一般の皆様へ）</p>
+    </div>
+
+    <!-- P3 -->
+    <div class="content-section" id="p3">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#8E24AA;">3</div>
+        <h2 class="section-heading">自分の体は、自分だけのもの</h2>
+      </div>
+      <div class="content-card">
+        <p>性の支援の土台は、<strong>「自分の体は自分だけの大切なもの」</strong>という感覚です。</p>
+        <p>なかでも、<strong>水着で隠れるところ</strong>は特に大切な場所——<strong>プライベートゾーン</strong>と呼ばれます。口も含めて、体はどこもすべて自分だけのものです。</p>
+      </div>
+      <div class="highlight-box" style="border-left-color:#8E24AA;background:#F3E5F5;">
+        <p style="color:#4A148C;">🛡️ <strong>子どもに伝える3つのルール</strong><br>
+        ① 人に<strong>見せない</strong><br>
+        ② 人に<strong>触らせない</strong><br>
+        ③ 人のプライベートゾーンを<strong>見ない・触らない</strong><br>
+        そして、いやなことをされたら<strong>「いや」と言う、その場を離れる、大人に伝える</strong>。</p>
+      </div>
+      <div class="content-card">
+        <p>言葉でのやりとりが難しい子には、<strong>体に触れる前に必ず声をかける・見せて伝える</strong>ことを、職員がくり返し実践して見せることが教えることになります。「触っていい？」と聞かれる経験が、「自分の体は自分のもの」を育てます。</p>
+      </div>
+    </div>
+
+    <!-- P4 -->
+    <div class="content-section" id="p4">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#8E24AA;">4</div>
+        <h2 class="section-heading">プライベートとパブリック</h2>
+      </div>
+      <div class="content-card">
+        <p>思春期の支援でいちばん役に立つのが、<strong>プライベート（一人の場）とパブリック（みんなの場）</strong>を分けて教えることです。</p>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F3E5F5;border-radius:10px;border-left:4px solid #8E24AA;">
+            <div style="font-size:12px;font-weight:700;color:#4A148C;min-width:60px;">場所</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">トイレの個室、自分の部屋はプライベート。リビング、教室、事業所の活動スペースはパブリック</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F3E5F5;border-radius:10px;border-left:4px solid #8E24AA;">
+            <div style="font-size:12px;font-weight:700;color:#4A148C;min-width:60px;">行動</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">着替える、プライベートゾーンを触るのは、プライベートな場所で</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F3E5F5;border-radius:10px;border-left:4px solid #8E24AA;">
+            <div style="font-size:12px;font-weight:700;color:#4A148C;min-width:60px;">話題</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">体のこと、性のことを話すのは、決まった大人と、決まった場所で</div>
+          </div>
+        </div>
+        <p style="font-size:11.5px;color:var(--mid);margin-top:14px;line-height:1.8;">言葉での説明が届きにくい子には、<strong>場所そのものを分かる形にする</strong>のが効果的です。トイレの扉に印をつける、着替える場所を決めて毎回そこを使う。<strong>職員全員が同じルールで</strong>対応することで身についていきます。</p>
+      </div>
+    </div>
+
+    <!-- P5 -->
+    <div class="content-section" id="p5">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#8E24AA;">5</div>
+        <h2 class="section-heading">自分の体を触る行動への対応</h2>
+      </div>
+      <div class="content-card">
+        <p>自分のプライベートゾーンを触ることは、<strong>成長の中で自然に起きること</strong>です。問題は、それをする<strong>場所</strong>です。</p>
+      </div>
+      <div class="myth-fact-list">
+        <div class="myth-fact-pair">
+          <div class="myth-box"><div class="mf-label">❌ しない</div><div class="mf-text">大声で叱る、「汚い」「恥ずかしい」と言う、周りの子の前で注意する、笑う</div></div>
+          <div class="fact-box"><div class="mf-label">✅ する</div><div class="mf-text"><strong>静かに声をかけて、プライベートな場所へ移る</strong>よう伝える。「ここではしない。〇〇でならいい」と、<strong>していい場所</strong>を教える</div></div>
+        </div>
+      </div>
+      <div class="content-card">
+        <p>叱られると、子どもは「その行動が悪い」ではなく<strong>「自分の体が悪い、恥ずかしいもの」</strong>と受け取ってしまいます。それはMonth 06で学んだ、<ruby>自己肯定感<rt>じここうていかん</rt></ruby>を削る関わりそのものです。</p>
+        <p>回数がとても多い、体を傷つけるやり方をしている、といった場合は、<strong>職員だけで判断せず、保護者や専門家と相談</strong>してください。退屈や不安の表れになっていることもあります（<ruby>氷山<rt>ひょうざん</rt></ruby>の水面下です）。</p>
+      </div>
+    </div>
+
+    <!-- P6 -->
+    <div class="content-section" id="p6">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#8E24AA;">6</div>
+        <h2 class="section-heading"><ruby>月経<rt>げっけい</rt></ruby>の支援</h2>
+      </div>
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">📅</div>
+          <div class="tip-content">
+            <strong>始まる前に伝えておく</strong>
+            <p>初めての月経で、血が出たことに驚いてパニックになる子もいます。<strong>保護者と相談しながら</strong>、始まる前から見通しを伝えておきます。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🧩</div>
+          <div class="tip-content">
+            <strong>手順を分けて、見える形に</strong>
+            <p>ナプキンの交換は、Month 08で学んだ手順を分ける考え方がそのまま使えます。トイレの個室に手順の絵を貼る、使う物をセットにしておく、などの工夫が役立ちます。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🌡️</div>
+          <div class="tip-content">
+            <strong>体調と気分の変化に気づく</strong>
+            <p>お腹の痛み、だるさ、いらいら。言葉で伝えられない子は、<strong>行動の変化</strong>として出ることがあります。いつもと違う様子が月経の前後に重なっていないか、記録しておくと手がかりになります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🙋‍♀️</div>
+          <div class="tip-content">
+            <strong><ruby>介助<rt>かいじょ</rt></ruby>は同性の職員が</strong>
+            <p>月経の介助は、原則として同性の職員が行います。事業所のルールを確認しておいてください。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- P7 -->
+    <div class="content-section" id="p7">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#8E24AA;">7</div>
+        <h2 class="section-heading">被害と<ruby>加害<rt>かがい</rt></ruby>を防ぐ</h2>
+      </div>
+      <div class="content-card">
+        <p>障害のある子どもは、性被害に遭いやすいことが分かっています。発達障害のある子どもについて、<strong>障害のない子どもより2.9倍被害に遭いやすい</strong>という研究があります。されていることが被害だと気づきにくいこと、誰かに伝えにくいことが、狙われやすさにつながります。</p>
+        <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+          <p style="color:#B03A2E;">⚠️ <strong>知っておかなければならないこと</strong><br>
+          知的障害のある人などが被害者となった性犯罪の事件を調べた国の調査では、<strong>加害者の3割以上が、支援に関わる人</strong>でした。<br>
+          だから、<strong>支援者の側にもルールが必要</strong>です。それは職員を疑うためではなく、子どもと職員の両方を守るためです。</p>
+        </div>
+        <p>また、子どもが<strong>加害の側になってしまう</strong>こともあります。抱きつく、人の体を触る、服をめくる——本人に悪気がなくても、体が大きくなるにつれて周りの受け止め方は変わります。<strong>叱らずに体を離し、代わりの関わり方（ハイタッチ、手を振るなど）を教える</strong>。小さいうちから、職員全員が同じ対応をすることが大切です。</p>
+      </div>
+      <p class="source-note">参考：発達障害研究 第45巻第2号（2023）/ 法務省総合研究所の調査（報道による）/ 政府広報オンライン「こどもを性被害から守るために周囲の大人ができること」</p>
+    </div>
+
+    <!-- P8 -->
+    <div class="content-section" id="p8">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#8E24AA;">8</div>
+        <h2 class="section-heading">職員の約束とNG対応</h2>
+      </div>
+      <div class="highlight-box" style="border-left-color:#8E24AA;background:#F3E5F5;">
+        <p style="color:#4A148C;">🤝 <strong>職員の約束</strong><br>
+        ・着替え、トイレ、<ruby>月経<rt>げっけい</rt></ruby>の<ruby>介助<rt>かいじょ</rt></ruby>は<strong>原則として同性</strong>で<br>
+        ・子どもと<strong>二人きりの<ruby>密室<rt>みっしつ</rt></ruby></strong>をつくらない。扉を少し開ける、ほかの職員に声をかける<br>
+        ・体に触れるときは、<strong>先に声をかける・見せて伝える</strong><br>
+        ・子どもの写真は事業所のルールに従って扱い、<strong>私物のスマホで撮らない</strong><br>
+        ・性に関する方針は<strong>保護者とそろえる</strong></p>
+      </div>
+      <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+        <p style="color:#B03A2E;">🚫 <strong>やってはいけないNG対応</strong><br>
+        ・体の変化や性の行動を<strong>笑う、からかう、話のネタにする</strong><br>
+        ・<strong>「汚い」「恥ずかしい」</strong>と叱る<br>
+        ・本人の前で、ほかの職員と体のことを話題にする<br>
+        ・小さいからと、抱きつきや体へのタッチを<strong>そのままにしておく</strong><br>
+        ・異性の介助を、<strong>決まりごとなしに</strong>その場の判断で行う</p>
+      </div>
+    </div>
+
+    <!-- クイズ -->
+    <div class="quiz-section content-section" id="pquiz">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#8E24AA;">✓</div>
+        <h2 class="section-heading">🔥 チャレンジクイズ</h2>
+      </div>
+      <div class="content-card" style="background:#F3E5F5;border:1.5px solid #E1BEE7;margin-bottom:16px;">
+        <p style="color:#4A148C;font-size:13px;line-height:1.9;">今日の内容をちゃんと読めば全問解けます。<strong>なんとなくで選ぶと間違えます。</strong>💪</p>
+      </div>
+
+      <div class="quiz-card" id="pqcard1">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#8E24AA;">Q1</span>体の変化について、あらかじめ見通しを伝えておくのはなぜですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerPQuiz(1,this,false)">変化が始まる時期を早めて、周りの子と足並みをそろえられるから</button>
+          <button class="quiz-opt" onclick="answerPQuiz(1,this,true)">理由が分からない変化は、強い不安や混乱につながりやすいから</button>
+          <button class="quiz-opt" onclick="answerPQuiz(1,this,false)">保護者が説明する手間が省け、家庭の負担を減らせるから</button>
+        </div>
+        <div class="quiz-result" id="pqres1"></div>
+      </div>
+
+      <div class="quiz-card" id="pqcard2">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#8E24AA;">Q2</span>活動中に、子どもが人前で自分のプライベートゾーンを触り始めました。最も適切な対応はどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerPQuiz(2,this,false)">いけないことだとはっきり分かるよう、その場ですぐに強く注意する</button>
+          <button class="quiz-opt" onclick="answerPQuiz(2,this,false)">気づかないふりをして、そのまま活動を続けさせて様子を見る</button>
+          <button class="quiz-opt" onclick="answerPQuiz(2,this,true)">静かに声をかけて場所を移し、していい場所はどこかを伝える</button>
+        </div>
+        <div class="quiz-result" id="pqres2"></div>
+      </div>
+
+      <div class="quiz-card" id="pqcard3">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#8E24AA;">Q3</span>言葉での説明が届きにくい子に、プライベートとパブリックを教える方法として最も適切なのはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerPQuiz(3,this,true)">場所そのものを分かる形にし、職員全員が同じルールで対応する</button>
+          <button class="quiz-opt" onclick="answerPQuiz(3,this,false)">理解できるようになるまで、言葉での説明をくり返し続ける</button>
+          <button class="quiz-opt" onclick="answerPQuiz(3,this,false)">理解は難しいので、プライベートな行動はすべて止めるようにする</button>
+        </div>
+        <div class="quiz-result" id="pqres3"></div>
+      </div>
+
+      <div class="quiz-card" id="pqcard4">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#8E24AA;">Q4</span>職員の側にも「二人きりの<ruby>密室<rt>みっしつ</rt></ruby>をつくらない」などのルールが必要なのはなぜですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerPQuiz(4,this,false)">保護者からの苦情があったときに、事業所の責任を問われないため</button>
+          <button class="quiz-opt" onclick="answerPQuiz(4,this,true)">支援者が<ruby>加害<rt>かがい</rt></ruby>者になる事件が実際にあり、子どもと職員の両方を守るため</button>
+          <button class="quiz-opt" onclick="answerPQuiz(4,this,false)">職員どうしがお互いの働きぶりを確かめ、評価に役立てるため</button>
+        </div>
+        <div class="quiz-result" id="pqres4"></div>
+      </div>
+
+      <div class="quiz-card" id="pqcard5">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#8E24AA;">Q5</span>人に抱きつくことが多い子への対応として、最も適切なのはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerPQuiz(5,this,false)">まだ小さく悪気もないので、今は受け止めて様子を見る</button>
+          <button class="quiz-opt" onclick="answerPQuiz(5,this,false)">いけないことだと分かるよう、抱きつくたびにきちんと叱る</button>
+          <button class="quiz-opt" onclick="answerPQuiz(5,this,true)">叱らずに体を離し、ハイタッチなど代わりの関わり方を教える</button>
+        </div>
+        <div class="quiz-result" id="pqres5"></div>
+      </div>
+
+      <div class="quiz-score-box" id="pquiz-score">
+        <div class="quiz-score-num" id="pscore-num">0 / 5</div>
+        <div class="quiz-score-label" id="pscore-msg"></div>
+        <button class="quiz-retry-btn" style="background:#8E24AA;" onclick="retryPQuiz()">🔄 もう一度チャレンジ</button>
+      </div>
+    </div>
+
+    <!-- まとめ -->
+    <div class="content-section" id="p9">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#8E24AA;">9</div>
+        <h2 class="section-heading">今月のまとめ</h2>
+      </div>
+      <div class="content-card">
+        <p>🌊 <strong>体の変化は、先回りして伝える。</strong>「自分の体は自分だけのもの」を土台に、見せない・触らせない・触らないを教えます。</p>
+        <p>🌊 <strong>プライベートとパブリックを分けて教える。</strong>自分の体を触る行動は、叱らずに「していい場所」を伝えます。言葉が届きにくい子には、場所そのものを分かる形に。</p>
+        <p>🌊 <strong>被害も<ruby>加害<rt>かがい</rt></ruby>も防ぐ。</strong>支援者が加害者になることもあるからこそ、<ruby>同性介助<rt>どうせいかいじょ</rt></ruby>、<ruby>密室<rt>みっしつ</rt></ruby>をつくらない、声をかけてから触れる——職員の約束を守ります。</p>
+      </div>
+
+      <div class="callout-warm" style="margin-top:16px;">
+        <span class="ci">🌊</span>
+        <p><strong>来月は、いよいよ最終回「1年の振り返り」です。</strong>12回の学びを総動員して、一人の子どもを一緒に考えます。</p>
+      </div>
+
+      <div class="next-month" style="background:#1A3A3A;">
+        <div class="nm-left">
+          <p class="nm-sub">▶ NEXT MONTH</p>
+          <p class="nm-title">1年の振り返り</p>
+          <p class="nm-desc">3月に公開されます。</p>
+        </div>
+        <span class="nm-tag" style="background:#8E24AA;">3月公開</span>
+      </div>
+    </div>
+
+    <div class="about-doc">
+      <div class="about-doc-title">📌 この資料について</div>
+      <p>本資料の内容は<strong>2026年10月時点</strong>の情報をもとにしています。</p>
+      <p>性に関する支援は、<strong>保護者と方針をそろえることが前提</strong>です。個別の子どもへの対応は、職員の判断だけで始めず、保護者・管理者・必要に応じて医療や専門機関と相談して決めてください。</p>
+    </div>
+
+  </div><!-- /content-wrap -->
+
+  <div class="print-btn-wrap">
+    <button class="print-btn" style="color:#8E24AA;border-color:#8E24AA;" onclick="printPage('puberty')">🖨️ この資料を印刷する</button>
+  </div>
+
+  <footer class="asd-footer">
+    <div class="lecture-companion"><span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-wave.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span><button class="back-btn" onclick="showPage('hp')">カリキュラムへ戻る</button></div>
+    <strong style="color:rgba(255,255,255,0.85);"><ruby>放課後等デイサービス<rt>ほうかごとうデイサービス</rt></ruby> りぷる｜株式会社イノベーション</strong><br>
+    スタッフ研修資料 Month 11 · 2027年2月<br>
+    参考：文部科学省「生命（いのち）の安全教育」/ ユネスコ「国際セクシュアリティ教育ガイダンス」<br>
+    日本内分泌学会 / 発達障害研究 / 政府広報オンライン
+  </footer>
+
+</div><!-- /page-puberty -->
+
+<!-- ========================================
+     Month 12 · 1年の振り返り
+======================================== -->
+<div class="page" id="page-review">
+
+  <div class="asd-hero" style="background:linear-gradient(135deg,#5A4005 0%,#9C6F0A 55%,#D4A938 100%);">
+    <div class="month-tag">🌊 Month 12 · 2027年3月の研修テーマ</div>
+    <h1>1年の振り返り<br>——一人の子を見る力へ</h1>
+    <p class="lead">
+      12回で学んだことは、<br>
+      バラバラの知識ではありません。<br>
+      目の前の一人の子を見るための、<br>
+      いくつもの「見方」です。<br>
+      最後に、それを全部使ってみましょう。
+    </p>
+  </div>
+
+  <div class="toc-wrapper">
+    <div class="toc-box">
+      <span class="toc-label">目次 — タップでスクロール</span>
+      <button class="toc-item" onclick="tocScrollTo('r1')">12回の地図</button>
+      <button class="toc-item" onclick="tocScrollTo('r2')">ひなたさんに会う</button>
+      <button class="toc-item" onclick="tocScrollTo('r3')">その瞬間にすること</button>
+      <button class="toc-item" onclick="tocScrollTo('r4')">水面の下を読む</button>
+      <button class="toc-item" onclick="tocScrollTo('r5')">伝える・教える</button>
+      <button class="toc-item" onclick="tocScrollTo('r6')">先を見通す</button>
+      <button class="toc-item" onclick="tocScrollTo('r7')">5<ruby>領域<rt>りょういき</rt></ruby>でまとめる</button>
+      <button class="toc-item" onclick="tocScrollTo('r8')">変わらないこと</button>
+      <button class="toc-item" onclick="tocScrollTo('rquiz')">チャレンジクイズ</button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- 講師用メモ -->
+    <details class="presenter-note">
+      <summary><span class="pn-tag">講師用メモ</span>この回を担当する人へ（読む前に開いてください）</summary>
+      <div class="pn-body">
+        <h4>この回のねらい</h4>
+        <p>1年間の学びを、<strong>一人の子どもを見る力</strong>としてつなげること。知識をテストする回ではなく、「あの回で学んだことは、ここで使うのか」と実感してもらう回です。</p>
+
+        <h4>進め方のコツ（この回だけ少し違います）</h4>
+        <p>セクション3〜6は、<strong>見出しを読んだら本文を読む前に、参加者に「次に何をする？」と聞いてください。</strong>答えが出たら本文を読み、自分たちの答えと比べます。全部聞くと時間が足りないので、<strong>セクション3と4だけ</strong>は必ず聞き、5と6は読み上げだけでもかまいません。</p>
+
+        <h4>準備しておくもの</h4>
+        <ul>
+          <li>特になし。できれば、この1年で印象に残った回を一つ、自分の言葉で話せるようにしておく</li>
+        </ul>
+
+        <h4>時間配分（目安 約15分）</h4>
+        <table class="pn-time"><tbody>
+          <tr><td>1分</td><td>1. 12回の地図 — 表をざっと読む</td></tr>
+          <tr><td>1分半</td><td>2. ひなたさんに会う — 「架空の子です」と最初に伝える</td></tr>
+          <tr><td>2分半</td><td>3. その瞬間にすること — 先に参加者に聞く</td></tr>
+          <tr><td>2分半</td><td>4. 水面の下を読む — 先に参加者に聞く</td></tr>
+          <tr><td>2分</td><td>5. 伝える・教える — 読み上げ</td></tr>
+          <tr><td>1分半</td><td>6. 先を見通す — 読み上げ</td></tr>
+          <tr><td>1分</td><td>7. 5領域でまとめる — 表を見せるだけでよい</td></tr>
+          <tr><td>1分</td><td>8. 変わらないこと — ゆっくり読む</td></tr>
+          <tr><td>1分半</td><td>クイズ — 全員で考えるのは Q1 と Q2</td></tr>
+          <tr><td>30秒</td><td>まとめ — 最後の3行を読む</td></tr>
+        </tbody></table>
+
+        <h4>締めくくりに</h4>
+        <p>最後に、参加者に<strong>「この1年で、いちばん自分の関わり方が変わった回はどれ？」</strong>と一言ずつ聞いて終わると、1年の区切りになります。時間がなければ、講師が自分の答えを一つ話すだけでも十分です。</p>
+
+        <h4>よくある質問と答え方</h4>
+        <div class="pn-q"><strong>Q. 新しく入った人は、どこから読めばいいですか？</strong><br>A. Month 01から順に読むのがいちばんです。各回は前の回の上に積み上がるように作られています。急ぐ場合は、Month 06（二次障害）、Month 09（安全）、Month 10（虐待防止）を先に。</div>
+        <div class="pn-q"><strong>Q. 来年度もこのカリキュラムを使えますか？</strong><br>A. 使えます。公開の時期は年度ごとに切り替えられるので、管理者に年度の更新を頼んでください。</div>
+
+        <h4>気をつけること</h4>
+        <p>ひなたさんは<strong>架空の子ども</strong>です。参加者が実在の子どもを重ねて話し始めたら、名前を出さずに話すよう声をかけてください。</p>
+      </div>
+    </details>
+
+    <!-- R1 -->
+    <div class="content-section" id="r1">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#9C6F0A;">1</div>
+        <h2 class="section-heading">12回の地図</h2>
+      </div>
+      <div class="content-card">
+        <p>この1年、こんな順番で学んできました。</p>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FBF3E0;border-radius:10px;border-left:4px solid #9C6F0A;">
+            <div style="font-size:12px;font-weight:700;color:#4E3705;min-width:76px;">知る<br><span style="font-weight:400;">01〜05</span></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">ASD、<ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>、ADHD、発達障害と知的障害、<ruby>療育手帳<rt>りょういくてちょう</rt></ruby>と<ruby>受給者証<rt>じゅきゅうしゃしょう</rt></ruby></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FBF3E0;border-radius:10px;border-left:4px solid #9C6F0A;">
+            <div style="font-size:12px;font-weight:700;color:#4E3705;min-width:76px;">関わる<br><span style="font-weight:400;">06〜08</span></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">行動を読む（<ruby>氷山<rt>ひょうざん</rt></ruby>・ABC）、伝わる環境をつくる、できるように教える</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FBF3E0;border-radius:10px;border-left:4px solid #9C6F0A;">
+            <div style="font-size:12px;font-weight:700;color:#4E3705;min-width:76px;">守る<br><span style="font-weight:400;">09〜10</span></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">命と安全、虐待防止と身体拘束</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FBF3E0;border-radius:10px;border-left:4px solid #9C6F0A;">
+            <div style="font-size:12px;font-weight:700;color:#4E3705;min-width:76px;">見通す<br><span style="font-weight:400;">11</span></div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">思春期と性の支援</div>
+          </div>
+        </div>
+      </div>
+      <div class="content-card">
+        <p>今日は、この全部を<strong>一人の子どもに当てはめて</strong>考えます。</p>
+      </div>
+    </div>
+
+    <!-- R2 -->
+    <div class="content-section" id="r2">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#9C6F0A;">2</div>
+        <h2 class="section-heading">ひなたさんに会う</h2>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:11px;font-weight:700;color:#9C6F0A;letter-spacing:.06em;margin-bottom:8px;">※ 架空の子どもです</div>
+        <div style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:10px;">ひなたさん（小学5年生）</div>
+        <ul style="margin:0;padding-left:1.2em;font-size:13px;line-height:2;color:var(--text);">
+          <li>知的障害と自閉スペクトラム症。<ruby>療育手帳<rt>りょういくてちょう</rt></ruby>があり、<ruby>受給者証<rt>じゅきゅうしゃしょう</rt></ruby>で週3日通っている</li>
+          <li>言葉は単語がいくつか。自分から伝えるのは、大人の手を引くことが多い</li>
+          <li>掃除機やドライヤーの音が苦手</li>
+          <li>決まった順番を大切にしていて、予定が変わると混乱しやすい</li>
+          <li>最近、<strong>自分の手を<ruby>噛<rt>か</rt></ruby>む</strong>ことが増えてきた</li>
+        </ul>
+      </div>
+      <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+        <p style="color:#B03A2E;">📍 <strong>ある日の場面</strong><br>
+        いつもはおやつのあとに外遊びの日。でもその日は雨で、急に室内活動に変わりました。同じころ、別の職員が隣の部屋で掃除機をかけ始めます。ひなたさんは手を噛み始め、止めに入った職員を<ruby>叩<rt>たた</rt></ruby>きました。職員は活動を中止し、ひなたさんを静かな部屋へ連れて行きました。</p>
+      </div>
+    </div>
+
+    <!-- R3 -->
+    <div class="content-section" id="r3">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#9C6F0A;">3</div>
+        <h2 class="section-heading">その瞬間にすること</h2>
+      </div>
+      <div class="content-card">
+        <p>まずは、<strong>ひなたさんと周りの子の安全</strong>です。</p>
+      </div>
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">🛡️</div>
+          <div class="tip-content">
+            <strong>周りの子を離し、ほかの職員を呼ぶ</strong>
+            <p>ひとりで対応しない。危ない物をどける（Month 09・10）。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🔇</div>
+          <div class="tip-content">
+            <strong>入力を減らす</strong>
+            <p><strong>掃除機を止めてもらう。</strong>声かけも最小限に。音が引き金なら、まず音を消すのがいちばんの対応です（Month 02）。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">✋</div>
+          <div class="tip-content">
+            <strong>押さえつけない</strong>
+            <p>手を<ruby>噛<rt>か</rt></ruby>んでいても、すぐに腕を押さえ続けない。本当に危険が迫っていてほかに方法がないときだけ、ほんの短い間（Month 10の3つの条件）。そのときは必ず記録と報告を。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- R4 -->
+    <div class="content-section" id="r4">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#9C6F0A;">4</div>
+        <h2 class="section-heading">水面の下を読む</h2>
+      </div>
+      <div class="content-card">
+        <p>落ち着いたら、<strong>叱るのではなく、何が起きていたのか</strong>を考えます。まず、ABCで書き出してみます（Month 06）。</p>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EBF5FB;border-radius:10px;border-left:4px solid #2980B9;">
+            <div style="font-size:12px;font-weight:700;color:#1A4A7A;min-width:72px;">A きっかけ</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">外遊びが急に室内活動に変わった。隣で掃除機の音がし始めた</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F7F7F7;border-radius:10px;border-left:4px solid #666;">
+            <div style="font-size:12px;font-weight:700;color:#444;min-width:72px;">B 行動</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">自分の手を<ruby>噛<rt>か</rt></ruby>んだ。止めに入った職員を<ruby>叩<rt>たた</rt></ruby>いた</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FBF3E0;border-radius:10px;border-left:4px solid #9C6F0A;">
+            <div style="font-size:12px;font-weight:700;color:#4E3705;min-width:72px;">C 結果</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">活動が中止になり、静かな部屋へ移った</div>
+          </div>
+        </div>
+      </div>
+      <div class="content-card">
+        <p><ruby>氷山<rt>ひょうざん</rt></ruby>の水面下には、これまでの回で学んだことが並びます。</p>
+        <ul style="margin:0 0 12px;padding-left:1.2em;">
+          <li><strong>見通しが崩れた</strong>——決まった順番を頼りにしている（Month 01）</li>
+          <li><strong>苦手な音が重なった</strong>——<ruby>聴覚過敏<rt>ちょうかくかびん</rt></ruby>（Month 02）</li>
+          <li><strong>「いやだ」を伝える手段がなかった</strong>——言葉が少ない（Month 07）</li>
+        </ul>
+        <p>そして「C」に注目します。<strong>手を噛んで叩いたら、いやな状況が終わった。</strong>ひなたさんがそう学んでしまうと、次も同じ方法を使うかもしれません。だから、<strong>手を噛む前に「いやだ」を伝えられる別の方法</strong>が必要です。</p>
+      </div>
+    </div>
+
+    <!-- R5 -->
+    <div class="content-section" id="r5">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#9C6F0A;">5</div>
+        <h2 class="section-heading">伝わる環境をつくり、伝える手段を教える</h2>
+      </div>
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">🔄</div>
+          <div class="tip-content">
+            <strong>予定が変わるときは、変わる前に見える形で</strong>
+            <p>雨の日は、室内活動に変わることを<strong>おやつの前に</strong>スケジュールのカードで伝え、本人の前で差し替える（Month 07）。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🎧</div>
+          <div class="tip-content">
+            <strong>苦手な音を予告する、重ねない</strong>
+            <p>掃除機は子どもがいない時間にかける。使うときは先に知らせる。イヤーマフを使える環境に（Month 02）。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🃏</div>
+          <div class="tip-content">
+            <strong>「やすみたい」カードを渡す</strong>
+            <p>手を<ruby>噛<rt>か</rt></ruby>む代わりに、カードを渡せば静かな場所へ行ける——その手段を教えます（Month 07のAAC）。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🌱</div>
+          <div class="tip-content">
+            <strong>カードの渡し方を、できるように教える</strong>
+            <p>最初は手を添えてでもカードを渡せるようにし、渡せた瞬間にすぐ静かな場所へ（Month 08）。<strong>手を噛む前にカードを渡せた日は、それだけで大きな一歩</strong>です。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- R6 -->
+    <div class="content-section" id="r6">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#9C6F0A;">6</div>
+        <h2 class="section-heading">先を見通す</h2>
+      </div>
+      <div class="content-card">
+        <p><strong>手を<ruby>噛<rt>か</rt></ruby>む行動が増えている</strong>ことは、見過ごしてはいけないサインです。伝えられない苦しさが積み重なると、<ruby>強度行動障害<rt>きょうどこうどうしょうがい</rt></ruby>の方向へ進むおそれがあります（Month 06）。叱らず、できたことを返し、<strong><ruby>自己肯定感<rt>じここうていかん</rt></ruby>を削らない関わり</strong>を続けます。</p>
+        <p>ひなたさんは小学5年生。<strong>体の変化が近い年齢</strong>です。変化について先回りして伝えること、着替えやトイレは同性の職員が<ruby>介助<rt>かいじょ</rt></ruby>することを、保護者と方針をそろえておきます（Month 11）。</p>
+        <p>そして、<strong>一人で抱えない。</strong>この出来事を記録して、チームと保護者、<ruby>相談支援専門員<rt>そうだんしえんせんもんいん</rt></ruby>と共有します。必要なら、<ruby>受給者証<rt>じゅきゅうしゃしょう</rt></ruby>の利用日数や<ruby>個別支援計画<rt>こべつしえんけいかく</rt></ruby>の見直しも話し合います（Month 05）。</p>
+      </div>
+    </div>
+
+    <!-- R7 -->
+    <div class="content-section" id="r7">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#9C6F0A;">7</div>
+        <h2 class="section-heading">5<ruby>領域<rt>りょういき</rt></ruby>でまとめる</h2>
+      </div>
+      <div class="content-card">
+        <p><ruby>放課後等デイサービス<rt>ほうかごとうデイサービス</rt></ruby>の支援は、<strong>5つの領域</strong>を含めて<ruby>総合的<rt>そうごうてき</rt></ruby>に行うことが求められています。ひなたさんへの支援を、5領域で整理するとこうなります。</p>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FBF3E0;border-radius:10px;border-left:4px solid #9C6F0A;">
+            <div style="font-size:12px;font-weight:700;color:#4E3705;min-width:112px;">健康・生活</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">手を<ruby>噛<rt>か</rt></ruby>む傷の確認と手当て。体の変化への見通し</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FBF3E0;border-radius:10px;border-left:4px solid #9C6F0A;">
+            <div style="font-size:12px;font-weight:700;color:#4E3705;min-width:112px;">運動・感覚</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">苦手な音を減らす環境、イヤーマフ。落ち着ける場所</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FBF3E0;border-radius:10px;border-left:4px solid #9C6F0A;">
+            <div style="font-size:12px;font-weight:700;color:#4E3705;min-width:112px;">認知・行動</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">予定変更を見える形で伝える。スケジュールの活用</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FBF3E0;border-radius:10px;border-left:4px solid #9C6F0A;">
+            <div style="font-size:12px;font-weight:700;color:#4E3705;min-width:112px;">言語・<br>コミュニケーション</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">「やすみたい」カードで、いやなことを伝える手段を持つ</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#FBF3E0;border-radius:10px;border-left:4px solid #9C6F0A;">
+            <div style="font-size:12px;font-weight:700;color:#4E3705;min-width:112px;">人間関係・<br>社会性</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><ruby>叩<rt>たた</rt></ruby>く代わりの関わり方。人との距離のルール</div>
+          </div>
+        </div>
+      </div>
+      <details class="deep-box" style="--db-color:#9C6F0A;">
+        <summary><span class="db-tag">もっと詳しく</span>5領域と、事業所に求められていること</summary>
+        <div class="db-body">
+          <p>5領域は、児童発達支援のガイドラインに以前から示されていたものです。2024年度の<ruby>報酬改定<rt>ほうしゅうかいてい</rt></ruby>から、放課後等デイサービスでも<strong>5領域をすべて含めた総合的な支援</strong>を行い、<strong><ruby>個別支援計画<rt>こべつしえんけいかく</rt></ruby>の中で5領域とのつながりをはっきりさせる</strong>ことが求められるようになりました。</p>
+          <p>あわせて、事業所としてどのような支援を行うかをまとめた<strong>「支援プログラム」を作成し、<ruby>公表<rt>こうひょう</rt></ruby>する</strong>ことも義務になっています。</p>
+          <p>一つの支援が、いくつもの領域にまたがることは珍しくありません。「やすみたい」カードは、言語・コミュニケーションでもあり、認知・行動でもあり、人間関係・社会性でもあります。<strong>領域で分けるのは、見落としを防ぐため</strong>です。</p>
+          <p class="db-note">出典：こども家庭庁「放課後等デイサービスガイドライン」/ 令和6年度障害福祉サービス等報酬改定</p>
+        </div>
+      </details>
+      <details class="deep-box" style="--db-color:#9C6F0A;">
+        <summary><span class="db-tag">もっと詳しく</span>ひなたさんが言葉で話せる子だったら</summary>
+        <div class="db-body">
+          <p>同じ場面でも、言葉でやりとりできる子なら、いくつかの点が変わります。</p>
+          <div class="db-row"><div class="db-row-k">その瞬間</div><div class="db-row-v">変わりません。安全の確保と、入力を減らすことが先です</div></div>
+          <div class="db-row"><div class="db-row-k">水面の下</div><div class="db-row-v">落ち着いたあとに、本人から「何がいやだった？」を聞けることがあります。ただし、うまく言葉にできないことも多いので、ABCの観察は変わらず大切です</div></div>
+          <div class="db-row"><div class="db-row-k">伝える手段</div><div class="db-row-v">「やすみたい」を言葉で言う練習ができます。それでも、興奮すると言葉が出なくなる子には、カードを<ruby>併用<rt>へいよう</rt></ruby>すると助けになります</div></div>
+          <div class="db-row"><div class="db-row-k">気をつけること</div><div class="db-row-v">言葉が通じる分、つい長い<ruby>説教<rt>せっきょう</rt></ruby>になりがちです。Month 06で学んだ、<ruby>叱責<rt>しっせき</rt></ruby>が積み重なる輪を思い出してください</div></div>
+          <p>どちらの子でも、<strong>「叱る前に読む」「伝わる形にする」「一人で抱えない」</strong>は変わりません。</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- R8 -->
+    <div class="content-section" id="r8">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#9C6F0A;">8</div>
+        <h2 class="section-heading">1年を通して、変わらなかったこと</h2>
+      </div>
+      <div class="content-card">
+        <p>12回、いろいろなテーマを扱いました。でも、毎回の底に流れていたことは、ずっと同じでした。</p>
+      </div>
+      <div class="highlight-box" style="border-left-color:#9C6F0A;background:#FBF3E0;">
+        <p style="color:#4E3705;">🌊 <strong>この1年の、いちばん大切な3つ</strong><br>
+        ① <strong><ruby>診断名<rt>しんだんめい</rt></ruby>ではなく、その子を見る。</strong>同じ診断名でも、一人ひとりまったく違います<br>
+        ② <strong>叱る前に、読む。</strong>行動の裏には、必ず理由があります<br>
+        ③ <strong>一人で抱えない。</strong>記録して、チームと保護者と一緒に考えます</p>
+      </div>
+      <div class="content-card">
+        <p>このポータルは、いつでも読み返せます。迷ったとき、新しい子が来たとき、新しい職員が入ったとき。<strong>その場面に近い回を開いてみてください。</strong></p>
+      </div>
+    </div>
+
+    <!-- クイズ -->
+    <div class="quiz-section content-section" id="rquiz">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#9C6F0A;">✓</div>
+        <h2 class="section-heading">🔥 チャレンジクイズ</h2>
+      </div>
+      <div class="content-card" style="background:#FBF3E0;border:1.5px solid #E8D29A;margin-bottom:16px;">
+        <p style="color:#4E3705;font-size:13px;line-height:1.9;">1年の総まとめです。<strong>ひなたさんの場面を思い出しながら</strong>答えてください。💪</p>
+      </div>
+
+      <div class="quiz-card" id="rqcard1">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#9C6F0A;">Q1</span>ひなたさんが手を<ruby>噛<rt>か</rt></ruby>み始めたとき、最初にすることとして最も適切なのはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerRQuiz(1,this,false)">けがをしないよう、すぐに腕をしっかり押さえて噛むのを止める</button>
+          <button class="quiz-opt" onclick="answerRQuiz(1,this,true)">周りの子を離して職員を呼び、掃除機を止めて入力を減らす</button>
+          <button class="quiz-opt" onclick="answerRQuiz(1,this,false)">なぜ噛むのかを、その場ですぐに言葉で問いかけて確かめる</button>
+        </div>
+        <div class="quiz-result" id="rqres1"></div>
+      </div>
+
+      <div class="quiz-card" id="rqcard2">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#9C6F0A;">Q2</span>ABCの「C：活動が中止になり、静かな部屋へ移った」から考えられることはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerRQuiz(2,this,true)">手を噛めばいやな状況が終わると学び、同じ方法をくり返すおそれがある</button>
+          <button class="quiz-opt" onclick="answerRQuiz(2,this,false)">静かな部屋に移ったことで、次からは同じ場面でも落ち着けるようになる</button>
+          <button class="quiz-opt" onclick="answerRQuiz(2,this,false)">活動が中止になったことで反省し、手を噛む行動は自然に減っていく</button>
+        </div>
+        <div class="quiz-result" id="rqres2"></div>
+      </div>
+
+      <div class="quiz-card" id="rqcard3">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#9C6F0A;">Q3</span>雨で予定が変わる日に、ひなたさんの混乱を減らす方法として最も適切なのはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerRQuiz(3,this,false)">外遊びの時間になってから、室内活動に変わったことを言葉で伝える</button>
+          <button class="quiz-opt" onclick="answerRQuiz(3,this,false)">混乱しないよう、予定が変わったことには触れずに室内活動を始める</button>
+          <button class="quiz-opt" onclick="answerRQuiz(3,this,true)">おやつの前に、スケジュールのカードを本人の前で差し替えて伝える</button>
+        </div>
+        <div class="quiz-result" id="rqres3"></div>
+      </div>
+
+      <div class="quiz-card" id="rqcard4">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#9C6F0A;">Q4</span>「やすみたい」カードの渡し方を教えるとき、最も適切な進め方はどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerRQuiz(4,this,true)">最初は手を添えてでも渡せるようにし、渡せた瞬間にすぐ静かな場所へ行く</button>
+          <button class="quiz-opt" onclick="answerRQuiz(4,this,false)">自分で渡せるようになるまで手助けはせず、カードを置いて様子を見る</button>
+          <button class="quiz-opt" onclick="answerRQuiz(4,this,false)">カードを渡せたら、落ち着いたあとにまとめてたくさんほめるようにする</button>
+        </div>
+        <div class="quiz-result" id="rqres4"></div>
+      </div>
+
+      <div class="quiz-card" id="rqcard5">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#9C6F0A;">Q5</span><ruby>放課後等デイサービス<rt>ほうかごとうデイサービス</rt></ruby>の支援で含めることが求められている「5<ruby>領域<rt>りょういき</rt></ruby>」に入らないものはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerRQuiz(5,this,false)">言語・コミュニケーション</button>
+          <button class="quiz-opt" onclick="answerRQuiz(5,this,true)">学力・進学</button>
+          <button class="quiz-opt" onclick="answerRQuiz(5,this,false)">人間関係・社会性</button>
+        </div>
+        <div class="quiz-result" id="rqres5"></div>
+      </div>
+
+      <div class="quiz-score-box" id="rquiz-score">
+        <div class="quiz-score-num" id="rscore-num">0 / 5</div>
+        <div class="quiz-score-label" id="rscore-msg"></div>
+        <button class="quiz-retry-btn" style="background:#9C6F0A;" onclick="retryRQuiz()">🔄 もう一度チャレンジ</button>
+      </div>
+    </div>
+
+    <!-- まとめ -->
+    <div class="content-section" id="r9">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#9C6F0A;">9</div>
+        <h2 class="section-heading">1年のまとめ</h2>
+      </div>
+      <div class="content-card">
+        <p>🌊 <strong>その瞬間は、安全と入力を減らすこと。</strong>落ち着いたら、叱る前にABCと<ruby>氷山<rt>ひょうざん</rt></ruby>で水面の下を読む。</p>
+        <p>🌊 <strong>読めたら、伝わる環境と伝える手段を。</strong>予定は変わる前に見える形で、いやなことは別の方法で伝えられるように、できるように教える。</p>
+        <p>🌊 <strong>そして先を見通し、一人で抱えない。</strong>二次障害、思春期、制度——チームと保護者と一緒に、その子の何年も先を考える。それが、この1年で学んだ「一人の子を見る力」です。</p>
+      </div>
+
+      <div class="callout-warm" style="margin-top:16px;">
+        <span class="ci">🌊</span>
+        <p><strong>1年間、おつかれさまでした。</strong>ここで学んだことが、子どもたちの周りに少しずつ広がっていきますように。</p>
+      </div>
+
+      <div class="next-month" style="background:#1A3A3A;">
+        <div class="nm-left">
+          <p class="nm-sub">▶ 12回を終えて</p>
+          <p class="nm-title">1年間おつかれさまでした</p>
+          <p class="nm-desc">これまでの12回は、いつでも読み返せます。</p>
+        </div>
+        <span class="nm-tag" style="background:#9C6F0A;cursor:pointer;" onclick="showPage('hp')">カリキュラムへ →</span>
+      </div>
+    </div>
+
+    <div class="about-doc">
+      <div class="about-doc-title">📌 この資料について</div>
+      <p>本資料の内容は<strong>2026年10月時点</strong>の情報をもとにしています。ひなたさんは<strong>架空の子ども</strong>で、実在の人物とは関係ありません。</p>
+      <p>実際の子どもへの支援は、<ruby>個別支援計画<rt>こべつしえんけいかく</rt></ruby>にもとづき、保護者・<ruby>相談支援専門員<rt>そうだんしえんせんもんいん</rt></ruby>・関係機関と相談して決めてください。</p>
+    </div>
+
+  </div><!-- /content-wrap -->
+
+  <div class="print-btn-wrap">
+    <button class="print-btn" style="color:#9C6F0A;border-color:#9C6F0A;" onclick="printPage('review')">🖨️ この資料を印刷する</button>
+  </div>
+
+  <footer class="asd-footer">
+    <div class="lecture-companion"><span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-wave.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span><button class="back-btn" onclick="showPage('hp')">カリキュラムへ戻る</button></div>
+    <strong style="color:rgba(255,255,255,0.85);"><ruby>放課後等デイサービス<rt>ほうかごとうデイサービス</rt></ruby> りぷる｜株式会社イノベーション</strong><br>
+    スタッフ研修資料 Month 12 · 2027年3月<br>
+    参考：こども家庭庁「放課後等デイサービスガイドライン」/ 令和6年度障害福祉サービス等<ruby>報酬改定<rt>ほうしゅうかいてい</rt></ruby><br>
+    Month 01〜11 の各回
+  </footer>
+
+</div><!-- /page-review -->
+
+
+
+
+
+
 
 
 
@@ -5172,6 +7311,111 @@ rt {
 
 <script>
 // ページ切り替え
+// ===== カリキュラム（日付で「今月」を自動で切り替える） =====
+// 月が変わると、その月の回が自動で「今月のテーマ」になる。毎月HTMLを直す必要はない。
+// 新しい年度を始めるときは、この表の y（年）と m（月）を書き換える。
+var CURRICULUM = [
+  {n:1,  id:'asd',     y:2026, m:4},
+  {n:2,  id:'hearing', y:2026, m:5},
+  {n:3,  id:'adhd',    y:2026, m:6},
+  {n:4,  id:'intel',   y:2026, m:7},
+  {n:5,  id:'techo',   y:2026, m:8},
+  {n:6,  id:'niji',    y:2026, m:9},
+  {n:7,  id:'visual',  y:2026, m:10},
+  {n:8,  id:'teach',   y:2026, m:11},
+  {n:9,  id:'safety',  y:2026, m:12},
+  {n:10, id:'dignity', y:2027, m:1},
+  {n:11, id:'puberty', y:2027, m:2},
+  {n:12, id:'review',  y:2027, m:3}
+];
+
+function lecturePad(n) { return (n < 10 ? '0' : '') + n; }
+
+function curriculumItem(id) {
+  for (var i = 0; i < CURRICULUM.length; i++) { if (CURRICULUM[i].id === id) return CURRICULUM[i]; }
+  return null;
+}
+
+// 今日の日付から「今月の回」の番号（1〜12）を求める
+function currentLectureNumber(today) {
+  var d = today || new Date();
+  var ym = d.getFullYear() * 12 + (d.getMonth() + 1);
+  var cur = 1;
+  CURRICULUM.forEach(function(c){
+    if (c.y * 12 + c.m <= ym && document.getElementById('page-' + c.id)) cur = c.n;
+  });
+  return cur;
+}
+
+function currentLectureId() { return CURRICULUM[currentLectureNumber() - 1].id; }
+
+function applyCurriculum() {
+  var cur = currentLectureNumber();
+  var now = CURRICULUM[cur - 1];
+
+  // カード
+  document.querySelectorAll('.curriculum-card[data-n]').forEach(function(card){
+    var num = Number(card.getAttribute('data-n'));
+    var c = CURRICULUM[num - 1];
+    var status = card.querySelector('.card-status');
+    card.classList.remove('current', 'disabled');
+    if (num < cur) {
+      card.disabled = false;
+      status.className = 'card-status status-soon';
+      status.textContent = '✅ 公開済み';
+    } else if (num === cur) {
+      card.disabled = false;
+      card.classList.add('current');
+      status.className = 'card-status status-now';
+      status.textContent = '▶ 今月のテーマ';
+    } else {
+      card.disabled = true;
+      card.classList.add('disabled');
+      status.className = 'card-status status-future';
+      status.textContent = '🔒 ' + c.m + '月に公開';
+    }
+  });
+
+  // 進捗
+  var fill = document.querySelector('.progress-bar-fill');
+  if (fill) fill.style.width = (cur / CURRICULUM.length * 100) + '%';
+  var count = document.querySelector('.progress-count');
+  if (count) count.textContent = cur + ' / ' + CURRICULUM.length + ' 完了';
+
+  // お知らせ欄
+  var nm = document.getElementById('notice-month');
+  var nt = document.getElementById('notice-title');
+  var curTitle = document.querySelector('.curriculum-card[data-n="' + cur + '"] .card-title');
+  if (nm) nm.textContent = '今月（' + now.y + '年' + now.m + '月）';
+  if (nt && curTitle) nt.textContent = curTitle.textContent;
+
+  // 各回の「来月予告」
+  CURRICULUM.forEach(function(c){
+    var pg = document.getElementById('page-' + c.id);
+    var box = pg && pg.querySelector('.next-month');
+    if (!box) return;
+    var title = box.querySelector('.nm-title');
+    var desc  = box.querySelector('.nm-desc');
+    var tag   = box.querySelector('.nm-tag');
+    var next  = CURRICULUM[c.n];   // 次の回（n は1始まりなので、添字 n が次の回）
+    if (!next) {
+      if (title) title.textContent = '1年間おつかれさまでした';
+      if (desc)  desc.textContent  = 'これまでの12回は、いつでも読み返せます。';
+      if (tag) { tag.textContent = 'カリキュラムへ →'; tag.style.cursor = 'pointer'; tag.onclick = function(){ showPage('hp'); }; }
+      return;
+    }
+    var nextTitle = document.querySelector('.curriculum-card[data-n="' + next.n + '"] .card-title');
+    if (title && nextTitle) title.textContent = nextTitle.textContent.split('——')[0];
+    if (next.n <= cur && document.getElementById('page-' + next.id)) {
+      if (desc) desc.textContent = 'Month ' + lecturePad(next.n) + ' · ' + next.m + '月の研修テーマ';
+      if (tag) { tag.textContent = 'Month ' + lecturePad(next.n) + ' を見る →'; tag.style.cursor = 'pointer'; tag.onclick = function(){ showPage(next.id); }; }
+    } else {
+      if (desc) desc.textContent = next.m + '月に公開されます。';
+      if (tag) { tag.textContent = next.m + '月公開'; tag.style.cursor = 'default'; tag.onclick = null; }
+    }
+  });
+}
+
 function showPage(name) {
   // 全ページ非表示
   document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
@@ -5179,8 +7423,9 @@ function showPage(name) {
 
   // ヘッダー切り替え
   var inner = document.getElementById('hp-header');
-  if (name === 'hearing' || name === 'asd' || name === 'adhd' || name === 'intel' || name === 'techo' || name === 'niji' || name === 'visual') {
-    var monthLabel = name === 'visual' ? 'Month 07 · 10月' : (name === 'niji' ? 'Month 06 · 9月' : (name === 'techo' ? 'Month 05 · 8月' : (name === 'intel' ? 'Month 04 · 7月' : (name === 'adhd' ? 'Month 03 · 6月' : (name === 'hearing' ? 'Month 02 · 5月' : 'Month 01 · 4月')))));
+  var lecture = curriculumItem(name);
+  if (lecture) {
+    var monthLabel = 'Month ' + lecturePad(lecture.n) + ' · ' + lecture.m + '月';
     inner.innerHTML =
       '<button class="back-btn" onclick="showPage(\'hp\')">← ホーム</button>' +
       '<span class="header-title" style="color:rgba(255,255,255,0.75);font-size:12px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:8px;">りぷる スタッフ研修ポータル</span>' +
@@ -5197,7 +7442,7 @@ function showPage(name) {
       '<div class="header-nav">' +
         '<button onclick="scrollToSection(\'curriculum\')">カリキュラム</button>' +
         '<button onclick="scrollToSection(\'about\')">りぷるとは</button>' +
-        '<button onclick="showPage(\'visual\')">今月</button>' +
+        '<button onclick="showPage(currentLectureId())">今月</button>' +
       '</div>';
   }
 
@@ -5782,6 +8027,403 @@ function retryVQuiz() {
   }
   document.getElementById('vquiz-score').classList.remove('show');
   tocScrollTo('vquiz');
+}
+
+
+applyCurriculum();
+
+
+// ---- 教え方の基本クイズ ----
+var kQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+var kQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+var kQuizScore   = 0;
+var K_QUIZ_TOTAL = 5;
+
+var kQuizExplanations = {
+  1: {
+    ok: '✅ 正解！手順を分けると、「手洗いができない」が「9つのうち石けんのところだけ難しい」に変わります。教えることを絞れるうえに、もうできている部分を認めてあげられるのも大きな利点です。',
+    ng: '❌ 不正解。一度に全部教えるためでも、理解力を測るためでもありません。分けて見ると、どこでつまずいていてどこはもうできているのかが見え、教えることをそのつまずきに絞れます。'
+  },
+  2: {
+    ok: '✅ 正解！同じ手助けを続けると、手助けそのものが行動のきっかけになり、それがないと動けなくなります。だから、できてきたら少しずつ手助けを減らしていくことが「教える」の一部なのです。',
+    ng: '❌ 不正解。安心や関係づくりにつながるように見えて、実際には手助けがないと動けない状態をつくってしまいます。声をかけられるまで待つ、が身につかないよう、少しずつ手を離していきます。'
+  },
+  3: {
+    ok: '✅ 正解！最後から教えると、どの段階でも最後までやりきるのは本人です。毎回「できた」で終われるので達成感が積み重なり、次への意欲になります。最後の手順が簡単だからではありません。',
+    ng: '❌ 不正解。最後の手順が簡単だからでも、時間を短くするためでもありません。どの段階でも最後までやりきるのが本人になり、毎回達成感で終われる——それが最後から教える理由です。'
+  },
+  4: {
+    ok: '✅ 正解！何がうれしいかは子どもによって違います。言葉より好きな遊び・好きな感触・ハイタッチが届く子もいます。こちらが返したいものではなく、その子が受け取りたいものを、すぐに返しましょう。',
+    ng: '❌ 不正解。声を大きくしても届き方は変わりませんし、何もしなければ「できた」が残りません。言葉が届きにくい子には、好きな遊びや感触など、その子にとってうれしいものですぐに返します。'
+  },
+  5: {
+    ok: '✅ 正解！蛇口の形、石けんの場所、そばにいる人——それが違うだけで、別のことに感じる子は少なくありません。できるようになったら、場所・人・道具を少しずつ変えても、できるかを確かめていきます。',
+    ng: '❌ 不正解。甘えや練習不足と決めつける前に、環境の違いを考えてみてください。場所や道具、そばにいる人が違うだけで別のことに感じる子がいます。家庭とも手順をそろえられると効果的です。'
+  }
+};
+
+function answerKQuiz(num, btn, isCorrect) {
+  if (kQuizDone[num]) return;
+  kQuizDone[num] = true;
+  kQuizAnswers[num] = isCorrect;
+  if (isCorrect) kQuizScore++;
+
+  var opts = btn.closest('.quiz-card').querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){ o.classList.add('disabled'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(function(o){
+      if (o.getAttribute('onclick').indexOf('true') !== -1) o.classList.add('correct');
+    });
+  }
+
+  var res = document.getElementById('kqres' + num);
+  res.textContent = kQuizExplanations[num][isCorrect ? 'ok' : 'ng'];
+  res.className = 'quiz-result show ' + (isCorrect ? 'ok' : 'ng');
+
+  var allDone = true;
+  for (var i = 1; i <= K_QUIZ_TOTAL; i++) { if (!kQuizDone[i]) { allDone = false; break; } }
+  if (allDone) {
+    setTimeout(function(){
+      var box = document.getElementById('kquiz-score');
+      box.classList.add('show');
+      document.getElementById('kscore-num').textContent = kQuizScore + ' / ' + K_QUIZ_TOTAL;
+      var msgs = ['全部読み直してみましょう💪','もう少し！復習してみて。','いい感じ！あと少し。','ほぼ完璧！惜しい〜','全問正解まであと一問！','全問正解！完璧です🎉'];
+      document.getElementById('kscore-msg').textContent = msgs[kQuizScore];
+    }, 400);
+  }
+}
+
+function retryKQuiz() {
+  kQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+  kQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+  kQuizScore   = 0;
+  for (var n = 1; n <= K_QUIZ_TOTAL; n++) {
+    var card = document.getElementById('kqcard'+n);
+    if (!card) continue;
+    card.querySelectorAll('.quiz-opt').forEach(function(o){ o.className = 'quiz-opt'; });
+    var res = document.getElementById('kqres'+n);
+    res.className = 'quiz-result';
+    res.textContent = '';
+  }
+  document.getElementById('kquiz-score').classList.remove('show');
+  tocScrollTo('kquiz');
+}
+
+
+
+// ---- 命と安全を守るクイズ ----
+var yQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+var yQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+var yQuizScore   = 0;
+var Y_QUIZ_TOTAL = 5;
+
+var yQuizExplanations = {
+  1: {
+    ok: '✅ 正解！まず落ち着いて、始まった時刻を確かめます。周りの危ない物をどけて、見守ります。口に物を入れたり、体を押さえつけたりするのは、窒息やけがにつながるので絶対にしません。5分以上続くときは119番です。',
+    ng: '❌ 不正解。口にタオルを入れるのも、手足を押さえつけるのも、窒息やけがにつながる危険な対応です。最初にするのは、時刻を確かめ、周りの危ない物をどけて見守ること。5分以上続くときは119番です。'
+  },
+  2: {
+    ok: '✅ 正解！強い咳が出ているうちは、本人の咳がいちばん強い力です。そばで見守り、声が出なくなる・強い咳ができなくなる・顔色が悪くなるといった変化があれば、すぐに119番と異物の除去に移ります。',
+    ng: '❌ 不正解。強い咳が出ているうちは、背中やお腹への手当てはまだ早く、水を飲ませるのは危険です。まずは咳を続けさせて見守ります。声が出ない・強い咳ができないときに、119番と異物の除去に移ります。'
+  },
+  3: {
+    ok: '✅ 正解！ひとりで探したり待ったりしている間にも、子どもは遠くへ行ってしまいます。すぐに周りへ知らせ、服装の色や特徴を共有して手分けして探します。近くで見つからなければ、ためらわずに110番と保護者への連絡です。',
+    ng: '❌ 不正解。ひとりで探す、しばらく待つ——その時間がいちばん危険です。すぐに周りの職員に知らせ、服装を共有して手分けして探してください。近くで見つからなければ、ためらわずに110番と保護者への連絡です。'
+  },
+  4: {
+    ok: '✅ 正解！眠ってしまった子や、座席の下に入り込んだ子は、外からは見えないことがあります。装置は確認を助けるものであって、確認の代わりではありません。降りたあとは必ず最後列まで目で見て確かめます。',
+    ng: '❌ 不正解。装置の故障や記録のためではありません。眠った子や座席の下に入り込んだ子は外から見えないことがあるからです。装置があっても、降りたあとは必ず最後列まで目で見て確かめてください。'
+  },
+  5: {
+    ok: '✅ 正解！1つの重い事故の裏には、たくさんの小さな「ヒヤッ」があります。そのうちに気づいて手を打てば、重い事故を防げます。報告は誰かを責めるためではなく、全員で防ぐためのもの。報告してくれた人には、まず「ありがとう」を。',
+    ng: '❌ 不正解。評価や証拠のために集めると、報告は出なくなり、防げたはずの事故が起きます。ヒヤリハットの報告は、小さな出来事のうちに手を打って重い事故を全員で防ぐためのものです。'
+  }
+};
+
+function answerYQuiz(num, btn, isCorrect) {
+  if (yQuizDone[num]) return;
+  yQuizDone[num] = true;
+  yQuizAnswers[num] = isCorrect;
+  if (isCorrect) yQuizScore++;
+
+  var opts = btn.closest('.quiz-card').querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){ o.classList.add('disabled'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(function(o){
+      if (o.getAttribute('onclick').indexOf('true') !== -1) o.classList.add('correct');
+    });
+  }
+
+  var res = document.getElementById('yqres' + num);
+  res.textContent = yQuizExplanations[num][isCorrect ? 'ok' : 'ng'];
+  res.className = 'quiz-result show ' + (isCorrect ? 'ok' : 'ng');
+
+  var allDone = true;
+  for (var i = 1; i <= Y_QUIZ_TOTAL; i++) { if (!yQuizDone[i]) { allDone = false; break; } }
+  if (allDone) {
+    setTimeout(function(){
+      var box = document.getElementById('yquiz-score');
+      box.classList.add('show');
+      document.getElementById('yscore-num').textContent = yQuizScore + ' / ' + Y_QUIZ_TOTAL;
+      var msgs = ['全部読み直してみましょう💪','もう少し！復習してみて。','いい感じ！あと少し。','ほぼ完璧！惜しい〜','全問正解まであと一問！','全問正解！完璧です🎉'];
+      document.getElementById('yscore-msg').textContent = msgs[yQuizScore];
+    }, 400);
+  }
+}
+
+function retryYQuiz() {
+  yQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+  yQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+  yQuizScore   = 0;
+  for (var n = 1; n <= Y_QUIZ_TOTAL; n++) {
+    var card = document.getElementById('yqcard'+n);
+    if (!card) continue;
+    card.querySelectorAll('.quiz-opt').forEach(function(o){ o.className = 'quiz-opt'; });
+    var res = document.getElementById('yqres'+n);
+    res.className = 'quiz-result';
+    res.textContent = '';
+  }
+  document.getElementById('yquiz-score').classList.remove('show');
+  tocScrollTo('yquiz');
+}
+
+
+
+// ---- 虐待防止と身体拘束クイズ ----
+var dQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+var dQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+var dQuizScore   = 0;
+var D_QUIZ_TOTAL = 5;
+
+var dQuizExplanations = {
+  1: {
+    ok: '✅ 正解！障害者虐待防止法では、身体的虐待の定義の中に「正当な理由なく障害者の身体を拘束すること」がはっきり含まれています。押さえ続ける、閉じ込めるといった行為は、たたくのと同じ種類として扱われます。',
+    ng: '❌ 不正解。正当な理由のない身体拘束は、法律上は身体的虐待に含まれます。放棄・放置や心理的虐待ではなく、たたく・つねると同じ種類として扱われることを覚えておいてください。'
+  },
+  2: {
+    ok: '✅ 正解！切迫性（命や体の危険が非常に高い）、非代替性（ほかに方法がない）、一時性（一時的である）の3つです。ひとつでも欠ければ認められません。人手不足や「落ち着かないから」は、どれにも当たりません。',
+    ng: '❌ 不正解。保護者の同意や人手不足、本人が落ち着かないことは条件ではありません。3つの条件は、切迫性・非代替性・一時性です。すべてを満たすときだけ、例外として認められます。'
+  },
+  3: {
+    ok: '✅ 正解！まず周りの子を離し、危ない物をどけ、音や人を減らします。ひとりで対応せず、ほかの職員を呼びます。体に触れて止めるのは、本当に危険が迫っていてほかに方法がないときに、ほんの短い間だけです。',
+    ng: '❌ 不正解。すぐに押さえつけるのも、大きな声で何度も言うのも、刺激を増やして状況を悪くしやすい対応です。まず周りの安全を確保し、入力を減らし、ほかの職員を呼ぶことから始めます。'
+  },
+  4: {
+    ok: '✅ 正解！法律は「虐待を受けたと思われる」障害者を見つけた人に通報を義務づけています。確証は必要なく、虐待かどうかを判断するのは市町村です。通報した人が不利益な扱いを受けないことも、法律で守られています。',
+    ng: '❌ 不正解。確証を待つ必要はなく、事業所内で済ませればよいということもありません。「虐待を受けたと思われる」段階で通報の義務があり、判断は市町村が行います。通報した人は法律で守られています。'
+  },
+  5: {
+    ok: '✅ 正解！虐待は、職員が一人で抱えこみ、余裕を失ったときに起きやすくなります。交代を頼める、気になることを話せる、難しい行動をチームで考えられる——そんな事業所であることが、いちばんの虐待防止です。',
+    ng: '❌ 不正解。個人を見つけて指導する、気持ちで乗り切る、という考え方では防げません。虐待は一人で抱えこんだときに起きやすいので、交代や相談ができ、難しい行動をチームで考えられる事業所づくりが大切です。'
+  }
+};
+
+function answerDQuiz(num, btn, isCorrect) {
+  if (dQuizDone[num]) return;
+  dQuizDone[num] = true;
+  dQuizAnswers[num] = isCorrect;
+  if (isCorrect) dQuizScore++;
+
+  var opts = btn.closest('.quiz-card').querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){ o.classList.add('disabled'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(function(o){
+      if (o.getAttribute('onclick').indexOf('true') !== -1) o.classList.add('correct');
+    });
+  }
+
+  var res = document.getElementById('dqres' + num);
+  res.textContent = dQuizExplanations[num][isCorrect ? 'ok' : 'ng'];
+  res.className = 'quiz-result show ' + (isCorrect ? 'ok' : 'ng');
+
+  var allDone = true;
+  for (var i = 1; i <= D_QUIZ_TOTAL; i++) { if (!dQuizDone[i]) { allDone = false; break; } }
+  if (allDone) {
+    setTimeout(function(){
+      var box = document.getElementById('dquiz-score');
+      box.classList.add('show');
+      document.getElementById('dscore-num').textContent = dQuizScore + ' / ' + D_QUIZ_TOTAL;
+      var msgs = ['全部読み直してみましょう💪','もう少し！復習してみて。','いい感じ！あと少し。','ほぼ完璧！惜しい〜','全問正解まであと一問！','全問正解！完璧です🎉'];
+      document.getElementById('dscore-msg').textContent = msgs[dQuizScore];
+    }, 400);
+  }
+}
+
+function retryDQuiz() {
+  dQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+  dQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+  dQuizScore   = 0;
+  for (var n = 1; n <= D_QUIZ_TOTAL; n++) {
+    var card = document.getElementById('dqcard'+n);
+    if (!card) continue;
+    card.querySelectorAll('.quiz-opt').forEach(function(o){ o.className = 'quiz-opt'; });
+    var res = document.getElementById('dqres'+n);
+    res.className = 'quiz-result';
+    res.textContent = '';
+  }
+  document.getElementById('dquiz-score').classList.remove('show');
+  tocScrollTo('dquiz');
+}
+
+
+
+// ---- 思春期と性の支援クイズ ----
+var pQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+var pQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+var pQuizScore   = 0;
+var P_QUIZ_TOTAL = 5;
+
+var pQuizExplanations = {
+  1: {
+    ok: '✅ 正解！胸がふくらむ、月経が始まる、精通がある——理由が分からない変化は、けがや病気だと思うほどの不安や混乱につながります。変化が来る前に見通しを伝え、「みんなに起きる、心配しなくていい」という安心を先に渡します。',
+    ng: '❌ 不正解。時期を早めるためでも、家庭の手間を省くためでもありません。理由が分からない変化は強い不安や混乱につながりやすいので、変化が来る前に見通しを伝えておくことが大切なのです。'
+  },
+  2: {
+    ok: '✅ 正解！自分の体を触ることは成長の中で自然に起きることで、問題は場所です。叱らず、恥をかかせず、静かに声をかけて場所を移し、「ここではしない。〇〇でならいい」と、していい場所を伝えます。',
+    ng: '❌ 不正解。強く叱ると「自分の体が恥ずかしいもの」と受け取ってしまい、見て見ぬふりでは何も伝わりません。静かに声をかけて場所を移し、していい場所を伝えるのが適切な対応です。'
+  },
+  3: {
+    ok: '✅ 正解！言葉の説明が届きにくい子には、トイレの扉に印をつける、着替える場所を決めて毎回そこを使うなど、場所そのものを分かる形にします。職員全員が同じルールで対応することで身についていきます。',
+    ng: '❌ 不正解。言葉をくり返しても届き方は変わらず、すべて止めるのは本人の自然な成長を否定することになります。場所そのものを分かる形にし、職員全員が同じルールで対応するのが効果的です。'
+  },
+  4: {
+    ok: '✅ 正解！知的障害のある人などが被害者となった事件で、加害者の3割以上が支援に関わる人だったという国の調査があります。同性介助や密室をつくらないといったルールは、職員を疑うためではなく、子どもと職員の両方を守るためのものです。',
+    ng: '❌ 不正解。苦情対策や評価のためではありません。支援者が加害者になる事件が実際に起きています。ルールは職員を疑うためではなく、子どもと職員の両方を守るためにあります。'
+  },
+  5: {
+    ok: '✅ 正解！悪気がなくても、体が大きくなるにつれて周りの受け止め方は変わります。叱らずに体を離し、ハイタッチや手を振るなど代わりの関わり方を教えます。小さいうちから、職員全員が同じ対応をすることが大切です。',
+    ng: '❌ 不正解。そのまま受け止めると「抱きついていい」と学び、叱るだけでは代わりにどうすればいいかが分かりません。叱らずに体を離し、代わりの関わり方を教えるのが適切です。'
+  }
+};
+
+function answerPQuiz(num, btn, isCorrect) {
+  if (pQuizDone[num]) return;
+  pQuizDone[num] = true;
+  pQuizAnswers[num] = isCorrect;
+  if (isCorrect) pQuizScore++;
+
+  var opts = btn.closest('.quiz-card').querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){ o.classList.add('disabled'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(function(o){
+      if (o.getAttribute('onclick').indexOf('true') !== -1) o.classList.add('correct');
+    });
+  }
+
+  var res = document.getElementById('pqres' + num);
+  res.textContent = pQuizExplanations[num][isCorrect ? 'ok' : 'ng'];
+  res.className = 'quiz-result show ' + (isCorrect ? 'ok' : 'ng');
+
+  var allDone = true;
+  for (var i = 1; i <= P_QUIZ_TOTAL; i++) { if (!pQuizDone[i]) { allDone = false; break; } }
+  if (allDone) {
+    setTimeout(function(){
+      var box = document.getElementById('pquiz-score');
+      box.classList.add('show');
+      document.getElementById('pscore-num').textContent = pQuizScore + ' / ' + P_QUIZ_TOTAL;
+      var msgs = ['全部読み直してみましょう💪','もう少し！復習してみて。','いい感じ！あと少し。','ほぼ完璧！惜しい〜','全問正解まであと一問！','全問正解！完璧です🎉'];
+      document.getElementById('pscore-msg').textContent = msgs[pQuizScore];
+    }, 400);
+  }
+}
+
+function retryPQuiz() {
+  pQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+  pQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+  pQuizScore   = 0;
+  for (var n = 1; n <= P_QUIZ_TOTAL; n++) {
+    var card = document.getElementById('pqcard'+n);
+    if (!card) continue;
+    card.querySelectorAll('.quiz-opt').forEach(function(o){ o.className = 'quiz-opt'; });
+    var res = document.getElementById('pqres'+n);
+    res.className = 'quiz-result';
+    res.textContent = '';
+  }
+  document.getElementById('pquiz-score').classList.remove('show');
+  tocScrollTo('pquiz');
+}
+
+
+
+// ---- 1年の振り返りクイズ ----
+var rQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+var rQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+var rQuizScore   = 0;
+var R_QUIZ_TOTAL = 5;
+
+var rQuizExplanations = {
+  1: {
+    ok: '✅ 正解！まずは本人と周りの子の安全です。周りの子を離してほかの職員を呼び、引き金になっている掃除機の音を止めて、声かけも最小限にします。押さえつけるのは、本当に危険が迫っていてほかに方法がないときだけです。',
+    ng: '❌ 不正解。すぐに押さえ続けるのは身体拘束にあたるおそれがあり、興奮した状態で問いかけても答えられません。まずは周りの子を離して職員を呼び、掃除機を止めて入力を減らすことが先です。'
+  },
+  2: {
+    ok: '✅ 正解！「手を噛んで叩いたら、いやな状況が終わった」と学んでしまうと、次も同じ方法を使うかもしれません。だから、手を噛む前に「いやだ」を伝えられる別の方法を教えることが必要です。',
+    ng: '❌ 不正解。結果だけでは、落ち着き方も反省も身につきません。むしろ「手を噛めばいやな状況が終わる」と学んでしまうおそれがあります。だから、別の伝え方を教えることが必要なのです。'
+  },
+  3: {
+    ok: '✅ 正解！予定が変わるときは、変わる前に見える形で伝えます。おやつの前に、スケジュールのカードを本人の前で差し替えれば、何が変わったのかが目で分かります。',
+    ng: '❌ 不正解。その時になってから言葉だけで伝えても、黙って始めても、見通しは持てません。変わる前に、スケジュールのカードを本人の前で差し替えて見える形で伝えるのが効果的です。'
+  },
+  4: {
+    ok: '✅ 正解！最初は手を添えてでも渡せるようにし、渡せた瞬間にすぐ静かな場所へ行けるようにします。「カードを渡せば休める」とすぐに分かることで、手を噛む代わりの方法として身についていきます。',
+    ng: '❌ 不正解。手助けなしで待つと、できないまま手を噛む方法に戻ってしまいます。また、ほめるのが遅れると何がよかったのか伝わりません。手を添えてでも渡せるようにし、渡せた瞬間にすぐ休めるようにします。'
+  },
+  5: {
+    ok: '✅ 正解！5領域は「健康・生活」「運動・感覚」「認知・行動」「言語・コミュニケーション」「人間関係・社会性」です。学力・進学は含まれていません。',
+    ng: '❌ 不正解。「言語・コミュニケーション」と「人間関係・社会性」は5領域に含まれます。5領域は「健康・生活」「運動・感覚」「認知・行動」「言語・コミュニケーション」「人間関係・社会性」で、学力・進学は入っていません。'
+  }
+};
+
+function answerRQuiz(num, btn, isCorrect) {
+  if (rQuizDone[num]) return;
+  rQuizDone[num] = true;
+  rQuizAnswers[num] = isCorrect;
+  if (isCorrect) rQuizScore++;
+
+  var opts = btn.closest('.quiz-card').querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){ o.classList.add('disabled'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(function(o){
+      if (o.getAttribute('onclick').indexOf('true') !== -1) o.classList.add('correct');
+    });
+  }
+
+  var res = document.getElementById('rqres' + num);
+  res.textContent = rQuizExplanations[num][isCorrect ? 'ok' : 'ng'];
+  res.className = 'quiz-result show ' + (isCorrect ? 'ok' : 'ng');
+
+  var allDone = true;
+  for (var i = 1; i <= R_QUIZ_TOTAL; i++) { if (!rQuizDone[i]) { allDone = false; break; } }
+  if (allDone) {
+    setTimeout(function(){
+      var box = document.getElementById('rquiz-score');
+      box.classList.add('show');
+      document.getElementById('rscore-num').textContent = rQuizScore + ' / ' + R_QUIZ_TOTAL;
+      var msgs = ['全部読み直してみましょう💪','もう少し！復習してみて。','いい感じ！あと少し。','ほぼ完璧！惜しい〜','全問正解まであと一問！','全問正解！完璧です🎉'];
+      document.getElementById('rscore-msg').textContent = msgs[rQuizScore];
+    }, 400);
+  }
+}
+
+function retryRQuiz() {
+  rQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+  rQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+  rQuizScore   = 0;
+  for (var n = 1; n <= R_QUIZ_TOTAL; n++) {
+    var card = document.getElementById('rqcard'+n);
+    if (!card) continue;
+    card.querySelectorAll('.quiz-opt').forEach(function(o){ o.className = 'quiz-opt'; });
+    var res = document.getElementById('rqres'+n);
+    res.className = 'quiz-result';
+    res.textContent = '';
+  }
+  document.getElementById('rquiz-score').classList.remove('show');
+  tocScrollTo('rquiz');
 }
 
 

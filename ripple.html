@@ -1132,39 +1132,39 @@ rt {
         <span class="card-status status-now">▶ 今月のテーマ</span>
       </button>
 
-      <button class="curriculum-card disabled" data-n="8" style="--card-color:#5E7D1E;" onclick="showPage('teach')" disabled>
+      <button class="curriculum-card" data-n="8" style="--card-color:#5E7D1E;" onclick="showPage('teach')">
         <span class="card-month">Month 08 · 11月</span>
         <div class="card-title">教え方の基本——できるように教える</div>
         <div class="card-subtitle">手洗いや着替えを例に、手順の分け方・手助けの出し方と減らし方・ほめ方を学ぶ</div>
-        <span class="card-status status-future">🔒 11月に公開</span>
+        <span class="card-status status-future">📅 11月の回</span>
       </button>
 
-      <button class="curriculum-card disabled" data-n="9" style="--card-color:#546E7A;" onclick="showPage('safety')" disabled>
+      <button class="curriculum-card" data-n="9" style="--card-color:#546E7A;" onclick="showPage('safety')">
         <span class="card-month">Month 09 · 12月</span>
         <div class="card-title">命と安全を守る</div>
         <div class="card-subtitle">てんかん発作・誤嚥や窒息・飛び出し・送迎・服薬。重大な事故につながる場面への備え</div>
-        <span class="card-status status-future">🔒 12月に公開</span>
+        <span class="card-status status-future">📅 12月の回</span>
       </button>
 
-      <button class="curriculum-card disabled" data-n="10" style="--card-color:#6D4C41;" onclick="showPage('dignity')" disabled>
+      <button class="curriculum-card" data-n="10" style="--card-color:#6D4C41;" onclick="showPage('dignity')">
         <span class="card-month">Month 10 · 1月</span>
         <div class="card-title">虐待防止と身体拘束——尊厳を守る</div>
         <div class="card-subtitle">不適切な支援のグレーゾーンと、行動が激しいときにしてよいこと・いけないこと</div>
-        <span class="card-status status-future">🔒 1月に公開</span>
+        <span class="card-status status-future">📅 1月の回</span>
       </button>
 
-      <button class="curriculum-card disabled" data-n="11" style="--card-color:#8E24AA;" onclick="showPage('puberty')" disabled>
+      <button class="curriculum-card" data-n="11" style="--card-color:#8E24AA;" onclick="showPage('puberty')">
         <span class="card-month">Month 11 · 2月</span>
         <div class="card-title">思春期と性の支援</div>
         <div class="card-subtitle">体の変化、プライベートとパブリック、性被害・加害を防ぐための関わり</div>
-        <span class="card-status status-future">🔒 2月に公開</span>
+        <span class="card-status status-future">📅 2月の回</span>
       </button>
 
-      <button class="curriculum-card disabled" data-n="12" style="--card-color:#9C6F0A;" onclick="showPage('review')" disabled>
+      <button class="curriculum-card" data-n="12" style="--card-color:#9C6F0A;" onclick="showPage('review')">
         <span class="card-month">Month 12 · 3月</span>
         <div class="card-title">1年の振り返り——一人の子を見る力へ</div>
         <div class="card-subtitle">12回の学びを総動員して、一人の子どもを一緒に考える</div>
-        <span class="card-status status-future">🔒 3月に公開</span>
+        <span class="card-status status-future">📅 3月の回</span>
       </button>
 
     </div>
@@ -7369,10 +7369,9 @@ function applyCurriculum() {
       status.className = 'card-status status-now';
       status.textContent = '▶ 今月のテーマ';
     } else {
-      card.disabled = true;
-      card.classList.add('disabled');
+      card.disabled = false;
       status.className = 'card-status status-future';
-      status.textContent = '🔒 ' + c.m + '月に公開';
+      status.textContent = '📅 ' + c.m + '月の回';
     }
   });
 
@@ -7406,7 +7405,7 @@ function applyCurriculum() {
     }
     var nextTitle = document.querySelector('.curriculum-card[data-n="' + next.n + '"] .card-title');
     if (title && nextTitle) title.textContent = nextTitle.textContent.split('——')[0];
-    if (next.n <= cur && document.getElementById('page-' + next.id)) {
+    if (document.getElementById('page-' + next.id)) {
       if (desc) desc.textContent = 'Month ' + lecturePad(next.n) + ' · ' + next.m + '月の研修テーマ';
       if (tag) { tag.textContent = 'Month ' + lecturePad(next.n) + ' を見る →'; tag.style.cursor = 'pointer'; tag.onclick = function(){ showPage(next.id); }; }
     } else {

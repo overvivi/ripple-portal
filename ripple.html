@@ -913,6 +913,67 @@ rt {
 .about-doc p:last-child { margin-bottom:0; }
 
 /* =====================
+   講師用メモ（担当する人だけが開く）
+===================== */
+.presenter-note {
+  background:#1E2A2F;
+  color:#E8EEF0;
+  border-radius:14px;
+  margin:0 0 22px;
+  overflow:hidden;
+  box-shadow:var(--shadow-card);
+}
+.presenter-note > summary {
+  list-style:none;
+  cursor:pointer;
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.6;
+  -webkit-tap-highlight-color:transparent;
+}
+.presenter-note > summary::-webkit-details-marker { display:none; }
+.presenter-note > summary::after {
+  content:'＋';
+  margin-left:auto;
+  font-size:15px;
+  color:#9FB3BA;
+  flex-shrink:0;
+}
+.presenter-note[open] > summary::after { content:'−'; }
+.pn-tag {
+  font-size:10px;
+  font-weight:700;
+  background:#F5A623;
+  color:#1E2A2F;
+  border-radius:6px;
+  padding:3px 8px;
+  letter-spacing:.04em;
+  flex-shrink:0;
+}
+.pn-body {
+  padding:6px 16px 18px;
+  font-size:12.5px;
+  line-height:1.95;
+  color:#D5DEE1;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.pn-body h4 { font-size:12px; color:#F5A623; margin:16px 0 6px; letter-spacing:.05em; }
+.pn-body p { margin:0 0 8px; }
+.pn-body ul { margin:0 0 8px; padding-left:1.2em; }
+.pn-body li { margin-bottom:4px; }
+.pn-body strong { color:#FFFFFF; }
+.pn-time { width:100%; border-collapse:collapse; font-size:12px; margin:2px 0 10px; }
+.pn-time td { padding:6px 8px; border-bottom:1px solid rgba(255,255,255,.08); vertical-align:top; }
+.pn-time td:first-child { white-space:nowrap; color:#F5A623; font-weight:700; width:52px; }
+.pn-q { background:rgba(255,255,255,.06); border-radius:8px; padding:9px 11px; margin-bottom:6px; }
+.pn-body rt { color:#9FB3BA; }
+@media print { .presenter-note { display:none !important; } }
+
+/* =====================
    印刷用スタイル
 ===================== */
 @media print {
@@ -972,7 +1033,7 @@ rt {
     <div class="header-nav">
       <button onclick="scrollToSection('curriculum')">カリキュラム</button>
       <button onclick="scrollToSection('about')">りぷるとは</button>
-      <button onclick="showPage('niji')">今月</button>
+      <button onclick="showPage('visual')">今月</button>
     </div>
   </div>
 </header>
@@ -997,16 +1058,16 @@ rt {
     <div class="progress-wrap">
       <span class="progress-label">📚 2026年度の進捗</span>
       <div class="progress-bar-bg">
-        <div class="progress-bar-fill" style="width:50%"></div>
+        <div class="progress-bar-fill" style="width:58.33%"></div>
       </div>
-      <span class="progress-count">6 / 12 完了</span>
+      <span class="progress-count">7 / 12 完了</span>
     </div>
 
     <div class="notice-bar">
       <div class="notice-icon">📢</div>
       <p>
-        <strong>今月（2026年9月）</strong>の研修テーマは<br>
-        「<strong>二次障害と自己肯定感——叱責が積み重なる前に</strong>」です。<br>
+        <strong>今月（2026年10月）</strong>の研修テーマは<br>
+        「<strong>伝わる環境をつくる——見てわかる・伝えられる</strong>」です。<br>
         下のカードをタップしてコンテンツを開いてください。
       </p>
     </div>
@@ -1055,19 +1116,19 @@ rt {
         <span class="card-status status-soon">✅ 先月の資料</span>
       </button>
 
-      <button class="curriculum-card current" style="--card-color:#A23A6E;" onclick="showPage('niji')">
+      <button class="curriculum-card" style="--card-color:#A23A6E;" onclick="showPage('niji')">
         <span class="card-month">Month 06 · 9月</span>
         <div class="card-title">二次障害と自己肯定感——叱責が積み重なる前に</div>
         <div class="card-subtitle">困った行動を叱って止める前に。行動の裏側を読み、自己肯定感を守る関わりを学ぶ</div>
-        <span class="card-status status-now">▶ 今月のテーマ</span>
+        <span class="card-status status-soon">✅ 先月の資料</span>
       </button>
 
-      <div class="curriculum-card disabled" style="--card-color:#F39C12;">
+      <button class="curriculum-card current" style="--card-color:#3949AB;" onclick="showPage('visual')">
         <span class="card-month">Month 07 · 10月</span>
-        <div class="card-title" style="color:#bbb;">？？？</div>
-        <div class="card-subtitle" style="color:#ccc;">スタッフからのリクエストや気になるテーマを募集中！</div>
-        <span class="card-status status-future">準備中</span>
-      </div>
+        <div class="card-title">伝わる環境をつくる——見てわかる・伝えられる</div>
+        <div class="card-subtitle">視覚支援・構造化・絵カードやサイン。わかる手がかりと、伝える手段を子どもに渡す</div>
+        <span class="card-status status-now">▶ 今月のテーマ</span>
+      </button>
 
       <div class="curriculum-card disabled" style="--card-color:#1ABC9C;">
         <span class="card-month">Month 08 · 11月</span>
@@ -4546,10 +4607,10 @@ rt {
       <div class="next-month" style="background:#1A3A3A;">
         <div class="nm-left">
           <p class="nm-sub">▶ NEXT MONTH</p>
-          <p class="nm-title">Coming Soon 🔒</p>
-          <p class="nm-desc">来月のテーマは準備中です。お楽しみに！</p>
+          <p class="nm-title">伝わる環境をつくる</p>
+          <p class="nm-desc">わかる手がかりと、伝える手段を渡す。</p>
         </div>
-        <span class="nm-tag" style="background:#A23A6E;">Coming Soon →</span>
+        <span class="nm-tag" style="background:#A23A6E;cursor:pointer;" onclick="showPage('visual')">Month 07 を見る →</span>
       </div>
     </div>
 
@@ -4576,6 +4637,533 @@ rt {
 
 </div><!-- /page-niji -->
 
+<!-- ========================================
+     Month 07 · 伝わる環境をつくる
+======================================== -->
+<div class="page" id="page-visual">
+
+  <div class="asd-hero" style="background:linear-gradient(135deg,#1A237E 0%,#3949AB 55%,#7986CB 100%);">
+    <div class="month-tag">🌊 Month 07 · 2026年10月の研修テーマ</div>
+    <h1>伝わる環境をつくる<br>——見てわかる・伝えられる</h1>
+    <p class="lead">
+      「言っても伝わらない」のではなく、<br>
+      「伝わる形になっていない」のかもしれません。<br>
+      わかる手がかりと、伝える手段を<br>
+      子どもに渡しましょう。
+    </p>
+  </div>
+
+  <div class="toc-wrapper">
+    <div class="toc-box">
+      <span class="toc-label">目次 — タップでスクロール</span>
+      <button class="toc-item" onclick="tocScrollTo('v1')">なぜ「伝わる」なのか</button>
+      <button class="toc-item" onclick="tocScrollTo('v2')">言葉は消える</button>
+      <button class="toc-item" onclick="tocScrollTo('v3')">届く手がかりを選ぶ</button>
+      <button class="toc-item" onclick="tocScrollTo('v4')">見える形にする</button>
+      <button class="toc-item" onclick="tocScrollTo('v5')">発信を受け取る</button>
+      <button class="toc-item" onclick="tocScrollTo('v6')">伝える手段を渡す</button>
+      <button class="toc-item" onclick="tocScrollTo('v7')">言葉で伝えるとき</button>
+      <button class="toc-item" onclick="tocScrollTo('v8')">NG対応</button>
+      <button class="toc-item" onclick="tocScrollTo('vquiz')">チャレンジクイズ</button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- 講師用メモ -->
+    <details class="presenter-note">
+      <summary><span class="pn-tag">講師用メモ</span>この回を担当する人へ（読む前に開いてください）</summary>
+      <div class="pn-body">
+        <h4>この回のねらい</h4>
+        <p>子どもの行動の裏にある「わからない」「伝えられない」に、こちらから手を打てるようになること。<strong><ruby>叱る<rt>しかる</rt></ruby>場面を減らすいちばんの近道は、伝わる環境をつくること</strong>——この一言が持ち帰ってもらえれば成功です。</p>
+
+        <h4>準備しておくもの</h4>
+        <ul>
+          <li>事業所で実際に使っている<ruby>視覚支援<rt>しかくしえん</rt></ruby>を<strong>1つ手元に</strong>（スケジュールのカード、絵カード、写真など）。見せながら話すと一気に伝わります</li>
+          <li>なければスマホで撮った事業所の写真（おやつの机、トイレの入口など）でも十分です</li>
+        </ul>
+
+        <h4>時間配分（目安 約14分）</h4>
+        <table class="pn-time"><tbody>
+          <tr><td>1分</td><td>1. なぜ「伝わる」なのか — 先月の<ruby>氷山<rt>ひょうざん</rt></ruby>モデルを一言ふり返ってからつなげる</td></tr>
+          <tr><td>1分半</td><td>2. 言葉は消える — 「聞いた言葉は消える、見たものは残る」を強調</td></tr>
+          <tr><td>2分</td><td>3. 届く手がかりを選ぶ — 準備した実物を見せる。問いかけ①</td></tr>
+          <tr><td>2分</td><td>4. 見える形にする — 予定が変わるときの伝え方はしっかり読む</td></tr>
+          <tr><td>2分</td><td>5. 発信を受け取る — 問いかけ②</td></tr>
+          <tr><td>2分</td><td>6. 伝える手段を渡す — 「話さなくなる？」の誤解を必ず解く</td></tr>
+          <tr><td>1分</td><td>7. 言葉で伝えるとき — 表の左右を読み比べるだけでよい</td></tr>
+          <tr><td>1分</td><td>8. NG対応 — 読み上げる</td></tr>
+          <tr><td>1分</td><td>クイズ — 全員で考えるのは Q2 と Q4 の2問だけ。残りは各自で</td></tr>
+          <tr><td>30秒</td><td>まとめ — 最後の3行を読む</td></tr></tbody>
+        </table>
+        <p>時間が押したら、<strong>セクション7は「左が NG、右が OK」とだけ伝えて飛ばしてかまいません。</strong>「もっと詳しく」は会議中には開かなくて大丈夫です。質問が出たときに開いてください。</p>
+
+        <h4>問いかけの例</h4>
+        <div class="pn-q">① セクション3のあと：「この事業所で、次の予定を伝えるのに一番通じているのはどの方法？ 子どもによって違う？」</div>
+        <div class="pn-q">② セクション5のあと：「最近、言葉以外で何かを伝えてきた子はいた？ どんな行動だった？」</div>
+        <p>答えが出なくても大丈夫です。少し間を取って、出なければ「たとえば〜」と自分の経験を一つ話してから次へ進んでください。</p>
+
+        <h4>よくある質問と答え方</h4>
+        <div class="pn-q"><strong>Q. 絵カードを使うと、話さなくなりませんか？</strong><br>A. 研究では逆です。<ruby>発語<rt>はつご</rt></ruby>が減った例はなく、多くの子で増えていました（セクション6の「もっと詳しく」に根拠があります）。</div>
+        <div class="pn-q"><strong>Q. 話せる子にも視覚支援はいりますか？</strong><br>A. いります。聞いた言葉は消えますが、見たものは残ります。興奮したときや緊張したときに言葉が出なくなる子もいます。</div>
+        <div class="pn-q"><strong>Q. カードを作る時間がありません。</strong><br>A. スマホで写真を撮って印刷するだけで十分です。最初から完璧なものを作る必要はありません。</div>
+
+        <h4>気をつけること</h4>
+        <p>事業所の子どもの名前を出して話すときは、外部の人がいない場で。「この子はできない」という話し方にならないよう、<strong>「この子にはどの方法が届くか」</strong>という言い方を心がけてください。</p>
+      </div>
+    </details>
+
+    <!-- V1 -->
+    <div class="content-section" id="v1">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#3949AB;">1</div>
+        <h2 class="section-heading">なぜ「伝わる」なのか</h2>
+      </div>
+      <div class="content-card">
+        <p>先月は、行動の裏側——<ruby>氷山<rt>ひょうざん</rt></ruby>の水面下——を読む方法を学びました。その水面下で、とても多いのが次の2つです。</p>
+        <ul class="plain-list" style="margin:0 0 12px;padding-left:1.2em;">
+          <li><strong>わからない</strong> — 次に何があるのか、何をすればいいのかが分からず、不安が行動になる</li>
+          <li><strong>伝えられない</strong> — して欲しいこと、嫌なことを伝える手段がなく、行動で伝えるしかない</li>
+        </ul>
+        <p>今月は、この2つに直接手を打ちます。<strong><ruby>叱る<rt>しかる</rt></ruby>場面を減らすいちばんの近道は、伝わる環境をつくることです。</strong></p>
+        <div class="highlight-box" style="border-left-color:#3949AB;background:#EEF0FA;">
+          <p style="color:#1A237E;">💡 <strong>今月のキーワードは2つ</strong><br>
+          ・<strong>わかる手がかり</strong> — 大人から子どもへ<br>
+          ・<strong>伝える手段</strong> — 子どもから大人へ<br>
+          両方向がそろって、はじめて「伝わる」になります。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- V2 -->
+    <div class="content-section" id="v2">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#3949AB;">2</div>
+        <h2 class="section-heading">聞いた言葉は消える、見たものは残る</h2>
+      </div>
+      <div class="content-card">
+        <p>言葉は、言った瞬間に消えます。聞き逃したら、もう確かめる方法がありません。</p>
+        <p>見たものは残ります。<strong>何度でも見返せて、自分のペースで理解できます。</strong></p>
+        <p><ruby>発達障害<rt>はったつしょうがい</rt></ruby>や<ruby>知的障害<rt>ちてきしょうがい</rt></ruby>のある子は、耳から入る情報より、<strong>目から入る情報のほうが理解しやすい傾向</strong>があると言われています。これは話せる子にも当てはまります。会話ができる子でも、聞いた指示を覚えておくのは苦手、ということはよくあります。</p>
+      </div>
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>「何回言ったらわかるの」と感じたら、</strong>それは「言う」以外の方法を試すサインです。同じことを何回言っても、言葉が消える性質は変わりません。</p>
+      </div>
+    </div>
+
+    <!-- V3 -->
+    <div class="content-section" id="v3">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#3949AB;">3</div>
+        <h2 class="section-heading">その子に届く手がかりを選ぶ</h2>
+      </div>
+      <div class="content-card">
+        <p>「見せる」といっても、何を見せればいいかは子どもによって違います。<strong>その子に届くものを選ぶ</strong>ことが大切です。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;">👁️ 手がかりの種類</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EEF0FA;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:13px;font-weight:700;color:#1A237E;min-width:64px;">実物</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">靴を見せたら「帰る」、コップを見せたら「おやつ」。<strong>絵の意味がまだ分からない子にも届きます。</strong></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EEF0FA;border-radius:10px;border-left:4px solid #5C6BC0;">
+            <div style="font-size:13px;font-weight:700;color:#1A237E;min-width:64px;">写真</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">実際の場所・物・人の写真。<strong>実物の次に分かりやすい</strong>手がかりです。</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EEF0FA;border-radius:10px;border-left:4px solid #7986CB;">
+            <div style="font-size:13px;font-weight:700;color:#1A237E;min-width:64px;">絵・記号</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">イラストや<ruby>線画<rt>せんが</rt></ruby>のカード。たくさん作れて、持ち運びもしやすいです。</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EEF0FA;border-radius:10px;border-left:4px solid #9FA8DA;">
+            <div style="font-size:13px;font-weight:700;color:#1A237E;min-width:64px;">文字</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">読める子に。<strong>絵と一緒に使う</strong>と安心です。</div>
+          </div>
+        </div>
+        <p style="font-size:11.5px;color:var(--mid);margin-top:14px;line-height:1.8;">上ほど具体的で、下ほど<ruby>抽象的<rt>ちゅうしょうてき</rt></ruby>です。<strong>上が<ruby>劣って<rt>おとって</rt></ruby>いて下がすぐれている、ではありません。</strong>その子に一番届くものが、その子にとっての正解です。</p>
+      </div>
+
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">🖼️</div>
+          <div class="tip-content">
+            <strong>余計な情報を入れない</strong>
+            <p>背景がごちゃごちゃした写真や、描き込みの多い絵は、どこを見ればいいか分からなくなります。<strong>伝えたいものだけが写っている</strong>ものを選んでください。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🤝</div>
+          <div class="tip-content">
+            <strong>職員みんなで同じものを使う</strong>
+            <p>人によってカードや言い方が違うと、子どもは毎回覚え直すことになります。<strong>同じ意味には、いつも同じ手がかり</strong>をそろえましょう。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- V4 -->
+    <div class="content-section" id="v4">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#3949AB;">4</div>
+        <h2 class="section-heading">場所・時間・手順を見える形にする</h2>
+      </div>
+      <div class="content-card">
+        <p>手がかりを使って、子どもの周りの環境そのものを分かりやすくする考え方を<strong><ruby>構造化<rt>こうぞうか</rt></ruby></strong>といいます。先月の<ruby>氷山<rt>ひょうざん</rt></ruby>モデルと同じ、TEACCHという支援の考え方から来ています。</p>
+        <p>見える形にするのは、主にこの4つです。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F7F8FC;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:13px;font-weight:700;color:#1A237E;min-width:64px;">📍 場所</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>この場所ではこれをする</strong>を決める。おやつの机、休憩のコーナー、荷物の棚。1つの場所に1つの活動が基本です。</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F7F8FC;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:13px;font-weight:700;color:#1A237E;min-width:64px;">🕐 時間</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>スケジュール</strong>。今日の流れを上から順に並べ、終わったものは外す・裏返す。「次に何があるか」がいつでも確かめられます。</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F7F8FC;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:13px;font-weight:700;color:#1A237E;min-width:64px;">📋 手順</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;"><strong>何を、どれだけやれば終わりか</strong>。左から右へ並べて、終わったら「おわり」の箱へ。終わりが見えると取り組みやすくなります。</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F7F8FC;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:13px;font-weight:700;color:#1A237E;min-width:64px;">👀 目印</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">床のテープで立つ位置を示す、必要な数だけ置く、色で分ける。<strong>説明しなくても見て分かる</strong>工夫です。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+        <p style="color:#B03A2E;">🔄 <strong>予定が変わるときの伝え方</strong><br>
+        見通しを頼りにしている子ほど、急な変更は大きな負担になります。<br>
+        ・<strong>変わる前に</strong>、見える形で伝える（「へんこう」のカードなど）<br>
+        ・<strong>本人の前で</strong>、スケジュールのカードを差し替える<br>
+        ・変わったあとの予定を、<strong>もう一度最初から</strong>一緒に確かめる<br>
+        変更そのものより、「知らないうちに変わっていた」ことが混乱のもとになります。</p>
+      </div>
+
+      <details class="deep-box" style="--db-color:#3949AB;">
+        <summary><span class="db-tag">もっと詳しく</span>構造化はどこから来た考え方か</summary>
+        <div class="db-body">
+          <p>構造化は、米国ノースカロライナ州で始まった<strong>TEACCH</strong>という<ruby>自閉症<rt>じへいしょう</rt></ruby>支援の考え方の中心にあるものです。先月の氷山モデルも、同じTEACCHから生まれています。</p>
+          <p>分け方は資料によって少しずつ違い、「場所・時間・手順・見た目」の4つで説明されることもあれば、「ルーティンの活用」を加えて5つにする説明や、「コミュニケーションの構造化」を入れる説明もあります。<strong>名前の分け方より、考え方のほうが大切です。</strong></p>
+          <p>その考え方とは、<strong>子どもを環境に合わせるのではなく、環境を子どもに合わせる</strong>ということ。そして目指すのは、<strong>大人に言われなくても、その子が自分でわかって動ける</strong>状態です。手がかりは、子どもを動かすための道具ではなく、子どもが自分で動くための道具です。</p>
+          <p class="db-note">出典：LITALICO発達ナビ「TEACCHプログラムとは」/ 長崎大学病院 精神科神経科「TEACCH」資料 / 四谷学院療育センター</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- V5 -->
+    <div class="content-section" id="v5">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#3949AB;">5</div>
+        <h2 class="section-heading">子どもからの発信を受け取る</h2>
+      </div>
+      <div class="content-card">
+        <p>伝える手段を渡す前に、まずやることがあります。<strong>子どもがすでに出している発信に気づくこと</strong>です。言葉が少ない子も、さまざまな形で伝えています。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F7F8FC;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:12px;font-weight:700;color:#1A237E;min-width:84px;">行動</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">大人の手を取って欲しい物のところへ連れていく、物を持ってくる、その場から離れる</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F7F8FC;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:12px;font-weight:700;color:#1A237E;min-width:84px;">表情・体</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">目をそらす、体を固くする、笑う、声を出す、手をひらひらさせる</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F7F8FC;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:12px;font-weight:700;color:#1A237E;min-width:84px;">言葉の<br>くり返し</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">オウム返しや、テレビのセリフのくり返し。意味がないように聞こえても、<strong>「いいよ」「ほしい」「不安」を伝えていることがあります</strong></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F7F8FC;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:12px;font-weight:700;color:#1A237E;min-width:84px;">いつもと<br>違う</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">食べない、寝ない、同じ動きが増える、いつもの場所に行かない</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout-warm">
+        <span class="ci">🌊</span>
+        <p><strong>「意味がない」と思った行動ほど、発信かもしれません。</strong>見逃しを減らすいちばんの方法は、その子の「いつも」をよく知っておくことです。いつもを知っていれば、「いつもと違う」に気づけます。</p>
+      </div>
+
+      <details class="deep-box" style="--db-color:#3949AB;">
+        <summary><span class="db-tag">もっと詳しく</span>オウム返し（エコラリア）の2つの種類と働き</summary>
+        <div class="db-body">
+          <p>聞いた言葉をくり返すことを<strong>エコラリア</strong>（<ruby>反響言語<rt>はんきょうげんご</rt></ruby>）といいます。大きく2つに分けられます。</p>
+          <div class="db-row"><div class="db-row-k">すぐ返す</div><div class="db-row-v">聞いた直後にくり返す。「お茶飲む？」→「お茶飲む？」</div></div>
+          <div class="db-row"><div class="db-row-k">あとで出る</div><div class="db-row-v">時間をおいてくり返す。前に聞いたテレビのセリフや、大人の言葉が別の場面で出てくる</div></div>
+          <p>かつては「意味のないくり返し」と考えられていましたが、研究によって<strong>さまざまな働きを持っている</strong>ことが分かってきました。「お茶飲む？」をくり返すのが「はい、飲みたい」の意味だったり、前に聞いた「大丈夫だよ」をくり返して自分を落ち着かせていたりします。</p>
+          <p><strong>止めさせる前に、その子にとってどんな意味があるのかを考えてみてください。</strong>どの場面で、どんな言葉が出るのかを記録しておくと、意味が見えてくることがあります。</p>
+          <p class="db-note">出典：Prizant &amp; Duchan（1981）/ Prizant &amp; Rydell（1984）/ 兵庫教育大学「自閉スペクトラム者のエコラリアに込められた心情に着目したアプローチの検討」/ コペルプラス</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- V6 -->
+    <div class="content-section" id="v6">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#3949AB;">6</div>
+        <h2 class="section-heading">伝える手段を渡す</h2>
+      </div>
+      <div class="content-card">
+        <p>言葉を補ったり、言葉の代わりになったりするコミュニケーションの方法をまとめて<strong>AAC</strong>（<ruby>拡大<rt>かくだい</rt></ruby>・<ruby>代替<rt>だいたい</rt></ruby>コミュニケーション）といいます。難しく聞こえますが、身近なものばかりです。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EEF0FA;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:12px;font-weight:700;color:#1A237E;min-width:84px;">絵カード・<br>ボード</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">カードを指さす、相手に渡す。ボードに並べた絵を指して伝える</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EEF0FA;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:12px;font-weight:700;color:#1A237E;min-width:84px;">PECS</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">絵カードを<strong>相手に渡す</strong>ことから始める方法。最初に<strong>「自分から伝える」</strong>ことを教えるのが特徴です</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EEF0FA;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:12px;font-weight:700;color:#1A237E;min-width:84px;">サイン</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">手や体の動きで表す。マカトン法など。<strong>道具がなくても、どこでも使える</strong>のが強みです</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#EEF0FA;border-radius:10px;border-left:4px solid #3949AB;">
+            <div style="font-size:12px;font-weight:700;color:#1A237E;min-width:84px;">音声が出る<br>機器・アプリ</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.8;">ボタンや画面の絵を押すと声が出る。離れた人にも伝わります</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="myth-fact-list">
+        <div class="myth-fact-pair">
+          <div class="myth-box"><div class="mf-label">❌ よくある心配</div><div class="mf-text">「絵カードやサインを使うと、話そうとしなくなる」</div></div>
+          <div class="fact-box"><div class="mf-label">✅ 研究では</div><div class="mf-text"><strong>逆です。</strong><ruby>発語<rt>はつご</rt></ruby>が減った例は見つからず、<strong>多くの子で発語が増えていました。</strong>伝わる経験が、伝えたい気持ちを育てます。</div></div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <p><strong>話せる子にも役に立ちます。</strong>興奮しているとき、緊張しているとき、困っているときに、いつもは話せる子でも言葉が出なくなることがあります。そんなときにカードを指させれば、伝えることをあきらめずに済みます。</p>
+      </div>
+
+      <details class="deep-box" style="--db-color:#3949AB;">
+        <summary><span class="db-tag">もっと詳しく</span>「使うと話さなくなる？」——研究の中身</summary>
+        <div class="db-body">
+          <p>2006年に、<ruby>知的障害<rt>ちてきしょうがい</rt></ruby>や<ruby>自閉症<rt>じへいしょう</rt></ruby>のある人へのAACの指導が、話す力にどう影響したかを調べた研究をまとめたレビューが発表されました（Millar, Light &amp; Schlosser）。</p>
+          <div class="db-row"><div class="db-row-k">発語が減った</div><div class="db-row-v"><strong>0事例</strong></div></div>
+          <div class="db-row"><div class="db-row-k">変化なし</div><div class="db-row-v">約11%</div></div>
+          <div class="db-row"><div class="db-row-k">発語が増えた</div><div class="db-row-v"><strong>約89%</strong></div></div>
+          <p>伸びの大きさは控えめなものが多く、研究の方法に限界があることも著者自身が指摘しています。ただ、<strong>「AACが話す力を妨げる」という根拠は見つからなかった</strong>という点は、その後の研究でも支持されています。</p>
+          <p>保護者から「カードを使うと話さなくなりませんか」と聞かれたときは、<strong>「研究では、むしろ話す力が伸びた子のほうが多いと分かっています」</strong>と答えて大丈夫です。</p>
+          <p class="db-note">出典：Millar, D. C., Light, J. C., &amp; Schlosser, R. W.（2006）Journal of Speech, Language, and Hearing Research, 49(2), 248-264</p>
+        </div>
+      </details>
+
+      <details class="deep-box" style="--db-color:#3949AB;">
+        <summary><span class="db-tag">もっと詳しく</span>PECSの6つの段階</summary>
+        <div class="db-body">
+          <p>PECS（絵カード<ruby>交換式<rt>こうかんしき</rt></ruby>コミュニケーション・システム）は、1985年に米国でアンディ・ボンディとロリ・フロストが開発しました。6つの段階で進みます。</p>
+          <div class="db-row"><div class="db-row-k">段階1</div><div class="db-row-v">欲しい物の絵カードを、相手に<strong>渡す</strong></div></div>
+          <div class="db-row"><div class="db-row-k">段階2</div><div class="db-row-v">離れた場所にいる人や、いろいろな人にも渡しにいく</div></div>
+          <div class="db-row"><div class="db-row-k">段階3</div><div class="db-row-v">何枚かの中から、欲しい物のカードを<strong>選ぶ</strong></div></div>
+          <div class="db-row"><div class="db-row-k">段階4</div><div class="db-row-v">「ください」のカードと組み合わせて<strong>文をつくる</strong></div></div>
+          <div class="db-row"><div class="db-row-k">段階5</div><div class="db-row-v">「何が欲しい？」という質問に答える</div></div>
+          <div class="db-row"><div class="db-row-k">段階6</div><div class="db-row-v">「何が見える？」などに答えて、<strong>気づいたことを伝える</strong></div></div>
+          <p>PECSが大切にしているのは、<strong>大人に聞かれる前に、子どもが自分から伝える</strong>ことです。そのため最初の段階では、あえて「何が欲しい？」と聞きません。</p>
+          <p>本格的に取り入れるには、正式な研修を受けることが勧められています。事業所で導入するときは、専門の研修や<ruby>相談支援専門員<rt>そうだんしえんせんもんいん</rt></ruby>につないでください。</p>
+          <p class="db-note">出典：Bondy &amp; Frost「絵カード交換式コミュニケーション・システム」（門眞一郎訳）/ ピラミッド教育コンサルタントオブジャパン / 国立障害者リハビリテーションセンター「放課後等デイサービス事業所での支援・活動のアイデア」</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- V7 -->
+    <div class="content-section" id="v7">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#3949AB;">7</div>
+        <h2 class="section-heading">言葉で伝えるときのコツ</h2>
+      </div>
+      <div class="content-card">
+        <p>見える手がかりを使うときも、言葉はやはり使います。言葉の出し方ひとつで、伝わり方は大きく変わります。</p>
+      </div>
+
+      <div style="background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow-card);margin-bottom:16px;">
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
+            <thead>
+              <tr>
+                <th style="padding:8px 10px;background:#F5F5F5;border:1px solid #E0E0E0;color:#555;text-align:left;">コツ</th>
+                <th style="padding:8px 10px;background:#FDEDEC;border:1px solid #E0E0E0;color:#B03A2E;text-align:left;">❌ 伝わりにくい</th>
+                <th style="padding:8px 10px;background:#EEF0FA;border:1px solid #E0E0E0;color:#1A237E;text-align:left;">✅ 伝わりやすい</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;">短く</td><td style="padding:8px 10px;border:1px solid #E0E0E0;">そろそろ帰る時間になるから、片付けしようか</td><td style="padding:8px 10px;border:1px solid #E0E0E0;">片付けます</td></tr>
+              <tr><td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;">具体的に</td><td style="padding:8px 10px;border:1px solid #E0E0E0;">ちゃんとして</td><td style="padding:8px 10px;border:1px solid #E0E0E0;">いすに座ります</td></tr>
+              <tr><td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;"><ruby>肯定<rt>こうてい</rt></ruby>の形で</td><td style="padding:8px 10px;border:1px solid #E0E0E0;">走らないで</td><td style="padding:8px 10px;border:1px solid #E0E0E0;">歩きます</td></tr>
+              <tr><td style="padding:8px 10px;border:1px solid #E0E0E0;font-weight:700;">一度に一つ</td><td style="padding:8px 10px;border:1px solid #E0E0E0;">手を洗って、カバンを置いて、座ってね</td><td style="padding:8px 10px;border:1px solid #E0E0E0;">手を洗います（終わってから次）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <ul class="tip-list">
+        <li>
+          <div class="tip-icon">👀</div>
+          <div class="tip-content">
+            <strong>見せながら言う</strong>
+            <p>言葉と一緒に、絵や実物を見せる。言葉が消えても、見たものが残ります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">⏳</div>
+          <div class="tip-content">
+            <strong>言ったら待つ</strong>
+            <p>言ってから数秒待ちましょう。すぐに言い直すと、情報が増えてかえって混乱します。理解するのに時間がかかる子は少なくありません。</p>
+          </div>
+        </li>
+        <li>
+          <div class="tip-icon">🙋</div>
+          <div class="tip-content">
+            <strong>こちらに注意が向いてから言う</strong>
+            <p>名前を呼ぶ、肩にそっと触れる、目の前に回る。こちらを見ていないときの言葉は、なかなか届きません。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- V8 -->
+    <div class="content-section" id="v8">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#3949AB;">8</div>
+        <h2 class="section-heading">やってはいけないNG対応</h2>
+      </div>
+      <div class="highlight-box" style="border-left-color:#C0392B;background:#FDEDEC;">
+        <p style="color:#B03A2E;">🚫 <strong>伝わる環境を壊してしまう対応</strong><br>
+        ・伝わらないからと<strong>声を大きくする</strong>／<ruby>刺激<rt>しげき</rt></ruby>が増えるだけで、伝わりやすくはなりません<br>
+        ・<strong>職員ごとにカードやサインが違う</strong>／子どもは毎回覚え直すことになります<br>
+        ・手を引く、オウム返しなどの<strong>発信を無視する・やめさせる</strong>／伝えようとする気持ちを<ruby>摘んで<rt>つんで</rt></ruby>しまいます<br>
+        ・絵カードを<strong>取り上げる、ごほうびにする</strong>／伝える手段は、その子の声と同じです<br>
+        ・本人の前で<strong>「この子はわかってないから」</strong>と話す／言葉の意味は分からなくても、雰囲気は伝わっています</p>
+      </div>
+    </div>
+
+    <!-- クイズ -->
+    <div class="quiz-section content-section" id="vquiz">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#3949AB;">✓</div>
+        <h2 class="section-heading">🔥 チャレンジクイズ</h2>
+      </div>
+      <div class="content-card" style="background:#EEF0FA;border:1.5px solid #C5CAE9;margin-bottom:16px;">
+        <p style="color:#1A237E;font-size:13px;line-height:1.9;">今日の内容をちゃんと読めば全問解けます。<strong>なんとなくで選ぶと間違えます。</strong>💪</p>
+      </div>
+
+      <div class="quiz-card" id="vqcard1">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#3949AB;">Q1</span>耳からの指示より、見える手がかりのほうが伝わりやすいのはなぜですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerVQuiz(1,this,false)">絵や写真は言葉より正確で、受け取り方に違いが出ることがないから</button>
+          <button class="quiz-opt" onclick="answerVQuiz(1,this,true)">見たものは消えずに残り、自分のペースで何度でも確かめられるから</button>
+          <button class="quiz-opt" onclick="answerVQuiz(1,this,false)">耳で聞いた情報は、もともと理解する力が<ruby>備わって<rt>そなわって</rt></ruby>いないことが多いから</button>
+        </div>
+        <div class="quiz-result" id="vqres1"></div>
+      </div>
+
+      <div class="quiz-card" id="vqcard2">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#3949AB;">Q2</span>絵カードの意味がまだ分からない子に、次の活動を伝える方法として最も適しているのはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerVQuiz(2,this,false)">絵カードをくり返し見せて、意味を覚えるまで練習してもらう</button>
+          <button class="quiz-opt" onclick="answerVQuiz(2,this,false)">言葉でゆっくり丁寧に説明し、身ぶりも大きくつけて伝える</button>
+          <button class="quiz-opt" onclick="answerVQuiz(2,this,true)">次の活動で実際に使う物を見せて、これからすることと結びつける</button>
+        </div>
+        <div class="quiz-result" id="vqres2"></div>
+      </div>
+
+      <div class="quiz-card" id="vqcard3">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#3949AB;">Q3</span>子どもがオウム返しをするとき、受け止め方として最も適切なのはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerVQuiz(3,this,true)">要求や不安などを伝えている可能性があると考え、場面と合わせて見る</button>
+          <button class="quiz-opt" onclick="answerVQuiz(3,this,false)">意味のない反射的なくり返しなので、気にせず次の活動へ進める</button>
+          <button class="quiz-opt" onclick="answerVQuiz(3,this,false)">正しい言い方を身につけられるよう、その都度言い直してもらう</button>
+        </div>
+        <div class="quiz-result" id="vqres3"></div>
+      </div>
+
+      <div class="quiz-card" id="vqcard4">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#3949AB;">Q4</span>「絵カードやサインを使うと話さなくなるのでは」という心配への答えとして正しいのはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerVQuiz(4,this,false)">話す力は少し落ちるが、伝えられるようになる利点のほうが大きい</button>
+          <button class="quiz-opt" onclick="answerVQuiz(4,this,true)">研究では<ruby>発語<rt>はつご</rt></ruby>が減った例は見つからず、多くの子でむしろ増えていた</button>
+          <button class="quiz-opt" onclick="answerVQuiz(4,this,false)">話せる見込みのある子には使わず、話せない子だけに使うのがよい</button>
+        </div>
+        <div class="quiz-result" id="vqres4"></div>
+      </div>
+
+      <div class="quiz-card" id="vqcard5">
+        <div class="quiz-q"><span class="quiz-q-num" style="background:#3949AB;">Q5</span>予定が変わることを伝えるときの対応として、最も適切なのはどれですか？</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="answerVQuiz(5,this,false)">混乱させないよう、変更はその場になってから伝えるようにする</button>
+          <button class="quiz-opt" onclick="answerVQuiz(5,this,false)">変わる理由を言葉で詳しく説明して、本人に納得してもらう</button>
+          <button class="quiz-opt" onclick="answerVQuiz(5,this,true)">変わる前に見える形で示し、本人の前でスケジュールを差し替える</button>
+        </div>
+        <div class="quiz-result" id="vqres5"></div>
+      </div>
+
+      <div class="quiz-score-box" id="vquiz-score">
+        <div class="quiz-score-num" id="vscore-num">0 / 5</div>
+        <div class="quiz-score-label" id="vscore-msg"></div>
+        <button class="quiz-retry-btn" style="background:#3949AB;" onclick="retryVQuiz()">🔄 もう一度チャレンジ</button>
+      </div>
+    </div>
+
+    <!-- まとめ -->
+    <div class="content-section" id="v9">
+      <div class="section-eyebrow">
+        <div class="section-num" style="background:#3949AB;">9</div>
+        <h2 class="section-heading">今月のまとめ</h2>
+      </div>
+      <div class="content-card">
+        <p>🌊 <strong>行動の裏にある「わからない」と「伝えられない」に、こちらから手を打てます。</strong>聞いた言葉は消えますが、見たものは残ります。</p>
+        <p>🌊 <strong>わかる手がかり</strong>は、その子に届く形（実物・写真・絵・文字）で。場所・時間・手順を見える形にして、予定が変わるときは変わる前に、本人の前で伝えます。</p>
+        <p>🌊 <strong>伝える手段</strong>は、まず子どもがすでに出している発信に気づくことから。そのうえで絵カードやサインを渡します。使うと話さなくなる心配はありません。</p>
+      </div>
+
+      <div class="callout-warm" style="margin-top:16px;">
+        <span class="ci">🌊</span>
+        <p><strong>来月につながります。</strong>伝わる環境があってはじめて、新しいことを教えられます。来月は、手洗いや着替えなどを例に<strong>「教え方の基本」</strong>を学びます。</p>
+      </div>
+
+      <div class="next-month" style="background:#1A3A3A;">
+        <div class="nm-left">
+          <p class="nm-sub">▶ NEXT MONTH</p>
+          <p class="nm-title">教え方の基本</p>
+          <p class="nm-desc">11月に公開されます。</p>
+        </div>
+        <span class="nm-tag" style="background:#3949AB;">11月公開</span>
+      </div>
+    </div>
+
+    <div class="about-doc">
+      <div class="about-doc-title">📌 この資料について</div>
+      <p>本資料の内容は<strong>2026年10月時点</strong>の情報をもとにしています。</p>
+      <p>PECSやマカトン法などの方法を事業所として本格的に取り入れる場合は、<strong>それぞれの正式な研修を受けること</strong>が勧められています。この資料は、職員が考え方を共有するためのものです。</p>
+    </div>
+
+  </div><!-- /content-wrap -->
+
+  <div class="print-btn-wrap">
+    <button class="print-btn" style="color:#3949AB;border-color:#3949AB;" onclick="printPage('visual')">🖨️ この資料を印刷する</button>
+  </div>
+
+  <footer class="asd-footer">
+    <div class="lecture-companion"><span class="ripple-mascot" aria-hidden="true"><img src="assets/mascot/ripple-wave.webp" width="1254" height="1254" alt="" loading="lazy" decoding="async"></span><button class="back-btn" onclick="showPage('hp')">カリキュラムへ戻る</button></div>
+    <strong style="color:rgba(255,255,255,0.85);">放課後等デイサービス りぷる｜株式会社イノベーション</strong><br>
+    スタッフ研修資料 Month 07 · 2026年10月<br>
+    参考：国立障害者リハビリテーションセンター / ピラミッド教育コンサルタントオブジャパン / 日本マカトン協会<br>
+    LITALICO発達ナビ / Millar, Light &amp; Schlosser（2006）
+  </footer>
+
+</div><!-- /page-visual -->
+
+
 
 
 
@@ -4591,8 +5179,8 @@ function showPage(name) {
 
   // ヘッダー切り替え
   var inner = document.getElementById('hp-header');
-  if (name === 'hearing' || name === 'asd' || name === 'adhd' || name === 'intel' || name === 'techo' || name === 'niji') {
-    var monthLabel = name === 'niji' ? 'Month 06 · 9月' : (name === 'techo' ? 'Month 05 · 8月' : (name === 'intel' ? 'Month 04 · 7月' : (name === 'adhd' ? 'Month 03 · 6月' : (name === 'hearing' ? 'Month 02 · 5月' : 'Month 01 · 4月'))));
+  if (name === 'hearing' || name === 'asd' || name === 'adhd' || name === 'intel' || name === 'techo' || name === 'niji' || name === 'visual') {
+    var monthLabel = name === 'visual' ? 'Month 07 · 10月' : (name === 'niji' ? 'Month 06 · 9月' : (name === 'techo' ? 'Month 05 · 8月' : (name === 'intel' ? 'Month 04 · 7月' : (name === 'adhd' ? 'Month 03 · 6月' : (name === 'hearing' ? 'Month 02 · 5月' : 'Month 01 · 4月')))));
     inner.innerHTML =
       '<button class="back-btn" onclick="showPage(\'hp\')">← ホーム</button>' +
       '<span class="header-title" style="color:rgba(255,255,255,0.75);font-size:12px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:8px;">りぷる スタッフ研修ポータル</span>' +
@@ -4609,7 +5197,7 @@ function showPage(name) {
       '<div class="header-nav">' +
         '<button onclick="scrollToSection(\'curriculum\')">カリキュラム</button>' +
         '<button onclick="scrollToSection(\'about\')">りぷるとは</button>' +
-        '<button onclick="showPage(\'niji\')">今月</button>' +
+        '<button onclick="showPage(\'visual\')">今月</button>' +
       '</div>';
   }
 
@@ -5118,11 +5706,90 @@ function retryNQuiz() {
 }
 
 
+
+// ---- 伝わる環境クイズ ----
+var vQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+var vQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+var vQuizScore   = 0;
+var V_QUIZ_TOTAL = 5;
+
+var vQuizExplanations = {
+  1: {
+    ok: '✅ 正解！言葉は言った瞬間に消えますが、見たものは残ります。何度でも見返せて、自分のペースで理解できるのが見える手がかりの強みです。絵や写真が正確だからでも、耳で聞く力がないからでもありません。',
+    ng: '❌ 不正解。絵や写真でも受け取り方に違いは出ますし、耳で聞く力がないわけでもありません。大きな違いは「消えるか、残るか」です。見たものは残るので、自分のペースで何度でも確かめられます。'
+  },
+  2: {
+    ok: '✅ 正解！絵の意味がまだ分からない子には、実物がいちばん届きます。靴を見せたら帰る、コップを見せたらおやつ、というように、これからすることと直接つながる物を見せましょう。手がかりは、その子に届くものが正解です。',
+    ng: '❌ 不正解。絵カードの意味を覚える練習を先にしても、言葉を丁寧にしても、まだ届きにくい段階です。次の活動で実際に使う物を見せると、これからすることと直接結びつきます。'
+  },
+  3: {
+    ok: '✅ 正解！オウム返しは意味がないように聞こえても、「はい」「ほしい」「不安」などを伝えていることがあります。どの場面でどんな言葉が出るかを見ていくと、その子なりの意味が見えてきます。',
+    ng: '❌ 不正解。かつては意味のないくり返しと考えられていましたが、さまざまな働きを持つことが分かっています。止めたり言い直させたりする前に、何を伝えているのかを場面と合わせて見てください。'
+  },
+  4: {
+    ok: '✅ 正解！知的障害や自閉症のある人を対象とした研究のレビューでは、AACで発語が減った例は見つからず、約9割で発語が増えていました。伝わる経験が、伝えたい気持ちを育てます。',
+    ng: '❌ 不正解。話す力が落ちるという根拠は見つかっていませんし、話せる見込みのある子に使ってはいけないということもありません。研究では、むしろ多くの子で発語が増えていました。'
+  },
+  5: {
+    ok: '✅ 正解！変更そのものより、「知らないうちに変わっていた」ことが混乱のもとになります。変わる前に見える形で伝え、本人の前でカードを差し替え、変わったあとの予定を一緒に確かめましょう。',
+    ng: '❌ 不正解。その場になってから伝えると準備ができず、言葉で詳しく説明しても消えてしまいます。変わる前に見える形で示して、本人の前でスケジュールを差し替えるのがいちばん伝わります。'
+  }
+};
+
+function answerVQuiz(num, btn, isCorrect) {
+  if (vQuizDone[num]) return;
+  vQuizDone[num] = true;
+  vQuizAnswers[num] = isCorrect;
+  if (isCorrect) vQuizScore++;
+
+  var opts = btn.closest('.quiz-card').querySelectorAll('.quiz-opt');
+  opts.forEach(function(o){ o.classList.add('disabled'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    opts.forEach(function(o){
+      if (o.getAttribute('onclick').indexOf('true') !== -1) o.classList.add('correct');
+    });
+  }
+
+  var res = document.getElementById('vqres' + num);
+  res.textContent = vQuizExplanations[num][isCorrect ? 'ok' : 'ng'];
+  res.className = 'quiz-result show ' + (isCorrect ? 'ok' : 'ng');
+
+  var allDone = true;
+  for (var i = 1; i <= V_QUIZ_TOTAL; i++) { if (!vQuizDone[i]) { allDone = false; break; } }
+  if (allDone) {
+    setTimeout(function(){
+      var box = document.getElementById('vquiz-score');
+      box.classList.add('show');
+      document.getElementById('vscore-num').textContent = vQuizScore + ' / ' + V_QUIZ_TOTAL;
+      var msgs = ['全部読み直してみましょう💪','もう少し！復習してみて。','いい感じ！あと少し。','ほぼ完璧！惜しい〜','全問正解まであと一問！','全問正解！完璧です🎉'];
+      document.getElementById('vscore-msg').textContent = msgs[vQuizScore];
+    }, 400);
+  }
+}
+
+function retryVQuiz() {
+  vQuizAnswers = {1:false,2:false,3:false,4:false,5:false};
+  vQuizDone    = {1:false,2:false,3:false,4:false,5:false};
+  vQuizScore   = 0;
+  for (var n = 1; n <= V_QUIZ_TOTAL; n++) {
+    var card = document.getElementById('vqcard'+n);
+    if (!card) continue;
+    card.querySelectorAll('.quiz-opt').forEach(function(o){ o.className = 'quiz-opt'; });
+    var res = document.getElementById('vqres'+n);
+    res.className = 'quiz-result';
+    res.textContent = '';
+  }
+  document.getElementById('vquiz-score').classList.remove('show');
+  tocScrollTo('vquiz');
+}
+
+
 function printPage(name) {
   document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
   document.getElementById('page-' + name).classList.add('active');
   // 「もっと詳しく」を全部開いてから印刷する
-  document.querySelectorAll('#page-' + name + ' details').forEach(function(d){ d.open = true; });
+  document.querySelectorAll('#page-' + name + ' details:not(.presenter-note)').forEach(function(d){ d.open = true; });
   window.print();
 }
 
